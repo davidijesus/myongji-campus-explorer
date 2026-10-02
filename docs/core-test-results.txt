@@ -1,0 +1,284 @@
+
+> myongji-campus-explorer@0.1.0 test
+> tsc -p tsconfig.node.json && node --test tests/*.test.cjs
+
+TAP version 13
+# Subtest: both shipped datasets pass structural validation
+ok 1 - both shipped datasets pass structural validation
+  ---
+  duration_ms: 4.008849
+  type: 'test'
+  ...
+# Subtest: live seed contains no invented geography, venues or events
+ok 2 - live seed contains no invented geography, venues or events
+  ---
+  duration_ms: 0.216822
+  type: 'test'
+  ...
+# Subtest: English and Korean search resolve the same place
+ok 3 - English and Korean search resolve the same place
+  ---
+  duration_ms: 1.111202
+  type: 'test'
+  ...
+# Subtest: normalization handles fullwidth, spaces, punctuation and case
+ok 4 - normalization handles fullwidth, spaces, punctuation and case
+  ---
+  duration_ms: 0.321618
+  type: 'test'
+  ...
+# Subtest: search honors category and saved-place filters
+ok 5 - search honors category and saved-place filters
+  ---
+  duration_ms: 9.888217
+  type: 'test'
+  ...
+# Subtest: verified room mapping only; no prefix guessing
+ok 6 - verified room mapping only; no prefix guessing
+  ---
+  duration_ms: 0.944785
+  type: 'test'
+  ...
+# Subtest: demo geometry cannot enter the real mode
+ok 7 - demo geometry cannot enter the real mode
+  ---
+  duration_ms: 0.867229
+  type: 'test'
+  ...
+# Subtest: wrong-campus datasets are rejected
+ok 8 - wrong-campus datasets are rejected
+  ---
+  duration_ms: 0.174609
+  type: 'test'
+  ...
+# Subtest: graph path ends at the requested entrance and sums edge distances
+ok 9 - graph path ends at the requested entrance and sums edge distances
+  ---
+  duration_ms: 1.1442
+  type: 'test'
+  ...
+# Subtest: missing node is not replaced with straight-line navigation
+ok 10 - missing node is not replaced with straight-line navigation
+  ---
+  duration_ms: 0.415157
+  type: 'test'
+  ...
+# Subtest: unverified graph segments do not route
+ok 11 - unverified graph segments do not route
+  ---
+  duration_ms: 0.501615
+  type: 'test'
+  ...
+# Subtest: restricted and unknown-access segments do not route
+ok 12 - restricted and unknown-access segments do not route
+  ---
+  duration_ms: 0.620362
+  type: 'test'
+  ...
+# Subtest: unverified nodes do not connect otherwise verified paths
+ok 13 - unverified nodes do not connect otherwise verified paths
+  ---
+  duration_ms: 0.402258
+  type: 'test'
+  ...
+# Subtest: avoiding stairs excludes known stairs and unknown stairs
+ok 14 - avoiding stairs excludes known stairs and unknown stairs
+  ---
+  duration_ms: 0.456658
+  type: 'test'
+  ...
+# Subtest: one-way edges are not traversed backwards
+ok 15 - one-way edges are not traversed backwards
+  ---
+  duration_ms: 0.397971
+  type: 'test'
+  ...
+# Subtest: zero movement produces an empty-edge route
+ok 16 - zero movement produces an empty-edge route
+  ---
+  duration_ms: 0.149673
+  type: 'test'
+  ...
+# Subtest: geographic conversion round trips in one local meter frame
+ok 17 - geographic conversion round trips in one local meter frame
+  ---
+  duration_ms: 0.769934
+  type: 'test'
+  ...
+# Subtest: unknown height remains unknown when converted back
+ok 18 - unknown height remains unknown when converted back
+  ---
+  duration_ms: 0.120078
+  type: 'test'
+  ...
+# Subtest: haversine is independent from walking distance
+ok 19 - haversine is independent from walking distance
+  ---
+  duration_ms: 0.158455
+  type: 'test'
+  ...
+# Subtest: boundary classification uses a supplied polygon
+ok 20 - boundary classification uses a supplied polygon
+  ---
+  duration_ms: 0.270502
+  type: 'test'
+  ...
+# Subtest: location status distinguishes weak, stale and unavailable
+ok 21 - location status distinguishes weak, stale and unavailable
+  ---
+  duration_ms: 0.215781
+  type: 'test'
+  ...
+# Subtest: unknown opening hours are not closed
+ok 22 - unknown opening hours are not closed
+  ---
+  duration_ms: 0.151666
+  type: 'test'
+  ...
+# Subtest: weekly food hours use Seoul local time and exclusive close
+ok 23 - weekly food hours use Seoul local time and exclusive close
+  ---
+  duration_ms: 0.294527
+  type: 'test'
+  ...
+# Subtest: overnight hours carry into the next day
+ok 24 - overnight hours carry into the next day
+  ---
+  duration_ms: 0.144535
+  type: 'test'
+  ...
+# Subtest: explicit holiday closure overrides overnight spillover
+ok 25 - explicit holiday closure overrides overnight spillover
+  ---
+  duration_ms: 0.129743
+  type: 'test'
+  ...
+# Subtest: stale or unsourced live hours are unknown
+ok 26 - stale or unsourced live hours are unknown
+  ---
+  duration_ms: 0.223452
+  type: 'test'
+  ...
+# Subtest: events filter draft/canceled/completed and finished records
+ok 27 - events filter draft/canceled/completed and finished records
+  ---
+  duration_ms: 0.428547
+  type: 'test'
+  ...
+# Subtest: ongoing event stays visible until its end
+ok 28 - ongoing event stays visible until its end
+  ---
+  duration_ms: 0.487955
+  type: 'test'
+  ...
+# Subtest: walking deep link uses destination and app identifier, not driving
+ok 29 - walking deep link uses destination and app identifier, not driving
+  ---
+  duration_ms: 0.401316
+  type: 'test'
+  ...
+# Subtest: manual deep-link start coordinates are correctly named
+ok 30 - manual deep-link start coordinates are correctly named
+  ---
+  duration_ms: 0.310362
+  type: 'test'
+  ...
+# Subtest: place action has distinct supported parameter names
+ok 31 - place action has distinct supported parameter names
+  ---
+  duration_ms: 0.290001
+  type: 'test'
+  ...
+# Subtest: invalid coordinates or missing app identity cannot deep link
+ok 32 - invalid coordinates or missing app identity cannot deep link
+  ---
+  duration_ms: 0.199787
+  type: 'test'
+  ...
+# Subtest: destination requires live mode, place ownership and verified entrance
+ok 33 - destination requires live mode, place ownership and verified entrance
+  ---
+  duration_ms: 0.269421
+  type: 'test'
+  ...
+# Subtest: external links reject unsafe or credential-bearing schemes
+ok 34 - external links reject unsafe or credential-bearing schemes
+  ---
+  duration_ms: 0.283992
+  type: 'test'
+  ...
+# Subtest: evidence timestamps, IDs and ownership are validated
+ok 35 - evidence timestamps, IDs and ownership are validated
+  ---
+  duration_ms: 0.797526
+  type: 'test'
+  ...
+# Subtest: malformed nested data is rejected without a process crash
+ok 36 - malformed nested data is rejected without a process crash
+  ---
+  duration_ms: 2.229103
+  type: 'test'
+  ...
+# Subtest: native bridge rejects arbitrary commands and oversized identifiers
+ok 37 - native bridge rejects arbitrary commands and oversized identifiers
+  ---
+  duration_ms: 0.257863
+  type: 'test'
+  ...
+# Subtest: favorites bridge stores IDs and language, never location
+ok 38 - favorites bridge stores IDs and language, never location
+  ---
+  duration_ms: 0.265655
+  type: 'test'
+  ...
+# Subtest: public read works but public edits and admin reads are denied
+ok 39 - public read works but public edits and admin reads are denied
+  ---
+  duration_ms: 60.864588
+  type: 'test'
+  ...
+# Subtest: admin content publication persists atomically and supports ETag
+ok 40 - admin content publication persists atomically and supports ETag
+  ---
+  duration_ms: 20.251357
+  type: 'test'
+  ...
+# Subtest: stale administrator revision cannot overwrite newer data
+ok 41 - stale administrator revision cannot overwrite newer data
+  ---
+  duration_ms: 9.39919
+  type: 'test'
+  ...
+# Subtest: demo data cannot be published on live content API
+ok 42 - demo data cannot be published on live content API
+  ---
+  duration_ms: 7.769076
+  type: 'test'
+  ...
+# Subtest: browser-origin admin requests are blocked even with a token
+ok 43 - browser-origin admin requests are blocked even with a token
+  ---
+  duration_ms: 2.893641
+  type: 'test'
+  ...
+# Subtest: draft events are stripped from public output
+ok 44 - draft events are stripped from public output
+  ---
+  duration_ms: 0.878396
+  type: 'test'
+  ...
+# Subtest: content server refuses short administrative tokens
+ok 45 - content server refuses short administrative tokens
+  ---
+  duration_ms: 0.439604
+  type: 'test'
+  ...
+1..45
+# tests 45
+# suites 0
+# pass 45
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 165.072203

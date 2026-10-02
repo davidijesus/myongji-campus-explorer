@@ -1,0 +1,1815 @@
+{
+  "schemaVersion": 1,
+  "id": "mju-isolated-demo",
+  "mode": "demo",
+  "version": 1,
+  "updatedAt": "2026-09-29T12:00:00+09:00",
+  "campus": {
+    "id": "mju-yongin-natural-science",
+    "name": {
+      "en": "Campus design sandbox",
+      "ko": "캠퍼스 디자인 샌드박스"
+    },
+    "address": {
+      "en": "Fictional layout · not Myongji campus geography",
+      "ko": "가상 배치 · 실제 명지대 캠퍼스 지형이 아닙니다"
+    },
+    "evidence": {
+      "status": "demo",
+      "sourceUrl": null,
+      "checkedAt": null,
+      "note": {
+        "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+        "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+      }
+    },
+    "origin": null,
+    "boundary": null,
+    "geometryEvidence": {
+      "status": "demo",
+      "sourceUrl": null,
+      "checkedAt": null,
+      "note": {
+        "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+        "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+      }
+    }
+  },
+  "places": [
+    {
+      "id": "demo-library",
+      "name": {
+        "en": "Demo Library",
+        "ko": "샘플 도서관"
+      },
+      "aliases": [
+        "Library",
+        "도서관",
+        "library"
+      ],
+      "category": "library",
+      "description": {
+        "en": "A quiet place to find your next idea. This sample building demonstrates search, entrances and saved places.",
+        "ko": "새로운 아이디어를 찾는 조용한 공간입니다. 검색, 출입구, 즐겨찾기를 체험하는 가상 건물입니다."
+      },
+      "code": "D-01",
+      "point": {
+        "frame": "demo",
+        "x": -47,
+        "z": -38,
+        "elevationM": 0
+      },
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      },
+      "geometryEvidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      },
+      "buildingId": "demo-library-model",
+      "entranceIds": [
+        "demo-library-entrance"
+      ],
+      "photo": null
+    },
+    {
+      "id": "demo-science",
+      "name": {
+        "en": "Demo Science Hall",
+        "ko": "샘플 과학관"
+      },
+      "aliases": [
+        "Science Hall",
+        "과학관",
+        "science"
+      ],
+      "category": "academic",
+      "description": {
+        "en": "A sample academic building. Try its building code or the fictional room D201 in search.",
+        "ko": "가상의 교육 건물입니다. 건물 코드나 가상 강의실 D201을 검색해 보세요."
+      },
+      "code": "D-02",
+      "point": {
+        "frame": "demo",
+        "x": 42,
+        "z": -51,
+        "elevationM": 0
+      },
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      },
+      "geometryEvidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      },
+      "buildingId": "demo-science-model",
+      "entranceIds": [
+        "demo-science-entrance"
+      ],
+      "photo": null
+    },
+    {
+      "id": "demo-union",
+      "name": {
+        "en": "Demo Student Hub",
+        "ko": "샘플 학생회관"
+      },
+      "aliases": [
+        "Student Hub",
+        "학생회관",
+        "union"
+      ],
+      "category": "services",
+      "description": {
+        "en": "A sample meeting place for clubs and campus life. Event cards connect back to this venue.",
+        "ko": "동아리와 캠퍼스 생활을 위한 가상 공간입니다. 행사 카드에서 이 장소를 지도에 표시할 수 있습니다."
+      },
+      "code": "D-03",
+      "point": {
+        "frame": "demo",
+        "x": 0,
+        "z": 42,
+        "elevationM": 0
+      },
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      },
+      "geometryEvidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      },
+      "buildingId": "demo-union-model",
+      "entranceIds": [
+        "demo-union-entrance"
+      ],
+      "photo": null
+    },
+    {
+      "id": "demo-coffee",
+      "name": {
+        "en": "Demo Garden Café",
+        "ko": "샘플 가든 카페"
+      },
+      "aliases": [
+        "Garden Café",
+        "가든 카페",
+        "coffee"
+      ],
+      "category": "food",
+      "description": {
+        "en": "A fictional café next to the sample garden. Prices and hours are demonstration data, not real offers.",
+        "ko": "샘플 정원 옆의 가상 카페입니다. 가격과 영업시간은 실제 정보가 아닌 시연용 데이터입니다."
+      },
+      "code": "D-04",
+      "point": {
+        "frame": "demo",
+        "x": -88,
+        "z": 28,
+        "elevationM": 0
+      },
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      },
+      "geometryEvidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      },
+      "buildingId": "demo-coffee-model",
+      "entranceIds": [
+        "demo-coffee-entrance"
+      ],
+      "photo": null
+    },
+    {
+      "id": "demo-dining",
+      "name": {
+        "en": "Demo Dining Hall",
+        "ko": "샘플 학생식당"
+      },
+      "aliases": [
+        "Dining Hall",
+        "학생식당",
+        "dining"
+      ],
+      "category": "food",
+      "description": {
+        "en": "A fictional cafeteria with a sample budget-friendly menu. No dietary or allergen claims are made.",
+        "ko": "저렴한 샘플 메뉴를 제공하는 가상 식당입니다. 식이 요법이나 알레르기 관련 정보를 보장하지 않습니다."
+      },
+      "code": "D-05",
+      "point": {
+        "frame": "demo",
+        "x": 78,
+        "z": 24,
+        "elevationM": 0
+      },
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      },
+      "geometryEvidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      },
+      "buildingId": "demo-dining-model",
+      "entranceIds": [
+        "demo-dining-entrance"
+      ],
+      "photo": null
+    },
+    {
+      "id": "demo-residence",
+      "name": {
+        "en": "Demo Residence",
+        "ko": "샘플 생활관"
+      },
+      "aliases": [
+        "Residence",
+        "생활관",
+        "residence"
+      ],
+      "category": "residence",
+      "description": {
+        "en": "A sample residence hall with multiple floors. Its geometry and entrances are fictional.",
+        "ko": "여러 층으로 구성된 가상 생활관입니다. 건물 형태와 출입구는 실제와 다릅니다."
+      },
+      "code": "D-06",
+      "point": {
+        "frame": "demo",
+        "x": -23,
+        "z": -104,
+        "elevationM": 0
+      },
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      },
+      "geometryEvidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      },
+      "buildingId": "demo-residence-model",
+      "entranceIds": [
+        "demo-residence-entrance"
+      ],
+      "photo": null
+    },
+    {
+      "id": "demo-arts",
+      "name": {
+        "en": "Demo Studio Hall",
+        "ko": "샘플 스튜디오관"
+      },
+      "aliases": [
+        "Studio Hall",
+        "스튜디오관",
+        "arts"
+      ],
+      "category": "academic",
+      "description": {
+        "en": "A sample studio building. The stairs option shows how path restrictions affect route choices.",
+        "ko": "가상 스튜디오 건물입니다. 계단 회피 옵션으로 경로 선택이 어떻게 달라지는지 확인할 수 있습니다."
+      },
+      "code": "D-07",
+      "point": {
+        "frame": "demo",
+        "x": 94,
+        "z": -82,
+        "elevationM": 0
+      },
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      },
+      "geometryEvidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      },
+      "buildingId": "demo-arts-model",
+      "entranceIds": [
+        "demo-arts-entrance"
+      ],
+      "photo": null
+    },
+    {
+      "id": "demo-gate",
+      "name": {
+        "en": "Demo Welcome Gate",
+        "ko": "샘플 정문"
+      },
+      "aliases": [
+        "Welcome Gate",
+        "정문",
+        "gate"
+      ],
+      "category": "outdoors",
+      "description": {
+        "en": "The default starting point in this fictional scene. This is not the location of the real university entrance.",
+        "ko": "가상 장면의 기본 출발지입니다. 실제 대학 정문 위치가 아닙니다."
+      },
+      "code": "D-00",
+      "point": {
+        "frame": "demo",
+        "x": 0,
+        "z": 107,
+        "elevationM": 0
+      },
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      },
+      "geometryEvidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      },
+      "buildingId": "demo-gate-model",
+      "entranceIds": [
+        "demo-gate-entrance"
+      ],
+      "photo": null
+    }
+  ],
+  "buildings": [
+    {
+      "id": "demo-library-model",
+      "placeId": "demo-library",
+      "point": {
+        "frame": "demo",
+        "x": -47,
+        "z": -38,
+        "elevationM": 0
+      },
+      "widthM": 51,
+      "depthM": 30,
+      "heightM": 23,
+      "bearingDegrees": 0,
+      "form": "library",
+      "color": "#e8dcc6",
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-science-model",
+      "placeId": "demo-science",
+      "point": {
+        "frame": "demo",
+        "x": 42,
+        "z": -51,
+        "elevationM": 0
+      },
+      "widthM": 38,
+      "depthM": 32,
+      "heightM": 34,
+      "bearingDegrees": 0,
+      "form": "hall",
+      "color": "#dcd6c9",
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-union-model",
+      "placeId": "demo-union",
+      "point": {
+        "frame": "demo",
+        "x": 0,
+        "z": 42,
+        "elevationM": 0
+      },
+      "widthM": 42,
+      "depthM": 26,
+      "heightM": 18,
+      "bearingDegrees": 0,
+      "form": "pavilion",
+      "color": "#edd0b4",
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-coffee-model",
+      "placeId": "demo-coffee",
+      "point": {
+        "frame": "demo",
+        "x": -88,
+        "z": 28,
+        "elevationM": 0
+      },
+      "widthM": 27,
+      "depthM": 22,
+      "heightM": 12,
+      "bearingDegrees": 0,
+      "form": "pavilion",
+      "color": "#d9c5aa",
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-dining-model",
+      "placeId": "demo-dining",
+      "point": {
+        "frame": "demo",
+        "x": 78,
+        "z": 24,
+        "elevationM": 0
+      },
+      "widthM": 35,
+      "depthM": 26,
+      "heightM": 15,
+      "bearingDegrees": 0,
+      "form": "hall",
+      "color": "#dbc9b8",
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-residence-model",
+      "placeId": "demo-residence",
+      "point": {
+        "frame": "demo",
+        "x": -23,
+        "z": -104,
+        "elevationM": 0
+      },
+      "widthM": 31,
+      "depthM": 22,
+      "heightM": 43,
+      "bearingDegrees": 0,
+      "form": "tower",
+      "color": "#d9d7cf",
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-arts-model",
+      "placeId": "demo-arts",
+      "point": {
+        "frame": "demo",
+        "x": 94,
+        "z": -82,
+        "elevationM": 0
+      },
+      "widthM": 30,
+      "depthM": 26,
+      "heightM": 21,
+      "bearingDegrees": 0,
+      "form": "hall",
+      "color": "#e3cab5",
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-gate-model",
+      "placeId": "demo-gate",
+      "point": {
+        "frame": "demo",
+        "x": 0,
+        "z": 107,
+        "elevationM": 0
+      },
+      "widthM": 26,
+      "depthM": 9,
+      "heightM": 12,
+      "bearingDegrees": 0,
+      "form": "gate",
+      "color": "#d4c3ac",
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    }
+  ],
+  "entrances": [
+    {
+      "id": "demo-library-entrance",
+      "placeId": "demo-library",
+      "nodeId": "demo-library-node",
+      "name": {
+        "en": "Sample main entrance",
+        "ko": "샘플 주 출입구"
+      },
+      "point": {
+        "frame": "demo",
+        "x": -47,
+        "z": -18,
+        "elevationM": 0
+      },
+      "stairs": false,
+      "notes": {
+        "en": "Fictional entrance · step-free status is not an accessibility certification.",
+        "ko": "가상 출입구 · 계단 유무는 휠체어 접근성 인증이 아닙니다."
+      },
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-science-entrance",
+      "placeId": "demo-science",
+      "nodeId": "demo-science-node",
+      "name": {
+        "en": "Sample main entrance",
+        "ko": "샘플 주 출입구"
+      },
+      "point": {
+        "frame": "demo",
+        "x": 42,
+        "z": -30,
+        "elevationM": 0
+      },
+      "stairs": false,
+      "notes": {
+        "en": "Fictional entrance · step-free status is not an accessibility certification.",
+        "ko": "가상 출입구 · 계단 유무는 휠체어 접근성 인증이 아닙니다."
+      },
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-union-entrance",
+      "placeId": "demo-union",
+      "nodeId": "demo-union-node",
+      "name": {
+        "en": "Sample main entrance",
+        "ko": "샘플 주 출입구"
+      },
+      "point": {
+        "frame": "demo",
+        "x": 0,
+        "z": 24,
+        "elevationM": 0
+      },
+      "stairs": false,
+      "notes": {
+        "en": "Fictional entrance · step-free status is not an accessibility certification.",
+        "ko": "가상 출입구 · 계단 유무는 휠체어 접근성 인증이 아닙니다."
+      },
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-coffee-entrance",
+      "placeId": "demo-coffee",
+      "nodeId": "demo-coffee-node",
+      "name": {
+        "en": "Sample main entrance",
+        "ko": "샘플 주 출입구"
+      },
+      "point": {
+        "frame": "demo",
+        "x": -88,
+        "z": 13,
+        "elevationM": 0
+      },
+      "stairs": false,
+      "notes": {
+        "en": "Fictional entrance · step-free status is not an accessibility certification.",
+        "ko": "가상 출입구 · 계단 유무는 휠체어 접근성 인증이 아닙니다."
+      },
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-dining-entrance",
+      "placeId": "demo-dining",
+      "nodeId": "demo-dining-node",
+      "name": {
+        "en": "Sample main entrance",
+        "ko": "샘플 주 출입구"
+      },
+      "point": {
+        "frame": "demo",
+        "x": 78,
+        "z": 6,
+        "elevationM": 0
+      },
+      "stairs": false,
+      "notes": {
+        "en": "Fictional entrance · step-free status is not an accessibility certification.",
+        "ko": "가상 출입구 · 계단 유무는 휠체어 접근성 인증이 아닙니다."
+      },
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-residence-entrance",
+      "placeId": "demo-residence",
+      "nodeId": "demo-residence-node",
+      "name": {
+        "en": "Sample main entrance",
+        "ko": "샘플 주 출입구"
+      },
+      "point": {
+        "frame": "demo",
+        "x": -23,
+        "z": -88,
+        "elevationM": 0
+      },
+      "stairs": false,
+      "notes": {
+        "en": "Fictional entrance · step-free status is not an accessibility certification.",
+        "ko": "가상 출입구 · 계단 유무는 휠체어 접근성 인증이 아닙니다."
+      },
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-arts-entrance",
+      "placeId": "demo-arts",
+      "nodeId": "demo-arts-node",
+      "name": {
+        "en": "Sample main entrance",
+        "ko": "샘플 주 출입구"
+      },
+      "point": {
+        "frame": "demo",
+        "x": 94,
+        "z": -64,
+        "elevationM": 0
+      },
+      "stairs": false,
+      "notes": {
+        "en": "Fictional entrance · step-free status is not an accessibility certification.",
+        "ko": "가상 출입구 · 계단 유무는 휠체어 접근성 인증이 아닙니다."
+      },
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-gate-entrance",
+      "placeId": "demo-gate",
+      "nodeId": "demo-gate-node",
+      "name": {
+        "en": "Sample main entrance",
+        "ko": "샘플 주 출입구"
+      },
+      "point": {
+        "frame": "demo",
+        "x": 0,
+        "z": 99,
+        "elevationM": 0
+      },
+      "stairs": false,
+      "notes": {
+        "en": "Fictional entrance · step-free status is not an accessibility certification.",
+        "ko": "가상 출입구 · 계단 유무는 휠체어 접근성 인증이 아닙니다."
+      },
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    }
+  ],
+  "nodes": [
+    {
+      "id": "demo-library-node",
+      "point": {
+        "frame": "demo",
+        "x": -47,
+        "z": -18,
+        "elevationM": 0
+      },
+      "access": "public",
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-science-node",
+      "point": {
+        "frame": "demo",
+        "x": 42,
+        "z": -30,
+        "elevationM": 0
+      },
+      "access": "public",
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-union-node",
+      "point": {
+        "frame": "demo",
+        "x": 0,
+        "z": 24,
+        "elevationM": 0
+      },
+      "access": "public",
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-coffee-node",
+      "point": {
+        "frame": "demo",
+        "x": -88,
+        "z": 13,
+        "elevationM": 0
+      },
+      "access": "public",
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-dining-node",
+      "point": {
+        "frame": "demo",
+        "x": 78,
+        "z": 6,
+        "elevationM": 0
+      },
+      "access": "public",
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-residence-node",
+      "point": {
+        "frame": "demo",
+        "x": -23,
+        "z": -88,
+        "elevationM": 0
+      },
+      "access": "public",
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-arts-node",
+      "point": {
+        "frame": "demo",
+        "x": 94,
+        "z": -64,
+        "elevationM": 0
+      },
+      "access": "public",
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-gate-node",
+      "point": {
+        "frame": "demo",
+        "x": 0,
+        "z": 99,
+        "elevationM": 0
+      },
+      "access": "public",
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-j-south",
+      "point": {
+        "frame": "demo",
+        "x": 0,
+        "z": 76,
+        "elevationM": 0
+      },
+      "access": "public",
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-j-center",
+      "point": {
+        "frame": "demo",
+        "x": 0,
+        "z": 6,
+        "elevationM": 0
+      },
+      "access": "public",
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-j-north",
+      "point": {
+        "frame": "demo",
+        "x": 0,
+        "z": -74,
+        "elevationM": 0
+      },
+      "access": "public",
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-j-west",
+      "point": {
+        "frame": "demo",
+        "x": -88,
+        "z": 6,
+        "elevationM": 0
+      },
+      "access": "public",
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-j-lib",
+      "point": {
+        "frame": "demo",
+        "x": -47,
+        "z": 6,
+        "elevationM": 0
+      },
+      "access": "public",
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-j-sci",
+      "point": {
+        "frame": "demo",
+        "x": 42,
+        "z": 6,
+        "elevationM": 0
+      },
+      "access": "public",
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-j-far-east",
+      "point": {
+        "frame": "demo",
+        "x": 114,
+        "z": 6,
+        "elevationM": 0
+      },
+      "access": "public",
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-j-arts",
+      "point": {
+        "frame": "demo",
+        "x": 114,
+        "z": -64,
+        "elevationM": 0
+      },
+      "access": "public",
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-j-dorm",
+      "point": {
+        "frame": "demo",
+        "x": -23,
+        "z": -74,
+        "elevationM": 0
+      },
+      "access": "public",
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-union-entrance-path",
+      "point": {
+        "frame": "demo",
+        "x": -34,
+        "z": 76,
+        "elevationM": 0
+      },
+      "access": "public",
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-hub-side",
+      "point": {
+        "frame": "demo",
+        "x": -34,
+        "z": 24,
+        "elevationM": 0
+      },
+      "access": "public",
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "demo-edge-0",
+      "from": "demo-gate-node",
+      "to": "demo-j-south",
+      "distanceM": 23,
+      "stairs": false,
+      "slopePercent": 0,
+      "access": "public",
+      "bidirectional": true,
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-edge-1",
+      "from": "demo-j-south",
+      "to": "demo-union-entrance-path",
+      "distanceM": 34,
+      "stairs": false,
+      "slopePercent": 0,
+      "access": "public",
+      "bidirectional": true,
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-edge-2",
+      "from": "demo-union-entrance-path",
+      "to": "demo-hub-side",
+      "distanceM": 52,
+      "stairs": false,
+      "slopePercent": 0,
+      "access": "public",
+      "bidirectional": true,
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-edge-3",
+      "from": "demo-hub-side",
+      "to": "demo-j-center",
+      "distanceM": 38.47076812334269,
+      "stairs": false,
+      "slopePercent": 0,
+      "access": "public",
+      "bidirectional": true,
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-edge-4",
+      "from": "demo-hub-side",
+      "to": "demo-union-node",
+      "distanceM": 34,
+      "stairs": false,
+      "slopePercent": 0,
+      "access": "public",
+      "bidirectional": true,
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-edge-5",
+      "from": "demo-j-center",
+      "to": "demo-j-lib",
+      "distanceM": 47,
+      "stairs": false,
+      "slopePercent": 0,
+      "access": "public",
+      "bidirectional": true,
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-edge-6",
+      "from": "demo-j-lib",
+      "to": "demo-j-west",
+      "distanceM": 41,
+      "stairs": false,
+      "slopePercent": 0,
+      "access": "public",
+      "bidirectional": true,
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-edge-7",
+      "from": "demo-j-center",
+      "to": "demo-j-sci",
+      "distanceM": 42,
+      "stairs": false,
+      "slopePercent": 0,
+      "access": "public",
+      "bidirectional": true,
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-edge-8",
+      "from": "demo-j-sci",
+      "to": "demo-dining-node",
+      "distanceM": 36,
+      "stairs": false,
+      "slopePercent": 0,
+      "access": "public",
+      "bidirectional": true,
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-edge-9",
+      "from": "demo-dining-node",
+      "to": "demo-j-far-east",
+      "distanceM": 36,
+      "stairs": false,
+      "slopePercent": 0,
+      "access": "public",
+      "bidirectional": true,
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-edge-10",
+      "from": "demo-j-center",
+      "to": "demo-j-north",
+      "distanceM": 80,
+      "stairs": false,
+      "slopePercent": 0,
+      "access": "public",
+      "bidirectional": true,
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-edge-11",
+      "from": "demo-j-north",
+      "to": "demo-j-dorm",
+      "distanceM": 23,
+      "stairs": false,
+      "slopePercent": 0,
+      "access": "public",
+      "bidirectional": true,
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-edge-12",
+      "from": "demo-j-dorm",
+      "to": "demo-residence-node",
+      "distanceM": 14,
+      "stairs": false,
+      "slopePercent": 0,
+      "access": "public",
+      "bidirectional": true,
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-edge-13",
+      "from": "demo-j-lib",
+      "to": "demo-library-node",
+      "distanceM": 24,
+      "stairs": false,
+      "slopePercent": 0,
+      "access": "public",
+      "bidirectional": true,
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-edge-14",
+      "from": "demo-j-west",
+      "to": "demo-coffee-node",
+      "distanceM": 7,
+      "stairs": false,
+      "slopePercent": 0,
+      "access": "public",
+      "bidirectional": true,
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-edge-15",
+      "from": "demo-j-sci",
+      "to": "demo-science-node",
+      "distanceM": 36,
+      "stairs": false,
+      "slopePercent": 0,
+      "access": "public",
+      "bidirectional": true,
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-edge-16",
+      "from": "demo-j-far-east",
+      "to": "demo-j-arts",
+      "distanceM": 70,
+      "stairs": false,
+      "slopePercent": 0,
+      "access": "public",
+      "bidirectional": true,
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-edge-17",
+      "from": "demo-j-arts",
+      "to": "demo-arts-node",
+      "distanceM": 20,
+      "stairs": false,
+      "slopePercent": 0,
+      "access": "public",
+      "bidirectional": true,
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-edge-18",
+      "from": "demo-dining-node",
+      "to": "demo-arts-node",
+      "distanceM": 71.80529228406498,
+      "stairs": true,
+      "slopePercent": 0,
+      "access": "public",
+      "bidirectional": true,
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    }
+  ],
+  "food": [
+    {
+      "id": "demo-food-coffee",
+      "placeId": "demo-coffee",
+      "kind": "cafe",
+      "campusSide": "on-campus",
+      "price": {
+        "min": 3000,
+        "max": 6500,
+        "currency": "KRW",
+        "evidence": {
+          "status": "demo",
+          "sourceUrl": null,
+          "checkedAt": null,
+          "note": {
+            "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+            "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+          }
+        }
+      },
+      "hours": {
+        "timeZone": "Asia/Seoul",
+        "weekly": [
+          {
+            "day": 0,
+            "open": "08:00",
+            "close": "22:00"
+          },
+          {
+            "day": 1,
+            "open": "08:00",
+            "close": "22:00"
+          },
+          {
+            "day": 2,
+            "open": "08:00",
+            "close": "22:00"
+          },
+          {
+            "day": 3,
+            "open": "08:00",
+            "close": "22:00"
+          },
+          {
+            "day": 4,
+            "open": "08:00",
+            "close": "22:00"
+          },
+          {
+            "day": 5,
+            "open": "08:00",
+            "close": "22:00"
+          },
+          {
+            "day": 6,
+            "open": "08:00",
+            "close": "22:00"
+          }
+        ],
+        "exceptions": [],
+        "evidence": {
+          "status": "demo",
+          "sourceUrl": null,
+          "checkedAt": null,
+          "note": {
+            "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+            "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+          }
+        }
+      },
+      "dietaryClaims": [],
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-food-dining",
+      "placeId": "demo-dining",
+      "kind": "cafeteria",
+      "campusSide": "on-campus",
+      "price": {
+        "min": 4500,
+        "max": 7000,
+        "currency": "KRW",
+        "evidence": {
+          "status": "demo",
+          "sourceUrl": null,
+          "checkedAt": null,
+          "note": {
+            "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+            "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+          }
+        }
+      },
+      "hours": null,
+      "dietaryClaims": [],
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    }
+  ],
+  "events": [
+    {
+      "id": "demo-event-welcome",
+      "title": {
+        "en": "Find your people",
+        "ko": "친구를 만나는 시간"
+      },
+      "description": {
+        "en": "A fictional welcome gathering to preview the events experience. Not a real scheduled event.",
+        "ko": "행사 화면을 체험하기 위한 가상 환영 모임입니다. 실제 예정된 행사가 아닙니다."
+      },
+      "organizer": {
+        "en": "Sample International Club",
+        "ko": "샘플 국제교류 동아리"
+      },
+      "placeId": "demo-union",
+      "startsAt": "2026-10-02T17:00:00+09:00",
+      "endsAt": "2026-10-02T19:00:00+09:00",
+      "timeZone": "Asia/Seoul",
+      "language": {
+        "en": "English & Korean",
+        "ko": "영어 및 한국어"
+      },
+      "state": "published",
+      "registrationUrl": null,
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-event-studio",
+      "title": {
+        "en": "A little room for ideas",
+        "ko": "아이디어가 자라는 공간"
+      },
+      "description": {
+        "en": "A fictional student design evening. Demonstration only; there is no registration.",
+        "ko": "가상의 학생 디자인 모임입니다. 시연용으로, 실제 등록은 없습니다."
+      },
+      "organizer": {
+        "en": "Sample Design Society",
+        "ko": "샘플 디자인 동아리"
+      },
+      "placeId": "demo-arts",
+      "startsAt": "2026-10-06T18:30:00+09:00",
+      "endsAt": "2026-10-06T20:00:00+09:00",
+      "timeZone": "Asia/Seoul",
+      "language": {
+        "en": "English",
+        "ko": "영어"
+      },
+      "state": "published",
+      "registrationUrl": null,
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    },
+    {
+      "id": "demo-event-ended",
+      "title": {
+        "en": "Past sample event",
+        "ko": "종료된 샘플 행사"
+      },
+      "description": {
+        "en": "Should not appear in the upcoming feed.",
+        "ko": "예정된 행사 목록에 표시되면 안 됩니다."
+      },
+      "organizer": {
+        "en": "Sample Club",
+        "ko": "샘플 동아리"
+      },
+      "placeId": "demo-library",
+      "startsAt": "2026-09-01T10:00:00+09:00",
+      "endsAt": "2026-09-01T11:00:00+09:00",
+      "timeZone": "Asia/Seoul",
+      "language": {
+        "en": "Korean",
+        "ko": "한국어"
+      },
+      "state": "completed",
+      "registrationUrl": null,
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    }
+  ],
+  "rooms": [
+    {
+      "id": "demo-room-D201",
+      "aliases": [
+        "D201",
+        "D-201"
+      ],
+      "placeId": "demo-science",
+      "floor": "2",
+      "evidence": {
+        "status": "demo",
+        "sourceUrl": null,
+        "checkedAt": null,
+        "note": {
+          "en": "Fictional fixture. Not a real campus place or surveyed coordinate.",
+          "ko": "가상 샘플입니다. 실제 캠퍼스 장소나 측량 좌표가 아닙니다."
+        }
+      }
+    }
+  ]
+}

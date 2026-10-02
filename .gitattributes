@@ -1,0 +1,8 @@
+# Preserve exact bytes of frozen release assets and their recorded SHA-256 hashes.
+* -text
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.png binary
+*.apk binary
+*.zip binary

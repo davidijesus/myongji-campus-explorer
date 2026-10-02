@@ -1,0 +1,1 @@
+71 browser checks passed. Renderer: WebGL 1 · first-party low-poly meshes. Fallback: Canvas 2D software-projected 3D fallback

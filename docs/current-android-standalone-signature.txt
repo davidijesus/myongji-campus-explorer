@@ -1,0 +1,17 @@
+Verifies
+Verified using v1 scheme (JAR signing): false
+Verified using v2 scheme (APK Signature Scheme v2): true
+Verified using v3 scheme (APK Signature Scheme v3): true
+Verified using v3.1 scheme (APK Signature Scheme v3.1): false
+Verified using v4 scheme (APK Signature Scheme v4): false
+Verified for SourceStamp: false
+Number of signers: 1
+Signer #1 certificate DN: CN=Independent Campus Explorer Development, O=Student Demo, C=KR
+Signer #1 certificate SHA-256 digest: dc047d342057bbf022d14f94865f186f7a0dc52872275f5777f59b3d5a3dac32
+Signer #1 certificate SHA-1 digest: 09fb71bde47b3c8af3eed79da4d4e59f5e1077f2
+Signer #1 certificate MD5 digest: 1bc823ed3de108e9973ef9020f73077e
+Signer #1 key algorithm: RSA
+Signer #1 key size (bits): 3072
+Signer #1 public key SHA-256 digest: f413c15f3de0522b2b0743b1ceb2246c4481431567adfdb7cbef45e69fa6c87c
+Signer #1 public key SHA-1 digest: 9518793e9b3d8dfc50c1dad7b453fa8f23830dad
+Signer #1 public key MD5 digest: 924569b08cba378c976920ffb9d1bbbc

@@ -1,0 +1,310 @@
+{
+  "executedAt": "2026-10-01T11:27:26.216Z",
+  "checks": [
+    {
+      "name": "Initial view uses live directory and has no fictional content",
+      "passed": true
+    },
+    {
+      "name": "Directory includes 50 references including source caveats",
+      "passed": true
+    },
+    {
+      "name": "Canvas is rendered",
+      "passed": true
+    },
+    {
+      "name": "Map controls have at least 44px touch targets",
+      "passed": true
+    },
+    {
+      "name": "Phone map shortcut focuses building search",
+      "passed": true
+    },
+    {
+      "name": "Label switch clears the unselected map",
+      "passed": true
+    },
+    {
+      "name": "Visible labels avoid map overlays",
+      "passed": true
+    },
+    {
+      "name": "Map labels and controls keep readable text contrast",
+      "passed": true
+    },
+    {
+      "name": "Visual evidence catalogue covers 40 structures and shows gaps",
+      "passed": true
+    },
+    {
+      "name": "Map evidence exposes historical plan and graphic-scale source",
+      "passed": true
+    },
+    {
+      "name": "Building video reference retains reviewed timestamp",
+      "passed": true
+    },
+    {
+      "name": "Search selects actual Myeongjin building",
+      "passed": true
+    },
+    {
+      "name": "Building detail dock does not cover canvas",
+      "passed": true
+    },
+    {
+      "name": "Selected building stays labelled with other labels hidden",
+      "passed": true
+    },
+    {
+      "name": "Building details distinguish reviewed imagery from model accuracy",
+      "passed": true
+    },
+    {
+      "name": "2D toggle preserves selected building",
+      "passed": true
+    },
+    {
+      "name": "Zoom changes rendered scene",
+      "passed": true
+    },
+    {
+      "name": "Rotation changes rendered scene",
+      "passed": true
+    },
+    {
+      "name": "Favorite persists across reload",
+      "passed": true
+    },
+    {
+      "name": "Conflicting dorm source remains disclosed",
+      "passed": true
+    },
+    {
+      "name": "14 official food entries render",
+      "passed": true
+    },
+    {
+      "name": "Coffee filter returns 4 entries",
+      "passed": true
+    },
+    {
+      "name": "Food does not invent prices/open-now statuses",
+      "passed": true
+    },
+    {
+      "name": "Food shows selected venue building on map",
+      "passed": true
+    },
+    {
+      "name": "Five timetable choices available",
+      "passed": true
+    },
+    {
+      "name": "Station timetable retains all 54 current semester rows",
+      "passed": true
+    },
+    {
+      "name": "Bus uncertainty and dated eligibility visible",
+      "passed": true
+    },
+    {
+      "name": "Giheung timetable selection changes departure origin",
+      "passed": true
+    },
+    {
+      "name": "Coffee answer contains source citations and map links",
+      "passed": true
+    },
+    {
+      "name": "Official classroom prefix resolves Hambak without class assignment",
+      "passed": true
+    },
+    {
+      "name": "Unknown class is not invented",
+      "passed": true
+    },
+    {
+      "name": "Unknown hours/prices are refused",
+      "passed": true
+    },
+    {
+      "name": "Chat user input is escaped",
+      "passed": true
+    },
+    {
+      "name": "Citation opens provenance and original URL action",
+      "passed": true
+    },
+    {
+      "name": "Chat map action selects building",
+      "passed": true
+    },
+    {
+      "name": "Korean interface switches while retaining selection",
+      "passed": true
+    },
+    {
+      "name": "Korean search finds library building",
+      "passed": true
+    },
+    {
+      "name": "Empty events has no fake events",
+      "passed": true
+    },
+    {
+      "name": "Independent affiliation and privacy are available",
+      "passed": true
+    },
+    {
+      "name": "Offline questions work",
+      "passed": true
+    },
+    {
+      "name": "explore has no horizontal page overflow at 320px",
+      "passed": true
+    },
+    {
+      "name": "food has no horizontal page overflow at 320px",
+      "passed": true
+    },
+    {
+      "name": "buses has no horizontal page overflow at 320px",
+      "passed": true
+    },
+    {
+      "name": "chat has no horizontal page overflow at 320px",
+      "passed": true
+    },
+    {
+      "name": "events has no horizontal page overflow at 320px",
+      "passed": true
+    },
+    {
+      "name": "explore has no horizontal page overflow at 390px",
+      "passed": true
+    },
+    {
+      "name": "food has no horizontal page overflow at 390px",
+      "passed": true
+    },
+    {
+      "name": "buses has no horizontal page overflow at 390px",
+      "passed": true
+    },
+    {
+      "name": "chat has no horizontal page overflow at 390px",
+      "passed": true
+    },
+    {
+      "name": "events has no horizontal page overflow at 390px",
+      "passed": true
+    },
+    {
+      "name": "explore has no horizontal page overflow at 768px",
+      "passed": true
+    },
+    {
+      "name": "food has no horizontal page overflow at 768px",
+      "passed": true
+    },
+    {
+      "name": "buses has no horizontal page overflow at 768px",
+      "passed": true
+    },
+    {
+      "name": "chat has no horizontal page overflow at 768px",
+      "passed": true
+    },
+    {
+      "name": "events has no horizontal page overflow at 768px",
+      "passed": true
+    },
+    {
+      "name": "explore has no horizontal page overflow at 1440px",
+      "passed": true
+    },
+    {
+      "name": "food has no horizontal page overflow at 1440px",
+      "passed": true
+    },
+    {
+      "name": "buses has no horizontal page overflow at 1440px",
+      "passed": true
+    },
+    {
+      "name": "chat has no horizontal page overflow at 1440px",
+      "passed": true
+    },
+    {
+      "name": "events has no horizontal page overflow at 1440px",
+      "passed": true
+    },
+    {
+      "name": "No uncaught UI errors",
+      "passed": true
+    },
+    {
+      "name": "Software fallback draws complete reference geometry",
+      "passed": true
+    },
+    {
+      "name": "Fallback building selection works",
+      "passed": true
+    },
+    {
+      "name": "200% font scale avoids horizontal page overflow",
+      "passed": true
+    },
+    {
+      "name": "Enlarged phone header and navigation stay within the viewport",
+      "passed": true
+    },
+    {
+      "name": "Long selected building remains labelled at 200% text",
+      "passed": true
+    },
+    {
+      "name": "Both renderer runs have no uncaught errors",
+      "passed": true
+    },
+    {
+      "name": "Reviewed content override does not duplicate a formerly unverified reference",
+      "passed": true
+    },
+    {
+      "name": "Configured publisher privacy/support links appear",
+      "passed": true
+    },
+    {
+      "name": "Standalone HTML opens directly without a server",
+      "passed": true
+    },
+    {
+      "name": "No errors after final content and standalone checks",
+      "passed": true
+    }
+  ],
+  "diagnostics": {
+    "renderer": "WebGL 1 · first-party low-poly meshes",
+    "vertices": 165447,
+    "drawCalls": 2,
+    "frames": 27,
+    "continuousRendering": false,
+    "reference": true,
+    "referenceFeatureCount": 50,
+    "geometry": "illustration only; approximate footprints and heights; no routing graph"
+  },
+  "fallbackDiagnostics": {
+    "renderer": "Canvas 2D software-projected 3D fallback",
+    "vertices": 165447,
+    "drawCalls": null,
+    "frames": 3,
+    "continuousRendering": false,
+    "reference": true,
+    "referenceFeatureCount": 50,
+    "geometry": "illustration only; approximate footprints and heights; no routing graph"
+  },
+  "errors": []
+}

@@ -1,0 +1,5 @@
+{
+  "name": "campus-naver", "version": "0.1.0", "private": true,
+  "description": "Local Expo view wrapping Naver's official native SDKs",
+  "license": "MIT"
+}

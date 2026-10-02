@@ -1,0 +1,79 @@
+{
+  "executedAt": "2026-10-01T11:30:54.642Z",
+  "build": {
+    "version": "0.5.0",
+    "appHash": "ac300af2c792",
+    "builtAt": "2026-10-01T11:29:50.877Z",
+    "native": false
+  },
+  "checks": [
+    {
+      "name": "Service worker controls the installed web shell",
+      "passed": true
+    },
+    {
+      "name": "Manifest defines scoped standalone installation",
+      "passed": true
+    },
+    {
+      "name": "Install icons include actual 192 and 512 pixel PNGs",
+      "passed": true
+    },
+    {
+      "name": "Apple home-screen icon is present",
+      "passed": true
+    },
+    {
+      "name": "Browser parses web manifest without errors",
+      "passed": true
+    },
+    {
+      "name": "Chromium reports no installability errors: {\"installabilityErrors\":[]}",
+      "passed": true
+    },
+    {
+      "name": "Metadata navigation cannot replace the offline HTML shell",
+      "passed": true
+    },
+    {
+      "name": "Offline reload renders all 50 campus entries",
+      "passed": true
+    },
+    {
+      "name": "Offline reload preserves saved places",
+      "passed": true
+    },
+    {
+      "name": "Offline installed shell answers sourced classroom questions",
+      "passed": true
+    },
+    {
+      "name": "Fresh Chromium process opens all 50 cached campus entries offline",
+      "passed": true
+    },
+    {
+      "name": "Saved places persist through a browser process restart",
+      "passed": true
+    },
+    {
+      "name": "Both campuses and Chinese are bundled offline",
+      "passed": true
+    },
+    {
+      "name": "Offline relaunch preserves Seoul and Chinese",
+      "passed": true
+    },
+    {
+      "name": "Seoul Chinese assistant works offline",
+      "passed": true
+    },
+    {
+      "name": "No uncaught PWA errors",
+      "passed": true
+    }
+  ],
+  "installability": {
+    "installabilityErrors": []
+  },
+  "errors": []
+}

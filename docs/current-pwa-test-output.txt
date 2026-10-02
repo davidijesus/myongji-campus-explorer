@@ -1,0 +1,1 @@
+16 PWA checks passed; offline browser restart and Chromium installability eligibility verified.

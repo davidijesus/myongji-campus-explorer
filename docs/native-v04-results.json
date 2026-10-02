@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-30",
+  "version": "0.4.0",
+  "status": "android-demonstration-apk-built",
+  "primaryArtifact": "myongji-campus-explorer-v0.4-android.apk",
+  "artifacts": [
+    {
+      "filename": "myongji-campus-explorer-v0.4-android.apk",
+      "type": "apk",
+      "status": "built-and-statically-verified",
+      "sha256": "0465207759b19f7dd50294af9a9c7d5f611bc06784475ca4a408cc839a83e946",
+      "bytes": 152099,
+      "appId": "dev.student.myongjiexplorer.standalone",
+      "version": "0.4.0",
+      "versionCode": 1,
+      "ABI": "universal Java/Dex; no bundled native libraries",
+      "minSDK": 24,
+      "targetSDK": 36,
+      "compileSDK": 36,
+      "signing": {
+        "type": "development-self-signed",
+        "publisherRelease": false,
+        "certificateSha256": "dc047d342057bbf022d14f94865f186f7a0dc52872275f5777f59b3d5a3dac32",
+        "keyAlgorithm": "RSA",
+        "keyBits": 3072,
+        "verifiedV2": true,
+        "verifiedV3": true,
+        "privateKeyIncluded": false
+      },
+      "signingVerified": true,
+      "developmentSignature": true,
+      "buildMode": "standalone offline Java/System WebView; development-signed non-debuggable APK",
+      "nativeLibraries": 0,
+      "permissions": [],
+      "embeddedHtmlSha256": "702a95fb103f1a8b878f1f75d6bfcc4a20e844c64daaa602728abc43378abb13",
+      "zipalign16KBPassed": true,
+      "physicalDeviceTest": false,
+      "emulatorTest": false,
+      "installationTest": false,
+      "launchTest": false,
+      "runtime16KBTest": false,
+      "details": "current-android-standalone-results.json"
+    }
+  ],
+  "physicalDeviceTest": false,
+  "source": {
+    "htmlSha256": "702a95fb103f1a8b878f1f75d6bfcc4a20e844c64daaa602728abc43378abb13",
+    "expoGeneratedPageSha256": "0625b6449e8d1b1f2eaefe6b045aa85decb4dd38454f35e378ccef21b1d6c509"
+  },
+  "standaloneValidation": {
+    "linkPolicyPassed": 30,
+    "desktopAssetSmokePassed": 6,
+    "javaCompilation": "passed",
+    "dexCompilation": "passed",
+    "evidence": "current-android-standalone-results.json"
+  },
+  "expo": {
+    "androidStatus": "native-task-failed-windows-path-limit",
+    "apkProduced": false,
+    "aabProduced": false,
+    "appId": "dev.student.myongjiexplorer",
+    "version": "0.4.0",
+    "ABI": "arm64-v8a attempted",
+    "minSDK": 24,
+    "compileSDK": 36,
+    "targetSDK": 36,
+    "versions": {
+      "expo": "57.0.26",
+      "reactNative": "0.86.3",
+      "react": "19.2.3",
+      "jdk": "18.0.2.1",
+      "gradle": "9.3.1",
+      "androidGradlePlugin": "8.12.0",
+      "buildTools": "36.0.0",
+      "ndk": "27.1.12297006",
+      "cmake": "3.22.1",
+      "ninja": "1.10.2",
+      "kotlin": "2.1.20"
+    },
+    "typecheck": "passed-final-source",
+    "expoDoctor": {
+      "passed": 21,
+      "total": 21,
+      "evidence": "native-v04-doctor-result.txt"
+    },
+    "dependencyCompatibility": "up-to-date",
+    "androidPrebuild": "passed",
+    "finalV04HermesExportPerformed": false,
+    "command": "gradlew.bat :app:assembleRelease -PreactNativeArchitectures=arm64-v8a --no-daemon --max-workers=2 --console=plain",
+    "attempts": [
+      {
+        "pathMode": "original checkout",
+        "nativeTask": ":app:buildCMakeRelWithDebInfo[arm64-v8a]",
+        "result": "failed",
+        "failure": "Ninja: ReactAndroidConfigVersion.cmake filename longer than 260 characters",
+        "remainingParallelWorker": "terminated after task failure and repeated path warnings",
+        "log": "work/android-v04-build.log"
+      },
+      {
+        "pathMode": "temporary SUBST M: alias",
+        "nativeTask": ":app:buildCMakeRelWithDebInfo[arm64-v8a]",
+        "result": "failed",
+        "failure": "Ninja: async-storage generated ComponentDescriptors.cpp filename longer than 260 characters; canonical path remained long",
+        "remainingParallelWorker": "terminated after task failure and repeated path warnings",
+        "log": "work/android-v04-short-path-build.log"
+      }
+    ],
+    "temporaryDriveMappingRemoved": true,
+    "stoppedForDiskSpace": false,
+    "freeDiskGiBAtEnd": 3.61,
+    "sdkRepair": {
+      "ndk": "27.1.12297006",
+      "method": "add missing files from official checksum-verified archive; pre-existing installer metadata retained",
+      "archiveSha1": "3bb7efc850cd0af7707854b7e0d5c3b6a7153703",
+      "sdkComponentsDeleted": false
+    },
+    "upstream16KB": {
+      "scope": "downloaded react-android-0.86.3-release.aar arm64 libraries; not a final APK",
+      "loadAlignmentPassed": true,
+      "relroAlignmentPassed": false,
+      "runtimeTested": false,
+      "affectedLibraries": [
+        "libc++_shared.so",
+        "libfbjni.so",
+        "libhermestooling.so",
+        "libjsi.so"
+      ],
+      "evidence": "native-v04-upstream-elf.json"
+    },
+    "physicalDeviceTest": false,
+    "emulatorTest": false
+  },
+  "ios": {
+    "nativeCompilePerformed": false,
+    "ipaProduced": false,
+    "physicalDeviceTest": false,
+    "requirements": [
+      "macOS/Xcode or owner-configured cloud native build",
+      "Apple signing and distribution configuration"
+    ]
+  },
+  "publisherRelease": false,
+  "storeSubmitted": false,
+  "cloudBuildSubmitted": false,
+  "limitations": [
+    "Development-signed APK; publisher signing and store review are pending.",
+    "No Android or iOS device installation/launch/performance/accessibility testing.",
+    "Expo compilation and upstream 16 KB library compatibility remain separate unresolved issues."
+  ],
+  "report": "NATIVE_VALIDATION.md",
+  "historicalV02Report": "NATIVE_VALIDATION_V02.md"
+}

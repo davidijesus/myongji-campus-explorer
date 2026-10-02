@@ -1,0 +1,32 @@
+{
+  "executedAt": "2026-10-01T11:32:23.388Z",
+  "environment": "desktop Chromium, APK-extracted HTML under wrapper HTTPS origin/CSP; not Android WebView",
+  "checks": [
+    {
+      "name": "APK asset opens Yongin directory under wrapper CSP",
+      "passed": true
+    },
+    {
+      "name": "APK asset contains Seoul scene",
+      "passed": true
+    },
+    {
+      "name": "Wrapper origin persists campus and language",
+      "passed": true
+    },
+    {
+      "name": "Packaged Chinese answers cite Seoul sources",
+      "passed": true
+    },
+    {
+      "name": "No embedded resource requests",
+      "passed": true
+    },
+    {
+      "name": "No uncaught asset errors",
+      "passed": true
+    }
+  ],
+  "blocked": [],
+  "errors": []
+}

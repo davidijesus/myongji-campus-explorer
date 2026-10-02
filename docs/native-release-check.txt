@@ -1,0 +1,11 @@
+
+> myongji-campus-explorer-mobile@0.2.0 check:release
+> node scripts/release-check.cjs
+
+Release configuration is incomplete:
+- CAMPUS_IOS_BUNDLE_ID: set a publisher-owned identifier.
+- CAMPUS_ANDROID_PACKAGE: set a publisher-owned identifier.
+- EXPO_OWNER: set your Expo account or organization.
+- EAS_PROJECT_ID: link the app to your Expo project.
+- EXPO_PUBLIC_PRIVACY_URL: provide your public HTTPS page.
+- EXPO_PUBLIC_SUPPORT_URL: provide your public HTTPS page.

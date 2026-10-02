@@ -1,0 +1,614 @@
+
+> myongji-campus-explorer@0.5.0 test
+> tsc -p tsconfig.node.json && node --test tests/*.test.cjs
+
+TAP version 13
+# Subtest: Seoul registry validates separately and never includes invented navigation geometry
+ok 1 - Seoul registry validates separately and never includes invented navigation geometry
+  ---
+  duration_ms: 11.4938
+  type: 'test'
+  ...
+# Subtest: Seoul marker positions retain a single metric projection and nonoverlapping schematic envelopes
+ok 2 - Seoul marker positions retain a single metric projection and nonoverlapping schematic envelopes
+  ---
+  duration_ms: 2.7098
+  type: 'test'
+  ...
+# Subtest: Seoul transport excludes the discontinued trial and all Yongin departures
+ok 3 - Seoul transport excludes the discontinued trial and all Yongin departures
+  ---
+  duration_ms: 4.1658
+  type: 'test'
+  ...
+# Subtest: Seoul source and food registries are campus scoped and carry all three languages
+ok 4 - Seoul source and food registries are campus scoped and carry all three languages
+  ---
+  duration_ms: 3.1426
+  type: 'test'
+  ...
+# Subtest: Cited answers never relocate rooms or venues across campuses
+ok 5 - Cited answers never relocate rooms or venues across campuses
+  ---
+  duration_ms: 46.8697
+  type: 'test'
+  ...
+# Subtest: Chinese answers preserve unknowns for personal schedules, hours, prices and allergens
+ok 6 - Chinese answers preserve unknowns for personal schedules, hours, prices and allergens
+  ---
+  duration_ms: 2.2739
+  type: 'test'
+  ...
+# Subtest: both shipped datasets pass structural validation
+ok 7 - both shipped datasets pass structural validation
+  ---
+  duration_ms: 10.7737
+  type: 'test'
+  ...
+# Subtest: live seed contains no invented geography, venues or events
+ok 8 - live seed contains no invented geography, venues or events
+  ---
+  duration_ms: 0.6942
+  type: 'test'
+  ...
+# Subtest: English and Korean search resolve the same place
+ok 9 - English and Korean search resolve the same place
+  ---
+  duration_ms: 43.9043
+  type: 'test'
+  ...
+# Subtest: normalization handles fullwidth, spaces, punctuation and case
+ok 10 - normalization handles fullwidth, spaces, punctuation and case
+  ---
+  duration_ms: 17.7184
+  type: 'test'
+  ...
+# Subtest: search honors category and saved-place filters
+ok 11 - search honors category and saved-place filters
+  ---
+  duration_ms: 22.3712
+  type: 'test'
+  ...
+# Subtest: verified room mapping only; no prefix guessing
+ok 12 - verified room mapping only; no prefix guessing
+  ---
+  duration_ms: 3.8221
+  type: 'test'
+  ...
+# Subtest: demo geometry cannot enter the real mode
+ok 13 - demo geometry cannot enter the real mode
+  ---
+  duration_ms: 8.2514
+  type: 'test'
+  ...
+# Subtest: wrong-campus datasets are rejected
+ok 14 - wrong-campus datasets are rejected
+  ---
+  duration_ms: 1.5676
+  type: 'test'
+  ...
+# Subtest: graph path ends at the requested entrance and sums edge distances
+ok 15 - graph path ends at the requested entrance and sums edge distances
+  ---
+  duration_ms: 2.3655
+  type: 'test'
+  ...
+# Subtest: missing node is not replaced with straight-line navigation
+ok 16 - missing node is not replaced with straight-line navigation
+  ---
+  duration_ms: 2.009
+  type: 'test'
+  ...
+# Subtest: unverified graph segments do not route
+ok 17 - unverified graph segments do not route
+  ---
+  duration_ms: 5.951
+  type: 'test'
+  ...
+# Subtest: restricted and unknown-access segments do not route
+ok 18 - restricted and unknown-access segments do not route
+  ---
+  duration_ms: 3.2708
+  type: 'test'
+  ...
+# Subtest: unverified nodes do not connect otherwise verified paths
+ok 19 - unverified nodes do not connect otherwise verified paths
+  ---
+  duration_ms: 0.9073
+  type: 'test'
+  ...
+# Subtest: avoiding stairs excludes known stairs and unknown stairs
+ok 20 - avoiding stairs excludes known stairs and unknown stairs
+  ---
+  duration_ms: 0.9302
+  type: 'test'
+  ...
+# Subtest: one-way edges are not traversed backwards
+ok 21 - one-way edges are not traversed backwards
+  ---
+  duration_ms: 0.805
+  type: 'test'
+  ...
+# Subtest: zero movement produces an empty-edge route
+ok 22 - zero movement produces an empty-edge route
+  ---
+  duration_ms: 0.2321
+  type: 'test'
+  ...
+# Subtest: geographic conversion round trips in one local meter frame
+ok 23 - geographic conversion round trips in one local meter frame
+  ---
+  duration_ms: 0.4083
+  type: 'test'
+  ...
+# Subtest: unknown height remains unknown when converted back
+ok 24 - unknown height remains unknown when converted back
+  ---
+  duration_ms: 0.1549
+  type: 'test'
+  ...
+# Subtest: haversine is independent from walking distance
+ok 25 - haversine is independent from walking distance
+  ---
+  duration_ms: 0.8481
+  type: 'test'
+  ...
+# Subtest: boundary classification uses a supplied polygon
+ok 26 - boundary classification uses a supplied polygon
+  ---
+  duration_ms: 0.6598
+  type: 'test'
+  ...
+# Subtest: location status distinguishes weak, stale and unavailable
+ok 27 - location status distinguishes weak, stale and unavailable
+  ---
+  duration_ms: 0.7625
+  type: 'test'
+  ...
+# Subtest: unknown opening hours are not closed
+ok 28 - unknown opening hours are not closed
+  ---
+  duration_ms: 0.4288
+  type: 'test'
+  ...
+# Subtest: weekly food hours use Seoul local time and exclusive close
+ok 29 - weekly food hours use Seoul local time and exclusive close
+  ---
+  duration_ms: 0.7582
+  type: 'test'
+  ...
+# Subtest: overnight hours carry into the next day
+ok 30 - overnight hours carry into the next day
+  ---
+  duration_ms: 0.6162
+  type: 'test'
+  ...
+# Subtest: explicit holiday closure overrides overnight spillover
+ok 31 - explicit holiday closure overrides overnight spillover
+  ---
+  duration_ms: 0.4199
+  type: 'test'
+  ...
+# Subtest: stale or unsourced live hours are unknown
+ok 32 - stale or unsourced live hours are unknown
+  ---
+  duration_ms: 0.5494
+  type: 'test'
+  ...
+# Subtest: events filter draft/canceled/completed and finished records
+ok 33 - events filter draft/canceled/completed and finished records
+  ---
+  duration_ms: 2.1714
+  type: 'test'
+  ...
+# Subtest: ongoing event stays visible until its end
+ok 34 - ongoing event stays visible until its end
+  ---
+  duration_ms: 1.6163
+  type: 'test'
+  ...
+# Subtest: walking deep link uses destination and app identifier, not driving
+ok 35 - walking deep link uses destination and app identifier, not driving
+  ---
+  duration_ms: 1.5857
+  type: 'test'
+  ...
+# Subtest: manual deep-link start coordinates are correctly named
+ok 36 - manual deep-link start coordinates are correctly named
+  ---
+  duration_ms: 0.5889
+  type: 'test'
+  ...
+# Subtest: place action has distinct supported parameter names
+ok 37 - place action has distinct supported parameter names
+  ---
+  duration_ms: 0.4663
+  type: 'test'
+  ...
+# Subtest: invalid coordinates or missing app identity cannot deep link
+ok 38 - invalid coordinates or missing app identity cannot deep link
+  ---
+  duration_ms: 0.4446
+  type: 'test'
+  ...
+# Subtest: destination requires live mode, place ownership and verified entrance
+ok 39 - destination requires live mode, place ownership and verified entrance
+  ---
+  duration_ms: 23.835
+  type: 'test'
+  ...
+# Subtest: external links reject unsafe or credential-bearing schemes
+ok 40 - external links reject unsafe or credential-bearing schemes
+  ---
+  duration_ms: 0.7527
+  type: 'test'
+  ...
+# Subtest: evidence timestamps, IDs and ownership are validated
+ok 41 - evidence timestamps, IDs and ownership are validated
+  ---
+  duration_ms: 10.3585
+  type: 'test'
+  ...
+# Subtest: malformed nested data is rejected without a process crash
+ok 42 - malformed nested data is rejected without a process crash
+  ---
+  duration_ms: 13.3439
+  type: 'test'
+  ...
+# Subtest: native bridge rejects arbitrary commands and oversized identifiers
+ok 43 - native bridge rejects arbitrary commands and oversized identifiers
+  ---
+  duration_ms: 0.8807
+  type: 'test'
+  ...
+# Subtest: favorites bridge stores IDs and language, never location
+ok 44 - favorites bridge stores IDs and language, never location
+  ---
+  duration_ms: 0.3811
+  type: 'test'
+  ...
+# Subtest: localization honors explicit Chinese while preserving legacy en/ko and unknown remote names
+ok 45 - localization honors explicit Chinese while preserving legacy en/ko and unknown remote names
+  ---
+  duration_ms: 13.8109
+  type: 'test'
+  ...
+# Subtest: Chinese names and translated aliases find the same verified Yongin buildings
+ok 46 - Chinese names and translated aliases find the same verified Yongin buildings
+  ---
+  duration_ms: 63.1683
+  type: 'test'
+  ...
+# Subtest: optional zh data is backwards compatible and validated when supplied
+ok 47 - optional zh data is backwards compatible and validated when supplied
+  ---
+  duration_ms: 27.4007
+  type: 'test'
+  ...
+# Subtest: only the two explicit campus dataset IDs are accepted
+ok 48 - only the two explicit campus dataset IDs are accepted
+  ---
+  duration_ms: 2.8772
+  type: 'test'
+  ...
+# Subtest: native preferences retain global favorites, zh and campus while accepting old save messages
+ok 49 - native preferences retain global favorites, zh and campus while accepting old save messages
+  ---
+  duration_ms: 1.2024
+  type: 'test'
+  ...
+# Subtest: every bundled Yongin localized name, detail and evidence note has a Chinese translation
+ok 50 - every bundled Yongin localized name, detail and evidence note has a Chinese translation
+  ---
+  duration_ms: 9.9614
+  type: 'test'
+  ...
+# Subtest: all static web and native UI translations have explicit or dictionary Chinese coverage
+ok 51 - all static web and native UI translations have explicit or dictionary Chinese coverage
+  ---
+  duration_ms: 590.496
+  type: 'test'
+  ...
+# Subtest: every shipped fact, food record and timetable cites a registered source
+ok 52 - every shipped fact, food record and timetable cites a registered source
+  ---
+  duration_ms: 3.3411
+  type: 'test'
+  ...
+# Subtest: undated prices, opening hours and diets are never converted to current facts
+ok 53 - undated prices, opening hours and diets are never converted to current facts
+  ---
+  duration_ms: 15.8448
+  type: 'test'
+  ...
+# Subtest: student guide remains visibly imported, distinct from checked official sources
+ok 54 - student guide remains visibly imported, distinct from checked official sources
+  ---
+  duration_ms: 0.8139
+  type: 'test'
+  ...
+# Subtest: 2026-2 PDF replaces the superseded general page with 54 station and 10 downtown rows
+ok 55 - 2026-2 PDF replaces the superseded general page with 54 station and 10 downtown rows
+  ---
+  duration_ms: 2.789
+  type: 'test'
+  ...
+# Subtest: Giheung blank cells do not create campus departures or an unverified last return
+ok 56 - Giheung blank cells do not create campus departures or an unverified last return
+  ---
+  duration_ms: 6.0502
+  type: 'test'
+  ...
+# Subtest: peak shuttle windows are notes, never fabricated individual departure slots
+ok 57 - peak shuttle windows are notes, never fabricated individual departure slots
+  ---
+  duration_ms: 1.1341
+  type: 'test'
+  ...
+# Subtest: Seoul date rolls forward from UTC; no service-day claim is made
+ok 58 - Seoul date rolls forward from UTC; no service-day claim is made
+  ---
+  duration_ms: 122.7752
+  type: 'test'
+  ...
+# Subtest: a departure already passed by a second is excluded, and no tomorrow trip is fabricated
+ok 59 - a departure already passed by a second is excluded, and no tomorrow trip is fabricated
+  ---
+  duration_ms: 5.1587
+  type: 'test'
+  ...
+# Subtest: weekday routes never show next-time candidates on a Seoul weekend
+ok 60 - weekday routes never show next-time candidates on a Seoul weekend
+  ---
+  duration_ms: 28.9308
+  type: 'test'
+  ...
+# Subtest: weekend / holiday route uses its separate origin and does not infer weekday holidays
+ok 61 - weekend / holiday route uses its separate origin and does not infer weekday holidays
+  ---
+  duration_ms: 4.4213
+  type: 'test'
+  ...
+# Subtest: all routes fail closed outside the dated semester and keep inclusive bounds
+ok 62 - all routes fail closed outside the dated semester and keep inclusive bounds
+  ---
+  duration_ms: 7.9048
+  type: 'test'
+  ...
+# Subtest: room decoding follows explicit official code lengths, not a numeric prefix guess
+ok 63 - room decoding follows explicit official code lengths, not a numeric prefix guess
+  ---
+  duration_ms: 1.9467
+  type: 'test'
+  ...
+# Subtest: classroom answers do not claim a room exists or assign a course
+ok 64 - classroom answers do not claim a room exists or assign a course
+  ---
+  duration_ms: 10.8702
+  type: 'test'
+  ...
+# Subtest: engineering classroom patterns link to the map code without confusing Student Hall
+ok 65 - engineering classroom patterns link to the map code without confusing Student Hall
+  ---
+  duration_ms: 0.6395
+  type: 'test'
+  ...
+# Subtest: reference-map building lookup preserves the dormitory name conflict
+ok 66 - reference-map building lookup preserves the dormitory name conflict
+  ---
+  duration_ms: 0.552
+  type: 'test'
+  ...
+# Subtest: English and Korean coffee questions use the same official venue records
+ok 67 - English and Korean coffee questions use the same official venue records
+  ---
+  duration_ms: 3.473
+  type: 'test'
+  ...
+# Subtest: coffee queries with building codes do not invent a cafe in that building
+ok 68 - coffee queries with building codes do not invent a cafe in that building
+  ---
+  duration_ms: 0.9095
+  type: 'test'
+  ...
+# Subtest: bus hours do not trigger the food-hours refusal
+ok 69 - bus hours do not trigger the food-hours refusal
+  ---
+  duration_ms: 0.4676
+  type: 'test'
+  ...
+# Subtest: irrelevant and instruction-like queries cannot fabricate factual answers
+ok 70 - irrelevant and instruction-like queries cannot fabricate factual answers
+  ---
+  duration_ms: 6.4097
+  type: 'test'
+  ...
+# Subtest: every reviewed visual source can open from the native shell
+ok 71 - every reviewed visual source can open from the native shell
+  ---
+  duration_ms: 77.5854
+  type: 'test'
+  ...
+# Subtest: native video and architect permissions remain limited to reviewed links
+ok 72 - native video and architect permissions remain limited to reviewed links
+  ---
+  duration_ms: 1.1901
+  type: 'test'
+  ...
+# Subtest: every code in the supplied illustrated overview has one selectable feature
+ok 73 - every code in the supplied illustrated overview has one selectable feature
+  ---
+  duration_ms: 11.2006
+  type: 'test'
+  ...
+# Subtest: all 48 official directory landmarks except four shuttle stops and parking are represented
+ok 74 - all 48 official directory landmarks except four shuttle stops and parking are represented
+  ---
+  duration_ms: 0.5777
+  type: 'test'
+  ...
+# Subtest: reference geometry cannot silently become live navigation geometry
+ok 75 - reference geometry cannot silently become live navigation geometry
+  ---
+  duration_ms: 6.8821
+  type: 'test'
+  ...
+# Subtest: reference-only courts and disputed dorm name remain unverified
+ok 76 - reference-only courts and disputed dorm name remain unverified
+  ---
+  duration_ms: 1.8333
+  type: 'test'
+  ...
+# Subtest: conflicting directory pins stay separate from the labelled plan placement
+ok 77 - conflicting directory pins stay separate from the labelled plan placement
+  ---
+  duration_ms: 1.9067
+  type: 'test'
+  ...
+# Subtest: all selectable features have bounded finite render data and unique identities
+ok 78 - all selectable features have bounded finite render data and unique identities
+  ---
+  duration_ms: 20.9222
+  type: 'test'
+  ...
+# Subtest: engineering hall one is distinct from student union and gymnasium is octagonal
+ok 79 - engineering hall one is distinct from student union and gymnasium is octagonal
+  ---
+  duration_ms: 0.8347
+  type: 'test'
+  ...
+# Subtest: public read works but public edits and admin reads are denied
+ok 80 - public read works but public edits and admin reads are denied
+  ---
+  duration_ms: 239.2742
+  type: 'test'
+  ...
+# Subtest: admin content publication persists atomically and supports ETag
+ok 81 - admin content publication persists atomically and supports ETag
+  ---
+  duration_ms: 111.9182
+  type: 'test'
+  ...
+# Subtest: stale administrator revision cannot overwrite newer data
+ok 82 - stale administrator revision cannot overwrite newer data
+  ---
+  duration_ms: 98.8096
+  type: 'test'
+  ...
+# Subtest: demo data cannot be published on live content API
+ok 83 - demo data cannot be published on live content API
+  ---
+  duration_ms: 45.9125
+  type: 'test'
+  ...
+# Subtest: browser-origin admin requests are blocked even with a token
+ok 84 - browser-origin admin requests are blocked even with a token
+  ---
+  duration_ms: 30.2661
+  type: 'test'
+  ...
+# Subtest: draft events are stripped from public output
+ok 85 - draft events are stripped from public output
+  ---
+  duration_ms: 5.4422
+  type: 'test'
+  ...
+# Subtest: content server refuses short administrative tokens
+ok 86 - content server refuses short administrative tokens
+  ---
+  duration_ms: 2.4577
+  type: 'test'
+  ...
+# Subtest: scene scale exposes one WGS84 metric projection with a fixed campus origin
+ok 87 - scene scale exposes one WGS84 metric projection with a fixed campus origin
+  ---
+  duration_ms: 14.9517
+  type: 'test'
+  ...
+# Subtest: all 48 directory markers retain their published coordinates and independent projection
+ok 88 - all 48 directory markers retain their published coordinates and independent projection
+  ---
+  duration_ms: 38.327
+  type: 'test'
+  ...
+# Subtest: all 1128 marker-anchor pairs preserve directory spacing under one scene scale
+ok 89 - all 1128 marker-anchor pairs preserve directory spacing under one scene scale
+  ---
+  duration_ms: 50.8001
+  type: 'test'
+  ...
+# Subtest: duplicate directory markers remain recorded independently of plan-derived model positions
+ok 90 - duplicate directory markers remain recorded independently of plan-derived model positions
+  ---
+  duration_ms: 1.0103
+  type: 'test'
+  ...
+# Subtest: plan scale comes from the extracted 300-metre bar, not the rescaled sheet ratio
+ok 91 - plan scale comes from the extracted 300-metre bar, not the rescaled sheet ratio
+  ---
+  duration_ms: 0.8575
+  type: 'test'
+  ...
+# Subtest: every mapped model uses the same official-plan center, angle and size transform
+ok 92 - every mapped model uses the same official-plan center, angle and size transform
+  ---
+  duration_ms: 1.9204
+  type: 'test'
+  ...
+# Subtest: every plan-derived model pair retains the drawing distance at one physical scale
+ok 93 - every plan-derived model pair retains the drawing distance at one physical scale
+  ---
+  duration_ms: 7.8605
+  type: 'test'
+  ...
+# Subtest: all 50 selectable entries remain finite and courts do not gain invented directory markers
+ok 94 - all 50 selectable entries remain finite and courts do not gain invented directory markers
+  ---
+  duration_ms: 3.2403
+  type: 'test'
+  ...
+# Subtest: distinct physical model triangles do not intersect in area; shared plan boundaries may touch
+ok 95 - distinct physical model triangles do not intersect in area; shared plan boundaries may touch
+  ---
+  duration_ms: 3218.1705
+  type: 'test'
+  ...
+# Subtest: every generated model including roofs, pads and sports surrounds fits its rotated envelope
+ok 96 - every generated model including roofs, pads and sports surrounds fits its rotated envelope
+  ---
+  duration_ms: 188.7063
+  type: 'test'
+  ...
+# Subtest: fitting asymmetric detail preserves its source anchor and uses one horizontal scale
+ok 97 - fitting asymmetric detail preserves its source anchor and uses one horizontal scale
+  ---
+  duration_ms: 1.6139
+  type: 'test'
+  ...
+# Subtest: every modeled structure has a visual reference record, including evidence gaps
+ok 98 - every modeled structure has a visual reference record, including evidence gaps
+  ---
+  duration_ms: 5.6289
+  type: 'test'
+  ...
+# Subtest: close-up claims require corresponding reviewed evidence, not just a directory entry
+ok 99 - close-up claims require corresponding reviewed evidence, not just a directory entry
+  ---
+  duration_ms: 6.5774
+  type: 'test'
+  ...
+# Subtest: unreviewed building-photo gaps stay visible in catalogue
+ok 100 - unreviewed building-photo gaps stay visible in catalogue
+  ---
+  duration_ms: 3.3259
+  type: 'test'
+  ...
+1..100
+# tests 100
+# suites 0
+# pass 100
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4338.3709

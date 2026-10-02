@@ -1,0 +1,38 @@
+const {chromium}=require('@playwright/test');const assert=require('node:assert/strict');const fs=require('node:fs');const path=require('node:path');
+const checks=[],errors=[];let browser;const check=(name,value)=>{assert.ok(value,name);checks.push({name,passed:true});};
+(async()=>{
+ browser=await chromium.launch({headless:true,...(process.env.CHROMIUM_EXECUTABLE?{executablePath:process.env.CHROMIUM_EXECUTABLE}:{})});
+ const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
+ await page.goto(process.env.PREVIEW_URL||'http://127.0.0.1:4173');
+ await page.locator('.place-card[data-place="mju-y3"]').click();await page.locator('[data-action="favorite"]').click();
+ await page.locator('#campus-select').selectOption('seoul');
+ check('Seoul selection uses separate 11-place directory',await page.locator('.place-card').count()===11&&await page.locator('[data-place^="mju-y"]').count()===0);
+ check('Campus switch clears prior selected building',(await page.evaluate(()=>MCE.getState())).selected===null);
+ check('Seoul has separate reference scene',(await page.evaluate(()=>MCE.diagnostics())).referenceFeatureCount===11);
+ await page.locator('#language-select').selectOption('zh');
+ check('Chinese declares Simplified Chinese document language',await page.locator('html').getAttribute('lang')==='zh-Hans');
+ await page.locator('#search').fill('图书馆');await page.locator('.place-card[data-place="mju-s9"]').click();
+ check('Chinese search resolves Seoul library',(await page.evaluate(()=>MCE.getState())).selected==='mju-s9');
+ await page.locator('[data-action="favorite"]').click();await page.reload();
+ const saved=await page.evaluate(()=>MCE.getState());check('Campus, language and favorites from both campuses persist',saved.campusId==='seoul'&&saved.language==='zh'&&saved.favorites.includes('mju-s9')&&saved.favorites.includes('mju-y3'));
+ await page.screenshot({path:path.join(__dirname,'../docs/current-seoul-chinese.png')});
+ await page.locator('.nav-tab[data-tab="food"]').click();check('Seoul food has no Yongin Notion source',await page.locator('[data-source="notion-guide"]').count()===0&&await page.locator('.food-card').count()>0);
+ check('Seoul venue map links stay in Seoul',await page.locator('.food-card [data-place]').evaluateAll(nodes=>nodes.every(n=>n.dataset.place.startsWith('mju-s'))));
+ await page.locator('.nav-tab[data-tab="buses"]').click();check('Seoul does not reuse Yongin timetables',await page.locator('#bus-route').count()===0&&await page.locator('.time-cell').count()===0);
+ check('Current Seoul transport status is cited',await page.locator('.transport-empty [data-source]').count()>=1&&/2026-10-01|10月1|10월 1|2026年10月1/.test(await page.locator('#panel-body').innerText()));
+ await page.locator('.nav-tab[data-tab="chat"]').click();await page.locator('#chat-input').fill('哪里可以买咖啡？');await page.locator('#chat-form button').click();
+ check('Chinese assistant answers with Seoul citations',await page.locator('.answer-message [data-source^="seoul-"]').count()>0&&/[\u4e00-\u9fff]/.test(await page.locator('.answer-message').innerText()));
+ check('Seoul answer cannot link Yongin venues',await page.locator('.answer-message [data-place^="mju-y"]').count()===0);
+ await page.locator('#campus-select').selectOption('yongin');check('Chat histories are isolated by campus',await page.locator('.answer-message').count()===0);
+ await page.locator('#language-select').selectOption('en');await page.locator('#campus-select').selectOption('seoul');check('Returning chat is translated to current language',/university|coffee|caf|listed/i.test(await page.locator('.answer-message').innerText()));
+ await page.locator('.nav-tab[data-tab="explore"]').click();await page.locator('[data-action="map-evidence"]').click();check('Seoul map evidence discloses schematic geometry',/not measured|not.*survey/i.test(await page.locator('#dialog-content').innerText())&&await page.locator('#dialog-content [data-url*="findType=A"]').count()===1);await page.locator('[data-action="close-dialog"]').click();
+ await page.evaluate(()=>{const d=structuredClone(mceRequire('data').liveSeed);d.version=5;d.places.find(p=>p.id==='mju-y3').name.en='Updated Yongin Library';MCE.receive({type:'content',data:d});});
+ check('Background Yongin update cannot replace active Seoul',(await page.evaluate(()=>MCE.getState())).campusId==='seoul'&&await page.locator('.place-card').count()===11);
+ await page.locator('#campus-select').selectOption('yongin');check('Off-campus update is retained for later switch',/Updated Yongin Library/.test(await page.locator('.place-card[data-place="mju-y3"]').innerText()));
+ await page.locator('#campus-select').selectOption('seoul');
+ for(const lang of ['en','ko','zh']){await page.locator('#language-select').selectOption(lang);for(const width of [320,390,768,1440]){await page.setViewportSize({width,height:900});for(const scale of [1,2]){await page.evaluate(scale=>MCE.receive({type:'font-scale',scale}),scale);check(`Selectors stay separate at ${width}px ${lang} ${scale}x`,await page.evaluate(()=>{const a=document.querySelector('#campus-select').getBoundingClientRect(),b=document.querySelector('#language-select').getBoundingClientRect();return a.left>=0&&b.right<=innerWidth+1&&a.right<=b.left+1&&a.height>=44&&b.height>=44&&document.documentElement.scrollWidth<=innerWidth+1;}));}}}
+ await page.setViewportSize({width:390,height:844});await page.evaluate(()=>MCE.receive({type:'font-scale',scale:1}));await page.screenshot({path:path.join(__dirname,'../docs/current-seoul-chinese.png')});
+ const fallback=await browser.newContext({viewport:{width:390,height:844}});await fallback.addInitScript(()=>{const get=HTMLCanvasElement.prototype.getContext;HTMLCanvasElement.prototype.getContext=function(type,...args){return /webgl/.test(type)?null:get.call(this,type,...args);};});const p=await fallback.newPage();p.on('pageerror',e=>errors.push(e.message));await p.goto(process.env.PREVIEW_URL||'http://127.0.0.1:4173');await p.locator('#campus-select').selectOption('seoul');await p.locator('.place-card[data-place="mju-s10"]').click();check('Seoul software renderer selects MCC',(await p.evaluate(()=>MCE.diagnostics())).renderer.includes('Canvas 2D')&&(await p.evaluate(()=>MCE.getState())).selected==='mju-s10');await p.screenshot({path:path.join(__dirname,'../docs/current-seoul-fallback.png')});
+ check('Both campus/language runs have no uncaught errors',errors.length===0);
+ fs.writeFileSync(path.join(__dirname,'../docs/current-campus-browser-results.json'),JSON.stringify({executedAt:new Date().toISOString(),checks,errors},null,2));console.log(`${checks.length} campus/language browser checks passed`);await browser.close();
+})().catch(async e=>{console.error(e);await browser?.close();process.exit(1);});

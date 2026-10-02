@@ -1,0 +1,10 @@
+# EAS must upload the bundled page and root shared source; never ship local secrets.
+node_modules/
+.expo/
+dist/
+/android/
+/ios/
+.env
+.env.*
+!.env.example
+*.log

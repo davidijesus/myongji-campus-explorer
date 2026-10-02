@@ -1,0 +1,168 @@
+{
+  "date": "2026-09-29",
+  "browser": "144.0.7559.96",
+  "viewportChecks": [
+    "390x844",
+    "390x700",
+    "1440x1000"
+  ],
+  "renderer": {
+    "renderer": "Canvas 2D software-projected 3D fallback",
+    "vertices": 8484,
+    "drawCalls": null,
+    "frames": 4,
+    "continuousRendering": false
+  },
+  "scope": "Bundled web UI via Playwright set_content. No iOS/Android device, SDK authentication, or OS deep-link execution. Geolocation denial, offline event and native messages are simulated.",
+  "checks": [
+    {
+      "check": "Standalone page loads with meaningful content",
+      "result": "passed"
+    },
+    {
+      "check": "Persistent fictional-map labeling",
+      "result": "passed"
+    },
+    {
+      "check": "No horizontal page overflow at 390 px",
+      "result": "passed"
+    },
+    {
+      "check": "Renderer starts or provides usable fallback",
+      "result": "passed"
+    },
+    {
+      "check": "Korean name returns the same library",
+      "result": "passed"
+    },
+    {
+      "check": "Library selection identifies an entrance",
+      "result": "passed"
+    },
+    {
+      "check": "Route ends at selected entrance",
+      "result": "passed"
+    },
+    {
+      "check": "Walking route has graph distance, not straight-line guess",
+      "result": "passed"
+    },
+    {
+      "check": "2D switch preserves selected destination and route",
+      "result": "passed"
+    },
+    {
+      "check": "Favorite stores selected ID",
+      "result": "passed"
+    },
+    {
+      "check": "Demo destinations cannot open real Naver routes",
+      "result": "passed"
+    },
+    {
+      "check": "Food shows two labeled sample venues",
+      "result": "passed"
+    },
+    {
+      "check": "Unknown hours are explicitly represented",
+      "result": "passed"
+    },
+    {
+      "check": "Open filter excludes unknown hours",
+      "result": "passed"
+    },
+    {
+      "check": "Budget filter is applied to known price range",
+      "result": "passed"
+    },
+    {
+      "check": "Food Show on map returns to visible map",
+      "result": "passed"
+    },
+    {
+      "check": "Upcoming events exclude completed fixture",
+      "result": "passed"
+    },
+    {
+      "check": "Event timezone is visible",
+      "result": "passed"
+    },
+    {
+      "check": "Event venue returns to Explore",
+      "result": "passed"
+    },
+    {
+      "check": "Real mode does not show fictional buildings",
+      "result": "passed"
+    },
+    {
+      "check": "Real map makes missing survey explicit",
+      "result": "passed"
+    },
+    {
+      "check": "No verified path produces a limitation, not fake geometry",
+      "result": "passed"
+    },
+    {
+      "check": "Browser geographic view explains native requirement",
+      "result": "passed"
+    },
+    {
+      "check": "Denied permission retains browsing and manual start",
+      "result": "passed"
+    },
+    {
+      "check": "Offline state explains unavailable live services",
+      "result": "passed"
+    },
+    {
+      "check": "Weak location state is explicit",
+      "result": "passed"
+    },
+    {
+      "check": "Stale location state is explicit",
+      "result": "passed"
+    },
+    {
+      "check": "Location history is not stored",
+      "result": "passed"
+    },
+    {
+      "check": "Korean interface preserves selection and map mode",
+      "result": "passed"
+    },
+    {
+      "check": "Korean document language is set",
+      "result": "passed"
+    },
+    {
+      "check": "System font-scale bridge increases body text",
+      "result": "passed"
+    },
+    {
+      "check": "Enlarged text does not overflow the page horizontally",
+      "result": "passed"
+    },
+    {
+      "check": "Renderer pauses while backgrounded",
+      "result": "passed"
+    },
+    {
+      "check": "Scene is not continuously rendering while idle",
+      "result": "passed"
+    },
+    {
+      "check": "Desktop layout has no horizontal overflow",
+      "result": "passed"
+    },
+    {
+      "check": "Small phone retains bottom navigation",
+      "result": "passed"
+    },
+    {
+      "check": "No uncaught UI exceptions",
+      "result": "passed"
+    }
+  ],
+  "pageErrors": []
+}

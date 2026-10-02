@@ -1,0 +1,1028 @@
+import { Dataset, Language, Route, Building, Point } from './types';
+import { localPoint, usable } from './core';
+import { REFERENCE_CAMPUS, ReferenceFeature } from './campus';
+import { SEOUL_REFERENCE_CAMPUS } from './seoul';
+import { localize } from './i18n';
+type Vec = [
+    number,
+    number,
+    number
+];
+type RGB = [
+    number,
+    number,
+    number
+];
+const color = (hex: string): RGB => [parseInt(hex.slice(1, 3), 16) / 255, parseInt(hex.slice(3, 5), 16) / 255, parseInt(hex.slice(5, 7), 16) / 255];
+const sub = (a: Vec, b: Vec): Vec => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
+const norm = (a: Vec): Vec => { const n = Math.hypot(...a) || 1; return [a[0] / n, a[1] / n, a[2] / n]; };
+const cross = (a: Vec, b: Vec): Vec => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+const dot = (a: Vec, b: Vec) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+function multiply(a: number[], b: number[]): number[] { const o = Array(16).fill(0); for (let c = 0; c < 4; c++)
+    for (let r = 0; r < 4; r++)
+        for (let k = 0; k < 4; k++)
+            o[c * 4 + r] += a[k * 4 + r]! * b[c * 4 + k]!; return o; }
+function lookAt(eye: Vec, target: Vec): number[] { const z = norm(sub(eye, target)), x = norm(cross([0, 1, 0], z)), y = cross(z, x); return [x[0], y[0], z[0], 0, x[1], y[1], z[1], 0, x[2], y[2], z[2], 0, -dot(x, eye), -dot(y, eye), -dot(z, eye), 1]; }
+function ortho(l: number, r: number, b: number, t: number, n: number, f: number): number[] { return [2 / (r - l), 0, 0, 0, 0, 2 / (t - b), 0, 0, 0, 0, -2 / (f - n), 0, -(r + l) / (r - l), -(t + b) / (t - b), -(f + n) / (f - n), 1]; }
+function perspective(fov: number, aspect: number, near: number, far: number): number[] { const s = 1 / Math.tan(fov / 2); return [s / aspect, 0, 0, 0, 0, s, 0, 0, 0, 0, (far + near) / (near - far), -1, 0, 0, 2 * far * near / (near - far), 0]; }
+export type SceneOcclusionRect = { x: number; y: number; width: number; height: number };
+/** Scenic height reduction, not measured elevation or a source of storey counts. */
+export const REFERENCE_RENDER_HEIGHT_SCALE = .62;
+/** Fit every visible model component inside the centered local footprint envelope.
+ * The shared horizontal factor preserves the authored proportions and the anchor;
+ * even asymmetric canopies, forecourts and shadows cannot shift a source marker.
+ * The returned geometry uses the same rotation for all parts, including round forms. */
+export function fitReferenceMeshVertices(vertices: readonly number[], f: ReferenceFeature): number[] {
+    let maxX=0,maxZ=0;
+    for(let i=0;i<vertices.length;i+=9) { maxX=Math.max(maxX,Math.abs(vertices[i]!)); maxZ=Math.max(maxZ,Math.abs(vertices[i+2]!)); }
+    const horizontal=Math.min(1,maxX>0?f.size[0]/(2*maxX):1,maxZ>0?f.size[1]/(2*maxZ):1),vertical=REFERENCE_RENDER_HEIGHT_SCALE;
+    const cosine=Math.cos(f.angle),sine=Math.sin(f.angle),result:number[]=[];
+    for(let i=0;i<vertices.length;i+=9) {
+        const x=vertices[i]!*horizontal,z=vertices[i+2]!*horizontal;
+        const n=norm([vertices[i+3]!/horizontal,vertices[i+4]!/vertical,vertices[i+5]!/horizontal]);
+        result.push(f.center[0]+x*cosine+z*sine,vertices[i+1]!*vertical,f.center[1]-x*sine+z*cosine,n[0]*cosine+n[2]*sine,n[1],-n[0]*sine+n[2]*cosine,vertices[i+6]!,vertices[i+7]!,vertices[i+8]!);
+    }
+    return result;
+}
+const sharedGeometryId = (f: ReferenceFeature) => (f as ReferenceFeature & { sharedGeometryWith?: string }).sharedGeometryWith;
+export const referenceCampusForData = (data:Pick<Dataset,'campus'>) => data.campus.id === 'mju-seoul-humanities' ? SEOUL_REFERENCE_CAMPUS : REFERENCE_CAMPUS;
+class Geometry {
+    data: number[] = [];
+    /** Faceted deciduous canopy. The foliage is decorative, never a tree survey. */
+    crown(x: number, y: number, z: number, r: number, h: number, tint: RGB, segments = 7) {
+        const rings = [[.12, .45], [.40, 1], [.73, .90], [1, .20]];
+        for (let level = 0; level < rings.length - 1; level++) for (let i = 0; i < segments; i++) {
+            const a = i / segments * Math.PI * 2, b = (i + 1) / segments * Math.PI * 2, lo = rings[level]!, hi = rings[level + 1]!;
+            const p = (angle: number, ring: number[]): Vec => [x + Math.cos(angle) * r * ring[1]!, y + h * ring[0]!, z + Math.sin(angle) * r * ring[1]!];
+            this.quad(p(b, lo), p(a, lo), p(a, hi), p(b, hi), tint);
+        }
+        this.disk(x, y + h, z, r * .2, tint, segments);
+    }
+    polygon(points: [number, number][], y: number, tint: RGB) {
+        const cx = points.reduce((sum, p) => sum + p[0], 0) / points.length;
+        const cz = points.reduce((sum, p) => sum + p[1], 0) / points.length;
+        for (let i = 0; i < points.length; i++) {
+            const a = points[i]!, b = points[(i + 1) % points.length]!;
+            this.triangle([cx, y, cz], [b[0], y, b[1]], [a[0], y, a[1]], tint);
+        }
+    }
+    ellipse(x: number, y: number, z: number, rx: number, rz: number, tint: RGB, angle = 0, segments = 32) {
+        const points: [number, number][] = [];
+        for (let i = 0; i < segments; i++) {
+            const a = i / segments * Math.PI * 2, px = Math.cos(a) * rx, pz = Math.sin(a) * rz;
+            points.push([x + px * Math.cos(angle) + pz * Math.sin(angle), z - px * Math.sin(angle) + pz * Math.cos(angle)]);
+        }
+        this.polygon(points, y, tint);
+    }
+    prism(x: number, y: number, z: number, rx: number, rz: number, h: number, tint: RGB, segments = 8, angle = Math.PI / 8) {
+        const points: [number, number][] = [];
+        for (let i = 0; i < segments; i++) {
+            const a = i / segments * Math.PI * 2 + angle;
+            points.push([x + rx * Math.cos(a), z + rz * Math.sin(a)]);
+        }
+        this.polygon(points, y + h, tint);
+        for (let i = 0; i < points.length; i++) {
+            const a = points[i]!, b = points[(i + 1) % points.length]!;
+            this.quad([b[0], y, b[1]], [a[0], y, a[1]], [a[0], y + h, a[1]], [b[0], y + h, b[1]], tint);
+        }
+    }
+    triangle(a: Vec, b: Vec, c: Vec, tint: RGB) { const n = norm(cross(sub(b, a), sub(c, a))); for (const p of [a, b, c])
+        this.data.push(...p, ...n, ...tint); }
+    quad(a: Vec, b: Vec, c: Vec, d: Vec, tint: RGB) { this.triangle(a, b, c, tint); this.triangle(a, c, d, tint); }
+    box(x: number, y: number, z: number, w: number, h: number, d: number, tint: RGB, angle = 0) {
+        const transform = (a: number, b: number, c: number): Vec => [x + a * Math.cos(angle) + c * Math.sin(angle), y + b, z - a * Math.sin(angle) + c * Math.cos(angle)];
+        const a = transform(-w / 2, 0, -d / 2), b = transform(w / 2, 0, -d / 2), c = transform(w / 2, 0, d / 2), e = transform(-w / 2, 0, d / 2), f = transform(-w / 2, h, -d / 2), g = transform(w / 2, h, -d / 2), i = transform(w / 2, h, d / 2), j = transform(-w / 2, h, d / 2);
+        this.quad(f, j, i, g, tint);
+        this.quad(e, c, i, j, tint);
+        this.quad(b, a, f, g, tint);
+        this.quad(a, e, j, f, tint);
+        this.quad(c, b, g, i, tint);
+    }
+    cone(x: number, y: number, z: number, r: number, h: number, tint: RGB, segments = 6) { for (let i = 0; i < segments; i++) {
+        const a = i / segments * Math.PI * 2, b = (i + 1) / segments * Math.PI * 2;
+        this.triangle([x + r * Math.cos(a), y, z + r * Math.sin(a)], [x, y + h, z], [x + r * Math.cos(b), y, z + r * Math.sin(b)], tint);
+    } }
+    disk(x: number, y: number, z: number, r: number, tint: RGB, segments = 24) { for (let i = 0; i < segments; i++) {
+        const a = i / segments * Math.PI * 2, b = (i + 1) / segments * Math.PI * 2;
+        this.triangle([x, y, z], [x + r * Math.cos(b), y, z + r * Math.sin(b)], [x + r * Math.cos(a), y, z + r * Math.sin(a)], tint);
+    } }
+    segment(a: Vec, b: Vec, width: number, tint: RGB) { const dx = b[0] - a[0], dz = b[2] - a[2], len = Math.hypot(dx, dz) || 1, nx = -dz / len * width / 2, nz = dx / len * width / 2; this.quad([a[0] - nx, a[1], a[2] - nz], [a[0] + nx, a[1], a[2] + nz], [b[0] + nx, b[1], b[2] + nz], [b[0] - nx, b[1], b[2] - nz], tint); }
+}
+export class CampusScene {
+    private gl: WebGLRenderingContext | null;
+    private ctx: CanvasRenderingContext2D | null = null;
+    private program!: WebGLProgram;
+    private buffer!: WebGLBuffer;
+    private routeBuffer!: WebGLBuffer;
+    private routeVertices: number[] = [];
+    private count = 0;
+    private routeCount = 0;
+    private matrix: number[] = Array(16).fill(0);
+    private locations!: {
+        position: number;
+        normal: number;
+        color: number;
+        matrix: WebGLUniformLocation | null;
+    };
+    private labels = new Map<string, HTMLButtonElement>();
+    private points = new Map<string, Vec>();
+    private data: Dataset;
+    private reference = false;
+    private get referenceCampus() { return referenceCampusForData(this.data); }
+    private get seoul() { return this.data.campus.id === 'mju-seoul-humanities'; }
+    private occlusionRects: SceneOcclusionRect[] = [];
+    private labelsVisible = true;
+    private eye: Vec = [0, 500, 500];
+    private language: Language = 'en';
+    private selected: string | null = null;
+    private selectedEntrance: string | null = null;
+    private heading = -0.40;
+    private tilt = 0.82;
+    private zoom = 1;
+    private target: Vec = [0, 0, 0];
+    private frame = 0;
+    private running = true;
+    private reduced = false;
+    private twoD = false;
+    private pointers = new Map<number, {
+        x: number;
+        y: number;
+    }>();
+    private lastGesture: {
+        x: number;
+        y: number;
+        d: number;
+        angle: number;
+    } | null = null;
+    private resize: ResizeObserver;
+    private vertices: number[] = [];
+    private clicksMoved = 0;
+    private startTime = 0;
+    private frames = 0;
+    private animationGeneration = 0;
+    onSelect: (id: string) => void = () => { };
+    onHeading: (angle: number) => void = () => { };
+    constructor(private canvas: HTMLCanvasElement, private labelLayer: HTMLElement, data: Dataset) {
+        this.data = data;
+        const gl = canvas.getContext('webgl', { antialias: true, alpha: true, powerPreference: 'low-power', preserveDrawingBuffer: true });
+        this.gl = gl;
+        if (!gl) {
+            this.ctx = canvas.getContext('2d', { alpha: true });
+            if (!this.ctx)
+                throw new Error('Canvas rendering is unavailable');
+        }
+        if (gl) {
+            const shader = (type: number, source: string) => { const s = gl.createShader(type)!; gl.shaderSource(s, source); gl.compileShader(s); if (!gl.getShaderParameter(s, gl.COMPILE_STATUS))
+                throw new Error(gl.getShaderInfoLog(s) || 'Shader error'); return s; };
+            const vs = shader(gl.VERTEX_SHADER, `attribute vec3 aPosition;attribute vec3 aNormal;attribute vec3 aColor;uniform mat4 uMatrix;varying vec3 vColor;void main(){float l=0.67+0.33*max(dot(normalize(aNormal),normalize(vec3(-0.6,1.0,0.5))),0.0);vColor=aColor*l;gl_Position=uMatrix*vec4(aPosition,1.0);}`);
+            const fs = shader(gl.FRAGMENT_SHADER, `precision mediump float;varying vec3 vColor;void main(){gl_FragColor=vec4(vColor,1.0);}`);
+            this.program = gl.createProgram()!;
+            gl.attachShader(this.program, vs);
+            gl.attachShader(this.program, fs);
+            gl.linkProgram(this.program);
+            if (!gl.getProgramParameter(this.program, gl.LINK_STATUS))
+                throw new Error('Scene link failed');
+            gl.deleteShader(vs);
+            gl.deleteShader(fs);
+            this.buffer = gl.createBuffer()!;
+            this.routeBuffer = gl.createBuffer()!;
+            this.locations = { position: gl.getAttribLocation(this.program, 'aPosition'), normal: gl.getAttribLocation(this.program, 'aNormal'), color: gl.getAttribLocation(this.program, 'aColor'), matrix: gl.getUniformLocation(this.program, 'uMatrix') };
+            gl.enable(gl.DEPTH_TEST);
+            gl.clearColor(0, 0, 0, 0);
+        }
+        this.resize = new ResizeObserver(() => this.request());
+        this.resize.observe(canvas);
+        this.reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        this.canvas.addEventListener('contextmenu', e => e.preventDefault());
+        this.canvas.addEventListener('pointerdown', e => { canvas.setPointerCapture(e.pointerId); this.pointers.set(e.pointerId, { x: e.clientX, y: e.clientY }); this.lastGesture = this.gesture(); this.clicksMoved = 0; });
+        this.canvas.addEventListener('pointermove', e => { if (!this.pointers.has(e.pointerId))
+            return; this.pointers.set(e.pointerId, { x: e.clientX, y: e.clientY }); const g = this.gesture(), old = this.lastGesture; if (old) {
+            const dx = g.x - old.x, dy = g.y - old.y;
+            this.clicksMoved += Math.abs(dx) + Math.abs(dy);
+            if (this.pointers.size > 1) {
+                if (old.d > 0)
+                    this.zoom = this.limitZoom(this.zoom * g.d / old.d);
+                this.heading += g.angle - old.angle;
+            }
+            else if (e.shiftKey || e.buttons === 2)
+                this.heading += dx * .008;
+            else {
+                const s = (this.reference ? this.seoul ? 180 : 440 : 300) / Math.max(300, canvas.clientHeight) / this.zoom;
+                this.target[0] -= (dx * Math.cos(this.heading) + dy * Math.sin(this.heading)) * s;
+                this.target[2] -= (-dx * Math.sin(this.heading) + dy * Math.cos(this.heading)) * s;
+                const bounds = this.reference ? this.seoul ? 150 : 420 : 180;
+                this.target[0] = Math.max(-bounds, Math.min(bounds, this.target[0]));
+                this.target[2] = Math.max(-bounds, Math.min(bounds, this.target[2]));
+            }
+            this.request();
+        } this.lastGesture = g; });
+        const up = (e: PointerEvent) => { if (this.pointers.size === 1 && this.clicksMoved < 8)
+            this.pick(e.clientX, e.clientY); this.pointers.delete(e.pointerId); this.lastGesture = this.pointers.size ? this.gesture() : null; };
+        this.canvas.addEventListener('pointerup', up);
+        this.canvas.addEventListener('pointercancel', e => { this.pointers.delete(e.pointerId); this.lastGesture = null; });
+        this.canvas.addEventListener('wheel', e => { e.preventDefault(); this.zoom = this.limitZoom(this.zoom * Math.exp(-e.deltaY * .001)); this.request(); }, { passive: false });
+        this.canvas.addEventListener('webglcontextlost', e => { e.preventDefault(); this.setActive(false); this.canvas.dispatchEvent(new CustomEvent('scenefailed', { bubbles: true })); });
+        this.rebuild();
+    }
+    private gesture() { const p = [...this.pointers.values()], a = p[0] || { x: 0, y: 0 }, b = p[1] || a; return { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2, d: Math.hypot(a.x - b.x, a.y - b.y), angle: Math.atan2(b.y - a.y, b.x - a.x) }; }
+    private limitZoom(value: number) { return Math.max(this.reference ? .45 : .6, Math.min(this.reference ? 4.5 : 2.8, value)); }
+    private upload(buffer: WebGLBuffer, data: number[]) { const gl = this.gl; if (!gl)
+        return; gl.bindBuffer(gl.ARRAY_BUFFER, buffer); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(data), gl.STATIC_DRAW); }
+    setData(data: Dataset) { this.data = data; this.selected = null; this.rebuild(); this.setRoute(null); this.reset(); }
+    setReferenceCampus(enabled: boolean) { this.reference = enabled; this.selected = null; this.rebuild(); this.setRoute(null); this.reset(); }
+    setOcclusionRects(rects: SceneOcclusionRect[]) { this.occlusionRects = rects.filter(r => [r.x, r.y, r.width, r.height].every(Number.isFinite) && r.width > 0 && r.height > 0); this.request(); }
+    setLabelsVisible(visible: boolean) { this.labelsVisible = visible; this.request(); }
+    setLanguage(l: Language) { this.language = l; this.updateLabels(); this.request(); }
+    setReducedMotion(value: boolean) { this.reduced = value; }
+    setActive(active: boolean) { this.running = active; if (!active && this.frame) {
+        cancelAnimationFrame(this.frame);
+        this.frame = 0;
+    } if (active)
+        this.request(); }
+    set2D(v: boolean) { this.twoD = v; this.request(); }
+    zoomBy(factor: number) { this.zoom = this.limitZoom(this.zoom * factor); this.request(); }
+    rotate() { this.heading += Math.PI / 6; this.request(); }
+    north() { this.heading = 0; this.request(); }
+    reset() { this.animationGeneration++; this.heading = this.reference ? this.seoul ? .23 : 1.4 : -.40; this.zoom = 1; this.target = this.reference ? this.seoul ? [-8,0,0] : [5, 0, 10] : [0, 0, 0]; this.request(); }
+    select(id: string | null, entranceId?: string) { this.selected = id; this.selectedEntrance = entranceId ?? null; this.updateLabels(); this.setRoute(this.currentRoute); if (id) {
+        const p = this.points.get(id);
+        if (p) {
+            const destination: Vec = this.reference ? [p[0], 0, p[2]] : [p[0] * .25, 0, p[2] * .25];
+            if (this.reference) this.zoom = Math.max(this.zoom, 1.35);
+            this.animateTarget(destination);
+        }
+    } this.request(); }
+    private animateTarget(to: Vec) { if (this.reduced) {
+        this.target = to;
+        this.request();
+        return;
+    } const generation=++this.animationGeneration,from = [...this.target] as Vec, start = performance.now(); const step = (t: number) => { if (!this.running||generation!==this.animationGeneration)
+        return; const v = Math.min(1, (t - start) / 230), k = 1 - (1 - v) ** 3; this.target = [from[0] + (to[0] - from[0]) * k, 0, from[2] + (to[2] - from[2]) * k]; this.request(); if (v < 1)
+        requestAnimationFrame(step); }; requestAnimationFrame(step); }
+    private currentRoute: Route | null = null;
+    setRoute(route: Route | null) {
+        // Illustration features never create route overlays or entrance markers.
+        if (this.reference) route = null;
+        this.currentRoute = route;
+        const g = new Geometry();
+        if (route) {
+            for (let i = 1; i < route.points.length; i++) {
+                const a = localPoint(route.points[i - 1]!, this.data), b = localPoint(route.points[i]!, this.data);
+                g.segment([a.x, a.y + .60, a.z], [b.x, b.y + .60, b.z], 3.4, color('#167469'));
+            }
+            const start = localPoint(route.points[0]!, this.data);
+            g.disk(start.x, start.y + .75, start.z, 4, color('#ffffff'));
+            g.disk(start.x, start.y + .85, start.z, 2.5, color('#167469'));
+        }
+        const entrance = !this.reference && this.data.entrances.find(e => e.placeId === this.selected && (!this.selectedEntrance || e.id === this.selectedEntrance) && usable(e.evidence, this.data.mode));
+        if (entrance) {
+            const p = localPoint(entrance.point, this.data);
+            g.disk(p.x, p.y + .65, p.z, 4.9, color('#ffffff'));
+            g.disk(p.x, p.y + .75, p.z, 3.2, color('#e89150'));
+            g.cone(p.x, p.y + 1, p.z, 2.5, 7, color('#ed9a5a'), 4);
+        }
+        this.routeVertices = g.data;
+        this.upload(this.routeBuffer, g.data);
+        this.routeCount = g.data.length / 9;
+        this.request();
+    }
+    private model(g: Geometry, b: Building) {
+        const p = localPoint(b.point, this.data), w = b.widthM, d = b.depthM, h = b.heightM, x = p.x, z = p.z, y = p.y, angle = b.bearingDegrees * Math.PI / 180;
+        // Supplied dimensions, bearing and elevation stay in the shared geographic frame.
+        // Architectural details are only decorative inside each verified envelope.
+        if (b.form === 'gate') {
+            g.box(x - w * .38, y, z, 5, h, d, color(b.color), angle);
+            g.box(x + w * .38, y, z, 5, h, d, color(b.color), angle);
+            g.box(x, y + h - 3, z, w, 3, d, color(b.color), angle);
+            return;
+        }
+        g.box(x, y, z, w, h, d, color(b.color), angle);
+        g.box(x, y + h, z, w + 1, .8, d + 1, color('#f4ede1'), angle);
+        g.box(x, y + h + .8, z, w - 4, .7, d - 4, color('#aebfbb'), angle);
+        // Rowed window strips are grouped per floor; no large textures or imported assets.
+        const floors = Math.max(1, Math.floor(h / 6));
+        for (let i = 0; i < floors; i++) {
+            const yy = y + 3 + i * 5.8;
+            if (yy + 2 > y + h)
+                continue;
+            const dz = d / 2 + .06;
+            g.box(x + dz * Math.sin(angle), yy, z + dz * Math.cos(angle), w - 5, 2.1, .13, color('#667f80'), angle);
+            const side = w / 2 + .06;
+            g.box(x + side * Math.cos(angle), yy, z - side * Math.sin(angle), .13, 2.1, d - 5, color('#668083'), angle);
+        }
+        if (b.form === 'library') {
+            for (let i = -2; i <= 2; i++)
+                g.box(x + i * 8, y, z + d / 2 + 2, 1.3, h * .52, 1.3, color('#f3eada'));
+            g.box(x, y + h * .52, z + d / 2 + 2, w + 3, 1.8, 6, color('#ede7d9'));
+        }
+        if (b.form === 'tower')
+            g.box(x, y + h + 1, z, 13, 3, 8, color('#dddfd3'), angle);
+        if (b.form === 'pavilion') {
+            g.box(x, y + h * .6, z + d / 2 + 3, w + 3, 1, 7, color('#506e65'), angle);
+            g.box(x, y + h + .9, z, 11, 1, 8, color('#f5ece1'), angle);
+        }
+    }
+    private referenceModel(g: Geometry, f: ReferenceFeature): number {
+        if(f.planMesh) {
+            const exact=new Geometry(),height=this.planReferenceModel(exact,f);
+            g.data.push(...exact.data);
+            return height;
+        }
+        const local=new Geometry();
+        this.referenceModelLocal(local,{...f,center:[0,0],angle:0,size:[f.size[0],f.size[1],f.id==='mju-hydraulics'?Math.min(f.size[2],3.5):f.size[2]]});
+        const fitted=fitReferenceMeshVertices(local.data,f);
+        g.data.push(...fitted);
+        let height=0;
+        for(let i=1;i<fitted.length;i+=9) height=Math.max(height,fitted[i]!);
+        return height;
+    }
+    private planReferenceModel(g: Geometry,f: ReferenceFeature): number {
+        const mesh=f.planMesh!,base=.25,height=f.size[2]*REFERENCE_RENDER_HEIGHT_SCALE,top=base+height;
+        const gym=f.code==='Y7',lowerDark=f.code==='Y_'||f.code==='Y5';
+        const roof=color(gym?'#a18d77':f.code==='Y12'?'#c4c6bb':'#d4d8ce');
+        // Constrained triangles retain the plan's concave outlines/courtyards. There
+        // are no enlarged pads, eaves or shadows around these adjoining complexes.
+        for(const triangle of mesh.triangles) {
+            const [a,b,c]=triangle;
+            if(!a||!b||!c) continue;
+            const signed=(b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0]);
+            if(Math.abs(signed)<1e-12) continue;
+            const p:Vec=[a[0],top,a[1]],q:Vec=[b[0],top,b[1]],r:Vec=[c[0],top,c[1]];
+            if(signed>0) g.triangle(p,r,q,roof); else g.triangle(p,q,r,roof);
+        }
+        for(let ringIndex=0;ringIndex<mesh.rings.length;ringIndex++) {
+            let ring=mesh.rings[ringIndex]!;
+            if(ring.length>1&&Math.hypot(ring[0]![0]-ring[ring.length-1]![0],ring[0]![1]-ring[ring.length-1]![1])<1e-8) ring=ring.slice(0,-1);
+            const area=ring.reduce((sum,p,i)=>{const q=ring[(i+1)%ring.length]!;return sum+p[0]*q[1]-q[0]*p[1];},0);
+            if((ringIndex===0&&area<0)||(ringIndex>0&&area>0)) ring=[...ring].reverse();
+            for(let edge=0;edge<ring.length;edge++) {
+                const a=ring[edge]!,b=ring[(edge+1)%ring.length]!,length=Math.hypot(b[0]-a[0],b[1]-a[1]);
+                if(length<1e-7) continue;
+                const midpoint=[(a[0]+b[0])/2,(a[1]+b[1])/2];
+                const localX=(midpoint[0]!-f.center[0])*Math.cos(f.angle)-(midpoint[1]!-f.center[1])*Math.sin(f.angle);
+                const facade=f.code==='Y12'&&localX<0?'#d6b89f':'#e3e5da';
+                const panel=(left:number,right:number,bottom:number,upper:number,tint:string)=>{
+                    const point=(t:number,y:number):Vec=>[a[0]+(b[0]-a[0])*t,y,a[1]+(b[1]-a[1])*t];
+                    g.quad(point(right,bottom),point(left,bottom),point(left,upper),point(right,upper),color(tint));
+                };
+                // Very short vector-plan edges need only a plain wall; this keeps
+                // microscopic notches from multiplying the mobile mesh budget.
+                if(length<1.6) {panel(0,1,base,top,facade);continue;}
+                const floors=gym?3:Math.max(1,Math.floor(f.size[2]/4.6)),step=height/floors;
+                const columns=Math.max(1,Math.min(24,Math.round(length/2.8)));
+                for(let floor=0;floor<floors;floor++) {
+                    const bottom=base+floor*step,windowBottom=bottom+step*.29,windowTop=bottom+step*.75,upper=bottom+step;
+                    const wall=lowerDark&&floor===0?'#9ca69d':facade;
+                    panel(0,1,bottom,windowBottom,wall);panel(0,1,windowTop,upper,wall);
+                    if(gym) { panel(0,1,windowBottom,windowTop,'#91afa7'); continue; }
+                    for(let column=0;column<columns;column++) {
+                        const left=column/columns,right=(column+1)/columns,paneLeft=left+.14/columns,paneRight=right-.14/columns;
+                        panel(left,paneLeft,windowBottom,windowTop,wall);
+                        panel(paneLeft,paneRight,windowBottom,windowTop,f.code==='Y5'?'#75999c':'#83a29b');
+                        panel(paneRight,right,windowBottom,windowTop,wall);
+                    }
+                }
+            }
+        }
+        return top;
+    }
+    private referenceModelLocal(g: Geometry, f: ReferenceFeature) {
+        if (f.code?.startsWith('S') || f.id==='mju-seoul-field') { this.seoulModel(g,f); return; }
+        const [x, z] = f.center, [w, d, h] = f.size, angle = f.angle;
+        const at = (xx: number, zz: number): [number, number] => [x + xx * Math.cos(angle) + zz * Math.sin(angle), z - xx * Math.sin(angle) + zz * Math.cos(angle)];
+        const box = (xx: number, zz: number, width: number, depth: number, bottom: number, height: number, tint: string) => {
+            const p = at(xx, zz); g.box(p[0], bottom, p[1], width, height, depth, color(tint), angle);
+        };
+        const line = (a: [number, number], b: [number, number], tint = '#eff3dc', width = .6, y = .7) => {
+            const p = at(...a), q = at(...b); g.segment([p[0], y, p[1]], [q[0], y, q[1]], width, color(tint));
+        };
+        if (f.kind === 'gate') {
+            box(-w * .4, 0, 3, d, .1, h, '#d9d8c9'); box(w * .4, 0, 3, d, .1, h, '#d9d8c9');
+            box(0, 0, w, d, h - 2, 2, '#e7e6d8'); return;
+        }
+        if (f.kind === 'field') {
+            // The source envelope covers the whole facility, not only its pitch.
+            // A has a rounded running track; C is the rectangular small field.
+            const track=(width:number,depth:number,y:number,tint:string)=>{
+                const radius=depth/2,straight=Math.max(0,width/2-radius),points:[number,number][]=[];
+                for(let side=0;side<2;side++) for(let i=0;i<=16;i++) {
+                    const a=-Math.PI/2+side*Math.PI+i*Math.PI/16;
+                    points.push(at((side===0?straight:-straight)+Math.cos(a)*radius,Math.sin(a)*radius));
+                }
+                g.polygon(points,y,color(tint));
+            };
+            const stadium=f.code==='A',pw=stadium?w*.74:w*.92,pd=stadium?d*.61:d*.90;
+            if(stadium) {
+                track(w,d,.18,'#c5aa83');track(w*.974,d*.961,.22,'#eadcc1');
+                track(w*.956,d*.935,.26,'#c5aa83');track(w*.86,d*.79,.30,'#76a38f');
+            } else box(0,0,w,d,.18,.1,'#b9c7a5');
+            box(0, 0, pw, pd, .34, .10, '#76a38f');
+            for (const xx of [-pw / 2 + .6, pw / 2 - .6]) line([xx, -pd / 2 + .6], [xx, pd / 2 - .6]);
+            for (const zz of [-pd / 2 + .6, pd / 2 - .6]) line([-pw / 2 + .6, zz], [pw / 2 - .6, zz]);
+            line([0, -pd / 2 + .6], [0, pd / 2 - .6]);
+            g.disk(x, .75, z, pd * .17, color('#edf0d9')); g.disk(x, .76, z, Math.max(.2,pd * .17 - .5), color('#76a38f'));
+            for (const side of [-1, 1]) {
+                const edge = side * (pw / 2 - .6), inside = edge - side * pw * .13;
+                line([edge, -pd * .24], [inside, -pd * .24]); line([inside, -pd * .24], [inside, pd * .24]); line([inside, pd * .24], [edge, pd * .24]);
+            }
+            return;
+        }
+        if (['tennis', 'basketball', 'futsal'].includes(f.kind)) {
+            box(0, 0, w, d, .15, .1, '#b9c7a5'); box(0, 0, w-.6, d-.6, .3, .1, f.kind === 'basketball' ? '#c4a484' : '#a5b887');
+            for (const zz of [-d / 2 + 1, d / 2 - 1]) line([-w / 2 + 1, zz], [w / 2 - 1, zz]);
+            for (const xx of [-w / 2 + 1, 0, w / 2 - 1]) line([xx, -d / 2 + 1], [xx, d / 2 - 1]);
+            line([-w / 2 + 1, 0], [w / 2 - 1, 0]);
+            if (f.kind === 'tennis') for (const xx of [-w * .3, w * .3]) line([xx, -d / 2 + 1], [xx, d / 2 - 1]);
+            return;
+        }
+        if (f.kind === 'plaza') {
+            g.disk(x, .2, z, w * .7, color('#dfe5cd')); g.disk(x, .35, z, w * .5, color('#c2d4b0'));
+            box(0, 0, 4, 4, .4, 4, '#d6d2bd');
+            // Abstract monument block, not a claim to reproduce the sculpture.
+            box(0, 0, 5, 2, 4.4, 3, '#f0eee1'); return;
+        }
+        if (f.kind === 'stage') {
+            for (let i = 4; i >= 0; i--) g.ellipse(x, .35 + (4 - i) * .5, z, w * (.30 + i * .08), d * (.30 + i * .08), color(i % 2 ? '#d3d6ba' : '#e4e1c9'), angle);
+            box(0, -d * .35, w * .45, 8, 1, 2, '#e2d6bb'); return;
+        }
+        if (f.kind === 'bus') {
+            box(0, 0, w, d, .18, .1, '#bac1b9');
+            for (let i = -2; i <= 2; i++) line([i * w / 5, -d / 2], [i * w / 5, d / 2], '#e9ecdd', .5);
+            box(0, -d * .6, w * .8, 3, 5, .6, '#849c85');
+            for (const xx of [-w * .35, w * .35]) box(xx, -d * .6, .6, .6, .3, 5, '#e5e3d3'); return;
+        }
+        // Everything below is deliberately a lightweight architectural illustration.
+        // Observed broad materials/forms: supplied aerial; official campus overview
+        // /bbs/mjukr/147/5556/download.do; central-campus photo in
+        // /bbs/mjukr/147/175263/download.do. Repeating panels and roof detail below
+        // are illustrative, not measured pane counts, floor plans or heights.
+        const tint = f.code === 'Y19' ? '#b68d76' : f.code === 'Y12' ? '#d8c4ae' : f.category === 'residence' ? '#e3dfcf' : '#e7e8df';
+        const roof = f.code === 'Y3' ? '#a9c3b7' : f.form === 'low' ? '#adbdb3' : '#d5d8ce';
+        // No external pads or displaced shadow geometry: these would shrink the
+        // actual building when fitting its source-derived footprint envelope.
+        if (f.form === 'octagon') {
+            g.prism(x, .4, z, w * .54, d * .54, h - 2, color('#dfe1d7'));
+            for (const yy of [3.4,7,10.5]) { g.prism(x, yy, z, w * .554, d * .554, 1.25, color('#a0b7b1')); g.prism(x, yy + 1.25, z, w * .572, d * .572, .9, color('#f4f2e9')); }
+            g.prism(x, h - 2.4, z, w * .58, d * .58, 1.2, color('#f1efe3'));
+            g.prism(x, h - 1.2, z, w * .55, d * .55, 1.1, color('#a18d77'));
+            g.prism(x, h - .1, z, w * .49, d * .49, .25, color('#ad9a84'));
+            g.prism(x, h + .2, z, 3, 3, 1, color('#dce1d6'), 12);
+            g.disk(x, h + 1.22, z, 2.7, color('#9cafa8'), 12); return;
+        }
+        if (f.form === 'chapel') {
+            // Official 2024 exterior photo: rounded upper hall, stepped rectangular
+            // plinth, tall arched panels and a small teal pyramid roof light.
+            box(0,0,w,d,.4,h*.30,'#dadcd3'); box(0,0,w*.94,d*.94,h*.30,h*.15,'#e5e5da');
+            g.prism(x,h*.44,z,w*.47,d*.46,h*.53,color('#e2e3da'),24);
+            for(let i=1;i<6;i++) g.prism(x,h*.44+i*h*.085,z,w*.474,d*.464,.17,color('#cfd3cb'),24);
+            g.prism(x,h*.97,z,w*.49,d*.48,.55,color('#edeee4'),24);
+            g.ellipse(x,h+.6,z,w*.45,d*.43,color('#939e96'),0,24);
+            g.cone(x,h+.7,z,2.2,2.1,color('#81aca8'),4);
+            for(let i=-2;i<=2;i++) {
+                const xx=i*w*.145, pz=d*.463*Math.sqrt(1-(xx/(w*.475))**2), bottom=h*.51, height=h*.26, radius=w*.035;
+                g.box(x+xx,bottom,z+pz,radius*2,height,.13,color('#8faaa0'));
+                for(let j=0;j<8;j++) { const a=j*Math.PI/8,b=(j+1)*Math.PI/8; g.triangle([x+xx,bottom+height,z+pz+.08],[x+xx+radius*Math.cos(a),bottom+height+radius*Math.sin(a),z+pz+.08],[x+xx+radius*Math.cos(b),bottom+height+radius*Math.sin(b),z+pz+.08],color('#8faaa0')); }
+                box(xx,d*.503,w*.06,.1,h*.10,h*.10,'#76988d');
+            }
+            return;
+        }
+        if (f.form === 'greenhouse') {
+            box(0, 0, w, d, .4, h * .7, '#acd0c2'); box(0, 0, w, d * .9, h * .7, h * .3, '#d4e8d4');
+            for (let i = -3; i <= 3; i++) box(i * w / 7, 0, .5, d + .4, .4, h, '#e9ead6'); return;
+        }
+        const surface = (vertices: Vec[], tint: string) => { const p = vertices.map(v => { const pt = at(v[0],v[2]); return [pt[0],v[1],pt[1]] as Vec; }); g.quad(p[0]!,p[1]!,p[2]!,p[3]!,color(tint)); };
+        const pitchedRoof = (xx: number, zz: number, pw: number, pd: number, base: number, rise: number, tint: string) => {
+            const pt = (a: number, b: number, y: number): Vec => { const p = at(a,b); return [p[0],y,p[1]]; };
+            const a=pt(xx-pw/2,zz-pd/2,base), b=pt(xx+pw/2,zz-pd/2,base), c=pt(xx+pw/2,zz+pd/2,base), e=pt(xx-pw/2,zz+pd/2,base), l=pt(xx-pw/2,zz,base+rise), r=pt(xx+pw/2,zz,base+rise);
+            g.quad(a,l,r,b,color(tint)); g.quad(e,c,r,l,color(tint)); g.triangle(a,e,l,color('#d8d7c8')); g.triangle(c,b,r,color('#d8d7c8'));
+        };
+        const part = (xx: number, zz: number, pw: number, pd: number, ph: number, bottom = .4, body = tint) => {
+            box(xx, zz, pw, pd, bottom, ph, body); box(xx, zz, pw + .9, pd + .9, bottom + ph, .65, '#f0eee3'); box(xx, zz, pw - 1.4, pd - 1.4, bottom + ph + .66, .12, roof);
+            if (['Y5','Y_','Y19','Y33','Y34'].includes(f.code || '')) box(xx,zz,pw+.025,pd+.025,bottom,ph*.27,f.code === 'Y19' ? '#d8d5c4' : f.code === 'Y33' ? '#d5b79d' : '#9ea49e');
+            if (f.code === 'Y23') box(xx,zz,pw+.03,pd+.03,bottom+.6,ph-1.1,'#789b98');
+            for (const edge of [-1,1]) { box(xx, zz + edge * (pd / 2 - .3), pw, .50, bottom + ph + .65, .6, '#eeede4'); box(xx + edge * (pw / 2 - .3), zz, .50, pd, bottom + ph + .65, .6, '#eeede4'); }
+            const floors = Math.max(1, Math.floor(ph / 4.6)), step = ph / floors;
+            for (let floor = 0; floor < floors; floor++) {
+                const yy = bottom + floor * step + step * .30, top = yy + step * .49;
+                const columns = Math.max(1, Math.round(pw / (f.code === 'Y2' ? 1.65 : 3.1))), pane = (pw - 2.4) / columns;
+                for (let col = 0; col < columns; col++) {
+                    const left = xx - pw / 2 + 1.2 + col * pane, right = left + pane * (f.code === 'Y2' ? .46 : .73);
+                    const glass = f.code === 'Y23' ? ['#769d96','#8caeaa','#6c918c'][col % 3]! : ['#789591','#90aaa6','#809e9b'][(col + floor) % 3]!;
+                    surface([[left,yy,zz + pd/2 + .035],[right,yy,zz + pd/2 + .035],[right,top,zz + pd/2 + .035],[left,top,zz + pd/2 + .035]],glass);
+                    surface([[right,yy,zz - pd/2 - .035],[left,yy,zz - pd/2 - .035],[left,top,zz - pd/2 - .035],[right,top,zz - pd/2 - .035]],glass);
+                }
+                const sideColumns = Math.max(1, Math.round(pd / 3.1)), sidePane = (pd - 2) / sideColumns;
+                for (let col = 0; col < sideColumns; col++) {
+                    const front = zz - pd/2 + 1 + col * sidePane, back = front + sidePane * .72;
+                    surface([[xx+pw/2+.035,yy,back],[xx+pw/2+.035,yy,front],[xx+pw/2+.035,top,front],[xx+pw/2+.035,top,back]],'#789791');
+                    surface([[xx-pw/2-.035,yy,front],[xx-pw/2-.035,yy,back],[xx-pw/2-.035,top,back],[xx-pw/2-.035,top,front]],'#819d98');
+                }
+                if (f.code === 'Y9') for (const side of [-1,1]) box(xx,zz+side*(pd/2+.07),pw,.10,yy-step*.20,step*.18,'#81a49d');
+            }
+        };
+        if (f.code === 'Y3') {
+            // Square roof, repeated dark window grid and ground-floor arcade are
+            // visible in the official oblique photograph; counts stay schematic.
+            part(0, 0, w, d, h - 3.1, 3.5);
+            for (let i = -3; i <= 3; i++) for (const side of [-1,1]) box(i * w / 8, side * (d / 2 - 1.1), .85, .85, .4, 3.1, '#dcded2');
+            box(0, 0, w * .42, d * .40, h + 1.2, .7, '#b5c7be');
+        } else if (f.code === 'Y2') {
+            // Actual university/architect photographs show a flat-roof elevated
+            // white bar, dark glazed end, open pilotis and lower stepped volume.
+            // The earlier overview render's blue roof accent is not retained.
+            part(0,-d*.09,w,d*.78,h*.52,h*.48);
+            part(w*.035,d*.20,w*.82,d*.61,h*.25);
+            for (let i=-2;i<=2;i++) for (const side of [-1,1]) box(i*w*.16,side*d*.23,1.0,1.1,h*.25,h*.24,'#d9ddd4');
+            surface([[w/2+.07,h*.53,d*.26],[w/2+.07,h*.53,-d*.40],[w/2+.07,h*.93,-d*.40],[w/2+.07,h*.93,d*.26]],'#557375');
+            for (let i=0;i<5;i++) box(w/2+.10,-d*.36+i*d*.14,.09,.16,h*.53,h*.40,'#a0b0a9');
+            for (let i=0;i<6;i++) box(-w*.31+i*w*.12,-d*.07,w*.085,d*.37,h+1.1,.35,'#657e7b');
+        } else if (f.code === 'Y30') {
+            part(0,0,w,d,h*.84);
+            box(0,0,w+.03,d+.03,.4,h*.16,'#ba927a');
+            pitchedRoof(0,0,w+1.1,d+1.1,h*.84+1.1,h*.13,'#737d77');
+            for (let i=-2;i<=2;i++) { box(i*w*.17,d*.23,w*.085,d*.24,h*.86,h*.13,'#ecebdd'); box(i*w*.17,d*.23,w*.065,d*.26,h*.89,h*.07,'#849b96'); }
+            box(-w*.41,-d*.10,w*.16,d*.74,.4,h,'#acb4ad');
+        } else if (f.code === 'Y31') {
+            // A shallow faceted arc interprets the observed curved residence front.
+            for (let i=-1;i<=1;i++) { const xx=i*w*.31, zz=Math.abs(i)*-d*.075; part(xx,zz,w*.34,d*.89,h*.89); for(let floor=1;floor<=5;floor++) box(xx,zz+d*.447,w*.34,.16,floor*h*.135,h*.055,'#769b91'); }
+            for (const side of [-1,1]) { box(side*w*.46,-d*.10,w*.11,d*.78,.4,h,'#809f97'); for(let floor=1;floor<=6;floor++) box(side*w*.46,-d*.10,w*.115,d*.79,floor*h*.143,.35,'#d8dace'); }
+        } else if (f.code === 'Y32') {
+            part(0,-d*.05,w,d*.86,h*.87); pitchedRoof(0,-d*.05,w+.6,d*.90,h*.87+1,h*.10,'#79827a');
+            box(0,d*.025,w*.16,d*.94,.4,h,'#d3b199'); box(0,d*.495,w*.07,.10,1.4,h*.90,'#83a19a');
+        } else if (f.code === 'Y33' || f.code === 'Y34') {
+            part(0,-d*.04,w,d*.87,h);
+            box(0,d*.405,w*.17,.10,1.2,h*.93,'#85918b');
+            for(let floor=1;floor<=6;floor++) box(0,d*.46,w*.21,d*.07,floor*h*.14,.7,'#e4e3d5');
+        } else if (f.code === 'Y35') {
+            part(0,0,w,d,h*.72); part(w*.36,0,w*.23,d*.72,h);
+            for(let i=-2;i<=2;i++) for(const side of [-1,1]) box(i*w*.15,side*d*.31,.45,.45,h*.72,2.4,'#e7e8dd');
+            for(const side of [-1,1]) box(-w*.04,side*d*.31,w*.73,.6,h*.72+2.4,.45,'#e7e8dd');
+        } else if (f.code === 'Y24') {
+            box(0,0,w,d,.4,h*.87,'#dedcc8'); pitchedRoof(0,0,w+1,d+1,h*.87,h*.09,'#ae8980');
+            box(0,d/2+.05,w*.84,.13,h*.66,h*.13,'#768d89');
+            box(-w*.17,d/2+.08,w*.24,.15,.4,h*.46,'#aeb8b2');
+            for(let i=1;i<=5;i++) box(-w*.17,d/2+.17,w*.24,.08,i*h*.075,.13,'#c4ccc4');
+            box(w*.37,0,w*.24,d*.83,.4,h*.69,'#b9c0b7'); box(w*.37,0,w*.26,d*.84,h*.69,.6,'#778f9d');
+        } else if (f.code === 'Y12') {
+            part(0,-d*.32,w,d*.35,h,.4,'#d7b8a0');
+            part(-w*.38,d*.10,w*.24,d*.70,h,.4,'#d7b8a0');
+            part(w*.36,d*.10,w*.28,d*.72,h*.93,.4,'#e2e5dc');
+            box(0,d*.20,w*.42,d*.34,.2,.1,'#c9b9a5');
+            box(w*.23,d*.46,w*.40,d*.15,3.5,.6,'#7e8c87');
+        } else if (f.code === 'Y16') {
+            // Government architectural-guide photograph: dark projecting upper bar,
+            // open concrete supports and pale lower terraces, interpreted compactly.
+            box(w*.06,d*.16,w*.81,d*.63,.4,h*.24,'#d1cfc0');
+            for(const xx of [-w*.33,0,w*.33]) box(xx,d*.16,.7,.85,h*.24,h*.27,'#b9bbac');
+            const rim: [number,number][]=[[-w*.51,-d*.43],[w*.50,-d*.43],[w*.48,d*.32],[w*.23,d*.44],[-w*.17,d*.49],[-w*.46,d*.36]];
+            g.polygon(rim.map(p=>at(...p)),h,color('#757c72'));
+            for(let i=0;i<rim.length;i++) { const a=rim[i]!,b=rim[(i+1)%rim.length]!; surface([[b[0],h*.50,b[1]],[a[0],h*.50,a[1]],[a[0],h,a[1]],[b[0],h,b[1]]],'#777b70'); }
+            for(let i=-2;i<=2;i++) box(i*w*.16,d*.46,w*.115,.12,h*.67,h*.13,'#a1b6ad');
+        } else if (f.form === 'courtyard') {
+            part(0, -d * .32, w, d * .35, h); part(-w * .38, d * .1, w * .24, d * .7, h); part(w * .38, d * .1, w * .24, d * .7, h * .88);
+            box(0, d * .20, w * .4, d * .3, .3, .1, '#d6dbbe');
+        } else if (f.form === 'wing') {
+            part(0, -d * .16, w, d * .66, h); part(-w * .33, d * .23, w * .34, d * .54, h * .90);
+        } else {
+            part(0, 0, w, d, h);
+            if (f.code === 'Y5') for (const side of [-1,1]) { box(side * w * .30, 0, w * .12, d * .34, h + 1.2, 1.4, '#e4e6dc'); box(side * w * .30, 0, w * .08, d * .24, h + 2.6, .1, '#a8b4ac'); }
+        }
+        if (f.code === 'Y23') box(w*.38,-d*.15,w*.15,d*.68,.4,h,'#7d8982');
+        if (f.code === 'Y13') {
+            for(let floor=1;floor<=3;floor++) box(0,d*.18,w*.88,.9,floor*h*.24,.18,'#899d98');
+            for(const side of [-1,1]) box(side*w*.42,d*.18,.27,.7,.4,h*.8,'#8c9e99');
+        }
+        if (f.code === 'Y5' || f.code === 'Y_') {
+            // Decorative facade cues only: these do not identify usable entrances.
+            box(0,d*.49,w*.12,.18,1.3,h*.72,'#648e95');
+            for(let i=0;i<4;i++) box(0,d*.54+(3-i)*.62,w*.25,1.35,.15,.25+i*.24,'#bec4ba');
+        }
+    }
+    /** Seoul forms interpret the reviewed official overview/photo. They are not
+     * surveyed footprints, window counts or storey/entrance assignments. */
+    private seoulModel(g:Geometry,f:ReferenceFeature) {
+        const [w,d,h]=f.size;
+        const box=(x:number,z:number,pw:number,pd:number,y:number,ph:number,tint:string)=>g.box(x,y,z,pw,ph,pd,color(tint));
+        const panel=(x:number,z:number,pw:number,pd:number,ph:number,y=0.4,tint='#dce1d9')=>{
+            box(x,z,pw,pd,y,ph,tint);box(x,z,pw,pd,y+ph,.45,'#f0eee4');
+            const rows=Math.max(2,Math.round(ph/3.8)),columns=Math.max(2,Math.round(pw/2.4)),step=ph/rows;
+            for(let row=0;row<rows;row++) {
+                for(const side of [-1,1]) for(let col=0;col<columns;col++) box(x-pw/2+(col+.5)*pw/columns,z+side*(pd/2+.015),pw/columns*.58,.025,y+row*step+step*.30,step*.44,f.code==='S1'?'#809caa':'#8aa9a5');
+                const sideColumns=Math.max(2,Math.round(pd/2.6));
+                for(const side of [-1,1]) for(let col=0;col<sideColumns;col++) box(x+side*(pw/2+.015),z-pd/2+(col+.5)*pd/sideColumns,.025,pd/sideColumns*.57,y+row*step+step*.30,step*.44,'#91aca6');
+            }
+        };
+        const rounded=(pw:number,pd:number,y:number,ph:number,tint:string)=>{
+            const r=Math.min(pw,pd)*.24,points:[number,number][]=[];
+            for(const [cx,cz,start] of [[pw/2-r,pd/2-r,0],[-pw/2+r,pd/2-r,Math.PI/2],[-pw/2+r,-pd/2+r,Math.PI],[pw/2-r,-pd/2+r,Math.PI*1.5]]) for(let i=0;i<=4;i++) {const a=start!+i*Math.PI/8;points.push([cx!+Math.cos(a)*r,cz!+Math.sin(a)*r]);}
+            g.polygon(points,y+ph,color(tint));
+            for(let i=0;i<points.length;i++) {const a=points[i]!,b=points[(i+1)%points.length]!;g.quad([b[0],y,b[1]],[a[0],y,a[1]],[a[0],y+ph,a[1]],[b[0],y+ph,b[1]],color(tint));}
+        };
+        if(f.id==='mju-seoul-field') {
+            // A raised sports terrace is visible in the official campus image.
+            // Its height here is symbolic and does not establish MCC roof levels.
+            box(0,0,w,d,.1,2.3,'#c9cec3');box(0,0,w*.97,d*.94,2.4,.13,'#8ca777');
+            const line=(a:[number,number],b:[number,number])=>g.segment([a[0],2.56,a[1]],[b[0],2.56,b[1]],.22,color('#eef0db'));
+            for(const z of [-d*.41,d*.41]) line([-w*.44,z],[w*.44,z]);
+            for(const x of [-w*.44,0,w*.44]) line([x,-d*.41],[x,d*.41]);
+            g.disk(0,2.57,0,d*.13,color('#eef0db'));g.disk(0,2.58,0,d*.13-.24,color('#8ca777'));
+            return;
+        }
+        if(f.code==='S9') {
+            rounded(w,d,.4,h*.18,'#d2d7ce');
+            for(let row=0;row<3;row++) {rounded(w,d,h*.18+row*h*.25,h*.19,'#8bb8b0');rounded(w,d,h*.37+row*h*.25,h*.06,'#e3e8dc');}
+            rounded(w*.96,d*.95,h*.93,.65,'#8ea777');
+            box(-w*.05,0,w*.53,d*.50,h*.94,.65,'#d9d4c1');box(-w*.05,0,w*.37,d*.35,h*.95,.70,'#edf0df');
+            return;
+        }
+        if(f.code==='S5') {
+            rounded(w,d,.4,h,'#dce3d8');
+            for(let row=0;row<3;row++) rounded(w*.985,d*.985,2+row*h*.25,h*.11,'#9dbcb4');
+            rounded(w*.92,d*.88,h+.4,.55,'#dde4d8');return;
+        }
+        if(f.code==='S8') {
+            for(let i=-1;i<=1;i++) {
+                const x=i*w*.31,z=Math.abs(i)*-d*.08;
+                panel(x,z,w*.35,d*.83,h,.4,'#b68e7a');
+                box(x,z,w*.35,d*.83,h*.83,h*.17,'#e9e9df');
+            }
+            return;
+        }
+        if(f.code==='S10') {
+            panel(0,0,w,d,h*.43,.4,'#d6d9cf');
+            panel(-w*.19,-d*.12,w*.61,d*.74,h*.42,h*.47,'#d7dbd2');
+            box(w*.24,d*.02,w*.40,d*.86,h*.46,.45,'#92aa7e');
+            box(-w*.19,-d*.12,w*.59,d*.70,h*.90,.38,'#a3b58b');
+            for(let i=0;i<7;i++) box(-w*.46+i*w*.074,-d*.10,w*.033,d*.55,h*.93,.22,'#e4e7da');
+            return;
+        }
+        panel(0,0,w,d,h,.4,f.code==='S3'?'#e6e9df':'#dfe2d8');
+        if(f.code==='S1') {
+            for(const side of [-1,1]) box(side*w*.46,0,w*.035,d,h*.05,h*.94,'#ebede4');
+            box(0,0,w*.36,d*.58,h+.85,1.2,'#cdd4cc');
+        } else if(f.code==='S4') {
+            box(0,0,w,d,h+.45,.30,'#7a8d91');box(-w*.18,-d*.15,w*.33,d*.31,h+.76,1.1,'#d3b8a6');
+        }
+    }
+    private seoulTerrain(g:Geometry) {
+        // A compact urban presentation board. Its edge is NOT a campus boundary;
+        // paving/planting are illustrative context, never pedestrian-route data.
+        g.box(-7,-1.5,2,184,.6,143,color('#dfe3d8'));
+        g.box(-7,-.88,2,181,.10,140,color('#e8e9dc'));
+        for(let x=-91;x<79;x+=8) for(let z=-65;z<70;z+=8) {
+            if((Math.floor(x/8)+Math.floor(z/8))%3===0) g.box(x,-.76,z,7.7,.035,7.7,color('#e2e5d8'));
+        }
+        const clear=(x:number,z:number)=>this.referenceCampus.features.every(f=>Math.abs(x-f.center[0])>f.size[0]/2+6||Math.abs(z-f.center[1])>f.size[1]/2+6);
+        const tree=(x:number,z:number,i:number)=>{
+            if(!clear(x,z)) return;
+            g.disk(x,-.65,z,3.7,color('#bcc8a4'),10);g.box(x,-.6,z,.42,2.8,.42,color('#96896e'));
+            g.crown(x,1.4,z,2.8,5.6,color(i%2?'#7d9d69':'#698e67'),7);
+        };
+        for(let i=0;i<21;i++) tree(-83+i*7.4,-57,i);
+        for(let i=0;i<13;i++) tree(-84,-48+i*8,i+21);
+        for(let i=0;i<10;i++) tree(70,-45+i*10,i+35);
+        for(const [x,z] of [[-57,13],[-41,7],[-26,5],[-11,6],[5,9],[19,9],[34,12],[47,16],[-47,48],[20,46],[38,42]]) tree(x!,z!,Math.round(x!+90));
+    }
+    private referenceTerrain(g: Geometry) {
+        // Wooded slopes, pale paved courtyards and lakes are visible in the supplied
+        // aerial and official historical overview. This is a scenic interpretation,
+        // not measured elevation, a tree inventory, a property line or a route graph.
+        const outline: [number, number][] = [[-367,-208],[-251,-220],[-129,-185],[9,-203],[168,-181],[270,-121],[295,11],[266,151],[135,255],[-32,284],[-203,266],[-298,167],[-335,2]];
+        const inside = (x: number, z: number) => { let hit = false; for (let i = 0, j = outline.length - 1; i < outline.length; j = i++) { const a = outline[i]!, b = outline[j]!; if ((a[1] > z) !== (b[1] > z) && x < (b[0] - a[0]) * (z - a[1]) / (b[1] - a[1]) + a[0]) hit = !hit; } return hit; };
+        const seed = (x: number, z: number) => { const n = Math.sin(x * 127.1 + z * 311.7) * 43758.5453; return n - Math.floor(n); };
+        const woodland = (x: number,z: number) => x < -112 && z < 143 || z < -133 || z > 170 || x > 233 || z > 75 && x > -80 && x < 190;
+        const lake = (x: number, z: number) => ((x + 174) / 40) ** 2 + ((z - 18) / 81) ** 2 < 1 || ((x - 220) / 66) ** 2 + ((z - 140) / 28) ** 2 < 1;
+        const smooth = (value: number) => { const t = Math.max(0,Math.min(1,value)); return t*t*(3-2*t); };
+        const edgeDistance = (x: number,z: number) => { let best=Infinity; for(let i=0;i<outline.length;i++) { const a=outline[i]!,b=outline[(i+1)%outline.length]!,dx=b[0]-a[0],dz=b[1]-a[1],t=Math.max(0,Math.min(1,((x-a[0])*dx+(z-a[1])*dz)/(dx*dx+dz*dz))); best=Math.min(best,Math.hypot(x-a[0]-t*dx,z-a[1]-t*dz)); } return best; };
+        const featureDistance = (x: number, z: number) => Math.min(...this.referenceCampus.features.filter(f=>!sharedGeometryId(f)).map(f => {
+            const dx=x-f.center[0],dz=z-f.center[1],cosine=Math.cos(f.angle),sine=Math.sin(f.angle);
+            const localX=dx*cosine-dz*sine,localZ=dx*sine+dz*cosine;
+            return Math.hypot(Math.max(0,Math.abs(localX)-f.size[0]/2-6),Math.max(0,Math.abs(localZ)-f.size[1]/2-6));
+        }));
+        const roadDistance = (x: number, z: number) => {
+            let best = Infinity;
+            for (const path of this.referenceCampus.paths) for (let i = 1; i < path.length; i++) { const a = path[i - 1]!, b = path[i]!, dx = b[0] - a[0], dz = b[1] - a[1], t = Math.max(0, Math.min(1, ((x - a[0]) * dx + (z - a[1]) * dz) / (dx * dx + dz * dz))); best = Math.min(best, Math.hypot(x - a[0] - dx * t, z - a[1] - dz * t)); }
+            return best;
+        };
+        const terrain = (x: number, z: number) => {
+            if (lake(x, z)) return -2;
+            const western = 24 * Math.exp(-1 * ((x + 227) / 84) ** 2 - ((z - 36) / 144) ** 2);
+            const northern = 17 * Math.exp(-1 * ((x + 65) / 160) ** 2 - ((z + 164) / 62) ** 2);
+            const southern = 15 * Math.exp(-1 * ((x - 56) / 155) ** 2 - ((z - 227) / 49) ** 2);
+            const foreground = 14 * Math.exp(-1 * ((x - 70) / 90) ** 2 - ((z - 144) / 60) ** 2);
+            const shore = Math.min((Math.hypot((x+174)/40,(z-18)/81)-1)*40,(Math.hypot((x-220)/66,(z-140)/28)-1)*28);
+            const flatten = Math.min(smooth(featureDistance(x,z)/28),smooth((roadDistance(x,z)-7)/24),smooth(shore/36),smooth((edgeDistance(x,z)-14)/38));
+            return -1.19 + (western + northern + southern + foreground) * flatten;
+        };
+        const groundColor = (x: number, z: number): RGB => {
+            const forest = woodland(x,z);
+            const base = color(forest ? '#839f6b' : '#a5ba86');
+            const variation = Math.sin(x * .032 + z * .018) * .025 + Math.sin(z * .095) * .010 + (seed(x, z) - .5) * .016;
+            return base.map(c => Math.max(0, Math.min(1, c + variation))) as RGB;
+        };
+        g.polygon(outline, -1.21, color('#91aa76'));
+        for (let x = -366; x < 294; x += 12) for (let z = -216; z < 282; z += 12) {
+            if (![inside(x,z),inside(x+12,z),inside(x,z+12),inside(x+12,z+12)].every(Boolean)) continue;
+            const a: Vec = [x, terrain(x, z), z], b: Vec = [x + 12, terrain(x + 12, z), z], c: Vec = [x + 12, terrain(x + 12, z + 12), z + 12], d: Vec = [x, terrain(x, z + 12), z + 12];
+            g.triangle(a, d, b, groundColor(x, z)); g.triangle(b, d, c, groundColor(x + 4, z + 6));
+        }
+        for (const [x, z, rx, rz] of [[-174,18,41,82],[220,140,67,29]]) {
+            g.ellipse(x!, -.86, z!, rx! + 2, rz! + 2, color('#b7b992'), 0, 40);
+            g.ellipse(x!, -.80, z!, rx!, rz!, color('#668f98'), 0, 40);
+            g.ellipse(x! - 2, -.75, z! + 1, rx! * .87, rz! * .92, color('#76a7ad'), 0, 36);
+            g.ellipse(x! - 6, -.70, z! + 8, rx! * .60, rz! * .70, color('#82b2b6'), 0, 28);
+        }
+        // The official central-campus oblique photo shows pale paving divided by
+        // rectangular lawn pockets. This scenic pattern is not an access/path plan.
+        g.polygon([[30,-59],[77,-51],[73,-19],[39,-16]],-.56,color('#d0d1bd'));
+        for(const [x,z,w,d] of [[47,-45,12,10],[63,-42,11,10],[47,-29,12,9],[61,-27,9,9]]) {
+            g.box(x!,-.54,z!,w!,.025,d!,color('#a3b480'));
+            for(let i=0;i<3;i++) g.box(x!-w!*.30+i*w!*.30,-.51,z!,w!*.15,.016,d!,color('#aabb88'));
+        }
+        // Curbs/shoulders visually separate approximate roads from lawns. These never
+        // imply pedestrian access, lane counts, crossing permission or travel time.
+        for (const path of this.referenceCampus.paths) for (let i = 1; i < path.length; i++) {
+            const a = path[i - 1]!, b = path[i]!;
+            for (const [width, y, tint] of [[5.4,-.48,'#d8d8c7'],[4.2,-.38,'#909891'],[3.5,-.31,'#9da39b']] as const) {
+                g.segment([a[0], y, a[1]], [b[0], y, b[1]], width, color(tint)); g.disk(a[0], y + .01, a[1], width / 2, color(tint), 10);
+            }
+        }
+        const tree = (x: number, z: number, index: number, radius: number) => {
+            const y = terrain(x, z), pine = index % 5 === 0;
+            g.ellipse(x + 1.6, y + .04, z + 1.8, radius * 1.1, radius * .72, color('#759164'), .1, 8);
+            g.box(x, y, z, .85, 5.6, .85, color('#8d8264'));
+            const tint = color(['#527d56','#64894f','#739756','#86a367','#6d8e4e','#9aac69'][index % 6]!);
+            if (pine) { g.cone(x, y + 2, z, radius * .86, 10, tint, 7); g.cone(x, y + 7, z, radius * .61, 8, tint, 7); }
+            else { g.crown(x, y + 3.1, z, radius, 10 + radius * .3, tint, 7); if (index % 3 === 0) g.crown(x + radius * .43, y + 4, z - radius * .34, radius * .63, 9, tint, 6); }
+        };
+        // Sample the whole forest area before applying the budget, avoiding a dense
+        // north edge followed by bare southern slopes when the budget is reached.
+        const planting: [number,number,boolean][] = [];
+        for (let z = -204; z < 264; z += 14) for (let x = -352; x < 284; x += 14) {
+            const px = x + (seed(x, z) - .5) * 6, pz = z + (seed(z, x) - .5) * 6;
+            const dense = woodland(px,pz);
+            if (!inside(px, pz) || lake(px, pz) || featureDistance(px, pz) < 10 || roadDistance(px, pz) < 12 || (!dense && seed(px, pz) < .86)) continue;
+            planting.push([px,pz,dense]);
+        }
+        const priority = (p: [number,number,boolean]) => seed(p[0]+19,p[1]+7)-(p[1]>75&&p[1]<200&&p[0]>-80&&p[0]<190?.23:0);
+        planting.sort((a,b) => priority(a)-priority(b));
+        planting.slice(0,420).forEach(([px,pz,dense],index) => tree(px,pz,index,(dense?7.3:4.2)+seed(px+4,pz)*2.3));
+        // Avenue planting is a visual rhythm from the aerial reference, not individual
+        // surveyed trees. Keep it clear of every named facility's illustrated envelope.
+        for (let i = 0; i < 26; i++) { const x = -82 + i * 7.8, z = 74 + Math.sin(i * .2) * 13; if (featureDistance(x, z) > 5 && roadDistance(x, z) > 7) tree(x, z, i + 80, 3.4); }
+    }
+    private rebuild() {
+        const g = new Geometry();
+        this.points.clear();
+        for (const el of this.labels.values())
+            el.remove();
+        this.labels.clear();
+        if (this.reference) {
+            if(this.seoul) this.seoulTerrain(g); else this.referenceTerrain(g);
+            const heights=new Map<string,number>();
+            for (const f of this.referenceCampus.features) {
+                if(sharedGeometryId(f)) continue;
+                const height=this.referenceModel(g,f);
+                heights.set(f.id,height);
+                this.points.set(f.id,[f.center[0],height+5,f.center[1]]);
+            }
+            for(const f of this.referenceCampus.features) {
+                const shared=sharedGeometryId(f);
+                if(!shared) continue;
+                const primary=this.referenceCampus.features.find(other=>other.id===shared);
+                if(primary) this.points.set(f.id,[primary.center[0],(heights.get(primary.id)??primary.size[2]*REFERENCE_RENDER_HEIGHT_SCALE)+5,primary.center[1]]);
+            }
+        }
+        if (this.data.mode === 'demo' && !this.reference) {
+            g.box(0, -7, 0, 292, 7, 280, color('#c1cdb1'));
+            g.box(0, -.3, 0, 292, .4, 280, color('#d6dfbf'));
+            g.box(-67, .15, 79, 80, .2, 52, color('#c5d4ad'));
+            g.box(58, .15, 83, 53, .2, 38, color('#c5d4ad'));
+            g.disk(15, .23, -15, 18, color('#c8d8b2'));
+            // Geometric football pitch is a fictional first-party decorative feature.
+            g.box(60, .27, 92, 54, .2, 34, color('#a8c49d'));
+            for (const z of [76, 108])
+                g.segment([34, .53, z], [86, .53, z], .55, color('#e5edce'));
+            for (const x of [34, 60, 86])
+                g.segment([x, .53, 76], [x, .53, 108], .55, color('#e5edce'));
+            g.disk(60, .55, 92, 5, color('#dce9c8'));
+            g.disk(60, .58, 92, 4.4, color('#a8c49d'));
+        }
+        for (const e of this.reference ? [] : this.data.edges) {
+            if (!usable(e.evidence, this.data.mode) || e.access !== 'public')
+                continue;
+            const a = this.data.nodes.find(n => n.id === e.from), b = this.data.nodes.find(n => n.id === e.to);
+            if (!a || !b)
+                continue;
+            const p = localPoint(a.point, this.data), q = localPoint(b.point, this.data);
+            g.segment([p.x, p.y + .2, p.z], [q.x, q.y + .2, q.z], e.stairs ? 4 : 7, color(e.stairs ? '#c6c3b4' : '#e8e3d3'));
+        }
+        for (const b of this.reference ? [] : this.data.buildings) {
+            if (!usable(b.evidence, this.data.mode))
+                continue;
+            this.model(g, b);
+            const p = localPoint(b.point, this.data);
+            this.points.set(b.placeId, [p.x, p.y + b.heightM + 5, p.z]);
+        }
+        if (this.data.mode === 'demo' && !this.reference) {
+            // Fixed pseudo-random layout; trees kept away from path centerlines and footprints.
+            const trees: Vec[] = [];
+            for (let i = 0; i < 18; i++) {
+                trees.push([-132 + (i % 3) * 9, 0, -121 + Math.floor(i / 3) * 25]);
+                trees.push([124 + (i % 2) * 10, 0, -121 + Math.floor(i / 2) * 27]);
+            }
+            for (const x of [-107, -79, -53, 45, 72])
+                trees.push([x, 0, 118]);
+            for (const p of [[-66, 72], [-84, 64], [-104, 78], [-116, -62], [-81, -86], [20, -111], [38, -110], [-78, -115], [104, 65], [113, 103], [-113, 110], [-117, 48], [-23, -10]] as number[][])
+                trees.push([p[0]!, 0, p[1]!]);
+            trees.forEach(([x, y, z], i) => { g.disk(x + 1, .28, z + 2, 5, color('#b4c19f'), 8); g.box(x, y, z, 1.5, 6, 1.5, color('#9d8a67')); const green = color(i % 4 === 0 ? '#829b60' : i % 3 === 0 ? '#9bad73' : '#699779'); g.cone(x, y + 4, z, 5 + (i % 2), 9, green, 7); g.cone(x, y + 8, z, 3.8, 7, green, 7); });
+            for (const [x, z] of [[-54, 61], [-92, 76], [24, -15], [-19, 7]]) {
+                g.box(x!, .4, z!, 9, 1.5, 2, color('#ad946b'));
+                g.box(x!, 1.9, z! + 1, 9, 2, .5, color('#ad946b'));
+            }
+        }
+        this.vertices = g.data;
+        this.upload(this.buffer, g.data);
+        this.count = g.data.length / 9;
+        for (const p of this.data.places) {
+            if (!this.points.has(p.id))
+                continue;
+            const el = document.createElement('button');
+            el.className = 'map-label';
+            el.type = 'button';
+            el.dataset.place = p.id;
+            el.addEventListener('click', e => { e.stopPropagation(); this.onSelect(p.id); });
+            this.labelLayer.append(el);
+            this.labels.set(p.id, el);
+        }
+        this.updateLabels();
+        this.request();
+    }
+    private updateLabels() { for (const p of this.data.places) {
+        const label = this.labels.get(p.id);
+        if (!label)
+            continue;
+        const sharedCodes=this.reference?this.referenceCampus.features.filter(f=>sharedGeometryId(f)===p.id).map(f=>f.code).filter(Boolean):[];
+        label.textContent = this.reference && p.id !== this.selected ? [p.code,...sharedCodes].filter(Boolean).join(' / ') || localize(p.name,this.language) : localize(p.name,this.language).replace(/^Demo /, '').replace(/^샘플 /, '');
+        label.title = localize(p.name,this.language);
+        label.setAttribute('aria-label', localize(p.name,this.language));
+        label.classList.toggle('selected', p.id === this.selected);
+        label.setAttribute('aria-pressed', String(p.id === this.selected));
+    } }
+    project(point: Vec) { const m = this.matrix, x = point[0], y = point[1], z = point[2], clipW = m[3]! * x + m[7]! * y + m[11]! * z + m[15]!; if (clipW <= 0) return { x: -10000, y: -10000 }; return { x: ((m[0]! * x + m[4]! * y + m[8]! * z + m[12]!) / clipW + 1) * this.canvas.clientWidth / 2, y: (1 - (m[1]! * x + m[5]! * y + m[9]! * z + m[13]!) / clipW) * this.canvas.clientHeight / 2 }; }
+    private pick(x: number, y: number) { const bounds = this.canvas.getBoundingClientRect(); let best: string | null = null, distance = 45; for (const [id, p] of this.points) {
+        const q = this.project([p[0], p[1] * .5, p[2]]), d = Math.hypot(q.x - (x - bounds.left), q.y - (y - bounds.top));
+        if (d < distance) {
+            best = id;
+            distance = d;
+        }
+    } if (best)
+        this.onSelect(best); }
+    private request() { if (this.frame || !this.running)
+        return; this.frame = requestAnimationFrame(() => { this.frame = 0; this.draw(); }); }
+    private draw() {
+        const gl = this.gl;
+        const ratio = Math.min(window.devicePixelRatio || 1, 1.6), w = Math.max(1, Math.round(this.canvas.clientWidth * ratio)), h = Math.max(1, Math.round(this.canvas.clientHeight * ratio));
+        if (w !== this.canvas.width || h !== this.canvas.height) {
+            this.canvas.width = w;
+            this.canvas.height = h;
+        }
+        if (gl) {
+            gl.viewport(0, 0, w, h);
+            gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+            gl.useProgram(this.program);
+        }
+        const span = (this.reference ? this.seoul ? 95 : 224 : 176) / this.zoom, aspect = w / h, tilt = this.twoD ? 1.56 : this.tilt;
+        const distance = this.reference && !this.twoD ? (this.seoul ? 250 : 590) / this.zoom : 500;
+        this.eye = [this.target[0] + Math.sin(this.heading) * Math.cos(tilt) * distance, this.target[1] + Math.sin(tilt) * distance, this.target[2] + Math.cos(this.heading) * Math.cos(tilt) * distance];
+        // The camera always stays well above the model. A sensible near plane
+        // preserves depth precision for thin court markings and layered paving.
+        const projection = this.reference && !this.twoD ? perspective(.72, aspect, 12, 2400) : ortho(-span * aspect, span * aspect, -span, span, 1, 1800);
+        this.matrix = multiply(projection, lookAt(this.eye, this.target));
+        if (gl) {
+            gl.uniformMatrix4fv(this.locations.matrix, false, new Float32Array(this.matrix));
+            const draw = (buffer: WebGLBuffer, count: number) => { gl.bindBuffer(gl.ARRAY_BUFFER, buffer); for (const [index, offset] of [[this.locations.position, 0], [this.locations.normal, 12], [this.locations.color, 24]]) {
+                gl.enableVertexAttribArray(index!);
+                gl.vertexAttribPointer(index!, 3, gl.FLOAT, false, 36, offset!);
+            } gl.drawArrays(gl.TRIANGLES, 0, count); };
+            draw(this.buffer, this.count);
+            draw(this.routeBuffer, this.routeCount);
+        }
+        else
+            this.softwareDraw(w, h);
+        const occupied = this.occlusionRects.map(r => ({ x: r.x - 7, y: r.y - 7, w: r.width + 14, h: r.height + 14 }));
+        const ordered = [...this.labels].sort(([a], [b]) => Number(b === this.selected) - Number(a === this.selected));
+        const selectedPlace = this.data.places.find(p => p.id === this.selected), selectedLabel = this.selected ? this.labels.get(this.selected) : null;
+        // Retry the full name every frame so a compact fallback automatically
+        // restores after the viewport, language, scale or overlay sizes change.
+        if (selectedPlace && selectedLabel) selectedLabel.textContent = localize(selectedPlace.name,this.language).replace(/^Demo /, '').replace(/^샘플 /, '');
+        for (const [id, el] of ordered) el.style.display = this.labelsVisible || id === this.selected ? 'block' : 'none';
+        const sizes = new Map(ordered.map(([id, el]) => [id, { width: el.offsetWidth, height: el.offsetHeight }]));
+        for (const [id, el] of ordered) {
+            const p = this.points.get(id)!, q = this.project(p);
+            const f = this.reference ? this.referenceCampus.features.find(feature => feature.id === id) : null;
+            let show = (this.labelsVisible || id === this.selected) && q.x > 20 && q.x < this.canvas.clientWidth - 20 && q.y > 20 && q.y < this.canvas.clientHeight - 15 && (this.zoom > .8 || id === this.selected || (this.reference ? (this.seoul ? ['mju-s1','mju-s4','mju-s9','mju-s10'] : ['mju-y-main', 'mju-y3', 'mju-a', 'mju-y19', 'mju-y30']).includes(id) : ['demo-library', 'demo-union', 'demo-gate'].includes(id)));
+            if (this.reference && !f?.code && id !== this.selected && this.zoom < 1.4) show = false;
+            if (f && sharedGeometryId(f) && id !== this.selected) show = false;
+            let labelX = q.x, labelY = q.y;
+            if (this.reference && show) {
+                const placeLabel = (width: number,height: number,offsets: number[][]) => {
+                    for (const [dx, dy] of offsets) {
+                        const rect = { x: q.x + dx! - width / 2, y: q.y + dy! - height, w: width, h: height };
+                        if (rect.x < 8 || rect.y < 8 || rect.x + rect.w > this.canvas.clientWidth - 8 || rect.y + rect.h > this.canvas.clientHeight - 8 || occupied.some(r => r.x < rect.x + rect.w && r.x + r.w > rect.x && r.y < rect.y + rect.h && r.y + r.h > rect.y)) continue;
+                        occupied.push(rect); labelX = q.x + dx!; labelY = q.y + dy!; return true;
+                    }
+                    return false;
+                };
+                const size = sizes.get(id)!;
+                let placed = placeLabel(size.width+6,size.height+7,id === this.selected ? [[0,0],[0,-35],[0,35],[-45,-15],[45,-15]] : [[0,0]]);
+                if (!placed && id === this.selected) {
+                    // The details dock and aria-label retain the complete name.
+                    el.textContent = f?.code ?? '●';
+                    const width=el.offsetWidth+6,height=el.offsetHeight+7,maxX=this.canvas.clientWidth-width-8,maxY=this.canvas.clientHeight-height-8;
+                    if(maxX>=8&&maxY>=8) {
+                        const clampX=(value:number)=>Math.max(8,Math.min(maxX,value)),clampY=(value:number)=>Math.max(8,Math.min(maxY,value));
+                        // A free rectangle's closest placement touches the desired
+                        // anchor, a viewport edge, or an obstacle edge. Enumerating
+                        // those coordinates handles arbitrary chrome/text reflow.
+                        const xs=[...new Set([8,maxX,clampX(q.x-width/2),...occupied.flatMap(r=>[clampX(r.x-width),clampX(r.x+r.w)])])];
+                        const ys=[...new Set([8,maxY,clampY(q.y-height),...occupied.flatMap(r=>[clampY(r.y-height),clampY(r.y+r.h)])])];
+                        const offsets=xs.flatMap(x=>ys.map(y=>[x+width/2-q.x,y+height-q.y]));
+                        offsets.sort((a,b)=>a[0]!*a[0]!+a[1]!*a[1]!-b[0]!*b[0]!-b[1]!*b[1]!);
+                        placed=placeLabel(width,height,offsets);
+                    }
+                }
+                show = placed;
+            }
+            el.style.display = show ? 'block' : 'none';
+            el.style.transform = `translate(${labelX}px,${labelY}px) translate(-50%,-100%)`;
+        }
+        this.onHeading(this.heading);
+        this.frames++;
+        if (!this.startTime)
+            this.startTime = performance.now();
+    }
+    /** Software z-buffer fallback, using the exact same first-party triangles and projection.
+     * It is intentionally resolution-limited and event-driven. No mobile FPS claim is made. */
+    private softwareDraw(width: number, height: number) {
+        const ctx = this.ctx;
+        if (!ctx)
+            return;
+        const scale = Math.min(1, 900 / width, 900 / height), w = Math.max(1, Math.round(width * scale)), h = Math.max(1, Math.round(height * scale));
+        const raster = document.createElement('canvas');
+        raster.width = w;
+        raster.height = h;
+        const rc = raster.getContext('2d')!;
+        const image = rc.createImageData(w, h), pixels = image.data;
+        const depths = new Float32Array(w * h);
+        depths.fill(Infinity);
+        const m = this.matrix, all = this.vertices.concat(this.routeVertices), light = norm([-.6, 1, .5]);
+        for (let i = 0; i < all.length; i += 27) {
+            const centroid: Vec = [(all[i]! + all[i + 9]! + all[i + 18]!) / 3, (all[i + 1]! + all[i + 10]! + all[i + 19]!) / 3, (all[i + 2]! + all[i + 11]! + all[i + 20]!) / 3];
+            if (dot([all[i + 3]!, all[i + 4]!, all[i + 5]!], sub(this.eye, centroid)) <= 0.00001)
+                continue;
+            const pts: number[][] = [];
+            for (let v = 0; v < 3; v++) {
+                const j = i + v * 9, x = all[j]!, y = all[j + 1]!, z = all[j + 2]!;
+                const clipW = m[3]! * x + m[7]! * y + m[11]! * z + m[15]!;
+                if (clipW <= .5) break;
+                pts.push([((m[0]! * x + m[4]! * y + m[8]! * z + m[12]!) / clipW + 1) * w / 2, (1 - (m[1]! * x + m[5]! * y + m[9]! * z + m[13]!) / clipW) * h / 2, (m[2]! * x + m[6]! * y + m[10]! * z + m[14]!) / clipW]);
+            }
+            if (pts.length !== 3) continue;
+            const [a, b, c] = pts as [
+                number[],
+                number[],
+                number[]
+            ];
+            const denom = (b[1]! - c[1]!) * (a[0]! - c[0]!) + (c[0]! - b[0]!) * (a[1]! - c[1]!);
+            if (Math.abs(denom) < .001)
+                continue;
+            const minX = Math.max(0, Math.floor(Math.min(a[0]!, b[0]!, c[0]!))), maxX = Math.min(w - 1, Math.ceil(Math.max(a[0]!, b[0]!, c[0]!)));
+            const minY = Math.max(0, Math.floor(Math.min(a[1]!, b[1]!, c[1]!))), maxY = Math.min(h - 1, Math.ceil(Math.max(a[1]!, b[1]!, c[1]!)));
+            const brightness = .67 + .33 * Math.max(dot([all[i + 3]!, all[i + 4]!, all[i + 5]!], light), 0);
+            const red = Math.round(all[i + 6]! * brightness * 255), green = Math.round(all[i + 7]! * brightness * 255), blue = Math.round(all[i + 8]! * brightness * 255);
+            for (let y = minY; y <= maxY; y++)
+                for (let x = minX; x <= maxX; x++) {
+                    const u = ((b[1]! - c[1]!) * (x + .5 - c[0]!) + (c[0]! - b[0]!) * (y + .5 - c[1]!)) / denom;
+                    const v = ((c[1]! - a[1]!) * (x + .5 - c[0]!) + (a[0]! - c[0]!) * (y + .5 - c[1]!)) / denom;
+                    const t = 1 - u - v;
+                    if (u < -.00001 || v < -.00001 || t < -.00001)
+                        continue;
+                    const depth = u * a[2]! + v * b[2]! + t * c[2]!, index = y * w + x;
+                    if (depth >= depths[index]!)
+                        continue;
+                    depths[index] = depth;
+                    const at = index * 4;
+                    pixels[at] = red;
+                    pixels[at + 1] = green;
+                    pixels[at + 2] = blue;
+                    pixels[at + 3] = 255;
+                }
+        }
+        rc.putImageData(image, 0, 0);
+        ctx.clearRect(0, 0, width, height);
+        ctx.drawImage(raster, 0, 0, width, height);
+    }
+    diagnostics() { return { renderer: this.gl ? 'WebGL 1 · first-party low-poly meshes' : 'Canvas 2D software-projected 3D fallback', vertices: this.count, drawCalls: this.gl ? 2 : null, frames: this.frames, continuousRendering: false, reference: this.reference, referenceFeatureCount: this.reference ? this.referenceCampus.features.length : 0, geometry: this.reference ? 'illustration only; approximate footprints and heights; no routing graph' : this.data.mode }; }
+    dispose() { this.setActive(false); this.resize.disconnect(); this.gl?.deleteBuffer(this.buffer); this.gl?.deleteBuffer(this.routeBuffer); this.gl?.deleteProgram(this.program); }
+}

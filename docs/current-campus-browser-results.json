@@ -1,0 +1,178 @@
+{
+  "executedAt": "2026-10-01T11:26:57.779Z",
+  "checks": [
+    {
+      "name": "Seoul selection uses separate 11-place directory",
+      "passed": true
+    },
+    {
+      "name": "Campus switch clears prior selected building",
+      "passed": true
+    },
+    {
+      "name": "Seoul has separate reference scene",
+      "passed": true
+    },
+    {
+      "name": "Chinese declares Simplified Chinese document language",
+      "passed": true
+    },
+    {
+      "name": "Chinese search resolves Seoul library",
+      "passed": true
+    },
+    {
+      "name": "Campus, language and favorites from both campuses persist",
+      "passed": true
+    },
+    {
+      "name": "Seoul food has no Yongin Notion source",
+      "passed": true
+    },
+    {
+      "name": "Seoul venue map links stay in Seoul",
+      "passed": true
+    },
+    {
+      "name": "Seoul does not reuse Yongin timetables",
+      "passed": true
+    },
+    {
+      "name": "Current Seoul transport status is cited",
+      "passed": true
+    },
+    {
+      "name": "Chinese assistant answers with Seoul citations",
+      "passed": true
+    },
+    {
+      "name": "Seoul answer cannot link Yongin venues",
+      "passed": true
+    },
+    {
+      "name": "Chat histories are isolated by campus",
+      "passed": true
+    },
+    {
+      "name": "Returning chat is translated to current language",
+      "passed": true
+    },
+    {
+      "name": "Seoul map evidence discloses schematic geometry",
+      "passed": true
+    },
+    {
+      "name": "Background Yongin update cannot replace active Seoul",
+      "passed": true
+    },
+    {
+      "name": "Off-campus update is retained for later switch",
+      "passed": true
+    },
+    {
+      "name": "Selectors stay separate at 320px en 1x",
+      "passed": true
+    },
+    {
+      "name": "Selectors stay separate at 320px en 2x",
+      "passed": true
+    },
+    {
+      "name": "Selectors stay separate at 390px en 1x",
+      "passed": true
+    },
+    {
+      "name": "Selectors stay separate at 390px en 2x",
+      "passed": true
+    },
+    {
+      "name": "Selectors stay separate at 768px en 1x",
+      "passed": true
+    },
+    {
+      "name": "Selectors stay separate at 768px en 2x",
+      "passed": true
+    },
+    {
+      "name": "Selectors stay separate at 1440px en 1x",
+      "passed": true
+    },
+    {
+      "name": "Selectors stay separate at 1440px en 2x",
+      "passed": true
+    },
+    {
+      "name": "Selectors stay separate at 320px ko 1x",
+      "passed": true
+    },
+    {
+      "name": "Selectors stay separate at 320px ko 2x",
+      "passed": true
+    },
+    {
+      "name": "Selectors stay separate at 390px ko 1x",
+      "passed": true
+    },
+    {
+      "name": "Selectors stay separate at 390px ko 2x",
+      "passed": true
+    },
+    {
+      "name": "Selectors stay separate at 768px ko 1x",
+      "passed": true
+    },
+    {
+      "name": "Selectors stay separate at 768px ko 2x",
+      "passed": true
+    },
+    {
+      "name": "Selectors stay separate at 1440px ko 1x",
+      "passed": true
+    },
+    {
+      "name": "Selectors stay separate at 1440px ko 2x",
+      "passed": true
+    },
+    {
+      "name": "Selectors stay separate at 320px zh 1x",
+      "passed": true
+    },
+    {
+      "name": "Selectors stay separate at 320px zh 2x",
+      "passed": true
+    },
+    {
+      "name": "Selectors stay separate at 390px zh 1x",
+      "passed": true
+    },
+    {
+      "name": "Selectors stay separate at 390px zh 2x",
+      "passed": true
+    },
+    {
+      "name": "Selectors stay separate at 768px zh 1x",
+      "passed": true
+    },
+    {
+      "name": "Selectors stay separate at 768px zh 2x",
+      "passed": true
+    },
+    {
+      "name": "Selectors stay separate at 1440px zh 1x",
+      "passed": true
+    },
+    {
+      "name": "Selectors stay separate at 1440px zh 2x",
+      "passed": true
+    },
+    {
+      "name": "Seoul software renderer selects MCC",
+      "passed": true
+    },
+    {
+      "name": "Both campus/language runs have no uncaught errors",
+      "passed": true
+    }
+  ],
+  "errors": []
+}

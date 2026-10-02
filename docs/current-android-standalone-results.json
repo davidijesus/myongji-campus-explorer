@@ -1,0 +1,72 @@
+{
+  "executedAt": "2026-10-01T11:32:12.389023+00:00",
+  "variant": "standalone-java-webview",
+  "artifact": "myongji-campus-explorer-v0.5-android.apk",
+  "bytes": 184867,
+  "sha256": "433d697358fc1f5fd3598a733e3632a76c88d54c8d36bdc0a466473c8bb7557f",
+  "appId": "dev.student.myongjiexplorer.standalone",
+  "versionName": "0.5.0",
+  "versionCode": 2,
+  "compileSdk": 36,
+  "targetSdk": 36,
+  "minSdk": 24,
+  "buildTools": "36.0.0",
+  "jdk": "18.0.2.1",
+  "signing": {
+    "type": "development-self-signed",
+    "publisherRelease": false,
+    "certificateSha256": "dc047d342057bbf022d14f94865f186f7a0dc52872275f5777f59b3d5a3dac32",
+    "keyAlgorithm": "RSA",
+    "keyBits": 3072,
+    "verifiedV2": true,
+    "verifiedV3": true,
+    "privateKeyIncluded": false
+  },
+  "htmlSha256": "ac300af2c7920983a47809277125d301ae105d4e91d162b34a48b761ec711529",
+  "bundledHtmlMatchesFrozenSource": true,
+  "nativeLibraries": 0,
+  "requestedAndroidPermissions": [],
+  "zipalign16KbCheck": true,
+  "linkPolicyCasesPassed": 30,
+  "javaCompilation": "passed",
+  "dexCompilation": "passed",
+  "nativeBridge": false,
+  "locationAccess": false,
+  "remoteContentRefresh": false,
+  "preferences": "WebView DOM localStorage",
+  "embeddedNetworkRequests": "blocked",
+  "emulatorTest": false,
+  "physicalDeviceTest": false,
+  "installationTest": false,
+  "launchTest": false,
+  "performanceTest": false,
+  "publisherAabProduced": false,
+  "gradlePublisherPathExecuted": false,
+  "limitations": [
+    "APK packaging/signature/source checks passed; no Android device or emulator execution was performed.",
+    "16 KB page compatibility on a physical device remains untested; this APK contains no bundled native libraries.",
+    "External source handoff, local asset startup, storage, keyboard, accessibility and lifecycle require device validation."
+  ],
+  "sourceFilesSha256": {
+    "AndroidManifest.xml": "b86a8e968490bc517f52ab8fc13aefb2fcbf86a4625c7618d194ee60c992bdba",
+    "src\\dev\\student\\myongjiexplorer\\standalone\\MainActivity.java": "a62215fe9d50450a71f385ac5efde0166d3f2fa871ecc8c939f71e406f5236d8",
+    "src\\dev\\student\\myongjiexplorer\\standalone\\ExternalLinkPolicy.java": "ce726ad22364b765e6b110b352bbe7ea1d722247080cdf7a8793fd1d5945bfbd",
+    "build.ps1": "291cf9131b6d7fe7bc57e4a5728029dcce0f779deb4a121a70f5d750144783e5"
+  },
+  "desktopAssetPolicySmokeChecksPassed": 6,
+  "desktopAssetPolicySmokeEvidence": "current-android-standalone-asset-smoke.json",
+  "signatureEvidence": "current-android-standalone-signature.txt",
+  "manifestEvidence": "current-android-standalone-manifest.txt",
+  "permissionsEvidence": "current-android-standalone-permissions.txt",
+  "reviewDateKorea": "2026-10-01",
+  "campuses": [
+    "yongin",
+    "seoul"
+  ],
+  "languages": [
+    "en",
+    "ko",
+    "zh-Hans"
+  ],
+  "sameSigningCertificateAsV04": true
+}

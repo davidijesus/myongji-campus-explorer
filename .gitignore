@@ -1,0 +1,31 @@
+# Dependencies and local build state
+node_modules/
+mobile/node_modules/
+.expo/
+mobile/.expo/
+mobile/android/
+mobile/ios/
+build/
+android-standalone/build/
+server/storage/
+test-results/
+playwright-report/
+
+# Credentials, signing material and local configuration
+.env
+.env.*
+!.env.example
+*.keystore
+*.jks
+*.p12
+*.p8
+*.mobileprovision
+local.properties
+
+# Development logs and OS files
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+translation-inventory*
+translation-zh.txt

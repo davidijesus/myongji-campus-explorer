@@ -1,0 +1,49 @@
+PASS Standalone page loads with meaningful content
+PASS Persistent fictional-map labeling
+PASS No horizontal page overflow at 390 px
+PASS Renderer starts or provides usable fallback
+PASS Korean name returns the same library
+PASS Library selection identifies an entrance
+PASS Route ends at selected entrance
+PASS Walking route has graph distance, not straight-line guess
+PASS 2D switch preserves selected destination and route
+PASS Favorite stores selected ID
+PASS Demo destinations cannot open real Naver routes
+PASS Food shows two labeled sample venues
+PASS Unknown hours are explicitly represented
+PASS Open filter excludes unknown hours
+PASS Budget filter is applied to known price range
+PASS Food Show on map returns to visible map
+PASS Upcoming events exclude completed fixture
+PASS Event timezone is visible
+PASS Event venue returns to Explore
+PASS Real mode does not show fictional buildings
+PASS Real map makes missing survey explicit
+PASS No verified path produces a limitation, not fake geometry
+PASS Browser geographic view explains native requirement
+PASS Denied permission retains browsing and manual start
+PASS Offline state explains unavailable live services
+PASS Weak location state is explicit
+PASS Stale location state is explicit
+PASS Location history is not stored
+PASS Korean interface preserves selection and map mode
+PASS Korean document language is set
+PASS System font-scale bridge increases body text
+PASS Enlarged text does not overflow the page horizontally
+PASS Renderer pauses while backgrounded
+PASS Scene is not continuously rendering while idle
+PASS Desktop layout has no horizontal overflow
+PASS Small phone retains bottom navigation
+PASS No uncaught UI exceptions
+{
+  "passed": 37,
+  "failed": 0,
+  "renderer": {
+    "renderer": "Canvas 2D software-projected 3D fallback",
+    "vertices": 8484,
+    "drawCalls": null,
+    "frames": 4,
+    "continuousRendering": false
+  },
+  "browser": "144.0.7559.96"
+}

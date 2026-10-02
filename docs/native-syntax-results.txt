@@ -1,0 +1,3 @@
+Syntax only: mobile/App.tsx passed
+Syntax only: mobile/app.config.ts passed
+Syntax only: mobile/index.ts passed

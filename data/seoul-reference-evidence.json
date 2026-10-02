@@ -1,0 +1,142 @@
+{
+  "checkedAt": "2026-10-01T00:00:00+09:00",
+  "directorySource": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=A",
+  "dataEndpoint": "https://www.mju.ac.kr/campusMap/mjukr/1/artclList.do",
+  "method": "POST",
+  "publishedMarkers": [
+    {
+      "artclSeq": 104,
+      "ctgrSeq": 1,
+      "ctgrType": "B",
+      "artclNm": "MCC(Myongji Campus Complex)관",
+      "latitude": "37.579150",
+      "longitude": "126.922500"
+    },
+    {
+      "artclSeq": 14,
+      "ctgrSeq": 1,
+      "ctgrType": "B",
+      "artclNm": "행정동",
+      "latitude": "37.580098",
+      "longitude": "126.924244"
+    },
+    {
+      "artclSeq": 17,
+      "ctgrSeq": 1,
+      "ctgrType": "B",
+      "artclNm": "방목학술정보관",
+      "latitude": "37.580750",
+      "longitude": "126.924498"
+    },
+    {
+      "artclSeq": 16,
+      "ctgrSeq": 1,
+      "ctgrType": "B",
+      "artclNm": "생활관(인문)",
+      "latitude": "37.580800",
+      "longitude": "126.923064"
+    },
+    {
+      "artclSeq": 11,
+      "ctgrSeq": 1,
+      "ctgrType": "B",
+      "artclNm": "학생회관",
+      "latitude": "37.580300",
+      "longitude": "126.923450"
+    },
+    {
+      "artclSeq": 12,
+      "ctgrSeq": 1,
+      "ctgrType": "B",
+      "artclNm": "미래관(미래교육원,어린이집)",
+      "latitude": "37.580104",
+      "longitude": "126.921604"
+    },
+    {
+      "artclSeq": 13,
+      "ctgrSeq": 1,
+      "ctgrType": "B",
+      "artclNm": "국제관(구 경상관, 대학원)",
+      "latitude": "37.580900",
+      "longitude": "126.923826"
+    },
+    {
+      "artclSeq": 15,
+      "ctgrSeq": 1,
+      "ctgrType": "B",
+      "artclNm": "운동장",
+      "latitude": "37.579450",
+      "longitude": "126.922800"
+    },
+    {
+      "artclSeq": 10,
+      "ctgrSeq": 1,
+      "ctgrType": "B",
+      "artclNm": "종합관(구 본관)",
+      "latitude": "37.580300",
+      "longitude": "126.922549"
+    },
+    {
+      "artclSeq": 38,
+      "ctgrSeq": 1,
+      "ctgrType": "B",
+      "artclNm": "정문",
+      "latitude": "37.579700",
+      "longitude": " 126.923930"
+    },
+    {
+      "artclSeq": 39,
+      "ctgrSeq": 1,
+      "ctgrType": "B",
+      "artclNm": "수위실",
+      "latitude": "37.579656",
+      "longitude": "126.923794"
+    }
+  ],
+  "overview": {
+    "source": "https://www.mju.ac.kr/bbs/record/359/168757/download.do",
+    "page": 6,
+    "year": 2025,
+    "reviewed": true,
+    "observations": [
+      "Eight numbered buildings:1,2,3,4,5,8,9,10; field, entrance, and planted edges shown.",
+      "S1 broad pale slab; S2/S4 tall blocks; S8 curved residence; S9 rounded green-roof form; MCC low terraces."
+    ],
+    "scaledFootprints": false
+  },
+  "photograph": {
+    "source": "https://gsca.mju.ac.kr/CrossEditor/binary/images/000355/20251128163849970_107N73HV.png",
+    "notice": "https://welfare.mju.ac.kr/bbs/welfare/243/227771/artclView.do",
+    "noticeDate": "2025-11-28",
+    "reviewed": true,
+    "observations": [
+      "Low stepped pale MCC with glazing, broad stairs, rooftop planting and sports terrace; broad pale main hall behind."
+    ],
+    "photoDateKnown": false
+  },
+  "codeConventionSource": "https://www.mju.ac.kr/bbs/ice1/1157/156902/download.do",
+  "projection": {
+    "model": "WGS84 local tangent plane",
+    "origin": {
+      "lat": 37.5801,
+      "lon": 126.9233
+    },
+    "unitsPerMeter": 0.46
+  },
+  "limitations": [
+    "Directory POIs are not surveyed building centroids or entrances.",
+    "Widths, depths, angles, heights and landscape are illustrations; no scaled plan was established for Seoul.",
+    "No Seoul road geometry, walking routes, entrances, indoor positions or accessible paths are asserted.",
+    "Directory details supplied no usable building photos (all imgPath values end in /null).",
+    "English and Chinese place labels are descriptive translations."
+  ],
+  "coverage": {
+    "directoryEntries": 11,
+    "numberedBuildings": 8,
+    "otherEntries": [
+      "field",
+      "main gate",
+      "gatehouse"
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "lib": [
+      "ES2022",
+      "DOM"
+    ],
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "outDir": "build/core",
+    "skipLibCheck": true
+  },
+  "include": [
+    "src/types.ts",
+    "src/core.ts",
+    "src/data.ts",
+    "src/knowledge.ts",
+    "src/campus.ts",
+    "src/visual-references.ts",
+    "src/campuses.ts"
+  ]
+}

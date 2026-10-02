@@ -1,0 +1,5 @@
+PASS: npx tsc --noEmit
+Exit code: 0
+Source version: 0.5.0
+Review date: 2026-10-01 (Asia/Seoul)
+Dependency-aware TypeScript only; no Expo native compilation performed.

@@ -1,0 +1,445 @@
+{
+  "expo": {
+    "name": "expo",
+    "path": "C:\\Users\\<user>\\Documents\\Codex\\2026-09-29\\built-myongji-campus-explorer-as-an\\work\\source\\myongji-campus-explorer\\mobile\\node_modules\\expo",
+    "version": "57.0.26",
+    "config": {
+      "platforms": [
+        "apple",
+        "android"
+      ],
+      "apple": {
+        "modules": [
+          "ExpoFetchModule"
+        ],
+        "podspecPath": "Expo.podspec"
+      },
+      "android": {
+        "modules": [
+          "expo.modules.fetch.ExpoFetchModule"
+        ]
+      }
+    },
+    "duplicates": []
+  },
+  "expo-constants": {
+    "name": "expo-constants",
+    "path": "C:\\Users\\<user>\\Documents\\Codex\\2026-09-29\\built-myongji-campus-explorer-as-an\\work\\source\\myongji-campus-explorer\\mobile\\node_modules\\expo-constants",
+    "version": "57.0.20",
+    "config": {
+      "platforms": [
+        "apple",
+        "android",
+        "web"
+      ],
+      "apple": {
+        "modules": [
+          "ConstantsModule"
+        ]
+      },
+      "android": {
+        "modules": [
+          "expo.modules.constants.ConstantsModule"
+        ],
+        "services": [
+          "expo.modules.constants.ConstantsService"
+        ]
+      }
+    },
+    "duplicates": []
+  },
+  "expo-dev-client": {
+    "name": "expo-dev-client",
+    "path": "C:\\Users\\<user>\\Documents\\Codex\\2026-09-29\\built-myongji-campus-explorer-as-an\\work\\source\\myongji-campus-explorer\\mobile\\node_modules\\expo-dev-client",
+    "version": "57.0.19",
+    "config": {
+      "platforms": [
+        "apple",
+        "android"
+      ]
+    },
+    "duplicates": []
+  },
+  "expo-location": {
+    "name": "expo-location",
+    "path": "C:\\Users\\<user>\\Documents\\Codex\\2026-09-29\\built-myongji-campus-explorer-as-an\\work\\source\\myongji-campus-explorer\\mobile\\node_modules\\expo-location",
+    "version": "57.0.20",
+    "config": {
+      "platforms": [
+        "apple",
+        "android"
+      ],
+      "apple": {
+        "modules": [
+          "LocationModule"
+        ]
+      },
+      "android": {
+        "modules": [
+          "expo.modules.location.LocationModule"
+        ],
+        "publication": {
+          "groupId": "host.exp.exponent",
+          "artifactId": "expo.modules.location",
+          "version": "57.0.20",
+          "repository": "local-maven-repo"
+        }
+      }
+    },
+    "duplicates": []
+  },
+  "expo-status-bar": {
+    "name": "expo-status-bar",
+    "path": "C:\\Users\\<user>\\Documents\\Codex\\2026-09-29\\built-myongji-campus-explorer-as-an\\work\\source\\myongji-campus-explorer\\mobile\\node_modules\\expo-status-bar",
+    "version": "57.0.1",
+    "config": {
+      "platforms": [
+        "android"
+      ],
+      "android": {
+        "publication": {
+          "groupId": "host.exp.exponent",
+          "artifactId": "expo.modules.statusbar",
+          "version": "57.0.1",
+          "repository": "local-maven-repo"
+        }
+      }
+    },
+    "duplicates": []
+  },
+  "expo-system-ui": {
+    "name": "expo-system-ui",
+    "path": "C:\\Users\\<user>\\Documents\\Codex\\2026-09-29\\built-myongji-campus-explorer-as-an\\work\\source\\myongji-campus-explorer\\mobile\\node_modules\\expo-system-ui",
+    "version": "57.0.4",
+    "config": {
+      "platforms": [
+        "apple",
+        "android"
+      ],
+      "apple": {
+        "modules": [
+          "ExpoSystemUIModule"
+        ]
+      },
+      "android": {
+        "modules": [
+          "expo.modules.systemui.SystemUIModule"
+        ],
+        "publication": {
+          "groupId": "host.exp.exponent",
+          "artifactId": "expo.modules.systemui",
+          "version": "57.0.4",
+          "repository": "local-maven-repo"
+        }
+      }
+    },
+    "duplicates": []
+  },
+  "@expo/dom-webview": {
+    "name": "@expo/dom-webview",
+    "path": "C:\\Users\\<user>\\Documents\\Codex\\2026-09-29\\built-myongji-campus-explorer-as-an\\work\\source\\myongji-campus-explorer\\mobile\\node_modules\\expo\\node_modules\\@expo\\dom-webview",
+    "version": "57.0.1",
+    "config": {
+      "platforms": [
+        "apple",
+        "android"
+      ],
+      "apple": {
+        "modules": [
+          "DomWebViewModule"
+        ]
+      },
+      "android": {
+        "modules": [
+          "expo.modules.webview.DomWebViewModule"
+        ],
+        "publication": {
+          "groupId": "expo.modules.webview",
+          "artifactId": "expo.modules.webview",
+          "version": "57.0.1",
+          "repository": "local-maven-repo"
+        }
+      }
+    },
+    "duplicates": []
+  },
+  "@expo/log-box": {
+    "name": "@expo/log-box",
+    "path": "C:\\Users\\<user>\\Documents\\Codex\\2026-09-29\\built-myongji-campus-explorer-as-an\\work\\source\\myongji-campus-explorer\\mobile\\node_modules\\expo\\node_modules\\@expo\\log-box",
+    "version": "57.0.4",
+    "config": {
+      "platforms": [
+        "apple",
+        "android"
+      ],
+      "apple": {
+        "podspecPath": "ExpoLogBox.podspec"
+      },
+      "android": {
+        "modules": []
+      }
+    },
+    "duplicates": []
+  },
+  "expo-asset": {
+    "name": "expo-asset",
+    "path": "C:\\Users\\<user>\\Documents\\Codex\\2026-09-29\\built-myongji-campus-explorer-as-an\\work\\source\\myongji-campus-explorer\\mobile\\node_modules\\expo\\node_modules\\expo-asset",
+    "version": "57.0.18",
+    "config": {
+      "platforms": [
+        "apple",
+        "android",
+        "web"
+      ],
+      "apple": {
+        "modules": [
+          "AssetModule"
+        ]
+      },
+      "android": {
+        "modules": [
+          "expo.modules.asset.AssetModule"
+        ],
+        "publication": {
+          "groupId": "expo.modules.asset",
+          "artifactId": "expo.modules.asset",
+          "version": "57.0.18",
+          "repository": "local-maven-repo"
+        }
+      }
+    },
+    "duplicates": []
+  },
+  "expo-file-system": {
+    "name": "expo-file-system",
+    "path": "C:\\Users\\<user>\\Documents\\Codex\\2026-09-29\\built-myongji-campus-explorer-as-an\\work\\source\\myongji-campus-explorer\\mobile\\node_modules\\expo\\node_modules\\expo-file-system",
+    "version": "57.0.7",
+    "config": {
+      "platforms": [
+        "apple",
+        "android"
+      ],
+      "apple": {
+        "modules": [
+          "FileSystemModule",
+          "FileSystemLegacyModule"
+        ],
+        "appDelegateSubscribers": [
+          "FileSystemBackgroundSessionHandler"
+        ]
+      },
+      "android": {
+        "modules": [
+          "expo.modules.filesystem.FileSystemModule",
+          "expo.modules.filesystem.legacy.FileSystemLegacyModule"
+        ],
+        "publication": {
+          "groupId": "host.exp.exponent",
+          "artifactId": "expo.modules.filesystem",
+          "version": "57.0.7",
+          "repository": "local-maven-repo"
+        }
+      }
+    },
+    "duplicates": []
+  },
+  "expo-font": {
+    "name": "expo-font",
+    "path": "C:\\Users\\<user>\\Documents\\Codex\\2026-09-29\\built-myongji-campus-explorer-as-an\\work\\source\\myongji-campus-explorer\\mobile\\node_modules\\expo\\node_modules\\expo-font",
+    "version": "57.0.4",
+    "config": {
+      "platforms": [
+        "apple",
+        "android",
+        "web"
+      ],
+      "apple": {
+        "modules": [
+          "FontLoaderModule",
+          "FontUtilsModule"
+        ]
+      },
+      "android": {
+        "modules": [
+          "expo.modules.font.FontLoaderModule",
+          "expo.modules.font.FontUtilsModule"
+        ],
+        "publication": {
+          "groupId": "host.exp.exponent",
+          "artifactId": "expo.modules.font",
+          "version": "57.0.4",
+          "repository": "local-maven-repo"
+        }
+      }
+    },
+    "duplicates": []
+  },
+  "expo-keep-awake": {
+    "name": "expo-keep-awake",
+    "path": "C:\\Users\\<user>\\Documents\\Codex\\2026-09-29\\built-myongji-campus-explorer-as-an\\work\\source\\myongji-campus-explorer\\mobile\\node_modules\\expo\\node_modules\\expo-keep-awake",
+    "version": "57.0.2",
+    "config": {
+      "platforms": [
+        "apple",
+        "android"
+      ],
+      "apple": {
+        "modules": [
+          "KeepAwakeModule"
+        ]
+      },
+      "android": {
+        "modules": [
+          "expo.modules.keepawake.KeepAwakeModule"
+        ],
+        "publication": {
+          "groupId": "host.exp.exponent",
+          "artifactId": "expo.modules.keepawake",
+          "version": "57.0.2",
+          "repository": "local-maven-repo"
+        }
+      }
+    },
+    "duplicates": []
+  },
+  "expo-modules-core": {
+    "name": "expo-modules-core",
+    "path": "C:\\Users\\<user>\\Documents\\Codex\\2026-09-29\\built-myongji-campus-explorer-as-an\\work\\source\\myongji-campus-explorer\\mobile\\node_modules\\expo-modules-core",
+    "version": "57.0.20",
+    "config": {
+      "platforms": [
+        "apple",
+        "android"
+      ],
+      "apple": {
+        "podspecPath": [
+          "./ExpoModulesCore.podspec",
+          "./ExpoModulesWorklets.podspec"
+        ]
+      },
+      "android": {
+        "gradlePlugins": [
+          {
+            "id": "expo-module-gradle-plugin",
+            "group": "expo.modules",
+            "sourceDir": "expo-module-gradle-plugin",
+            "applyToRootProject": false
+          }
+        ]
+      }
+    },
+    "duplicates": []
+  },
+  "expo-dev-launcher": {
+    "name": "expo-dev-launcher",
+    "path": "C:\\Users\\<user>\\Documents\\Codex\\2026-09-29\\built-myongji-campus-explorer-as-an\\work\\source\\myongji-campus-explorer\\mobile\\node_modules\\expo-dev-launcher",
+    "version": "57.0.20",
+    "config": {
+      "platforms": [
+        "apple",
+        "android"
+      ],
+      "apple": {
+        "podspecPath": "expo-dev-launcher.podspec",
+        "swiftModuleName": "EXDevLauncher",
+        "modules": [
+          "DevLauncherModule"
+        ],
+        "appDelegateSubscribers": [
+          "ExpoDevLauncherAppDelegateSubscriber"
+        ],
+        "reactDelegateHandlers": [
+          "ExpoDevLauncherReactDelegateHandler"
+        ],
+        "debugOnly": true
+      },
+      "android": {
+        "modules": [
+          "expo.modules.devlauncher.modules.ExpoDevLauncherModule"
+        ],
+        "gradlePlugins": [
+          {
+            "id": "expo-dev-launcher-gradle-plugin",
+            "group": "expo.modules",
+            "sourceDir": "expo-dev-launcher-gradle-plugin"
+          }
+        ]
+      }
+    },
+    "duplicates": []
+  },
+  "expo-dev-menu": {
+    "name": "expo-dev-menu",
+    "path": "C:\\Users\\<user>\\Documents\\Codex\\2026-09-29\\built-myongji-campus-explorer-as-an\\work\\source\\myongji-campus-explorer\\mobile\\node_modules\\expo-dev-menu",
+    "version": "57.0.18",
+    "config": {
+      "platforms": [
+        "apple",
+        "android"
+      ],
+      "apple": {
+        "podspecPath": "expo-dev-menu.podspec",
+        "swiftModuleName": "EXDevMenu",
+        "modules": [
+          "DevMenuModule",
+          "DevMenuPreferences"
+        ],
+        "debugOnly": true
+      },
+      "android": {
+        "modules": [
+          "expo.modules.devmenu.modules.DevMenuModule"
+        ]
+      }
+    },
+    "duplicates": []
+  },
+  "expo-dev-menu-interface": {
+    "name": "expo-dev-menu-interface",
+    "path": "C:\\Users\\<user>\\Documents\\Codex\\2026-09-29\\built-myongji-campus-explorer-as-an\\work\\source\\myongji-campus-explorer\\mobile\\node_modules\\expo-dev-menu-interface",
+    "version": "57.0.0",
+    "config": {
+      "platforms": [
+        "apple",
+        "android"
+      ]
+    },
+    "duplicates": []
+  },
+  "expo-manifests": {
+    "name": "expo-manifests",
+    "path": "C:\\Users\\<user>\\Documents\\Codex\\2026-09-29\\built-myongji-campus-explorer-as-an\\work\\source\\myongji-campus-explorer\\mobile\\node_modules\\expo-manifests",
+    "version": "57.0.2",
+    "config": {
+      "platforms": [
+        "apple",
+        "android"
+      ]
+    },
+    "duplicates": []
+  },
+  "expo-updates-interface": {
+    "name": "expo-updates-interface",
+    "path": "C:\\Users\\<user>\\Documents\\Codex\\2026-09-29\\built-myongji-campus-explorer-as-an\\work\\source\\myongji-campus-explorer\\mobile\\node_modules\\expo-updates-interface",
+    "version": "57.0.2",
+    "config": {
+      "platforms": [
+        "apple",
+        "android"
+      ]
+    },
+    "duplicates": []
+  },
+  "expo-json-utils": {
+    "name": "expo-json-utils",
+    "path": "C:\\Users\\<user>\\Documents\\Codex\\2026-09-29\\built-myongji-campus-explorer-as-an\\work\\source\\myongji-campus-explorer\\mobile\\node_modules\\expo-json-utils",
+    "version": "57.0.2",
+    "config": {
+      "platforms": [
+        "apple",
+        "android"
+      ]
+    },
+    "duplicates": []
+  }
+}

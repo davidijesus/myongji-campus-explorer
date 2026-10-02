@@ -1,0 +1,11 @@
+const fs = require('node:fs');
+const path = require('node:path');
+const enabled = process.argv[2] === 'enable';
+if (!['enable', 'disable'].includes(process.argv[2])) throw new Error('Use enable or disable.');
+const file = path.join(__dirname, '..', 'package.json');
+const pkg = JSON.parse(fs.readFileSync(file, 'utf8'));
+const excluded = new Set(pkg.expo.autolinking.exclude);
+enabled ? excluded.delete('campus-naver') : excluded.add('campus-naver');
+pkg.expo.autolinking.exclude = [...excluded];
+fs.writeFileSync(file, JSON.stringify(pkg, null, 2) + '\n');
+console.log(`Naver SDK ${enabled ? 'included' : 'excluded'}. Set CAMPUS_ENABLE_NAVER=${enabled ? '1' : '0'} consistently and regenerate native projects. Native SDK integration still requires device validation.`);

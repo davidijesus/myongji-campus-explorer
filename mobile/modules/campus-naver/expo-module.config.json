@@ -1,0 +1,5 @@
+{
+  "platforms": ["apple", "android"],
+  "apple": { "modules": ["CampusNaverModule"] },
+  "android": { "modules": ["expo.modules.campusnaver.CampusNaverModule"] }
+}

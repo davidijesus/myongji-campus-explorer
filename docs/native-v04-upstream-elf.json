@@ -1,0 +1,75 @@
+{
+  "date": "2026-09-30",
+  "scope": "Upstream downloaded AARs, arm64-v8a only; not yet final APK",
+  "source": "https://developer.android.com/guide/practices/page-sizes",
+  "runtimeTested": false,
+  "artifacts": [
+    {
+      "aar": "react-android-0.86.3-release.aar",
+      "sha256": "59b66e453d8775a54df66a321c0d5002b98716d68c4bd9edb8e64d7110ff8d28",
+      "libraries": [
+        {
+          "path": "jni/arm64-v8a/libc++_shared.so",
+          "sha256": "3e852764502d06e0cf1080d532ae7c608b7649d946a3a9d7e84e3d4b7d683214",
+          "loadAlignments": [
+            16384,
+            16384,
+            16384,
+            16384
+          ],
+          "relroEndModulo16384": [
+            12288
+          ]
+        },
+        {
+          "path": "jni/arm64-v8a/libfbjni.so",
+          "sha256": "a9e35ba55d3f956920281f519385f8a72475ee24819799cb08375fdd4cce2b22",
+          "loadAlignments": [
+            16384,
+            16384,
+            16384
+          ],
+          "relroEndModulo16384": [
+            12288
+          ]
+        },
+        {
+          "path": "jni/arm64-v8a/libhermestooling.so",
+          "sha256": "1db061bbbb050105fee9b208b861adc0cc02cc359551be6ba9562798a81f6cca",
+          "loadAlignments": [
+            16384,
+            16384,
+            16384
+          ],
+          "relroEndModulo16384": [
+            8192
+          ]
+        },
+        {
+          "path": "jni/arm64-v8a/libjsi.so",
+          "sha256": "5acb80d7eb93b2114a419c9e42b44476969299e806ad7eafe1b293e221b9a682",
+          "loadAlignments": [
+            16384,
+            16384,
+            16384
+          ],
+          "relroEndModulo16384": [
+            4096
+          ]
+        },
+        {
+          "path": "jni/arm64-v8a/libreactnative.so",
+          "sha256": "14bb860cebebb0e29eb2c96a52d70da9b73e60253916694af955f6e3ef1e6b64",
+          "loadAlignments": [
+            16384,
+            16384,
+            16384
+          ],
+          "relroEndModulo16384": [
+            0
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,562 @@
+{
+  "schemaVersion": 1,
+  "id": "mju-seoul-live",
+  "mode": "live",
+  "version": 1,
+  "updatedAt": "2026-10-01T00:00:00+09:00",
+  "campus": {
+    "id": "mju-seoul-humanities",
+    "name": {
+      "en": "Myongji University · Humanities Campus",
+      "ko": "명지대학교 인문캠퍼스",
+      "zh": "明知大学 · 人文校区"
+    },
+    "address": {
+      "en": "34 Geobukgol-ro, Seodaemun-gu, Seoul, 03674, Korea",
+      "ko": "서울특별시 서대문구 거북골로 34 (03674)",
+      "zh": "韩国首尔西大门区 Geobukgol-ro 34号，03674"
+    },
+    "evidence": {
+      "status": "verified",
+      "sourceUrl": "https://www.mju.ac.kr/mjukr/338/subview.do",
+      "checkedAt": "2026-10-01T00:00:00+09:00",
+      "note": {
+        "en": "Campus name and address checked on official university pages.",
+        "ko": "캠퍼스명과 주소는 대학 공식 페이지에서 확인했습니다.",
+        "zh": "校区名称和地址已查对大学官方网站。"
+      }
+    },
+    "origin": null,
+    "boundary": null,
+    "geometryEvidence": {
+      "status": "unverified",
+      "sourceUrl": "https://www.mju.ac.kr/bbs/record/359/168757/download.do",
+      "checkedAt": null,
+      "note": {
+        "en": "Official directory markers supply relative placement only. Building shapes, sizes, heights and landscape are schematic interpretations of the university’s illustrated overview and campus photograph, not measured footprints or current surveyed geometry. No entrance, route or floor assignment is verified.",
+        "ko": "상대 위치는 공식 목록 표식을 사용합니다. 건물 형태·크기·높이와 조경은 대학의 그림 안내도와 사진을 참고한 개략 표현이며, 실측 외곽이나 현재 측량 자료가 아닙니다. 출입구·경로·층 배정은 확인되지 않았습니다.",
+        "zh": "相对位置来自官方目录标记。建筑形状、尺寸、高度及景观参考大学示意图和照片作概略表达，并非实测轮廓或当前测绘数据。入口、路线和楼层分配均未核实。"
+      }
+    }
+  },
+  "places": [
+    {
+      "id": "mju-s1",
+      "name": {
+        "en": "General Hall",
+        "ko": "종합관",
+        "zh": "综合馆"
+      },
+      "code": "S1",
+      "category": "academic",
+      "aliases": [
+        "General Hall",
+        "종합관",
+        "综合馆",
+        "S1",
+        "1",
+        "Main Building",
+        "본관"
+      ],
+      "description": {
+        "en": "Official directory markers supply relative placement only. Building shapes, sizes, heights and landscape are schematic interpretations of the university’s illustrated overview and campus photograph, not measured footprints or current surveyed geometry. No entrance, route or floor assignment is verified.",
+        "ko": "상대 위치는 공식 목록 표식을 사용합니다. 건물 형태·크기·높이와 조경은 대학의 그림 안내도와 사진을 참고한 개략 표현이며, 실측 외곽이나 현재 측량 자료가 아닙니다. 출입구·경로·층 배정은 확인되지 않았습니다.",
+        "zh": "相对位置来自官方目录标记。建筑形状、尺寸、高度及景观参考大学示意图和照片作概略表达，并非实测轮廓或当前测绘数据。入口、路线和楼层分配均未核实。"
+      },
+      "point": null,
+      "buildingId": null,
+      "entranceIds": [],
+      "photo": null,
+      "evidence": {
+        "status": "verified",
+        "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=A",
+        "checkedAt": "2026-10-01T00:00:00+09:00",
+        "note": {
+          "en": "Name checked against the official Seoul campus directory. Building numbers follow the university’s Seoul code convention. English and Chinese names are descriptive translations; no personal timetable, room or entrance is verified.",
+          "ko": "이름은 공식 인문캠퍼스 목록을 확인했습니다. 건물 번호는 대학의 서울 코드 표기법을 따릅니다. 영어와 중국어는 설명을 위한 번역이며 개인 시간표·강의실·출입구는 확인하지 않았습니다.",
+          "zh": "名称已查对官方人文校区目录，楼号沿用大学的首尔校区编号规则。英文和中文名称为说明性翻译；未核实个人课表、教室或入口。"
+        }
+      },
+      "geometryEvidence": {
+        "status": "unverified",
+        "sourceUrl": "https://www.mju.ac.kr/bbs/record/359/168757/download.do",
+        "checkedAt": null,
+        "note": {
+          "en": "Official directory markers supply relative placement only. Building shapes, sizes, heights and landscape are schematic interpretations of the university’s illustrated overview and campus photograph, not measured footprints or current surveyed geometry. No entrance, route or floor assignment is verified.",
+          "ko": "상대 위치는 공식 목록 표식을 사용합니다. 건물 형태·크기·높이와 조경은 대학의 그림 안내도와 사진을 참고한 개략 표현이며, 실측 외곽이나 현재 측량 자료가 아닙니다. 출입구·경로·층 배정은 확인되지 않았습니다.",
+          "zh": "相对位置来自官方目录标记。建筑形状、尺寸、高度及景观参考大学示意图和照片作概略表达，并非实测轮廓或当前测绘数据。入口、路线和楼层分配均未核实。"
+        }
+      }
+    },
+    {
+      "id": "mju-s2",
+      "name": {
+        "en": "Student Union",
+        "ko": "학생회관",
+        "zh": "学生活动馆"
+      },
+      "code": "S2",
+      "category": "services",
+      "aliases": [
+        "Student Union",
+        "학생회관",
+        "学生活动馆",
+        "S2",
+        "2"
+      ],
+      "description": {
+        "en": "Official directory markers supply relative placement only. Building shapes, sizes, heights and landscape are schematic interpretations of the university’s illustrated overview and campus photograph, not measured footprints or current surveyed geometry. No entrance, route or floor assignment is verified.",
+        "ko": "상대 위치는 공식 목록 표식을 사용합니다. 건물 형태·크기·높이와 조경은 대학의 그림 안내도와 사진을 참고한 개략 표현이며, 실측 외곽이나 현재 측량 자료가 아닙니다. 출입구·경로·층 배정은 확인되지 않았습니다.",
+        "zh": "相对位置来自官方目录标记。建筑形状、尺寸、高度及景观参考大学示意图和照片作概略表达，并非实测轮廓或当前测绘数据。入口、路线和楼层分配均未核实。"
+      },
+      "point": null,
+      "buildingId": null,
+      "entranceIds": [],
+      "photo": null,
+      "evidence": {
+        "status": "verified",
+        "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=A",
+        "checkedAt": "2026-10-01T00:00:00+09:00",
+        "note": {
+          "en": "Name checked against the official Seoul campus directory. Building numbers follow the university’s Seoul code convention. English and Chinese names are descriptive translations; no personal timetable, room or entrance is verified.",
+          "ko": "이름은 공식 인문캠퍼스 목록을 확인했습니다. 건물 번호는 대학의 서울 코드 표기법을 따릅니다. 영어와 중국어는 설명을 위한 번역이며 개인 시간표·강의실·출입구는 확인하지 않았습니다.",
+          "zh": "名称已查对官方人文校区目录，楼号沿用大学的首尔校区编号规则。英文和中文名称为说明性翻译；未核实个人课表、教室或入口。"
+        }
+      },
+      "geometryEvidence": {
+        "status": "unverified",
+        "sourceUrl": "https://www.mju.ac.kr/bbs/record/359/168757/download.do",
+        "checkedAt": null,
+        "note": {
+          "en": "Official directory markers supply relative placement only. Building shapes, sizes, heights and landscape are schematic interpretations of the university’s illustrated overview and campus photograph, not measured footprints or current surveyed geometry. No entrance, route or floor assignment is verified.",
+          "ko": "상대 위치는 공식 목록 표식을 사용합니다. 건물 형태·크기·높이와 조경은 대학의 그림 안내도와 사진을 참고한 개략 표현이며, 실측 외곽이나 현재 측량 자료가 아닙니다. 출입구·경로·층 배정은 확인되지 않았습니다.",
+          "zh": "相对位置来自官方目录标记。建筑形状、尺寸、高度及景观参考大学示意图和照片作概略表达，并非实测轮廓或当前测绘数据。入口、路线和楼层分配均未核实。"
+        }
+      }
+    },
+    {
+      "id": "mju-s3",
+      "name": {
+        "en": "Mirae Hall",
+        "ko": "미래관",
+        "zh": "未来馆"
+      },
+      "code": "S3",
+      "category": "academic",
+      "aliases": [
+        "Mirae Hall",
+        "미래관",
+        "未来馆",
+        "S3",
+        "3"
+      ],
+      "description": {
+        "en": "Official directory markers supply relative placement only. Building shapes, sizes, heights and landscape are schematic interpretations of the university’s illustrated overview and campus photograph, not measured footprints or current surveyed geometry. No entrance, route or floor assignment is verified.",
+        "ko": "상대 위치는 공식 목록 표식을 사용합니다. 건물 형태·크기·높이와 조경은 대학의 그림 안내도와 사진을 참고한 개략 표현이며, 실측 외곽이나 현재 측량 자료가 아닙니다. 출입구·경로·층 배정은 확인되지 않았습니다.",
+        "zh": "相对位置来自官方目录标记。建筑形状、尺寸、高度及景观参考大学示意图和照片作概略表达，并非实测轮廓或当前测绘数据。入口、路线和楼层分配均未核实。"
+      },
+      "point": null,
+      "buildingId": null,
+      "entranceIds": [],
+      "photo": null,
+      "evidence": {
+        "status": "verified",
+        "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=A",
+        "checkedAt": "2026-10-01T00:00:00+09:00",
+        "note": {
+          "en": "Name checked against the official Seoul campus directory. Building numbers follow the university’s Seoul code convention. English and Chinese names are descriptive translations; no personal timetable, room or entrance is verified.",
+          "ko": "이름은 공식 인문캠퍼스 목록을 확인했습니다. 건물 번호는 대학의 서울 코드 표기법을 따릅니다. 영어와 중국어는 설명을 위한 번역이며 개인 시간표·강의실·출입구는 확인하지 않았습니다.",
+          "zh": "名称已查对官方人文校区目录，楼号沿用大学的首尔校区编号规则。英文和中文名称为说明性翻译；未核实个人课表、教室或入口。"
+        }
+      },
+      "geometryEvidence": {
+        "status": "unverified",
+        "sourceUrl": "https://www.mju.ac.kr/bbs/record/359/168757/download.do",
+        "checkedAt": null,
+        "note": {
+          "en": "Official directory markers supply relative placement only. Building shapes, sizes, heights and landscape are schematic interpretations of the university’s illustrated overview and campus photograph, not measured footprints or current surveyed geometry. No entrance, route or floor assignment is verified.",
+          "ko": "상대 위치는 공식 목록 표식을 사용합니다. 건물 형태·크기·높이와 조경은 대학의 그림 안내도와 사진을 참고한 개략 표현이며, 실측 외곽이나 현재 측량 자료가 아닙니다. 출입구·경로·층 배정은 확인되지 않았습니다.",
+          "zh": "相对位置来自官方目录标记。建筑形状、尺寸、高度及景观参考大学示意图和照片作概略表达，并非实测轮廓或当前测绘数据。入口、路线和楼层分配均未核实。"
+        }
+      }
+    },
+    {
+      "id": "mju-s4",
+      "name": {
+        "en": "International Hall",
+        "ko": "국제관",
+        "zh": "国际馆"
+      },
+      "code": "S4",
+      "category": "academic",
+      "aliases": [
+        "International Hall",
+        "국제관",
+        "国际馆",
+        "S4",
+        "4",
+        "경상관"
+      ],
+      "description": {
+        "en": "Official directory markers supply relative placement only. Building shapes, sizes, heights and landscape are schematic interpretations of the university’s illustrated overview and campus photograph, not measured footprints or current surveyed geometry. No entrance, route or floor assignment is verified.",
+        "ko": "상대 위치는 공식 목록 표식을 사용합니다. 건물 형태·크기·높이와 조경은 대학의 그림 안내도와 사진을 참고한 개략 표현이며, 실측 외곽이나 현재 측량 자료가 아닙니다. 출입구·경로·층 배정은 확인되지 않았습니다.",
+        "zh": "相对位置来自官方目录标记。建筑形状、尺寸、高度及景观参考大学示意图和照片作概略表达，并非实测轮廓或当前测绘数据。入口、路线和楼层分配均未核实。"
+      },
+      "point": null,
+      "buildingId": null,
+      "entranceIds": [],
+      "photo": null,
+      "evidence": {
+        "status": "verified",
+        "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=A",
+        "checkedAt": "2026-10-01T00:00:00+09:00",
+        "note": {
+          "en": "Name checked against the official Seoul campus directory. Building numbers follow the university’s Seoul code convention. English and Chinese names are descriptive translations; no personal timetable, room or entrance is verified.",
+          "ko": "이름은 공식 인문캠퍼스 목록을 확인했습니다. 건물 번호는 대학의 서울 코드 표기법을 따릅니다. 영어와 중국어는 설명을 위한 번역이며 개인 시간표·강의실·출입구는 확인하지 않았습니다.",
+          "zh": "名称已查对官方人文校区目录，楼号沿用大学的首尔校区编号规则。英文和中文名称为说明性翻译；未核实个人课表、教室或入口。"
+        }
+      },
+      "geometryEvidence": {
+        "status": "unverified",
+        "sourceUrl": "https://www.mju.ac.kr/bbs/record/359/168757/download.do",
+        "checkedAt": null,
+        "note": {
+          "en": "Official directory markers supply relative placement only. Building shapes, sizes, heights and landscape are schematic interpretations of the university’s illustrated overview and campus photograph, not measured footprints or current surveyed geometry. No entrance, route or floor assignment is verified.",
+          "ko": "상대 위치는 공식 목록 표식을 사용합니다. 건물 형태·크기·높이와 조경은 대학의 그림 안내도와 사진을 참고한 개략 표현이며, 실측 외곽이나 현재 측량 자료가 아닙니다. 출입구·경로·층 배정은 확인되지 않았습니다.",
+          "zh": "相对位置来自官方目录标记。建筑形状、尺寸、高度及景观参考大学示意图和照片作概略表达，并非实测轮廓或当前测绘数据。入口、路线和楼层分配均未核实。"
+        }
+      }
+    },
+    {
+      "id": "mju-s5",
+      "name": {
+        "en": "Administration Building",
+        "ko": "행정동",
+        "zh": "行政楼"
+      },
+      "code": "S5",
+      "category": "services",
+      "aliases": [
+        "Administration Building",
+        "행정동",
+        "行政楼",
+        "S5",
+        "5"
+      ],
+      "description": {
+        "en": "Official directory markers supply relative placement only. Building shapes, sizes, heights and landscape are schematic interpretations of the university’s illustrated overview and campus photograph, not measured footprints or current surveyed geometry. No entrance, route or floor assignment is verified.",
+        "ko": "상대 위치는 공식 목록 표식을 사용합니다. 건물 형태·크기·높이와 조경은 대학의 그림 안내도와 사진을 참고한 개략 표현이며, 실측 외곽이나 현재 측량 자료가 아닙니다. 출입구·경로·층 배정은 확인되지 않았습니다.",
+        "zh": "相对位置来自官方目录标记。建筑形状、尺寸、高度及景观参考大学示意图和照片作概略表达，并非实测轮廓或当前测绘数据。入口、路线和楼层分配均未核实。"
+      },
+      "point": null,
+      "buildingId": null,
+      "entranceIds": [],
+      "photo": null,
+      "evidence": {
+        "status": "verified",
+        "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=A",
+        "checkedAt": "2026-10-01T00:00:00+09:00",
+        "note": {
+          "en": "Name checked against the official Seoul campus directory. Building numbers follow the university’s Seoul code convention. English and Chinese names are descriptive translations; no personal timetable, room or entrance is verified.",
+          "ko": "이름은 공식 인문캠퍼스 목록을 확인했습니다. 건물 번호는 대학의 서울 코드 표기법을 따릅니다. 영어와 중국어는 설명을 위한 번역이며 개인 시간표·강의실·출입구는 확인하지 않았습니다.",
+          "zh": "名称已查对官方人文校区目录，楼号沿用大学的首尔校区编号规则。英文和中文名称为说明性翻译；未核实个人课表、教室或入口。"
+        }
+      },
+      "geometryEvidence": {
+        "status": "unverified",
+        "sourceUrl": "https://www.mju.ac.kr/bbs/record/359/168757/download.do",
+        "checkedAt": null,
+        "note": {
+          "en": "Official directory markers supply relative placement only. Building shapes, sizes, heights and landscape are schematic interpretations of the university’s illustrated overview and campus photograph, not measured footprints or current surveyed geometry. No entrance, route or floor assignment is verified.",
+          "ko": "상대 위치는 공식 목록 표식을 사용합니다. 건물 형태·크기·높이와 조경은 대학의 그림 안내도와 사진을 참고한 개략 표현이며, 실측 외곽이나 현재 측량 자료가 아닙니다. 출입구·경로·층 배정은 확인되지 않았습니다.",
+          "zh": "相对位置来自官方目录标记。建筑形状、尺寸、高度及景观参考大学示意图和照片作概略表达，并非实测轮廓或当前测绘数据。入口、路线和楼层分配均未核实。"
+        }
+      }
+    },
+    {
+      "id": "mju-s8",
+      "name": {
+        "en": "Humanities Residence",
+        "ko": "생활관(인문)",
+        "zh": "人文校区宿舍"
+      },
+      "code": "S8",
+      "category": "residence",
+      "aliases": [
+        "Humanities Residence",
+        "생활관(인문)",
+        "人文校区宿舍",
+        "S8",
+        "8"
+      ],
+      "description": {
+        "en": "Official directory markers supply relative placement only. Building shapes, sizes, heights and landscape are schematic interpretations of the university’s illustrated overview and campus photograph, not measured footprints or current surveyed geometry. No entrance, route or floor assignment is verified.",
+        "ko": "상대 위치는 공식 목록 표식을 사용합니다. 건물 형태·크기·높이와 조경은 대학의 그림 안내도와 사진을 참고한 개략 표현이며, 실측 외곽이나 현재 측량 자료가 아닙니다. 출입구·경로·층 배정은 확인되지 않았습니다.",
+        "zh": "相对位置来自官方目录标记。建筑形状、尺寸、高度及景观参考大学示意图和照片作概略表达，并非实测轮廓或当前测绘数据。入口、路线和楼层分配均未核实。"
+      },
+      "point": null,
+      "buildingId": null,
+      "entranceIds": [],
+      "photo": null,
+      "evidence": {
+        "status": "verified",
+        "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=A",
+        "checkedAt": "2026-10-01T00:00:00+09:00",
+        "note": {
+          "en": "Name checked against the official Seoul campus directory. Building numbers follow the university’s Seoul code convention. English and Chinese names are descriptive translations; no personal timetable, room or entrance is verified.",
+          "ko": "이름은 공식 인문캠퍼스 목록을 확인했습니다. 건물 번호는 대학의 서울 코드 표기법을 따릅니다. 영어와 중국어는 설명을 위한 번역이며 개인 시간표·강의실·출입구는 확인하지 않았습니다.",
+          "zh": "名称已查对官方人文校区目录，楼号沿用大学的首尔校区编号规则。英文和中文名称为说明性翻译；未核实个人课表、教室或入口。"
+        }
+      },
+      "geometryEvidence": {
+        "status": "unverified",
+        "sourceUrl": "https://www.mju.ac.kr/bbs/record/359/168757/download.do",
+        "checkedAt": null,
+        "note": {
+          "en": "Official directory markers supply relative placement only. Building shapes, sizes, heights and landscape are schematic interpretations of the university’s illustrated overview and campus photograph, not measured footprints or current surveyed geometry. No entrance, route or floor assignment is verified.",
+          "ko": "상대 위치는 공식 목록 표식을 사용합니다. 건물 형태·크기·높이와 조경은 대학의 그림 안내도와 사진을 참고한 개략 표현이며, 실측 외곽이나 현재 측량 자료가 아닙니다. 출입구·경로·층 배정은 확인되지 않았습니다.",
+          "zh": "相对位置来自官方目录标记。建筑形状、尺寸、高度及景观参考大学示意图和照片作概略表达，并非实测轮廓或当前测绘数据。入口、路线和楼层分配均未核实。"
+        }
+      }
+    },
+    {
+      "id": "mju-s9",
+      "name": {
+        "en": "Bangmok Academic Information Center",
+        "ko": "방목학술정보관",
+        "zh": "Bangmok学术信息馆"
+      },
+      "code": "S9",
+      "category": "library",
+      "aliases": [
+        "Bangmok Academic Information Center",
+        "방목학술정보관",
+        "Bangmok学术信息馆",
+        "S9",
+        "9",
+        "library",
+        "도서관",
+        "图书馆"
+      ],
+      "description": {
+        "en": "Official directory markers supply relative placement only. Building shapes, sizes, heights and landscape are schematic interpretations of the university’s illustrated overview and campus photograph, not measured footprints or current surveyed geometry. No entrance, route or floor assignment is verified.",
+        "ko": "상대 위치는 공식 목록 표식을 사용합니다. 건물 형태·크기·높이와 조경은 대학의 그림 안내도와 사진을 참고한 개략 표현이며, 실측 외곽이나 현재 측량 자료가 아닙니다. 출입구·경로·층 배정은 확인되지 않았습니다.",
+        "zh": "相对位置来自官方目录标记。建筑形状、尺寸、高度及景观参考大学示意图和照片作概略表达，并非实测轮廓或当前测绘数据。入口、路线和楼层分配均未核实。"
+      },
+      "point": null,
+      "buildingId": null,
+      "entranceIds": [],
+      "photo": null,
+      "evidence": {
+        "status": "verified",
+        "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=A",
+        "checkedAt": "2026-10-01T00:00:00+09:00",
+        "note": {
+          "en": "Name checked against the official Seoul campus directory. Building numbers follow the university’s Seoul code convention. English and Chinese names are descriptive translations; no personal timetable, room or entrance is verified.",
+          "ko": "이름은 공식 인문캠퍼스 목록을 확인했습니다. 건물 번호는 대학의 서울 코드 표기법을 따릅니다. 영어와 중국어는 설명을 위한 번역이며 개인 시간표·강의실·출입구는 확인하지 않았습니다.",
+          "zh": "名称已查对官方人文校区目录，楼号沿用大学的首尔校区编号规则。英文和中文名称为说明性翻译；未核实个人课表、教室或入口。"
+        }
+      },
+      "geometryEvidence": {
+        "status": "unverified",
+        "sourceUrl": "https://www.mju.ac.kr/bbs/record/359/168757/download.do",
+        "checkedAt": null,
+        "note": {
+          "en": "Official directory markers supply relative placement only. Building shapes, sizes, heights and landscape are schematic interpretations of the university’s illustrated overview and campus photograph, not measured footprints or current surveyed geometry. No entrance, route or floor assignment is verified.",
+          "ko": "상대 위치는 공식 목록 표식을 사용합니다. 건물 형태·크기·높이와 조경은 대학의 그림 안내도와 사진을 참고한 개략 표현이며, 실측 외곽이나 현재 측량 자료가 아닙니다. 출입구·경로·층 배정은 확인되지 않았습니다.",
+          "zh": "相对位置来自官方目录标记。建筑形状、尺寸、高度及景观参考大学示意图和照片作概略表达，并非实测轮廓或当前测绘数据。入口、路线和楼层分配均未核实。"
+        }
+      }
+    },
+    {
+      "id": "mju-s10",
+      "name": {
+        "en": "MCC · Myongji Campus Complex",
+        "ko": "MCC(Myongji Campus Complex)관",
+        "zh": "MCC · 明知校园综合楼"
+      },
+      "code": "S10",
+      "category": "academic",
+      "aliases": [
+        "MCC · Myongji Campus Complex",
+        "MCC(Myongji Campus Complex)관",
+        "MCC · 明知校园综合楼",
+        "S10",
+        "10",
+        "MCC",
+        "베리타스홀",
+        "코이노니아홀",
+        "Veritas Hall",
+        "Koinonia Hall"
+      ],
+      "description": {
+        "en": "Official directory markers supply relative placement only. Building shapes, sizes, heights and landscape are schematic interpretations of the university’s illustrated overview and campus photograph, not measured footprints or current surveyed geometry. No entrance, route or floor assignment is verified.",
+        "ko": "상대 위치는 공식 목록 표식을 사용합니다. 건물 형태·크기·높이와 조경은 대학의 그림 안내도와 사진을 참고한 개략 표현이며, 실측 외곽이나 현재 측량 자료가 아닙니다. 출입구·경로·층 배정은 확인되지 않았습니다.",
+        "zh": "相对位置来自官方目录标记。建筑形状、尺寸、高度及景观参考大学示意图和照片作概略表达，并非实测轮廓或当前测绘数据。入口、路线和楼层分配均未核实。"
+      },
+      "point": null,
+      "buildingId": null,
+      "entranceIds": [],
+      "photo": null,
+      "evidence": {
+        "status": "verified",
+        "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=A",
+        "checkedAt": "2026-10-01T00:00:00+09:00",
+        "note": {
+          "en": "Name checked against the official Seoul campus directory. Building numbers follow the university’s Seoul code convention. English and Chinese names are descriptive translations; no personal timetable, room or entrance is verified.",
+          "ko": "이름은 공식 인문캠퍼스 목록을 확인했습니다. 건물 번호는 대학의 서울 코드 표기법을 따릅니다. 영어와 중국어는 설명을 위한 번역이며 개인 시간표·강의실·출입구는 확인하지 않았습니다.",
+          "zh": "名称已查对官方人文校区目录，楼号沿用大学的首尔校区编号规则。英文和中文名称为说明性翻译；未核实个人课表、教室或入口。"
+        }
+      },
+      "geometryEvidence": {
+        "status": "unverified",
+        "sourceUrl": "https://www.mju.ac.kr/bbs/record/359/168757/download.do",
+        "checkedAt": null,
+        "note": {
+          "en": "Official directory markers supply relative placement only. Building shapes, sizes, heights and landscape are schematic interpretations of the university’s illustrated overview and campus photograph, not measured footprints or current surveyed geometry. No entrance, route or floor assignment is verified.",
+          "ko": "상대 위치는 공식 목록 표식을 사용합니다. 건물 형태·크기·높이와 조경은 대학의 그림 안내도와 사진을 참고한 개략 표현이며, 실측 외곽이나 현재 측량 자료가 아닙니다. 출입구·경로·층 배정은 확인되지 않았습니다.",
+          "zh": "相对位置来自官方目录标记。建筑形状、尺寸、高度及景观参考大学示意图和照片作概略表达，并非实测轮廓或当前测绘数据。入口、路线和楼层分配均未核实。"
+        }
+      }
+    },
+    {
+      "id": "mju-seoul-field",
+      "name": {
+        "en": "Campus Sports Field",
+        "ko": "운동장",
+        "zh": "校区运动场"
+      },
+      "code": null,
+      "category": "outdoors",
+      "aliases": [
+        "Campus Sports Field",
+        "운동장",
+        "校区运动场"
+      ],
+      "description": {
+        "en": "Listed in the official directory. The official campus view shows the sports surface on the MCC terrace. Its elevation and boundary are not surveyed here.",
+        "ko": "공식 목록에 있는 운동장입니다. 대학의 캠퍼스 그림은 MCC 테라스 위 운동 공간을 보여 줍니다. 여기서는 높이와 외곽을 실측하지 않았습니다.",
+        "zh": "官方目录列有此运动场。大学校区图将运动区域画在MCC平台上；此处未实测其标高及边界。"
+      },
+      "point": null,
+      "buildingId": null,
+      "entranceIds": [],
+      "photo": null,
+      "evidence": {
+        "status": "verified",
+        "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=A",
+        "checkedAt": "2026-10-01T00:00:00+09:00",
+        "note": {
+          "en": "Name checked against the official Seoul campus directory. Building numbers follow the university’s Seoul code convention. English and Chinese names are descriptive translations; no personal timetable, room or entrance is verified.",
+          "ko": "이름은 공식 인문캠퍼스 목록을 확인했습니다. 건물 번호는 대학의 서울 코드 표기법을 따릅니다. 영어와 중국어는 설명을 위한 번역이며 개인 시간표·강의실·출입구는 확인하지 않았습니다.",
+          "zh": "名称已查对官方人文校区目录，楼号沿用大学的首尔校区编号规则。英文和中文名称为说明性翻译；未核实个人课表、教室或入口。"
+        }
+      },
+      "geometryEvidence": {
+        "status": "unverified",
+        "sourceUrl": "https://www.mju.ac.kr/bbs/record/359/168757/download.do",
+        "checkedAt": null,
+        "note": {
+          "en": "Listed in the official directory. The official campus view shows the sports surface on the MCC terrace. Its elevation and boundary are not surveyed here.",
+          "ko": "공식 목록에 있는 운동장입니다. 대학의 캠퍼스 그림은 MCC 테라스 위 운동 공간을 보여 줍니다. 여기서는 높이와 외곽을 실측하지 않았습니다.",
+          "zh": "官方目录列有此运动场。大学校区图将运动区域画在MCC平台上；此处未实测其标高及边界。"
+        }
+      }
+    },
+    {
+      "id": "mju-seoul-gate",
+      "name": {
+        "en": "Main Gate",
+        "ko": "정문",
+        "zh": "正门"
+      },
+      "code": null,
+      "category": "services",
+      "aliases": [
+        "Main Gate",
+        "정문",
+        "正门"
+      ],
+      "description": {
+        "en": "Official directory label and marker. The rendered gateway is an abstract locator, not a verified entrance shape or accessible entrance.",
+        "ko": "공식 목록의 이름과 표식입니다. 그림의 문은 추상적인 위치 표시이며, 실제 출입구 형태나 무장애 출입구를 확인한 것이 아닙니다.",
+        "zh": "名称和标记来自官方目录。所绘门形只是抽象位置标识，不代表已核实的入口形状或无障碍入口。"
+      },
+      "point": null,
+      "buildingId": null,
+      "entranceIds": [],
+      "photo": null,
+      "evidence": {
+        "status": "verified",
+        "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=A",
+        "checkedAt": "2026-10-01T00:00:00+09:00",
+        "note": {
+          "en": "Name checked against the official Seoul campus directory. Building numbers follow the university’s Seoul code convention. English and Chinese names are descriptive translations; no personal timetable, room or entrance is verified.",
+          "ko": "이름은 공식 인문캠퍼스 목록을 확인했습니다. 건물 번호는 대학의 서울 코드 표기법을 따릅니다. 영어와 중국어는 설명을 위한 번역이며 개인 시간표·강의실·출입구는 확인하지 않았습니다.",
+          "zh": "名称已查对官方人文校区目录，楼号沿用大学的首尔校区编号规则。英文和中文名称为说明性翻译；未核实个人课表、教室或入口。"
+        }
+      },
+      "geometryEvidence": {
+        "status": "unverified",
+        "sourceUrl": "https://www.mju.ac.kr/bbs/record/359/168757/download.do",
+        "checkedAt": null,
+        "note": {
+          "en": "Official directory label and marker. The rendered gateway is an abstract locator, not a verified entrance shape or accessible entrance.",
+          "ko": "공식 목록의 이름과 표식입니다. 그림의 문은 추상적인 위치 표시이며, 실제 출입구 형태나 무장애 출입구를 확인한 것이 아닙니다.",
+          "zh": "名称和标记来自官方目录。所绘门形只是抽象位置标识，不代表已核实的入口形状或无障碍入口。"
+        }
+      }
+    },
+    {
+      "id": "mju-seoul-guardhouse",
+      "name": {
+        "en": "Gatehouse",
+        "ko": "수위실",
+        "zh": "门卫室"
+      },
+      "code": null,
+      "category": "services",
+      "aliases": [
+        "Gatehouse",
+        "수위실",
+        "门卫室"
+      ],
+      "description": {
+        "en": "Official directory label and marker; the small block is a locator with unverified dimensions and appearance.",
+        "ko": "공식 목록의 이름과 표식이며, 작은 블록의 크기와 외관은 미확인입니다.",
+        "zh": "名称和标记来自官方目录；小方块的尺寸及外观未核实。"
+      },
+      "point": null,
+      "buildingId": null,
+      "entranceIds": [],
+      "photo": null,
+      "evidence": {
+        "status": "verified",
+        "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=A",
+        "checkedAt": "2026-10-01T00:00:00+09:00",
+        "note": {
+          "en": "Name checked against the official Seoul campus directory. Building numbers follow the university’s Seoul code convention. English and Chinese names are descriptive translations; no personal timetable, room or entrance is verified.",
+          "ko": "이름은 공식 인문캠퍼스 목록을 확인했습니다. 건물 번호는 대학의 서울 코드 표기법을 따릅니다. 영어와 중국어는 설명을 위한 번역이며 개인 시간표·강의실·출입구는 확인하지 않았습니다.",
+          "zh": "名称已查对官方人文校区目录，楼号沿用大学的首尔校区编号规则。英文和中文名称为说明性翻译；未核实个人课表、教室或入口。"
+        }
+      },
+      "geometryEvidence": {
+        "status": "unverified",
+        "sourceUrl": "https://www.mju.ac.kr/bbs/record/359/168757/download.do",
+        "checkedAt": null,
+        "note": {
+          "en": "Official directory label and marker; the small block is a locator with unverified dimensions and appearance.",
+          "ko": "공식 목록의 이름과 표식이며, 작은 블록의 크기와 외관은 미확인입니다.",
+          "zh": "名称和标记来自官方目录；小方块的尺寸及外观未核实。"
+        }
+      }
+    }
+  ],
+  "buildings": [],
+  "entrances": [],
+  "nodes": [],
+  "edges": [],
+  "food": [],
+  "events": [],
+  "rooms": []
+}
