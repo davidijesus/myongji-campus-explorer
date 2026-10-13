@@ -3,6 +3,8 @@ import { localPoint, usable } from './core';
 import { REFERENCE_CAMPUS, ReferenceFeature } from './campus';
 import { SEOUL_REFERENCE_CAMPUS } from './seoul';
 import { localize } from './i18n';
+import { GeographicFix } from './geographic';
+import { assessModelLocation } from './model-location';
 type Vec = [
     number,
     number,
@@ -46,6 +48,96 @@ export function fitReferenceMeshVertices(vertices: readonly number[], f: Referen
 }
 const sharedGeometryId = (f: ReferenceFeature) => (f as ReferenceFeature & { sharedGeometryWith?: string }).sharedGeometryWith;
 export const referenceCampusForData = (data:Pick<Dataset,'campus'>) => data.campus.id === 'mju-seoul-humanities' ? SEOUL_REFERENCE_CAMPUS : REFERENCE_CAMPUS;
+/** Qualitative landform from the campus sign inspected on 2026-10-13. These
+ * artistic scene units are NOT elevations, slopes, routes or a surveyed boundary.
+ * The historic plan still owns every horizontal footprint and road centerline. */
+export function createYonginScenicTerrain(features: readonly ReferenceFeature[], paths: readonly (readonly [number,number][])[]) {
+    const step=12, origin:[number,number]=[-366,-216], datum=-.95;
+    const outline:[number,number][]=[[-367,-208],[-251,-220],[-129,-185],[9,-203],[168,-181],[270,-121],[295,11],[266,151],[135,255],[-32,284],[-203,266],[-298,167],[-335,2]];
+    const smooth=(value:number)=>{const t=Math.max(0,Math.min(1,value));return t*t*(3-2*t);};
+    const inside=(x:number,z:number)=>{let hit=false;for(let i=0,j=outline.length-1;i<outline.length;j=i++){const a=outline[i]!,b=outline[j]!;if((a[1]>z)!==(b[1]>z)&&x<(b[0]-a[0])*(z-a[1])/(b[1]-a[1])+a[0])hit=!hit;}return hit;};
+    const segmentDistance=(x:number,z:number,a:readonly number[],b:readonly number[])=>{const dx=b[0]!-a[0]!,dz=b[1]!-a[1]!,length=dx*dx+dz*dz,t=length?Math.max(0,Math.min(1,((x-a[0]!)*dx+(z-a[1]!)*dz)/length)):0;return Math.hypot(x-a[0]!-t*dx,z-a[1]!-t*dz);};
+    const edgeDistance=(x:number,z:number)=>Math.min(...outline.map((a,i)=>segmentDistance(x,z,a,outline[(i+1)%outline.length]!)));
+    const roads=paths.flatMap(path=>path.slice(1).map((b,i)=>[path[i]!,b] as const));
+    const roadDistance=(x:number,z:number)=>Math.min(...roads.map(([a,b])=>segmentDistance(x,z,a,b)));
+    // Broad residence terrace and the gently rising rear engineering corridor
+    // follow the sign's visible relationships; their numerical levels are stylistic.
+    const pads=features.filter(f=>!sharedGeometryId(f)).map(f=>({f,cos:Math.cos(f.angle),sin:Math.sin(f.angle),level:f.category==='residence'&&f.center[0]<-90?12:0}));
+    const padDistance=(pad:typeof pads[number],x:number,z:number,margin=0)=>{const dx=x-pad.f.center[0],dz=z-pad.f.center[1];return Math.hypot(Math.max(0,Math.abs(dx*pad.cos-dz*pad.sin)-pad.f.size[0]/2-margin),Math.max(0,Math.abs(dx*pad.sin+dz*pad.cos)-pad.f.size[1]/2-margin));};
+    const featureDistance=(x:number,z:number)=>Math.min(...pads.map(p=>padDistance(p,x,z,6)));
+    const lake=(x:number,z:number)=>((x-220)/66)**2+((z-140)/28)**2<1;
+    const woodland=(x:number,z:number)=>x < -112 && z < 143 || z < -133 || z > 170 || x > 233 || z > 75 && x > -80 && x < 190;
+    const nodeCache=new Map<string,number>();
+    const nodeHeight=(x:number,z:number)=>{
+        const key=x+','+z,cached=nodeCache.get(key);if(cached!==undefined)return cached;
+        if(lake(x,z)){nodeCache.set(key,-2);return -2;}
+        let nearest=pads[0]!,distance=Infinity;
+        for(const pad of pads){const d=padDistance(pad,x,z);if(d<distance){nearest=pad;distance=d;}}
+        const shore=(Math.hypot((x-220)/66,(z-140)/28)-1)*28;
+        const edge=smooth((edgeDistance(x,z)-12)/38),water=smooth(shore/36);
+        const residence=12*smooth((-x-52)/78)*smooth((-z+8)/45);
+        const rearRise=4*smooth((-x-35)/55)*smooth((z-108)/42);
+        const western=23*Math.exp(-1*((x+239)/94)**2-((z-38)/154)**2);
+        const northern=16*Math.exp(-1*((x+90)/179)**2-((z+173)/66)**2);
+        const southern=17*Math.exp(-1*((x-30)/172)**2-((z-235)/62)**2);
+        const lakeside=13*Math.exp(-1*((x-104)/87)**2-((z-153)/68)**2);
+        const hillClearance=smooth((distance-24)/30)*smooth((roadDistance(x,z)-8)/22);
+        const natural=(residence+rearRise+(western+northern+southern+lakeside)*hillClearance)*water*edge;
+        // A full grid diagonal of clearance leaves each historic footprint flat.
+        const blend=smooth((distance-20)/28),level=nearest.level*(1-blend)+natural*blend;
+        const height=datum+level;nodeCache.set(key,height);return height;
+    };
+    const cellInside=(x:number,z:number)=>inside(x,z)&&inside(x+step,z)&&inside(x,z+step)&&inside(x+step,z+step);
+    const groundHeight=(x:number,z:number)=>{
+        if(!inside(x,z))return datum;
+        const gx=origin[0]+Math.floor((x-origin[0])/step)*step,gz=origin[1]+Math.floor((z-origin[1])/step)*step;
+        if(!cellInside(gx,gz))return datum;
+        const u=(x-gx)/step,v=(z-gz)/step,a=nodeHeight(gx,gz),b=nodeHeight(gx+step,gz),c=nodeHeight(gx+step,gz+step),d=nodeHeight(gx,gz+step);
+        return u+v<=1?a+(b-a)*u+(d-a)*v:c+(d-c)*(1-u)+(b-c)*(1-v);
+    };
+    const surfaceHeight=(x:number,z:number)=>lake(x,z)?-.70:groundHeight(x,z)+(roadDistance(x,z)<=2.1?.15:0);
+    return {step,origin,datum,outline,inside,cellInside,lake,woodland,featureDistance,roadDistance,nodeHeight,groundHeight,surfaceHeight};
+}
+/** Lift complete authored meshes without changing horizontal geometry or normals.
+ * All supporting vertices share one vertical translation; labels use the new top. */
+export function settleReferenceMesh(vertices: readonly number[], groundHeight:(x:number,z:number)=>number): {vertices:number[];top:number;offset:number} {
+    let bottom=Infinity,ground=-Infinity;
+    for(let i=0;i<vertices.length;i+=9){bottom=Math.min(bottom,vertices[i+1]!);ground=Math.max(ground,groundHeight(vertices[i]!,vertices[i+2]!));}
+    const offset=ground-bottom+.035,result=[...vertices];let top=-Infinity;
+    for(let i=1;i<result.length;i+=9){result[i]!+=offset;top=Math.max(top,result[i]!);}
+    return {vertices:result,top,offset};
+}
+/** Clip a convex paved area to the existing ground triangles. Unlike merely
+ * lifting its corners, this cannot cut through a ridge or bridge over a valley. */
+export function drapeScenicPolygon(points: readonly [number,number][], terrain:ReturnType<typeof createYonginScenicTerrain>, offset:number): Vec[][] {
+    if(points.length<3)return [];
+    const {step,origin}=terrain,triangles:Vec[][]=[];
+    const firstX=origin[0]+Math.floor((Math.min(...points.map(p=>p[0]))-origin[0])/step)*step;
+    const firstZ=origin[1]+Math.floor((Math.min(...points.map(p=>p[1]))-origin[1])/step)*step;
+    const maxX=Math.max(...points.map(p=>p[0])),maxZ=Math.max(...points.map(p=>p[1]));
+    const cross2=(a:readonly number[],b:readonly number[],p:readonly number[])=>(b[0]!-a[0]!)*(p[1]!-a[1]!)-(b[1]!-a[1]!)*(p[0]!-a[0]!);
+    for(let x=firstX;x<=maxX;x+=step)for(let z=firstZ;z<=maxZ;z+=step){
+        for(const clip of [[[x,z],[x+step,z],[x,z+step]],[[x+step,z],[x+step,z+step],[x,z+step]]] as [number,number][][]){
+            let polygon=points.map(p=>[...p] as [number,number]);
+            for(let edge=0;edge<3&&polygon.length;edge++){
+                const a=clip[edge]!,b=clip[(edge+1)%3]!,next:[number,number][]=[];
+                for(let i=0;i<polygon.length;i++){
+                    const p=polygon[i]!,q=polygon[(i+1)%polygon.length]!,dp=cross2(a,b,p),dq=cross2(a,b,q),pin=dp>=-1e-8,qin=dq>=-1e-8;
+                    if(pin)next.push(p);
+                    if(pin!==qin){const ratio=dp/(dp-dq);next.push([p[0]+(q[0]-p[0])*ratio,p[1]+(q[1]-p[1])*ratio]);}
+                }
+                polygon=next;
+            }
+            for(let i=1;i+1<polygon.length;i++){
+                const a=polygon[0]!,b=polygon[i]!,c=polygon[i+1]!,area=cross2(a,b,c);
+                if(Math.abs(area)<1e-8)continue;
+                const ring=area>0?[a,c,b]:[a,b,c];
+                triangles.push(ring.map(p=>[p[0],terrain.groundHeight(p[0],p[1])+offset,p[1]] as Vec));
+            }
+        }
+    }
+    return triangles;
+}
 class Geometry {
     data: number[] = [];
     /** Faceted deciduous canopy. The foliage is decorative, never a tree survey. */
@@ -160,6 +252,14 @@ export class CampusScene {
     private startTime = 0;
     private frames = 0;
     private animationGeneration = 0;
+    private disposed = false;
+    private locationAssessment: ReturnType<typeof assessModelLocation> | null = null;
+    private locationOverlay: SVGSVGElement | null = null;
+    private locationExpiry: number | undefined;
+    private locationVisible = false;
+    // The rendered scenic surface, never device altitude or measured elevation.
+    private terrainHeight: (x: number, z: number) => number = () => 0;
+    private referenceGroundHeight: (x: number, z: number) => number = () => 0;
     onSelect: (id: string) => void = () => { };
     onHeading: (angle: number) => void = () => { };
     constructor(private canvas: HTMLCanvasElement, private labelLayer: HTMLElement, data: Dataset) {
@@ -228,13 +328,13 @@ export class CampusScene {
     private limitZoom(value: number) { return Math.max(this.reference ? .45 : .6, Math.min(this.reference ? 4.5 : 2.8, value)); }
     private upload(buffer: WebGLBuffer, data: number[]) { const gl = this.gl; if (!gl)
         return; gl.bindBuffer(gl.ARRAY_BUFFER, buffer); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(data), gl.STATIC_DRAW); }
-    setData(data: Dataset) { this.data = data; this.selected = null; this.rebuild(); this.setRoute(null); this.reset(); }
-    setReferenceCampus(enabled: boolean) { this.reference = enabled; this.selected = null; this.rebuild(); this.setRoute(null); this.reset(); }
+    setData(data: Dataset) { this.setLocation(null); this.data = data; this.selected = null; this.rebuild(); this.setRoute(null); this.reset(); }
+    setReferenceCampus(enabled: boolean) { this.setLocation(null); this.reference = enabled; this.selected = null; this.rebuild(); this.setRoute(null); this.reset(); }
     setOcclusionRects(rects: SceneOcclusionRect[]) { this.occlusionRects = rects.filter(r => [r.x, r.y, r.width, r.height].every(Number.isFinite) && r.width > 0 && r.height > 0); this.request(); }
     setLabelsVisible(visible: boolean) { this.labelsVisible = visible; this.request(); }
     setLanguage(l: Language) { this.language = l; this.updateLabels(); this.request(); }
     setReducedMotion(value: boolean) { this.reduced = value; }
-    setActive(active: boolean) { this.running = active; if (!active && this.frame) {
+    setActive(active: boolean) { this.running = active; if (!active) this.setLocation(null); if (!active && this.frame) {
         cancelAnimationFrame(this.frame);
         this.frame = 0;
     } if (active)
@@ -243,21 +343,144 @@ export class CampusScene {
     zoomBy(factor: number) { this.zoom = this.limitZoom(this.zoom * factor); this.request(); }
     rotate() { this.heading += Math.PI / 6; this.request(); }
     north() { this.heading = 0; this.request(); }
+    setLocation(fix: GeographicFix | null): ReturnType<typeof assessModelLocation> {
+        window.clearTimeout(this.locationExpiry); this.locationExpiry = undefined;
+        this.locationAssessment = null; this.locationVisible = false;
+        this.locationOverlay?.remove(); this.locationOverlay = null;
+        if (!fix) { this.request(); return { status: 'invalid' }; }
+        const result = this.reference && this.running && !this.disposed
+            ? assessModelLocation(this.seoul ? 'seoul' : 'yongin', fix)
+            : { status: 'unavailable' as const };
+        this.locationAssessment = result.status === 'ok' && result.point
+            ? { ...result, point: { ...result.point } } : result;
+        if (result.status === 'ok') {
+            const accepted = this.locationAssessment;
+            this.locationExpiry = window.setTimeout(() => {
+                if (this.locationAssessment !== accepted) return;
+                this.locationAssessment = { status: 'stale' };
+                this.locationVisible = false;
+                this.locationOverlay?.remove(); this.locationOverlay = null;
+                this.request();
+            }, Math.max(0, 60001 - (Date.now() - fix.timestamp)));
+        }
+        this.request();
+        return result;
+    }
+    recenterLocation(): boolean {
+        const location = this.locationAssessment;
+        if (!this.running || this.disposed || location?.status !== 'ok' || !location.point) return false;
+        const width = this.canvas.clientWidth, height = this.canvas.clientHeight;
+        if (width <= 0 || height <= 0) return false;
+        const area = this.locationViewport(), radius = Math.max(location.radiusWorld ?? 0, this.seoul ? 14 : 35);
+        const baseSpan = this.seoul ? 95 : 224, baseDistance = this.seoul ? 250 : 590;
+        const available = Math.max(40, Math.min(area.width, area.height) - 28);
+        const fitZoom = (this.twoD ? baseSpan : baseDistance * Math.tan(.36)) * available / (height * radius * 1.4);
+        this.zoom = this.limitZoom(Math.min(1.75, fitZoom));
+        const unitsPerPixel = this.twoD ? 2 * baseSpan / this.zoom / height : 2 * baseDistance / this.zoom * Math.tan(.36) / height;
+        const tilt = this.twoD ? 1.56 : this.tilt;
+        const right: Vec = [Math.cos(this.heading), 0, -Math.sin(this.heading)];
+        const up: Vec = [-Math.sin(this.heading) * Math.sin(tilt), Math.cos(tilt), -Math.cos(this.heading) * Math.sin(tilt)];
+        const dx = (area.x + area.width / 2 - width / 2) * unitsPerPixel;
+        const dy = (area.y + area.height / 2 - height / 2) * unitsPerPixel;
+        const point = this.locationGroundPoint(location.point.x, location.point.z);
+        this.animateTarget([point[0] - right[0] * dx + up[0] * dy, point[1] + up[1] * dy, point[2] - right[2] * dx + up[2] * dy]);
+        return true;
+    }
+    private locationViewport(): SceneOcclusionRect {
+        const width = this.canvas.clientWidth, height = this.canvas.clientHeight, margin = 12;
+        const obstacles = this.occlusionRects.map(r => ({ x: Math.max(margin,r.x-6), y: Math.max(margin,r.y-6), right: Math.min(width-margin,r.x+r.width+6), bottom: Math.min(height-margin,r.y+r.height+6) })).filter(r => r.right > r.x && r.bottom > r.y);
+        const xs = [...new Set([margin,width-margin,...obstacles.flatMap(r=>[r.x,r.right])])].sort((a,b)=>a-b);
+        const ys = [...new Set([margin,height-margin,...obstacles.flatMap(r=>[r.y,r.bottom])])].sort((a,b)=>a-b);
+        let best: SceneOcclusionRect = { x: margin, y: margin, width: Math.max(1,width-2*margin), height: Math.max(1,height-2*margin) }, score = 0;
+        for (let a=0;a<xs.length-1;a++) for (let b=a+1;b<xs.length;b++) for (let c=0;c<ys.length-1;c++) for (let d=c+1;d<ys.length;d++) {
+            const x=xs[a]!,y=ys[c]!,w=xs[b]!-x,h=ys[d]!-y;
+            if (w<60||h<60||obstacles.some(r=>r.x<x+w&&r.right>x&&r.y<y+h&&r.bottom>y)) continue;
+            // Prefer a usable circle over a very wide, shallow empty strip.
+            const candidate=Math.min(w,h)**2+Math.min(w*h,Math.min(w,h)**2*2)*.05;
+            if(candidate>score){score=candidate;best={x,y,width:w,height:h};}
+        }
+        return best;
+    }
+    private locationGroundPoint(x: number, z: number): Vec { return [x, this.terrainHeight(x, z) + .35, z]; }
+    private projectLocationPoint(point: Vec) {
+        const m = this.matrix, [x, y, z] = point;
+        const w = m[3]! * x + m[7]! * y + m[11]! * z + m[15]!;
+        const depth = m[2]! * x + m[6]! * y + m[10]! * z + m[14]!;
+        return w > 0 && depth > -w && depth < w ? this.project(point) : null;
+    }
+    private drawLocation(): SceneOcclusionRect | null {
+        const location = this.locationAssessment;
+        this.locationVisible = false;
+        if (!this.running || location?.status !== 'ok' || !location.point || !Number.isFinite(location.radiusWorld)) {
+            this.locationOverlay?.remove(); this.locationOverlay = null; return null;
+        }
+        const width = this.canvas.clientWidth, height = this.canvas.clientHeight;
+        const { x, z } = location.point;
+        const anchor = this.projectLocationPoint(this.locationGroundPoint(x, z));
+        const svg = this.locationOverlay ?? document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        if (!this.locationOverlay) {
+            this.locationOverlay = svg;
+            svg.setAttribute('data-scene-location', 'true');
+            svg.setAttribute('role', 'img');
+            svg.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;overflow:hidden;pointer-events:none;';
+            this.labelLayer.append(svg);
+        }
+        svg.setAttribute('viewBox', `0 0 ${Math.max(1, width)} ${Math.max(1, height)}`);
+        const label = this.language === 'ko' ? '모델 지면에 투영한 대략적인 내 위치. 층이나 고도가 아닙니다.'
+            : this.language === 'zh' ? '投影到模型地面的近似位置，不表示楼层或海拔。'
+                : 'Approximate device location projected onto model ground, not a floor or elevation.';
+        svg.setAttribute('aria-label', label);
+        svg.replaceChildren();
+        const node = (name: string, attributes: Record<string, string | number>) => {
+            const element = document.createElementNS('http://www.w3.org/2000/svg', name);
+            for (const [key, value] of Object.entries(attributes)) element.setAttribute(key, String(value));
+            return element;
+        };
+        const title = node('title', {}); title.textContent = label; svg.append(title);
+        // Sample a circle in calibrated world units on the same terrain and pass
+        // every sample through the exact camera matrix used by WebGL/Canvas/2D.
+        // The dashed overlay is uncertainty, not a surveyed boundary or a route.
+        let path = '', segmentOpen = false, complete = true;
+        for (let i = 0; i <= 64; i++) {
+            const angle = (i % 64) / 64 * Math.PI * 2, radius = location.radiusWorld!;
+            const point = this.projectLocationPoint(this.locationGroundPoint(x + Math.cos(angle) * radius, z + Math.sin(angle) * radius));
+            if (!point) { segmentOpen = false; complete = false; continue; }
+            path += `${segmentOpen ? 'L' : 'M'}${point.x.toFixed(2)},${point.y.toFixed(2)} `; segmentOpen = true;
+        }
+        if (path) svg.append(node('path', { d: path + (complete ? 'Z' : ''), fill: complete ? '#2475df' : 'none', 'fill-opacity': .11, stroke: '#185fb8', 'stroke-width': 1.6, 'stroke-dasharray': '5 4', 'data-location-accuracy': 'true' }));
+        // The small tether explicitly connects the legible overlay badge to the
+        // ground projection, even where a building obscures that surface in 3D.
+        // It never asserts that the device is on a roof or at a modeled altitude.
+        if (!anchor || anchor.x < 0 || anchor.x > width || anchor.y < 0 || anchor.y > height) return null;
+        // Keep the badge readable at the canvas edges without moving the exact
+        // ground anchor or uncertainty area. The tether shows this screen offset.
+        const dotX = Math.max(10, Math.min(width - 10, anchor.x));
+        const dotY = Math.max(10, Math.min(height - 10, anchor.y >= 28 ? anchor.y - 18 : anchor.y + 18));
+        svg.append(node('line', { x1: anchor.x, y1: anchor.y, x2: dotX, y2: dotY, stroke: '#ffffff', 'stroke-width': 4, 'data-location-tether': 'true' }));
+        svg.append(node('line', { x1: anchor.x, y1: anchor.y, x2: dotX, y2: dotY, stroke: '#185fb8', 'stroke-width': 1.5, 'stroke-dasharray': '3 2' }));
+        svg.append(node('circle', { cx: anchor.x, cy: anchor.y, r: 3.2, fill: '#185fb8', stroke: '#ffffff', 'stroke-width': 1.6, 'data-location-anchor': 'true' }));
+        svg.append(node('circle', { cx: dotX, cy: dotY, r: 9, fill: '#ffffff', stroke: '#185fb8', 'stroke-width': 1.5, 'data-location-dot': 'true' }));
+        svg.append(node('circle', { cx: dotX, cy: dotY, r: 5.7, fill: '#2475df' }));
+        this.locationVisible = dotX >= 9 && dotX <= width - 9 && dotY >= 9 && dotY <= height - 9
+            && !this.occlusionRects.some(r => dotX + 9 > r.x && dotX - 9 < r.x + r.width && dotY + 9 > r.y && dotY - 9 < r.y + r.height);
+        return { x: Math.min(anchor.x,dotX) - 12, y: Math.min(anchor.y,dotY) - 12, width: Math.abs(dotX-anchor.x) + 24, height: Math.abs(dotY-anchor.y) + 24 };
+    }
     reset() { this.animationGeneration++; this.heading = this.reference ? this.seoul ? .23 : 1.4 : -.40; this.zoom = 1; this.target = this.reference ? this.seoul ? [-8,0,0] : [5, 0, 10] : [0, 0, 0]; this.request(); }
     select(id: string | null, entranceId?: string) { this.selected = id; this.selectedEntrance = entranceId ?? null; this.updateLabels(); this.setRoute(this.currentRoute); if (id) {
         const p = this.points.get(id);
         if (p) {
-            const destination: Vec = this.reference ? [p[0], 0, p[2]] : [p[0] * .25, 0, p[2] * .25];
+            const destination: Vec = this.reference ? [p[0], this.seoul?0:this.terrainHeight(p[0],p[2]), p[2]] : [p[0] * .25, 0, p[2] * .25];
             if (this.reference) this.zoom = Math.max(this.zoom, 1.35);
             this.animateTarget(destination);
         }
     } this.request(); }
     private animateTarget(to: Vec) { if (this.reduced) {
+        this.animationGeneration++;
         this.target = to;
         this.request();
         return;
     } const generation=++this.animationGeneration,from = [...this.target] as Vec, start = performance.now(); const step = (t: number) => { if (!this.running||generation!==this.animationGeneration)
-        return; const v = Math.min(1, (t - start) / 230), k = 1 - (1 - v) ** 3; this.target = [from[0] + (to[0] - from[0]) * k, 0, from[2] + (to[2] - from[2]) * k]; this.request(); if (v < 1)
+        return; const v = Math.min(1, (t - start) / 230), k = 1 - (1 - v) ** 3; this.target = [from[0] + (to[0] - from[0]) * k, from[1] + (to[1] - from[1]) * k, from[2] + (to[2] - from[2]) * k]; this.request(); if (v < 1)
         requestAnimationFrame(step); }; requestAnimationFrame(step); }
     private currentRoute: Route | null = null;
     setRoute(route: Route | null) {
@@ -339,7 +562,7 @@ export class CampusScene {
     private planReferenceModel(g: Geometry,f: ReferenceFeature): number {
         const mesh=f.planMesh!,base=.25,height=f.size[2]*REFERENCE_RENDER_HEIGHT_SCALE,top=base+height;
         const gym=f.code==='Y7',lowerDark=f.code==='Y_'||f.code==='Y5';
-        const roof=color(gym?'#a18d77':f.code==='Y12'?'#c4c6bb':'#d4d8ce');
+        const roof=color(gym?'#bca9ac':f.code==='Y12'?'#c4c6bb':'#d4d8ce');
         // Constrained triangles retain the plan's concave outlines/courtyards. There
         // are no enlarged pads, eaves or shadows around these adjoining complexes.
         for(const triangle of mesh.triangles) {
@@ -372,7 +595,7 @@ export class CampusScene {
                 const columns=Math.max(1,Math.min(24,Math.round(length/2.8)));
                 for(let floor=0;floor<floors;floor++) {
                     const bottom=base+floor*step,windowBottom=bottom+step*.29,windowTop=bottom+step*.75,upper=bottom+step;
-                    const wall=lowerDark&&floor===0?'#9ca69d':facade;
+                    const wall=gym?'#e8e8e2':lowerDark&&floor===0?'#9ca69d':facade;
                     panel(0,1,bottom,windowBottom,wall);panel(0,1,windowTop,upper,wall);
                     if(gym) { panel(0,1,windowBottom,windowTop,'#91afa7'); continue; }
                     for(let column=0;column<columns;column++) {
@@ -397,8 +620,26 @@ export class CampusScene {
             const p = at(...a), q = at(...b); g.segment([p[0], y, p[1]], [q[0], y, q[1]], width, color(tint));
         };
         if (f.kind === 'gate') {
-            box(-w * .4, 0, 3, d, .1, h, '#d9d8c9'); box(w * .4, 0, 3, d, .1, h, '#d9d8c9');
-            box(0, 0, w, d, h - 2, 2, '#e7e6d8'); return;
+            // Yongin entrance photos show a round sign pylon and a low blue
+            // vehicle-control canopy, not a masonry portal across the road.
+            // These qualitative forms keep the existing approximate anchor and
+            // envelope; their proportions, orientation and heights are unsurveyed.
+            const pillar = at(w * .40, 0), radius = Math.min(d * .13, w * .04);
+            g.prism(pillar[0], .1, pillar[1], radius, radius, h, color('#c3cbd0'), 16);
+            g.prism(pillar[0], h * .91, pillar[1], radius * 1.025, radius * 1.025, h * .09, color('#e3e8e9'), 16);
+            for (const zz of [-d * .33, d * .33]) box(-w * .07, zz, .45, .45, .1, h * .49, '#819396');
+            const canopyPoint = (t: number, zz: number): Vec => {
+                const p = at(-w * .07 + t * w * .30, zz);
+                return [p[0], h * (.49 + .16 * (1 - Math.cos(Math.abs(t) * Math.PI / 2))), p[1]];
+            };
+            for (let i = 0; i < 10; i++) {
+                const left = -1 + i / 5, right = -1 + (i + 1) / 5;
+                g.quad(canopyPoint(left, -d * .44), canopyPoint(left, d * .44), canopyPoint(right, d * .44), canopyPoint(right, -d * .44), color(i % 2 ? '#78b8cc' : '#6bafc4'));
+                g.segment(canopyPoint(left, -d * .45), canopyPoint(left, d * .45), .16, color('#768d97'));
+            }
+            for (const zz of [-d * .45, d * .45]) for (let i = 0; i < 10; i++)
+                g.segment(canopyPoint(-1 + i / 5, zz), canopyPoint(-1 + (i + 1) / 5, zz), .18, color('#768d97'));
+            return;
         }
         if (f.kind === 'field') {
             // The source envelope covers the whole facility, not only its pitch.
@@ -413,8 +654,8 @@ export class CampusScene {
             };
             const stadium=f.code==='A',pw=stadium?w*.74:w*.92,pd=stadium?d*.61:d*.90;
             if(stadium) {
-                track(w,d,.18,'#c5aa83');track(w*.974,d*.961,.22,'#eadcc1');
-                track(w*.956,d*.935,.26,'#c5aa83');track(w*.86,d*.79,.30,'#76a38f');
+                track(w,d,.18,'#bd898e');track(w*.974,d*.961,.22,'#ecded9');
+                track(w*.956,d*.935,.26,'#bd898e');track(w*.86,d*.79,.30,'#76a38f');
             } else box(0,0,w,d,.18,.1,'#b9c7a5');
             box(0, 0, pw, pd, .34, .10, '#76a38f');
             for (const xx of [-pw / 2 + .6, pw / 2 - .6]) line([xx, -pd / 2 + .6], [xx, pd / 2 - .6]);
@@ -504,10 +745,10 @@ export class CampusScene {
             const floors = Math.max(1, Math.floor(ph / 4.6)), step = ph / floors;
             for (let floor = 0; floor < floors; floor++) {
                 const yy = bottom + floor * step + step * .30, top = yy + step * .49;
-                const columns = Math.max(1, Math.round(pw / (f.code === 'Y2' ? 1.65 : 3.1))), pane = (pw - 2.4) / columns;
+                const columns = f.code === 'Y2' ? Math.max(1,Math.round(pw/7)) : Math.max(1, Math.round(pw / 3.1)), pane = (pw - 2.4) / columns;
                 for (let col = 0; col < columns; col++) {
-                    const left = xx - pw / 2 + 1.2 + col * pane, right = left + pane * (f.code === 'Y2' ? .46 : .73);
-                    const glass = f.code === 'Y23' ? ['#769d96','#8caeaa','#6c918c'][col % 3]! : ['#789591','#90aaa6','#809e9b'][(col + floor) % 3]!;
+                    const left = xx - pw / 2 + 1.2 + col * pane, right = left + pane * (f.code === 'Y2' ? .96 : .73);
+                    const glass = f.code === 'Y2' ? '#667f84' : f.code === 'Y23' ? ['#769d96','#8caeaa','#6c918c'][col % 3]! : ['#789591','#90aaa6','#809e9b'][(col + floor) % 3]!;
                     surface([[left,yy,zz + pd/2 + .035],[right,yy,zz + pd/2 + .035],[right,top,zz + pd/2 + .035],[left,top,zz + pd/2 + .035]],glass);
                     surface([[right,yy,zz - pd/2 - .035],[left,yy,zz - pd/2 - .035],[left,top,zz - pd/2 - .035],[right,top,zz - pd/2 - .035]],glass);
                 }
@@ -665,6 +906,7 @@ export class CampusScene {
         }
     }
     private seoulTerrain(g:Geometry) {
+        this.terrainHeight = () => -.72;
         // A compact urban presentation board. Its edge is NOT a campus boundary;
         // paving/planting are illustrative context, never pedestrian-route data.
         g.box(-7,-1.5,2,184,.6,143,color('#dfe3d8'));
@@ -684,49 +926,24 @@ export class CampusScene {
         for(const [x,z] of [[-57,13],[-41,7],[-26,5],[-11,6],[5,9],[19,9],[34,12],[47,16],[-47,48],[20,46],[38,42]]) tree(x!,z!,Math.round(x!+90));
     }
     private referenceTerrain(g: Geometry) {
-        // Wooded slopes, pale paved courtyards and lakes are visible in the supplied
-        // aerial and official historical overview. This is a scenic interpretation,
-        // not measured elevation, a tree inventory, a property line or a route graph.
-        const outline: [number, number][] = [[-367,-208],[-251,-220],[-129,-185],[9,-203],[168,-181],[270,-121],[295,11],[266,151],[135,255],[-32,284],[-203,266],[-298,167],[-335,2]];
-        const inside = (x: number, z: number) => { let hit = false; for (let i = 0, j = outline.length - 1; i < outline.length; j = i++) { const a = outline[i]!, b = outline[j]!; if ((a[1] > z) !== (b[1] > z) && x < (b[0] - a[0]) * (z - a[1]) / (b[1] - a[1]) + a[0]) hit = !hit; } return hit; };
+        const terrain=createYonginScenicTerrain(this.referenceCampus.features,this.referenceCampus.paths);
+        const {outline,inside,lake,woodland,featureDistance,roadDistance,nodeHeight,groundHeight,step,origin,datum}=terrain;
+        this.terrainHeight=terrain.surfaceHeight;
+        this.referenceGroundHeight=groundHeight;
         const seed = (x: number, z: number) => { const n = Math.sin(x * 127.1 + z * 311.7) * 43758.5453; return n - Math.floor(n); };
-        const woodland = (x: number,z: number) => x < -112 && z < 143 || z < -133 || z > 170 || x > 233 || z > 75 && x > -80 && x < 190;
-        const lake = (x: number, z: number) => ((x + 174) / 40) ** 2 + ((z - 18) / 81) ** 2 < 1 || ((x - 220) / 66) ** 2 + ((z - 140) / 28) ** 2 < 1;
-        const smooth = (value: number) => { const t = Math.max(0,Math.min(1,value)); return t*t*(3-2*t); };
-        const edgeDistance = (x: number,z: number) => { let best=Infinity; for(let i=0;i<outline.length;i++) { const a=outline[i]!,b=outline[(i+1)%outline.length]!,dx=b[0]-a[0],dz=b[1]-a[1],t=Math.max(0,Math.min(1,((x-a[0])*dx+(z-a[1])*dz)/(dx*dx+dz*dz))); best=Math.min(best,Math.hypot(x-a[0]-t*dx,z-a[1]-t*dz)); } return best; };
-        const featureDistance = (x: number, z: number) => Math.min(...this.referenceCampus.features.filter(f=>!sharedGeometryId(f)).map(f => {
-            const dx=x-f.center[0],dz=z-f.center[1],cosine=Math.cos(f.angle),sine=Math.sin(f.angle);
-            const localX=dx*cosine-dz*sine,localZ=dx*sine+dz*cosine;
-            return Math.hypot(Math.max(0,Math.abs(localX)-f.size[0]/2-6),Math.max(0,Math.abs(localZ)-f.size[1]/2-6));
-        }));
-        const roadDistance = (x: number, z: number) => {
-            let best = Infinity;
-            for (const path of this.referenceCampus.paths) for (let i = 1; i < path.length; i++) { const a = path[i - 1]!, b = path[i]!, dx = b[0] - a[0], dz = b[1] - a[1], t = Math.max(0, Math.min(1, ((x - a[0]) * dx + (z - a[1]) * dz) / (dx * dx + dz * dz))); best = Math.min(best, Math.hypot(x - a[0] - dx * t, z - a[1] - dz * t)); }
-            return best;
-        };
-        const terrain = (x: number, z: number) => {
-            if (lake(x, z)) return -2;
-            const western = 24 * Math.exp(-1 * ((x + 227) / 84) ** 2 - ((z - 36) / 144) ** 2);
-            const northern = 17 * Math.exp(-1 * ((x + 65) / 160) ** 2 - ((z + 164) / 62) ** 2);
-            const southern = 15 * Math.exp(-1 * ((x - 56) / 155) ** 2 - ((z - 227) / 49) ** 2);
-            const foreground = 14 * Math.exp(-1 * ((x - 70) / 90) ** 2 - ((z - 144) / 60) ** 2);
-            const shore = Math.min((Math.hypot((x+174)/40,(z-18)/81)-1)*40,(Math.hypot((x-220)/66,(z-140)/28)-1)*28);
-            const flatten = Math.min(smooth(featureDistance(x,z)/28),smooth((roadDistance(x,z)-7)/24),smooth(shore/36),smooth((edgeDistance(x,z)-14)/38));
-            return -1.19 + (western + northern + southern + foreground) * flatten;
-        };
         const groundColor = (x: number, z: number): RGB => {
             const forest = woodland(x,z);
-            const base = color(forest ? '#839f6b' : '#a5ba86');
+            const base = color(forest ? '#789764' : '#acbf8d');
             const variation = Math.sin(x * .032 + z * .018) * .025 + Math.sin(z * .095) * .010 + (seed(x, z) - .5) * .016;
             return base.map(c => Math.max(0, Math.min(1, c + variation))) as RGB;
         };
-        g.polygon(outline, -1.21, color('#91aa76'));
-        for (let x = -366; x < 294; x += 12) for (let z = -216; z < 282; z += 12) {
-            if (![inside(x,z),inside(x+12,z),inside(x,z+12),inside(x+12,z+12)].every(Boolean)) continue;
-            const a: Vec = [x, terrain(x, z), z], b: Vec = [x + 12, terrain(x + 12, z), z], c: Vec = [x + 12, terrain(x + 12, z + 12), z + 12], d: Vec = [x, terrain(x, z + 12), z + 12];
+        g.polygon(outline, datum-.02, color('#91aa76'));
+        for (let x = origin[0]; x < 294; x += step) for (let z = origin[1]; z < 282; z += step) {
+            if (!terrain.cellInside(x,z)) continue;
+            const a: Vec = [x, nodeHeight(x, z), z], b: Vec = [x + step, nodeHeight(x + step, z), z], c: Vec = [x + step, nodeHeight(x + step, z + step), z + step], d: Vec = [x, nodeHeight(x, z + step), z + step];
             g.triangle(a, d, b, groundColor(x, z)); g.triangle(b, d, c, groundColor(x + 4, z + 6));
         }
-        for (const [x, z, rx, rz] of [[-174,18,41,82],[220,140,67,29]]) {
+        for (const [x, z, rx, rz] of [[220,140,67,29]]) {
             g.ellipse(x!, -.86, z!, rx! + 2, rz! + 2, color('#b7b992'), 0, 40);
             g.ellipse(x!, -.80, z!, rx!, rz!, color('#668f98'), 0, 40);
             g.ellipse(x! - 2, -.75, z! + 1, rx! * .87, rz! * .92, color('#76a7ad'), 0, 36);
@@ -734,22 +951,27 @@ export class CampusScene {
         }
         // The official central-campus oblique photo shows pale paving divided by
         // rectangular lawn pockets. This scenic pattern is not an access/path plan.
-        g.polygon([[30,-59],[77,-51],[73,-19],[39,-16]],-.56,color('#d0d1bd'));
+        const paved=(points:[number,number][],offset:number,tint:string)=>{for(const triangle of drapeScenicPolygon(points,terrain,offset))g.triangle(triangle[0]!,triangle[1]!,triangle[2]!,color(tint));};
+        const rectangle=(x:number,z:number,w:number,d:number,offset:number,tint:string)=>paved([[x-w/2,z-d/2],[x+w/2,z-d/2],[x+w/2,z+d/2],[x-w/2,z+d/2]],offset,tint);
+        paved([[30,-59],[77,-51],[73,-19],[39,-16]],.08,'#d0d1bd');
         for(const [x,z,w,d] of [[47,-45,12,10],[63,-42,11,10],[47,-29,12,9],[61,-27,9,9]]) {
-            g.box(x!,-.54,z!,w!,.025,d!,color('#a3b480'));
-            for(let i=0;i<3;i++) g.box(x!-w!*.30+i*w!*.30,-.51,z!,w!*.15,.016,d!,color('#aabb88'));
+            rectangle(x!,z!,w!,d!,.10,'#a3b480');
+            for(let i=0;i<3;i++)rectangle(x!-w!*.30+i*w!*.30,z!,w!*.15,d!,.12,'#aabb88');
         }
         // Curbs/shoulders visually separate approximate roads from lawns. These never
         // imply pedestrian access, lane counts, crossing permission or travel time.
         for (const path of this.referenceCampus.paths) for (let i = 1; i < path.length; i++) {
             const a = path[i - 1]!, b = path[i]!;
-            for (const [width, y, tint] of [[5.4,-.48,'#d8d8c7'],[4.2,-.38,'#909891'],[3.5,-.31,'#9da39b']] as const) {
-                g.segment([a[0], y, a[1]], [b[0], y, b[1]], width, color(tint)); g.disk(a[0], y + .01, a[1], width / 2, color(tint), 10);
+            const dx=b[0]-a[0],dz=b[1]-a[1],length=Math.hypot(dx,dz);if(length<1e-8)continue;
+            for (const [width, offset, tint] of [[5.4,.07,'#d8d8c7'],[4.2,.11,'#909891'],[3.5,.15,'#9da39b']] as const) {
+                const nx=-dz/length*width/2,nz=dx/length*width/2;
+                paved([[a[0]-nx,a[1]-nz],[a[0]+nx,a[1]+nz],[b[0]+nx,b[1]+nz],[b[0]-nx,b[1]-nz]],offset,tint);
+                // Drape joins too; planar discs would float on the rising corridor.
+                for(const p of i===path.length-1?[a,b]:[a])paved(Array.from({length:10},(_,j)=>[p[0]+Math.cos(j/10*Math.PI*2)*width/2,p[1]+Math.sin(j/10*Math.PI*2)*width/2] as [number,number]),offset+.003,tint);
             }
         }
         const tree = (x: number, z: number, index: number, radius: number) => {
-            const y = terrain(x, z), pine = index % 5 === 0;
-            g.ellipse(x + 1.6, y + .04, z + 1.8, radius * 1.1, radius * .72, color('#759164'), .1, 8);
+            const y = groundHeight(x,z), pine = index % 5 === 0;
             g.box(x, y, z, .85, 5.6, .85, color('#8d8264'));
             const tint = color(['#527d56','#64894f','#739756','#86a367','#6d8e4e','#9aac69'][index % 6]!);
             if (pine) { g.cone(x, y + 2, z, radius * .86, 10, tint, 7); g.cone(x, y + 7, z, radius * .61, 8, tint, 7); }
@@ -773,6 +995,8 @@ export class CampusScene {
     }
     private rebuild() {
         const g = new Geometry();
+        this.terrainHeight = () => 0;
+        this.referenceGroundHeight = () => 0;
         this.points.clear();
         for (const el of this.labels.values())
             el.remove();
@@ -782,7 +1006,13 @@ export class CampusScene {
             const heights=new Map<string,number>();
             for (const f of this.referenceCampus.features) {
                 if(sharedGeometryId(f)) continue;
-                const height=this.referenceModel(g,f);
+                let height:number;
+                if(this.seoul)height=this.referenceModel(g,f);
+                else {
+                    const authored=new Geometry();this.referenceModel(authored,f);
+                    const settled=settleReferenceMesh(authored.data,this.referenceGroundHeight);
+                    g.data.push(...settled.vertices);height=settled.top;
+                }
                 heights.set(f.id,height);
                 this.points.set(f.id,[f.center[0],height+5,f.center[1]]);
             }
@@ -871,14 +1101,18 @@ export class CampusScene {
     } }
     project(point: Vec) { const m = this.matrix, x = point[0], y = point[1], z = point[2], clipW = m[3]! * x + m[7]! * y + m[11]! * z + m[15]!; if (clipW <= 0) return { x: -10000, y: -10000 }; return { x: ((m[0]! * x + m[4]! * y + m[8]! * z + m[12]!) / clipW + 1) * this.canvas.clientWidth / 2, y: (1 - (m[1]! * x + m[5]! * y + m[9]! * z + m[13]!) / clipW) * this.canvas.clientHeight / 2 }; }
     private pick(x: number, y: number) { const bounds = this.canvas.getBoundingClientRect(); let best: string | null = null, distance = 45; for (const [id, p] of this.points) {
-        const q = this.project([p[0], p[1] * .5, p[2]]), d = Math.hypot(q.x - (x - bounds.left), q.y - (y - bounds.top));
+        const ground=this.reference&&!this.seoul?this.referenceGroundHeight(p[0],p[2]):null;
+        // Label anchors include five units above the roof. Pick the raised volume's
+        // middle, without halving the terrace elevation along with its own height.
+        const pickHeight=ground===null?p[1]*.5:ground+(p[1]-5-ground)*.5;
+        const q = this.project([p[0], pickHeight, p[2]]), d = Math.hypot(q.x - (x - bounds.left), q.y - (y - bounds.top));
         if (d < distance) {
             best = id;
             distance = d;
         }
     } if (best)
         this.onSelect(best); }
-    private request() { if (this.frame || !this.running)
+    private request() { if (this.frame || !this.running || this.disposed)
         return; this.frame = requestAnimationFrame(() => { this.frame = 0; this.draw(); }); }
     private draw() {
         const gl = this.gl;
@@ -910,7 +1144,9 @@ export class CampusScene {
         }
         else
             this.softwareDraw(w, h);
+        const locationRect = this.drawLocation();
         const occupied = this.occlusionRects.map(r => ({ x: r.x - 7, y: r.y - 7, w: r.width + 14, h: r.height + 14 }));
+        if (locationRect) occupied.push({ x: locationRect.x, y: locationRect.y, w: locationRect.width, h: locationRect.height });
         const ordered = [...this.labels].sort(([a], [b]) => Number(b === this.selected) - Number(a === this.selected));
         const selectedPlace = this.data.places.find(p => p.id === this.selected), selectedLabel = this.selected ? this.labels.get(this.selected) : null;
         // Retry the full name every frame so a compact fallback automatically
@@ -935,7 +1171,9 @@ export class CampusScene {
                     return false;
                 };
                 const size = sizes.get(id)!;
-                let placed = placeLabel(size.width+6,size.height+7,id === this.selected ? [[0,0],[0,-35],[0,35],[-45,-15],[45,-15]] : [[0,0]]);
+                // Keep the small gate canopy visible beside its selected label.
+                const selectedOffsets = f?.kind === 'gate' ? [[-100,55],[100,55],[0,-55],[0,110],[0,0]] : [[0,0],[0,-35],[0,35],[-45,-15],[45,-15]];
+                let placed = placeLabel(size.width+6,size.height+7,id === this.selected ? selectedOffsets : [[0,0]]);
                 if (!placed && id === this.selected) {
                     // The details dock and aria-label retain the complete name.
                     el.textContent = f?.code ?? '●';
@@ -1023,6 +1261,6 @@ export class CampusScene {
         ctx.clearRect(0, 0, width, height);
         ctx.drawImage(raster, 0, 0, width, height);
     }
-    diagnostics() { return { renderer: this.gl ? 'WebGL 1 · first-party low-poly meshes' : 'Canvas 2D software-projected 3D fallback', vertices: this.count, drawCalls: this.gl ? 2 : null, frames: this.frames, continuousRendering: false, reference: this.reference, referenceFeatureCount: this.reference ? this.referenceCampus.features.length : 0, geometry: this.reference ? 'illustration only; approximate footprints and heights; no routing graph' : this.data.mode }; }
-    dispose() { this.setActive(false); this.resize.disconnect(); this.gl?.deleteBuffer(this.buffer); this.gl?.deleteBuffer(this.routeBuffer); this.gl?.deleteProgram(this.program); }
+    diagnostics() { return { renderer: this.gl ? 'WebGL 1 · first-party low-poly meshes' : 'Canvas 2D software-projected 3D fallback', vertices: this.count, drawCalls: this.gl ? 2 : null, frames: this.frames, continuousRendering: false, reference: this.reference, referenceFeatureCount: this.reference ? this.referenceCampus.features.length : 0, geometry: this.reference ? 'illustration only; approximate footprints and heights; no routing graph' : this.data.mode, locationVisible: this.locationVisible, locationStatus: this.locationAssessment?.status ?? 'idle', accuracyM: this.locationAssessment?.accuracyM ?? null, modelUncertaintyM: this.locationAssessment?.modelUncertaintyM ?? null, uncertaintyM: this.locationAssessment?.uncertaintyM ?? null }; }
+    dispose() { this.disposed = true; this.setActive(false); this.animationGeneration++; this.resize.disconnect(); this.gl?.deleteBuffer(this.buffer); this.gl?.deleteBuffer(this.routeBuffer); this.gl?.deleteProgram(this.program); }
 }

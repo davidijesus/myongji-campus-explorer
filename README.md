@@ -1,112 +1,51 @@
 # Myongji Campus Explorer
 
-An independent student guide to **Myongji University's Yongin and Seoul campuses**, with interactive 3D reference maps and an offline, source-based campus assistant.
+An independent student guide to **Myongji University’s Yongin and Seoul campuses**, with interactive reference maps and an offline, source-based campus assistant.
 
 **English · 한국어 · 简体中文**
 
-[Download v0.5.0](https://github.com/davidijesus/myongji-campus-explorer/releases/tag/v0.5.0) · [Installation](docs/INSTALL.md) · [Test report](docs/TEST_REPORT.md) · [Distribution guide](docs/DISTRIBUTION_GUIDE.md)
+[Open the web app](https://davidijesus.github.io/myongji-campus-explorer/) · [Web release 0.6.1](docs/PAGES_0.6.1.md) · [MIT license and third-party material](LICENSE)
 
-| Yongin · Nature Campus | Seoul · Humanities Campus |
-| --- | --- |
-| <img src="docs/current-mobile-map.png" alt="Yongin campus map and search interface" width="300"> | <img src="docs/current-seoul-fallback.png" alt="Seoul campus map with MCC selected" width="300"> |
+## Web release 0.6.1
 
-## What it does
+The web app includes Myongji navy/blue visual identity, mobile layout and dialog improvements, and illustrative Yongin terrain with raised residential ground and roads that follow the terrain. Building selection agrees with the visible ground in both renderers. All 61 campus reference features retain their horizontal geometry; Seoul’s scene is unchanged by the terrain revision. The university signature is shown with an independent-project disclosure.
 
-- **Explore both campuses:** switch campuses, search names or building codes, select buildings, save favorites, and pan, rotate or zoom the 2D/3D map. A software renderer works when WebGL is unavailable.
-- **Find food and coffee:** 14 university-listed facilities in Yongin and four in Seoul, with source links and explicit unknown hours and prices.
-- **Check transport guidance:** five regular Yongin semester timetable options, with Seoul-time and validity checks. Seoul shows public transport guidance and the cited end of the intercampus trial shuttle from October 1, 2026; no departure times are invented.
-- **Ask campus questions:** local, deterministic answers with citations and map actions. Verified classroom prefixes can identify buildings; the app cannot read personal timetables or infer class assignments.
-- **Choose a language:** English, Korean or Simplified Chinese. Campus, language and favorites persist locally; each campus has its own session-only chat history.
+- Explore Yongin and Seoul, search names or building codes, select places and save favorites. Pan, rotate and zoom the 3D map; the software renderer supports browsers without WebGL.
+- Ask campus questions locally, follow citations and jump from answers to places. No remote chatbot, account, advertising or analytics is configured.
+- Switch between English, Korean and Simplified Chinese. Campus, language and favorites persist locally; chat history lasts for the page session.
+- Install the web app when your browser supports it. Load it once online and wait for the app’s offline-ready message before relying on offline reopening. External university and map links still need a connection.
+- Read 25 dated official menu summaries for October 12–16, 2026. Later menus and Instagram posts are not collected automatically. No content server is deployed.
 
-The bundled app needs no account, map credentials, chatbot API key or runtime CDN. External source pages require an internet connection. It has no ads or analytics.
+Try **Y9228** in Yongin, **S10303** in Seoul, or ask where to buy coffee. Building-code results do not verify a room’s existence, floor, entrance or current class assignment.
 
-## Try it
+The illustrated scenes are not measured reconstructions. Elevations, building appearance and landscaping are schematic; entrances, walking times and step-free access are not verified. The app does not invent live bus arrivals, opening hours or upcoming events to fill gaps.
 
-Download the [Android APK or installable web package](https://github.com/davidijesus/myongji-campus-explorer/releases/tag/v0.5.0), or clone the repository and open `preview.html` in a browser. To serve it locally:
+## Run locally
+
+Requires **Node.js 22.13 or later**.
 
 ```sh
 git clone https://github.com/davidijesus/myongji-campus-explorer.git
 cd myongji-campus-explorer
 npm ci
-npm run build:pwa
-npm run preview
-```
-
-Requires **Node.js 22.13 or later**. The preview runs at `http://127.0.0.1:4173`. Use `npm run preview:pwa` for the PWA at `http://127.0.0.1:4174`. Publish only `pwa/` over HTTPS for browser installation. Opening a file directly does not install a PWA.
-
-Try **Y9228** in Yongin, **S10303** in Seoul, or ask where to buy coffee. Building-code results do not verify a room's existence, floor, entrance or current class assignment.
-
-## Release status
-
-| Deliverable | Status for v0.5.0 |
-| --- | --- |
-| Android APK | Built with Java/System WebView; development-signed, signature and embedded content verified. Minimum API 24; target API 36; version code 2. No Android permissions or bundled `.so` libraries. |
-| Installable web app | Packaged; Chromium installation eligibility and offline browser restart checked. No public hosting or Safari/device installation is claimed. |
-| Shared Expo source | Included; dependency-aware TypeScript passed. Native Android build issues from the previous attempt remain documented. |
-| iPhone IPA / store release | Not produced or submitted. Apple signing, native compilation and device validation remain required. |
-
-**This is a demonstration release. Android installation and updates, iPhone behavior, accessibility, battery use and sustained frame rate have not been validated on physical devices.** The APK uses a development certificate; production publisher signing and store review are separate steps. See [native validation](docs/NATIVE_VALIDATION.md).
-
-The validated build passed **100 domain/content tests, 71 browser regression checks, 43 campus/language checks, 16 PWA checks, 30 Java link-policy cases and six desktop checks of the APK's extracted page under its security policy**. Those desktop checks are not Android runtime tests. The [test report](docs/TEST_REPORT.md) records scope and evidence.
-
-## Evidence and map accuracy
-
-University sources take precedence over conflicting student guidance. The supplied Yongin student-guide snapshot is not a live Notion connection and is not used as evidence for Seoul. English and Chinese building names are descriptive translations; the original Korean names remain available.
-
-- **Yongin:** 50 selectable references. Forty-six placements follow the university's historical 2021 plan and its 300-metre graphic scale; four use disclosed directory anchors. Six connected halls use traced polygon footprints. See [spatial review](docs/SPATIAL_REVIEW.md) and [visual evidence](docs/VISUAL_REFERENCE_AUDIT.md).
-- **Seoul:** eight buildings plus the sports field, gate and gatehouse from the official directory. Marker positions use a consistent metric projection. Footprints, heights and landscaping remain schematic. See [Seoul evidence](docs/SEOUL_EVIDENCE.md).
-
-Neither scene is a current measured reconstruction. Entrances, pedestrian routes, walking times and step-free access are not verified. No fictional upcoming events, live bus arrivals, current prices or opening-status claims are added to fill missing data. Reference photographs and videos are linked, not bundled as app textures.
-
-## Development
-
-```sh
-npm run build         # Generate browser page, mobile page and datasets
-npm test              # Domain, content, evidence and localization tests
 npm run typecheck
+npm test
 npm run build:pwa
+npm run preview:pwa
 ```
 
-With a Chromium browser available and the corresponding preview servers running:
+Open `http://127.0.0.1:4174`. The generated `pwa/` directory is the complete web distribution. `preview.html` also works as a local browser preview, but opening a file directly does not install a PWA.
 
-```sh
-npm run test:browser
-npm run test:campuses
-npm run test:pwa
-```
+The public site is served from the root of the dedicated `gh-pages` branch, which contains only the nine generated PWA files. TypeScript checks, the full 257-test Node suite, a fresh PWA build and an artifact-boundary check run locally before publication. A push to `gh-pages` triggers the GitHub-managed Pages deployment; a push to `main` alone does not publish the site. See [release and hosting details](docs/PAGES_0.6.1.md).
 
-Set `CHROMIUM_EXECUTABLE` if Chromium is not in Playwright's default installation. Mobile source checks are separate:
+## Scope and validation
 
-```sh
-cd mobile
-npm ci
-npm run typecheck
-```
+Local validation of the 0.6.1 application covered 257 Node tests, 2,655 functional browser checks and 138 scene comparisons. Browser checks included both campuses and all three languages, mobile layouts, chat-to-map actions, favorites, offline reopening and both renderers. These totals describe the reviewed local build; deployed-site checks are separate.
 
-Use [Android build instructions](android-standalone/README.md) for the delivered Java wrapper. The optional Expo/Naver integration in `mobile/` requires its own configuration and native validation. No private signing key is included in this repository.
+This publication updates the **web app**. The native Android and Expo directories and older release reports remain historical material and are not the source of a newly published Android release. The separately delivered development-signed Android 0.6.1 APK is not included in the Pages distribution. No physical Android device, iPhone or Safari validation, app-store submission or production publisher signing is claimed.
 
-```text
-src/                 Campus registry, map renderer, localized UI and sourced assistant
-web/                 Responsive styles and original icons
-mobile/              Shared Expo/React Native source and generated offline page
-android-standalone/  Java/System WebView Android wrapper and build instructions
-server/              Optional protected content service and administrator CLI
-data/                Public reference records and isolated development fixtures
-tests/               Automated domain and browser checks
-docs/                Evidence, screenshots, validation and publishing guidance
-pwa/                 Generated web distribution; ready for HTTPS hosting
-```
+## Sources and license
 
-Edit source files and rebuild generated outputs. The bundled food, transport and assistant registers require an app rebuild when changed; the optional content service does not remotely update those registers.
+University sources take precedence over conflicting student guidance. Yongin has 50 selectable references; Seoul has eight buildings plus the sports field, gate and gatehouse. English and Chinese names are descriptive translations, with the original Korean names available. Source links are included in the app; reference photographs and videos are not loaded as map textures.
 
-## Documentation and license
-
-- [Installation](docs/INSTALL.md) and [distribution options](docs/DISTRIBUTION_GUIDE.md)
-- [Store release preparation](docs/STORE_RELEASE.md)
-- [Content evidence](docs/CONTENT_EVIDENCE.md), [Yongin map evidence](docs/MAP_EVIDENCE.md) and [Seoul evidence](docs/SEOUL_EVIDENCE.md)
-- [Test report](docs/TEST_REPORT.md) and [native validation](docs/NATIVE_VALIDATION.md)
-- [Privacy draft](docs/PRIVACY.md) and [project showcase](docs/SHOWCASE.md)
-
-Documentation is in English. Historical reports are explicitly labelled and do not replace the current validation record.
-
-First-party code and original geometric assets use the [MIT License](LICENSE). University material, Naver SDKs and other dependencies retain their own terms. This independent project is not endorsed by Myongji University, Naver, Apple or Google.
+First-party code and original geometric assets use the [MIT License](LICENSE). University artwork and other third-party material retain their own terms. This independent project is not endorsed by Myongji University, Naver, Apple or Google.

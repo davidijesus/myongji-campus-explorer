@@ -1,0 +1,1493 @@
+{
+  "version": "0.5.3",
+  "checkedAt": "2026-10-03",
+  "interpretation": "Public directory-marker versus illustration-centre discrepancies in drawing-equivalent metres; not GPS accuracy, surveyed control, a confidence interval or a guarantee. No device readings.",
+  "campuses": {
+    "yongin": {
+      "calibration": {
+        "campusId": "yongin",
+        "available": true,
+        "method": "fixed-scale-plan-registration",
+        "transform": {
+          "a": 0.45999634685078516,
+          "b": -0.0018332713743962272,
+          "tx": 1.6811398656546859,
+          "tz": 3.9052045803488475
+        },
+        "unitsPerMeter": 0.46,
+        "rotationDegrees": -0.22834563155526166,
+        "anchorIds": [
+          "mju-y-main",
+          "mju-y1",
+          "mju-y2",
+          "mju-y3",
+          "mju-y5",
+          "mju-y6",
+          "mju-y7",
+          "mju-y8",
+          "mju-y9",
+          "mju-y10",
+          "mju-y11",
+          "mju-y12",
+          "mju-y13",
+          "mju-y15",
+          "mju-y16",
+          "mju-y17",
+          "mju-y18",
+          "mju-y19",
+          "mju-y20",
+          "mju-y21",
+          "mju-y22",
+          "mju-y23",
+          "mju-y24",
+          "mju-y30",
+          "mju-y31",
+          "mju-y82",
+          "mju-a",
+          "mju-b",
+          "mju-c",
+          "mju-d",
+          "mju-e",
+          "mju-f",
+          "mju-h",
+          "mju-visitors",
+          "mju-bus-office",
+          "mju-tennis-office"
+        ],
+        "planAnchorCount": 36,
+        "independentSurveyControlCount": 0,
+        "excludedAnchors": [
+          {
+            "id": "mju-y14",
+            "reason": "Y14/Y83 directory pins nearly coincide although the labelled plan has distinct buildings; the correspondence is ambiguous.",
+            "discrepancyM": 7.827842142917452
+          },
+          {
+            "id": "mju-y32",
+            "reason": "Dormitory identity/name and directory-to-plan association are disputed.",
+            "discrepancyM": 32.77828363019285
+          },
+          {
+            "id": "mju-y33",
+            "reason": "Dormitory directory-marker ordering conflicts with the labelled plan.",
+            "discrepancyM": 68.35175387528137
+          },
+          {
+            "id": "mju-y34",
+            "reason": "Dormitory directory-marker ordering conflicts with the labelled plan.",
+            "discrepancyM": 36.92245348938924
+          },
+          {
+            "id": "mju-y35",
+            "reason": "Dormitory directory-marker ordering conflicts with the labelled plan.",
+            "discrepancyM": 50.15070114564552
+          },
+          {
+            "id": "mju-y83",
+            "reason": "Y14/Y83 directory pins nearly coincide although the labelled plan has distinct buildings; the correspondence is ambiguous.",
+            "discrepancyM": 67.16919023003582
+          },
+          {
+            "id": "mju-guardhouse",
+            "reason": "The small plan footprint has no readable building label; guardhouse identity is provisional.",
+            "discrepancyM": 10.09664011810003
+          },
+          {
+            "id": "mju-hydraulics",
+            "reason": "Directory pin is near Y13; the labelled plan identifies hydraulics beside Y15.",
+            "discrepancyM": 114.45412914284391
+          }
+        ],
+        "fallbackIds": [
+          "mju-g",
+          "mju-k",
+          "mju-elpenheim",
+          "mju-gate"
+        ],
+        "controls": [
+          {
+            "id": "mju-y-main",
+            "role": "fit",
+            "discrepancyM": 5.012390964857895,
+            "leaveOneOutM": 5.159258612459737
+          },
+          {
+            "id": "mju-y1",
+            "role": "fit",
+            "discrepancyM": 2.29697604439574,
+            "leaveOneOutM": 2.36570410839766
+          },
+          {
+            "id": "mju-y2",
+            "role": "fit",
+            "discrepancyM": 28.61243923216746,
+            "leaveOneOutM": 29.962672989173576
+          },
+          {
+            "id": "mju-y3",
+            "role": "fit",
+            "discrepancyM": 8.66538725459021,
+            "leaveOneOutM": 8.972852664609427
+          },
+          {
+            "id": "mju-y5",
+            "role": "fit",
+            "discrepancyM": 5.21685756348218,
+            "leaveOneOutM": 5.3745270901632045
+          },
+          {
+            "id": "mju-y6",
+            "role": "fit",
+            "discrepancyM": 13.361627772933398,
+            "leaveOneOutM": 13.770365832390244
+          },
+          {
+            "id": "mju-y7",
+            "role": "fit",
+            "discrepancyM": 7.464365733740471,
+            "leaveOneOutM": 7.689609248100261
+          },
+          {
+            "id": "mju-y8",
+            "role": "fit",
+            "discrepancyM": 6.233317875881301,
+            "leaveOneOutM": 6.4114140764741965
+          },
+          {
+            "id": "mju-y9",
+            "role": "fit",
+            "discrepancyM": 9.114591126749938,
+            "leaveOneOutM": 9.38797206722087
+          },
+          {
+            "id": "mju-y10",
+            "role": "fit",
+            "discrepancyM": 4.967983503786875,
+            "leaveOneOutM": 5.363231146995838
+          },
+          {
+            "id": "mju-y11",
+            "role": "fit",
+            "discrepancyM": 9.256288840026382,
+            "leaveOneOutM": 9.618927399979052
+          },
+          {
+            "id": "mju-y12",
+            "role": "fit",
+            "discrepancyM": 21.736731950993146,
+            "leaveOneOutM": 22.357843628105552
+          },
+          {
+            "id": "mju-y13",
+            "role": "fit",
+            "discrepancyM": 1.5602838510967534,
+            "leaveOneOutM": 1.6802132258465583
+          },
+          {
+            "id": "mju-y14",
+            "role": "excluded",
+            "discrepancyM": 7.827842142917452,
+            "leaveOneOutM": null
+          },
+          {
+            "id": "mju-y15",
+            "role": "fit",
+            "discrepancyM": 8.597321055819892,
+            "leaveOneOutM": 9.096593379948489
+          },
+          {
+            "id": "mju-y16",
+            "role": "fit",
+            "discrepancyM": 8.555203439288142,
+            "leaveOneOutM": 8.812081115662988
+          },
+          {
+            "id": "mju-y17",
+            "role": "fit",
+            "discrepancyM": 8.91093781062728,
+            "leaveOneOutM": 9.207111694515325
+          },
+          {
+            "id": "mju-y18",
+            "role": "fit",
+            "discrepancyM": 6.7346443204031745,
+            "leaveOneOutM": 6.930203640121432
+          },
+          {
+            "id": "mju-y19",
+            "role": "fit",
+            "discrepancyM": 13.401056501919987,
+            "leaveOneOutM": 14.601083025666645
+          },
+          {
+            "id": "mju-y20",
+            "role": "fit",
+            "discrepancyM": 7.630351376594203,
+            "leaveOneOutM": 7.955172682411853
+          },
+          {
+            "id": "mju-y21",
+            "role": "fit",
+            "discrepancyM": 6.587952148606331,
+            "leaveOneOutM": 6.812243908985324
+          },
+          {
+            "id": "mju-y22",
+            "role": "fit",
+            "discrepancyM": 3.4453484518957262,
+            "leaveOneOutM": 3.5543572395384038
+          },
+          {
+            "id": "mju-y23",
+            "role": "fit",
+            "discrepancyM": 0.5542508726842921,
+            "leaveOneOutM": 0.5768799260004595
+          },
+          {
+            "id": "mju-y24",
+            "role": "fit",
+            "discrepancyM": 2.5104738247408056,
+            "leaveOneOutM": 2.693622248588672
+          },
+          {
+            "id": "mju-y30",
+            "role": "fit",
+            "discrepancyM": 11.676012818207353,
+            "leaveOneOutM": 12.604221992787402
+          },
+          {
+            "id": "mju-y31",
+            "role": "fit",
+            "discrepancyM": 5.820165898848474,
+            "leaveOneOutM": 6.035225044792292
+          },
+          {
+            "id": "mju-y32",
+            "role": "excluded",
+            "discrepancyM": 32.77828363019285,
+            "leaveOneOutM": null
+          },
+          {
+            "id": "mju-y33",
+            "role": "excluded",
+            "discrepancyM": 68.35175387528137,
+            "leaveOneOutM": null
+          },
+          {
+            "id": "mju-y34",
+            "role": "excluded",
+            "discrepancyM": 36.92245348938924,
+            "leaveOneOutM": null
+          },
+          {
+            "id": "mju-y35",
+            "role": "excluded",
+            "discrepancyM": 50.15070114564552,
+            "leaveOneOutM": null
+          },
+          {
+            "id": "mju-y82",
+            "role": "fit",
+            "discrepancyM": 4.043196720469037,
+            "leaveOneOutM": 4.234855793297432
+          },
+          {
+            "id": "mju-y83",
+            "role": "excluded",
+            "discrepancyM": 67.16919023003582,
+            "leaveOneOutM": null
+          },
+          {
+            "id": "mju-a",
+            "role": "fit",
+            "discrepancyM": 13.624261542567394,
+            "leaveOneOutM": 14.0171508285136
+          },
+          {
+            "id": "mju-b",
+            "role": "fit",
+            "discrepancyM": 11.656031622105035,
+            "leaveOneOutM": 12.597310257339258
+          },
+          {
+            "id": "mju-c",
+            "role": "fit",
+            "discrepancyM": 14.451696299391717,
+            "leaveOneOutM": 14.87260436462342
+          },
+          {
+            "id": "mju-d",
+            "role": "fit",
+            "discrepancyM": 28.043725615471182,
+            "leaveOneOutM": 28.844975307569065
+          },
+          {
+            "id": "mju-e",
+            "role": "fit",
+            "discrepancyM": 8.400176401594145,
+            "leaveOneOutM": 8.740987023406134
+          },
+          {
+            "id": "mju-f",
+            "role": "fit",
+            "discrepancyM": 24.27432544852494,
+            "leaveOneOutM": 25.487079292314714
+          },
+          {
+            "id": "mju-g",
+            "role": "fallback",
+            "discrepancyM": 8.2233991240478,
+            "leaveOneOutM": null
+          },
+          {
+            "id": "mju-h",
+            "role": "fit",
+            "discrepancyM": 9.13276236482322,
+            "leaveOneOutM": 9.627890263887268
+          },
+          {
+            "id": "mju-k",
+            "role": "fallback",
+            "discrepancyM": 8.623476057919449,
+            "leaveOneOutM": null
+          },
+          {
+            "id": "mju-elpenheim",
+            "role": "fallback",
+            "discrepancyM": 11.52138267695969,
+            "leaveOneOutM": null
+          },
+          {
+            "id": "mju-visitors",
+            "role": "fit",
+            "discrepancyM": 5.679731516165211,
+            "leaveOneOutM": 6.5259015481065985
+          },
+          {
+            "id": "mju-bus-office",
+            "role": "fit",
+            "discrepancyM": 5.74297688901213,
+            "leaveOneOutM": 5.957737257050845
+          },
+          {
+            "id": "mju-guardhouse",
+            "role": "excluded",
+            "discrepancyM": 10.09664011810003,
+            "leaveOneOutM": null
+          },
+          {
+            "id": "mju-hydraulics",
+            "role": "excluded",
+            "discrepancyM": 114.45412914284391,
+            "leaveOneOutM": null
+          },
+          {
+            "id": "mju-gate",
+            "role": "fallback",
+            "discrepancyM": 8.46976915441004,
+            "leaveOneOutM": null
+          },
+          {
+            "id": "mju-tennis-office",
+            "role": "fit",
+            "discrepancyM": 6.536259953723823,
+            "leaveOneOutM": 6.730095786794627
+          }
+        ],
+        "fit": {
+          "count": 36,
+          "medianM": 8.015263889094173,
+          "p95M": 28.043725615471182,
+          "maxM": 28.61243923216746,
+          "rmseM": 11.569724838749094
+        },
+        "validation": {
+          "count": 36,
+          "medianM": 8.348079852908993,
+          "p95M": 28.844975307569065,
+          "maxM": 29.962672989173576,
+          "rmseM": 12.066192964913066,
+          "kind": "leave-one-out"
+        },
+        "assumedMarkerFloorM": 25,
+        "registrationEnvelopeM": 115,
+        "modelUncertaintyM": 140,
+        "sourceAccuracyKnown": false,
+        "sources": [
+          "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+          "https://www.mju.ac.kr/bbs/mjukr/147/116783/download.do"
+        ]
+      },
+      "publicSourcePairs": [
+        {
+          "id": "mju-y-main",
+          "publishedMarker": {
+            "article": 73,
+            "lat": 37.22255,
+            "lon": 127.1872
+          },
+          "modelCenterWorld": [
+            20.469636669091585,
+            -12.33988354003548
+          ],
+          "eastSouthMeters": {
+            "x": 44.375789434192896,
+            "y": -38.843752256514236
+          }
+        },
+        {
+          "id": "mju-y1",
+          "publishedMarker": {
+            "article": 93,
+            "lat": 37.2234,
+            "lon": 127.1872
+          },
+          "modelCenterWorld": [
+            22.33696689285143,
+            -58.37510250999874
+          ],
+          "eastSouthMeters": {
+            "x": 44.37529145066149,
+            "y": -133.17830428482677
+          }
+        },
+        {
+          "id": "mju-y2",
+          "publishedMarker": {
+            "article": 56,
+            "lat": 37.22315,
+            "lon": 127.18955
+          },
+          "modelCenterWorld": [
+            119.3490605899187,
+            -31.98407733178202
+          ],
+          "eastSouthMeters": {
+            "x": 252.9399960326855,
+            "y": -105.43653466194762
+          }
+        },
+        {
+          "id": "mju-y3",
+          "publishedMarker": {
+            "article": 49,
+            "lat": 37.2221,
+            "lon": 127.188545
+          },
+          "modelCenterWorld": [
+            75.3239124676365,
+            5.1044296693199955
+          ],
+          "eastSouthMeters": {
+            "x": 163.74763579920977,
+            "y": 11.096586237652163
+          }
+        },
+        {
+          "id": "mju-y5",
+          "publishedMarker": {
+            "article": 81,
+            "lat": 37.222035,
+            "lon": 127.187599
+          },
+          "modelCenterWorld": [
+            36.58496612567841,
+            10.632213294120875
+          ],
+          "eastSouthMeters": {
+            "x": 79.78821188434122,
+            "y": 18.311619973732974
+          }
+        },
+        {
+          "id": "mju-y6",
+          "publishedMarker": {
+            "article": 68,
+            "lat": 37.222092,
+            "lon": 127.190831
+          },
+          "modelCenterWorld": [
+            164.22694947312453,
+            8.254410410554467
+          ],
+          "eastSouthMeters": {
+            "x": 366.6349888687217,
+            "y": 11.978040387834142
+          }
+        },
+        {
+          "id": "mju-y7",
+          "publishedMarker": {
+            "article": 83,
+            "lat": 37.221876,
+            "lon": 127.1902
+          },
+          "modelCenterWorld": [
+            141.42032231413503,
+            21.07417739819497
+          ],
+          "eastSouthMeters": {
+            "x": 310.6332899088754,
+            "y": 35.95236668304166
+          }
+        },
+        {
+          "id": "mju-y8",
+          "publishedMarker": {
+            "article": 66,
+            "lat": 37.221632,
+            "lon": 127.186779
+          },
+          "modelCenterWorld": [
+            7.766778943397938,
+            33.718588528473674
+          ],
+          "eastSouthMeters": {
+            "x": 7.0114597056349055,
+            "y": 63.03766290412543
+          }
+        },
+        {
+          "id": "mju-y9",
+          "publishedMarker": {
+            "article": 94,
+            "lat": 37.221201,
+            "lon": 127.188545
+          },
+          "modelCenterWorld": [
+            80.20226852617974,
+            57.539882892065975
+          ],
+          "eastSouthMeters": {
+            "x": 163.74957922888484,
+            "y": 110.86922535618119
+          }
+        },
+        {
+          "id": "mju-y10",
+          "publishedMarker": {
+            "article": 59,
+            "lat": 37.221598,
+            "lon": 127.1917
+          },
+          "modelCenterWorld": [
+            205.36291980282994,
+            36.032094686196615
+          ],
+          "eastSouthMeters": {
+            "x": 443.76347109235024,
+            "y": 66.79933431348826
+          }
+        },
+        {
+          "id": "mju-y11",
+          "publishedMarker": {
+            "article": 89,
+            "lat": 37.222347,
+            "lon": 127.191514
+          },
+          "modelCenterWorld": [
+            201.53991970048224,
+            -7.009736610775939
+          ],
+          "eastSouthMeters": {
+            "x": 427.2512452288743,
+            "y": -16.325183876217324
+          }
+        },
+        {
+          "id": "mju-y12",
+          "publishedMarker": {
+            "article": 46,
+            "lat": 37.22045,
+            "lon": 127.1853
+          },
+          "modelCenterWorld": [
+            -47.86398428838086,
+            86.59261683202578
+          ],
+          "eastSouthMeters": {
+            "x": -124.25565516541954,
+            "y": 194.21722281567847
+          }
+        },
+        {
+          "id": "mju-y13",
+          "publishedMarker": {
+            "article": 80,
+            "lat": 37.218929,
+            "lon": 127.183771
+          },
+          "modelCenterWorld": [
+            -117.6901874128984,
+            170.81217318936956
+          ],
+          "eastSouthMeters": {
+            "x": -259.9658009774158,
+            "y": 363.01738481134635
+          }
+        },
+        {
+          "id": "mju-y14",
+          "publishedMarker": {
+            "article": 43,
+            "lat": 37.218353,
+            "lon": 127.183827
+          },
+          "modelCenterWorld": [
+            -115.71152116517113,
+            197.27266084514568
+          ],
+          "eastSouthMeters": {
+            "x": -254.99741381619242,
+            "y": 426.94302173087726
+          }
+        },
+        {
+          "id": "mju-y15",
+          "publishedMarker": {
+            "article": 62,
+            "lat": 37.218657,
+            "lon": 127.18444
+          },
+          "modelCenterWorld": [
+            -91.19345469982285,
+            181.42018969565834
+          ],
+          "eastSouthMeters": {
+            "x": -200.5888766881972,
+            "y": 393.20604649418675
+          }
+        },
+        {
+          "id": "mju-y16",
+          "publishedMarker": {
+            "article": 52,
+            "lat": 37.220976,
+            "lon": 127.187413
+          },
+          "modelCenterWorld": [
+            32.69867444990235,
+            62.70733918146169
+          ],
+          "eastSouthMeters": {
+            "x": 63.28119067987003,
+            "y": 135.8414848602805
+          }
+        },
+        {
+          "id": "mju-y17",
+          "publishedMarker": {
+            "article": 95,
+            "lat": 37.220808,
+            "lon": 127.187961
+          },
+          "modelCenterWorld": [
+            56.73191896722619,
+            72.31202103881311
+          ],
+          "eastSouthMeters": {
+            "x": 111.91831475630772,
+            "y": 154.48591822227033
+          }
+        },
+        {
+          "id": "mju-y18",
+          "publishedMarker": {
+            "article": 42,
+            "lat": 37.22286,
+            "lon": 127.186
+          },
+          "modelCenterWorld": [
+            -29.210201095548896,
+            -31.876513994370054
+          ],
+          "eastSouthMeters": {
+            "x": -62.12585094465779,
+            "y": -73.24822915981463
+          }
+        },
+        {
+          "id": "mju-y19",
+          "publishedMarker": {
+            "article": 74,
+            "lat": 37.2193,
+            "lon": 127.18255
+          },
+          "modelCenterWorld": [
+            -162.58468021841543,
+            156.75484365710096
+          ],
+          "eastSouthMeters": {
+            "x": -368.3348548981767,
+            "y": 321.83910471213164
+          }
+        },
+        {
+          "id": "mju-y20",
+          "publishedMarker": {
+            "article": 41,
+            "lat": 37.22025,
+            "lon": 127.18507
+          },
+          "modelCenterWorld": [
+            -66.61657005421539,
+            100.94302133458498
+          ],
+          "eastSouthMeters": {
+            "x": -144.6694661822631,
+            "y": 216.4132516159106
+          }
+        },
+        {
+          "id": "mju-y21",
+          "publishedMarker": {
+            "article": 90,
+            "lat": 37.2231,
+            "lon": 127.186773
+          },
+          "modelCenterWorld": [
+            6.886450548885492,
+            -43.89242593576335
+          ],
+          "eastSouthMeters": {
+            "x": 6.478818213521933,
+            "y": -99.88364033423377
+          }
+        },
+        {
+          "id": "mju-y22",
+          "publishedMarker": {
+            "article": 40,
+            "lat": 37.22385,
+            "lon": 127.186885
+          },
+          "modelCenterWorld": [
+            8.254132209649342,
+            -78.91126393621661
+          ],
+          "eastSouthMeters": {
+            "x": 16.418760289040094,
+            "y": -183.12003034174285
+          }
+        },
+        {
+          "id": "mju-y23",
+          "publishedMarker": {
+            "article": 82,
+            "lat": 37.221376,
+            "lon": 127.18926
+          },
+          "modelCenterWorld": [
+            106.33899054878586,
+            45.299686901988714
+          ],
+          "eastSouthMeters": {
+            "x": 227.20756330430174,
+            "y": 91.4459357597011
+          }
+        },
+        {
+          "id": "mju-y24",
+          "publishedMarker": {
+            "article": 87,
+            "lat": 37.217787,
+            "lon": 127.185024
+          },
+          "modelCenterWorld": [
+            -66.97883664156022,
+            229.7036351633629
+          ],
+          "eastSouthMeters": {
+            "x": -148.7569992004823,
+            "y": 489.7612340993641
+          }
+        },
+        {
+          "id": "mju-y30",
+          "publishedMarker": {
+            "article": 50,
+            "lat": 37.22355,
+            "lon": 127.18173
+          },
+          "modelCenterWorld": [
+            -206.22381152408957,
+            -61.66745152772708
+          ],
+          "eastSouthMeters": {
+            "x": -441.0895229492337,
+            "y": -149.8370347535944
+          }
+        },
+        {
+          "id": "mju-y31",
+          "publishedMarker": {
+            "article": 47,
+            "lat": 37.2241,
+            "lon": 127.18175
+          },
+          "modelCenterWorld": [
+            -199.01645477213322,
+            -90.28387207113872
+          ],
+          "eastSouthMeters": {
+            "x": -439.31132472596676,
+            "y": -210.87695473780707
+          }
+        },
+        {
+          "id": "mju-y32",
+          "publishedMarker": {
+            "article": 76,
+            "lat": 37.223353,
+            "lon": 127.182856
+          },
+          "modelCenterWorld": [
+            -140.41065191082401,
+            -54.682715838396405
+          ],
+          "eastSouthMeters": {
+            "x": -341.15745212327613,
+            "y": -127.96896367602183
+          }
+        },
+        {
+          "id": "mju-y33",
+          "publishedMarker": {
+            "article": 77,
+            "lat": 37.223228,
+            "lon": 127.183595
+          },
+          "modelCenterWorld": [
+            -115.75250078987158,
+            -78.03278084207851
+          ],
+          "eastSouthMeters": {
+            "x": -275.57118556013774,
+            "y": -114.09382881918495
+          }
+        },
+        {
+          "id": "mju-y34",
+          "publishedMarker": {
+            "article": 78,
+            "lat": 37.223758,
+            "lon": 127.182802
+          },
+          "modelCenterWorld": [
+            -140.96422380067565,
+            -77.45286840999499
+          ],
+          "eastSouthMeters": {
+            "x": -345.948136746841,
+            "y": -172.91680340717082
+          }
+        },
+        {
+          "id": "mju-y35",
+          "publishedMarker": {
+            "article": 79,
+            "lat": 37.223763,
+            "lon": 127.183316
+          },
+          "modelCenterWorld": [
+            -159.83362448826836,
+            -76.38129238641066
+          ],
+          "eastSouthMeters": {
+            "x": -300.3305330135015,
+            "y": -173.46995905487626
+          }
+        },
+        {
+          "id": "mju-y82",
+          "publishedMarker": {
+            "article": 69,
+            "lat": 37.223883,
+            "lon": 127.185072
+          },
+          "modelCenterWorld": [
+            -64.3378227017716,
+            -83.4353150355866
+          ],
+          "eastSouthMeters": {
+            "x": -144.48502757753462,
+            "y": -186.7836568068262
+          }
+        },
+        {
+          "id": "mju-y83",
+          "publishedMarker": {
+            "article": 51,
+            "lat": 37.218351,
+            "lon": 127.183826
+          },
+          "modelCenterWorld": [
+            -133.8820593500966,
+            176.50764363134462
+          ],
+          "eastSouthMeters": {
+            "x": -255.08617704659179,
+            "y": 427.16498251672255
+          }
+        },
+        {
+          "id": "mju-a",
+          "publishedMarker": {
+            "article": 44,
+            "lat": 37.22345,
+            "lon": 127.19095
+          },
+          "modelCenterWorld": [
+            169.28490804511497,
+            -57.88764498238378
+          ],
+          "eastSouthMeters": {
+            "x": 377.1897280007999,
+            "y": -138.73574111794596
+          }
+        },
+        {
+          "id": "mju-b",
+          "publishedMarker": {
+            "article": 60,
+            "lat": 37.2222,
+            "lon": 127.1917
+          },
+          "modelCenterWorld": [
+            205.28159988053466,
+            8.422050503915564
+          ],
+          "eastSouthMeters": {
+            "x": 443.759944284786,
+            "y": -0.011712633839664477
+          }
+        },
+        {
+          "id": "mju-c",
+          "publishedMarker": {
+            "article": 61,
+            "lat": 37.219679,
+            "lon": 127.186977
+          },
+          "modelCenterWorld": [
+            11.904478964102658,
+            126.10753689544372
+          ],
+          "eastSouthMeters": {
+            "x": 24.5851191421076,
+            "y": 279.78505073973764
+          }
+        },
+        {
+          "id": "mju-d",
+          "publishedMarker": {
+            "article": 84,
+            "lat": 37.2193,
+            "lon": 127.1864
+          },
+          "modelCenterWorld": [
+            -12.119473178118255,
+            164.72347557876404
+          ],
+          "eastSouthMeters": {
+            "x": -26.626616039035895,
+            "y": 321.84713168756537
+          }
+        },
+        {
+          "id": "mju-e",
+          "publishedMarker": {
+            "article": 64,
+            "lat": 37.218464,
+            "lon": 127.185829
+          },
+          "modelCenterWorld": [
+            -34.36067948002933,
+            191.1147489617777
+          ],
+          "eastSouthMeters": {
+            "x": -77.30679501915468,
+            "y": 414.6275604566956
+          }
+        },
+        {
+          "id": "mju-f",
+          "publishedMarker": {
+            "article": 65,
+            "lat": 37.219356,
+            "lon": 127.184521
+          },
+          "modelCenterWorld": [
+            -75.58732457214764,
+            150.51425511741417
+          ],
+          "eastSouthMeters": {
+            "x": -193.39784482351277,
+            "y": 315.629970880147
+          }
+        },
+        {
+          "id": "mju-g",
+          "publishedMarker": {
+            "article": 57,
+            "lat": 37.2224,
+            "lon": 127.18975
+          },
+          "modelCenterWorld": [
+            124.51871168418886,
+            -10.212331618260336
+          ],
+          "eastSouthMeters": {
+            "x": 270.6928514873671,
+            "y": -22.200720909261598
+          }
+        },
+        {
+          "id": "mju-h",
+          "publishedMarker": {
+            "article": 92,
+            "lat": 37.22395,
+            "lon": 127.189
+          },
+          "modelCenterWorld": [
+            91.13419550769075,
+            -86.77972658712851
+          ],
+          "eastSouthMeters": {
+            "x": 204.12485836573046,
+            "y": -194.22067696975347
+          }
+        },
+        {
+          "id": "mju-k",
+          "publishedMarker": {
+            "article": 86,
+            "lat": 37.224176,
+            "lon": 127.187628
+          },
+          "modelCenterWorld": [
+            37.885460676644406,
+            -100.87822970452395
+          ],
+          "eastSouthMeters": {
+            "x": 82.35969712314001,
+            "y": -219.30049935766075
+          }
+        },
+        {
+          "id": "mju-elpenheim",
+          "publishedMarker": {
+            "article": 48,
+            "lat": 37.225301,
+            "lon": 127.178785
+          },
+          "modelCenterWorld": [
+            -323.12388608258385,
+            -158.3246568231639
+          ],
+          "eastSouthMeters": {
+            "x": -702.4432306143127,
+            "y": -344.1840365720954
+          }
+        },
+        {
+          "id": "mju-visitors",
+          "publishedMarker": {
+            "article": 53,
+            "lat": 37.224095,
+            "lon": 127.180342
+          },
+          "modelCenterWorld": [
+            -257.9569673840069,
+            -94.40534615265206
+          ],
+          "eastSouthMeters": {
+            "x": -564.2710272189465,
+            "y": -210.32950470177497
+          }
+        },
+        {
+          "id": "mju-bus-office",
+          "publishedMarker": {
+            "article": 58,
+            "lat": 37.223999,
+            "lon": 127.18756
+          },
+          "modelCenterWorld": [
+            35.202314557603835,
+            -90.41821397874884
+          ],
+          "eastSouthMeters": {
+            "x": 76.3248976805718,
+            "y": -199.65665551977864
+          }
+        },
+        {
+          "id": "mju-guardhouse",
+          "publishedMarker": {
+            "article": 63,
+            "lat": 37.224678,
+            "lon": 127.187637
+          },
+          "modelCenterWorld": [
+            37.62440880887076,
+            -127.03181475295487
+          ],
+          "eastSouthMeters": {
+            "x": 83.15789301652654,
+            "y": -275.01339748531734
+          }
+        },
+        {
+          "id": "mju-hydraulics",
+          "publishedMarker": {
+            "article": 71,
+            "lat": 37.218781,
+            "lon": 127.183385
+          },
+          "modelCenterWorld": [
+            -81.6215390083431,
+            190.63253938125106
+          ],
+          "eastSouthMeters": {
+            "x": -294.2261228317608,
+            "y": 379.4415543244282
+          }
+        },
+        {
+          "id": "mju-gate",
+          "publishedMarker": {
+            "article": 72,
+            "lat": 37.224886,
+            "lon": 127.1878
+          },
+          "modelCenterWorld": [
+            44.90691388326772,
+            -137.12497873892795
+          ],
+          "eastSouthMeters": {
+            "x": 97.62372583319069,
+            "y": -298.09777986723464
+          }
+        },
+        {
+          "id": "mju-tennis-office",
+          "publishedMarker": {
+            "article": 85,
+            "lat": 37.219669,
+            "lon": 127.186323
+          },
+          "modelCenterWorld": [
+            -13.352559060699562,
+            130.17456286914623
+          ],
+          "eastSouthMeters": {
+            "x": -33.4606178355949,
+            "y": 280.8948377352678
+          }
+        }
+      ]
+    },
+    "seoul": {
+      "calibration": {
+        "campusId": "seoul",
+        "available": true,
+        "method": "published-marker-frame",
+        "transform": {
+          "a": 0.46,
+          "b": 0,
+          "tx": 0,
+          "tz": 0
+        },
+        "unitsPerMeter": 0.46,
+        "rotationDegrees": 0,
+        "anchorIds": [
+          "mju-s1",
+          "mju-s2",
+          "mju-s3",
+          "mju-s4",
+          "mju-s5",
+          "mju-s8",
+          "mju-s9",
+          "mju-s10",
+          "mju-seoul-field",
+          "mju-seoul-gate",
+          "mju-seoul-guardhouse"
+        ],
+        "planAnchorCount": 0,
+        "independentSurveyControlCount": 0,
+        "excludedAnchors": [],
+        "fallbackIds": [],
+        "controls": [
+          {
+            "id": "mju-s1",
+            "role": "construction",
+            "discrepancyM": 0,
+            "leaveOneOutM": null
+          },
+          {
+            "id": "mju-s2",
+            "role": "construction",
+            "discrepancyM": 0,
+            "leaveOneOutM": null
+          },
+          {
+            "id": "mju-s3",
+            "role": "construction",
+            "discrepancyM": 0,
+            "leaveOneOutM": null
+          },
+          {
+            "id": "mju-s4",
+            "role": "construction",
+            "discrepancyM": 0,
+            "leaveOneOutM": null
+          },
+          {
+            "id": "mju-s5",
+            "role": "construction",
+            "discrepancyM": 0,
+            "leaveOneOutM": null
+          },
+          {
+            "id": "mju-s8",
+            "role": "construction",
+            "discrepancyM": 0,
+            "leaveOneOutM": null
+          },
+          {
+            "id": "mju-s9",
+            "role": "construction",
+            "discrepancyM": 0,
+            "leaveOneOutM": null
+          },
+          {
+            "id": "mju-s10",
+            "role": "construction",
+            "discrepancyM": 0,
+            "leaveOneOutM": null
+          },
+          {
+            "id": "mju-seoul-field",
+            "role": "construction",
+            "discrepancyM": 0,
+            "leaveOneOutM": null
+          },
+          {
+            "id": "mju-seoul-gate",
+            "role": "construction",
+            "discrepancyM": 0,
+            "leaveOneOutM": null
+          },
+          {
+            "id": "mju-seoul-guardhouse",
+            "role": "construction",
+            "discrepancyM": 0,
+            "leaveOneOutM": null
+          }
+        ],
+        "fit": {
+          "count": 11,
+          "medianM": 0,
+          "p95M": 0,
+          "maxM": 0,
+          "rmseM": 0
+        },
+        "validation": {
+          "count": 11,
+          "medianM": 0,
+          "p95M": 0,
+          "maxM": 0,
+          "rmseM": 0,
+          "kind": "construction-only"
+        },
+        "assumedMarkerFloorM": 25,
+        "registrationEnvelopeM": 0,
+        "modelUncertaintyM": 25,
+        "sourceAccuracyKnown": false,
+        "sources": [
+          "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=A"
+        ]
+      },
+      "publicSourcePairs": [
+        {
+          "id": "mju-s1",
+          "publishedMarker": {
+            "article": 10,
+            "lat": 37.5803,
+            "lon": 126.922549
+          },
+          "modelCenterWorld": [
+            -30.514711622587807,
+            -10.211068373126396
+          ],
+          "eastSouthMeters": {
+            "x": -66.33632961432131,
+            "y": -22.197974724187816
+          }
+        },
+        {
+          "id": "mju-s2",
+          "publishedMarker": {
+            "article": 11,
+            "lat": 37.5803,
+            "lon": 126.92345
+          },
+          "modelCenterWorld": [
+            6.094815903995967,
+            -10.210951273989394
+          ],
+          "eastSouthMeters": {
+            "x": 13.249599791295578,
+            "y": -22.197720160846508
+          }
+        },
+        {
+          "id": "mju-s3",
+          "publishedMarker": {
+            "article": 12,
+            "lat": 37.580104,
+            "lon": 126.921604
+          },
+          "modelCenterWorld": [
+            -68.91223245397946,
+            -0.20484094791769475
+          ],
+          "eastSouthMeters": {
+            "x": -149.80920098691186,
+            "y": -0.4453064085167277
+          }
+        },
+        {
+          "id": "mju-s4",
+          "publishedMarker": {
+            "article": 13,
+            "lat": 37.5809,
+            "lon": 126.923826
+          },
+          "modelCenterWorld": [
+            21.37231625767888,
+            -40.84384754639321
+          ],
+          "eastSouthMeters": {
+            "x": 46.461557081910605,
+            "y": -88.79097292694175
+          }
+        },
+        {
+          "id": "mju-s5",
+          "publishedMarker": {
+            "article": 14,
+            "lat": 37.580098,
+            "lon": 126.924244
+          },
+          "modelCenterWorld": [
+            38.35681171280782,
+            0.10191675472289544
+          ],
+          "eastSouthMeters": {
+            "x": 83.38437328871265,
+            "y": 0.22155816244107704
+          }
+        },
+        {
+          "id": "mju-s8",
+          "publishedMarker": {
+            "article": 16,
+            "lat": 37.5808,
+            "lon": 126.923064
+          },
+          "modelCenterWorld": [
+            -9.58911289463789,
+            -35.73832599282493
+          ],
+          "eastSouthMeters": {
+            "x": -20.84589759703889,
+            "y": -77.6920130278803
+          }
+        },
+        {
+          "id": "mju-s9",
+          "publishedMarker": {
+            "article": 17,
+            "lat": 37.58075,
+            "lon": 126.924498
+          },
+          "modelCenterWorld": [
+            48.67697004240548,
+            -33.18588745657341
+          ],
+          "eastSouthMeters": {
+            "x": 105.81950009218582,
+            "y": -72.14323360124655
+          }
+        },
+        {
+          "id": "mju-s10",
+          "publishedMarker": {
+            "article": 104,
+            "lat": 37.57915,
+            "lon": 126.9225
+          },
+          "modelCenterWorld": [
+            -32.50618477675582,
+            48.501852303324995
+          ],
+          "eastSouthMeters": {
+            "x": -70.66561907990396,
+            "y": 105.43880935505433
+          }
+        },
+        {
+          "id": "mju-seoul-field",
+          "publishedMarker": {
+            "article": 15,
+            "lat": 37.57945,
+            "lon": 126.9228
+          },
+          "modelCenterWorld": [
+            -20.316283971685937,
+            33.18551937094438
+          ],
+          "eastSouthMeters": {
+            "x": -44.165834721056385,
+            "y": 72.14243341509646
+          }
+        },
+        {
+          "id": "mju-seoul-gate",
+          "publishedMarker": {
+            "article": 38,
+            "lat": 37.5797,
+            "lon": 126.92393
+          },
+          "modelCenterWorld": [
+            25.59843221367635,
+            20.421805947613073
+          ],
+          "eastSouthMeters": {
+            "x": 55.648765681905104,
+            "y": 44.39523032089799
+          }
+        },
+        {
+          "id": "mju-seoul-guardhouse",
+          "publishedMarker": {
+            "article": 39,
+            "lat": 37.579656,
+            "lon": 126.923794
+          },
+          "modelCenterWorld": [
+            20.072433263422333,
+            22.668247015915213
+          ],
+          "eastSouthMeters": {
+            "x": 43.63572448570072,
+            "y": 49.278797860685245
+          }
+        }
+      ]
+    }
+  }
+}

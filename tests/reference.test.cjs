@@ -4,6 +4,7 @@ const assert = require('node:assert/strict');
 const { REFERENCE_CAMPUS, REFERENCE_BUILDING_COUNT, createReferencePlaces } = require('../build/core/campus.js');
 const { liveSeed } = require('../build/core/data.js');
 const { findRoute, validateDataset } = require('../build/core/core.js');
+const { PLAN_LAYOUT, planPointToReferencePoint } = require('../build/core/plan-layout.js');
 
 test('every code in the supplied illustrated overview has one selectable feature', () => {
   const expected = ['Y_', 'Y1', 'Y2', 'Y3', ...Array.from({length: 20}, (_, i) => `Y${i + 5}`), ...Array.from({length: 6}, (_, i) => `Y${i + 30}`), 'Y82', 'Y83', ...'ABCDEFGHIJK'];
@@ -42,14 +43,18 @@ test('reference-only courts and disputed dorm name remain unverified', () => {
   const places = createReferencePlaces();
   for (const id of ['mju-i', 'mju-j', 'mju-y32']) assert.equal(places.find(p => p.id === id).evidence.status, 'unverified');
   for (const id of ['mju-i', 'mju-j']) assert.equal(REFERENCE_CAMPUS.features.find(f => f.id === id).marker, null);
-  assert.match(places.find(p => p.id === 'mju-y32').description.en, /3동.*1동/);
+  const dorm = places.find(p => p.id === 'mju-y32');
+  assert.equal(dorm.description.en, 'Student residence.');
+  assert.match(dorm.evidence.note.en, /Dormitory names differ between sources/);
+  assert.match(dorm.evidence.note.en, /Confirm your assigned residence/);
 });
 
 test('conflicting directory pins stay separate from the labelled plan placement', () => {
   for (const id of ['mju-y20', 'mju-y83', 'mju-hydraulics']) {
     const f = REFERENCE_CAMPUS.features.find(f => f.id === id);
-    assert.ok(f.note?.en, id);
-    assert.ok(f.marker?.article, id);
+    assert.equal(f.marker?.article, {'mju-y20':41,'mju-y83':51,'mju-hydraulics':71}[id], id);
+    assert.equal(f.layoutSource, 'official-plan', id);
+    assert.deepEqual(f.center, planPointToReferencePoint(...PLAN_LAYOUT[id].center), id);
   }
   const a = REFERENCE_CAMPUS.features.find(f => f.code === 'Y14');
   const b = REFERENCE_CAMPUS.features.find(f => f.code === 'Y83');

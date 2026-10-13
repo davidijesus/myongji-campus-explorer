@@ -1,4 +1,5 @@
 import { Category, Evidence, Localized, Place } from './types';
+import { getYonginPlaceDescription } from './place-descriptions';
 import { PLAN_CALIBRATION, PLAN_LAYOUT, PLAN_COMPLEX_MESH, PLAN_ROADS, planPointToReferencePoint } from './plan-layout';
 
 const tr = (en: string, ko: string): Localized => ({ en, ko });
@@ -91,8 +92,7 @@ const features: ReferenceFeature[] = specs.map(([code, en, ko, category, article
     kind: 'building', form, marker: { article, lat, lon }, center: illustrate(lat, lon), size: [w, d, h], angle: -.10,
 }));
 // Directory pins can coincide even where the labelled site plan shows distinct buildings.
-features.find(f => f.code === 'Y83')!.note = tr('The directory pin nearly coincides with Y14, but the university’s 2021 plan labels two distinct buildings. This model follows the labelled plan footprint beside Engineering Hall 4; the original directory pin is preserved separately.', '공식 목록 표식은 Y14와 거의 일치하지만 대학의 2021 배치도는 두 건물을 별도로 표시합니다. 모형은 제4공학관 옆에 표기된 도면 외곽을 따르며 원래 목록 표식은 별도로 보존합니다.');
-features.find(f => f.code === 'Y32')!.note = tr('The attached map calls Y32 “3동”; the official directory calls its corresponding marker “제3학생기숙사(1동)”. Confirm the current dormitory name before relying on this label.', '첨부 지도는 Y32를 “3동”으로, 공식 목록은 해당 표식을 “제3학생기숙사(1동)”으로 표기합니다. 현재 동 명칭은 확인이 필요합니다.');
+features.find(f => f.code === 'Y32')!.note = { en: 'Dormitory names differ between sources. Confirm your assigned residence.', ko: '자료마다 생활관 명칭이 다릅니다. 배정된 생활관을 확인하세요.', zh: '不同资料中的宿舍名称有差异。请确认分配给您的宿舍。' };
 
 const add = (id: string, code: string | null, en: string, ko: string, category: Category, kind: ReferenceFeature['kind'], form: ReferenceFeature['form'], article: number, lat: number, lon: number, size: [number, number, number], angle = -.10) => features.push({ id: `mju-${id}`, code, name: tr(en, ko), category, kind, form, marker: { article, lat, lon }, center: illustrate(lat, lon), size, angle });
 add('a', 'A', 'Main Sports Field', '대운동장', 'outdoors', 'field', 'low', 44, 37.22345, 127.19095, [95, 58, 0], -.25);
@@ -117,11 +117,7 @@ add('tennis-office', null, 'Tennis Court Office', '테니스장관리사무소',
 
 // Initial unsurveyed envelopes, subsequently checked against the complete generated mesh.
 for (const f of features) if (f.kind === 'building') { f.size[0] *= .75; f.size[1] *= .75; }
-features.find(f => f.code === 'Y20')!.note = tr('The university’s 2021 plan places this hall at the southwest end of the Design & Modeling complex. The two model envelopes divide that connected complex approximately; no invented gap or verified internal boundary is implied.', '대학의 2021 배치도는 디자인조형센터 단지 남서쪽에 이 건물을 표시합니다. 연결된 단지를 두 모형으로 대략 나누었으며 임의의 간격이나 확인된 내부 경계를 의미하지 않습니다.');
-features.find(f => f.id === 'mju-hydraulics')!.note = tr('The 2021 university plan labels this small structure at the southeast end of the Hydraulic Modeling Lab. The model follows that labelled footprint. The separate directory pin is retained as published despite its conflicting position.', '대학의 2021 배치도는 수리모형실습동 남동쪽 끝에 이 작은 구조물을 표시합니다. 모형은 해당 외곽을 따릅니다. 위치가 상충하는 목록 표식은 원문 그대로 별도로 보존합니다.');
-features.find(f=>f.id==='mju-guardhouse')!.note=tr('The plan’s small entrance-side footprint is provisionally associated with the guardhouse using the directory marker and its surroundings. The footprint itself has no readable building label in the plan; that association remains unconfirmed.', '배치도의 입구 쪽 작은 외곽을 목록 표식과 주변 관계에 따라 잠정적으로 수위실에 대응시켰습니다. 도면 외곽에 읽을 수 있는 건물명이 없어 이 대응은 미확인입니다.');
 features.find(f=>f.id==='mju-hydraulics')!.size[2]=3.5;
-for (const id of ['mju-i','mju-j']) features.find(f=>f.id===id)!.note=tr('This labelled outdoor area is traced from the university’s 2021 plan. No corresponding current directory marker was found; present operation and access remain unverified.', '대학의 2021 배치도에 이름이 표시된 야외 시설을 참고했습니다. 현재 목록의 대응 표식이 없어 현재 운영과 접근 여부는 미확인입니다.');
 for (const f of features) {
     const plan=PLAN_LAYOUT[f.id];
     if (!plan) continue;
@@ -144,12 +140,12 @@ export const REFERENCE_BUILDING_COUNT = features.filter(f => f.kind === 'buildin
 
 export function createReferencePlaces(): Place[] {
     return features.map(f => {
-        const note = tr('Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.', '건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다.');
-        const evidence: Evidence = { status: f.marker && f.code !== 'Y32' ? 'verified' : 'unverified', sourceUrl: f.marker ? CAMPUS_DIRECTORY_URL : null, checkedAt: f.marker ? '2026-09-30T00:00:00+09:00' : null, note: f.note ?? (f.marker ? note : tr('Label and approximate placement come from the user-provided illustrated map. Not independently confirmed in the official directory.', '이름과 대략적인 배치는 사용자가 제공한 그림 지도를 참고했습니다. 공식 목록에서 별도로 확인하지 못했습니다.')) };
+        const note: Localized = { en: 'Name listed in the official campus directory.', ko: '공식 캠퍼스 안내에 등재된 명칭입니다.', zh: '名称载于官方校园目录。' };
+        const evidence: Evidence = { status: f.marker && f.code !== 'Y32' ? 'verified' : 'unverified', sourceUrl: f.marker ? CAMPUS_DIRECTORY_URL : null, checkedAt: f.marker ? '2026-09-30T00:00:00+09:00' : null, note: f.note ?? (f.marker ? note : { en: 'Named on the 2021 campus plan; current use is unconfirmed.', ko: '2021년 캠퍼스 배치도에 표시된 명칭이며 현재 이용 여부는 확인되지 않았습니다.', zh: '名称来自2021年校园规划图，目前使用情况未确认。' }) };
         return {
             id: f.id, name: f.name, code: f.code, category: f.category,
             aliases: [f.name.en, f.name.ko, ...(f.code ? [f.code] : []), ...(f.id === 'mju-y-main' ? ['Engineering 1', '제1공학관', 'Yxxx'] : []), ...(f.id === 'mju-y3' ? ['library', '도서관', 'Myongjindang'] : []), ...(f.id === 'mju-y22' ? ['chapel', '채플관'] : [])],
-            description: f.note ?? tr('Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.', '3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다.'),
+            description: getYonginPlaceDescription(f.id)?.description ?? f.name,
             point: null, evidence,
             geometryEvidence: { status: 'unverified', sourceUrl: f.layoutSource ? PLAN_CALIBRATION.sourceUrl : f.marker ? CAMPUS_DIRECTORY_URL : null, checkedAt: null, note: tr('Historical plan reference and simplified model. Plan-derived relative scale is retained where identified, but current footprints, heights, terrain and roads remain unverified. No GPS position, entrance or walking route is supplied.', '과거 배치도 참고와 단순화된 모형입니다. 식별된 도면의 상대 축척을 유지하지만 현재 외곽·높이·지형·도로는 미확인입니다. GPS 위치·출입구·도보 경로를 제공하지 않습니다.') },
             buildingId: null, entranceIds: [], photo: null,

@@ -18,6 +18,13 @@
     "src/knowledge.ts",
     "src/campus.ts",
     "src/visual-references.ts",
-    "src/campuses.ts"
+    "src/campuses.ts",
+    "src/geographic.ts",
+    "src/naver.ts",
+    "src/location.ts",
+    "src/model-location.ts",
+    "src/community.ts",
+    "src/community-updates.ts",
+    "src/community-sync.ts"
   ]
 }

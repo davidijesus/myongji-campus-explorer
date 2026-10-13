@@ -1,5 +1,9 @@
 'use strict';
 const {chromium}=require('@playwright/test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const output=process.env.MCE_TEST_OUTPUT?path.resolve(process.env.MCE_TEST_OUTPUT):path.join(__dirname,'../docs');
+const screenshotPath=path.join(output,process.env.MCE_TEST_OUTPUT?'offline.png':'current-pwa-offline.png');
+const resultsPath=path.join(output,process.env.MCE_TEST_OUTPUT?'results.json':'current-pwa-results.json');
+fs.mkdirSync(output,{recursive:true});
 const checks=[],errors=[];let browser;
 const check=(name,value)=>{assert.ok(value,name);checks.push({name,passed:true});};
 (async()=>{
@@ -30,7 +34,7 @@ const check=(name,value)=>{assert.ok(value,name);checks.push({name,passed:true})
  await page.locator('[data-tab="chat"]').click();
  await page.locator('#chat-input').fill('Where is classroom Y9228?');await page.locator('#chat-form button[type="submit"]').click();
  check('Offline installed shell answers sourced classroom questions',/Hambak|함박/.test(await page.locator('#chat-messages').innerText()));
- await page.screenshot({path:path.join(__dirname,'../docs/current-pwa-offline.png')});
+ await page.screenshot({path:screenshotPath});
  await browser.close();
  const restarted=await chromium.launchPersistentContext(profile,launchOptions);browser=restarted;
  await restarted.setOffline(true);
@@ -43,7 +47,7 @@ const check=(name,value)=>{assert.ok(value,name);checks.push({name,passed:true})
  await relaunched.reload();check('Offline relaunch preserves Seoul and Chinese',(await relaunched.evaluate(()=>MCE.getState())).campusId==='seoul'&&(await relaunched.evaluate(()=>MCE.getState())).language==='zh');
  await relaunched.locator('.nav-tab[data-tab="chat"]').click();await relaunched.locator('#chat-input').fill('哪里可以买咖啡？');await relaunched.locator('#chat-form button').click();check('Seoul Chinese assistant works offline',await relaunched.locator('.answer-message [data-source^="seoul-"]').count()>0);
  check('No uncaught PWA errors',errors.length===0);
- fs.writeFileSync(path.join(__dirname,'../docs/current-pwa-results.json'),JSON.stringify({executedAt:new Date().toISOString(),build,checks,installability,errors},null,2));
+ fs.writeFileSync(resultsPath,JSON.stringify({executedAt:new Date().toISOString(),build,checks,installability,errors},null,2));
  await browser.close();console.log(`${checks.length} PWA checks passed; offline browser restart and Chromium installability eligibility verified.`);
 })().catch(async e=>{console.error(e);await browser?.close();process.exit(1)});
 

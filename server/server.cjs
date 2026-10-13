@@ -6,30 +6,44 @@ const path=require('node:path');
 const crypto=require('node:crypto');
 const {validateDataset}=require('../build/core/core.js');
 const {liveSeed}=require('../build/core/data.js');
+const {parseInput}=require('../scripts/import-community.cjs');
+const {MAX_COMMUNITY_BYTES,reviewedCommunitySnapshot,emptyCommunitySnapshot,communityRepresentation,readCommunitySnapshot,writeCommunitySnapshot}=require('./community.cjs');
 const MAX_BYTES=2_000_000;
 const digest=v=>crypto.createHash('sha256').update(v).digest();
 const equalToken=(actual,expected)=>crypto.timingSafeEqual(digest(actual),digest(expected));
+// RFC 9110 If-None-Match uses weak comparison for GET/HEAD; If-Match remains an
+// exact strong validator for the explicit administrator compare-and-swap below.
+const matchesReadTag=(header,etag)=>typeof header==='string'&&header.split(',').some(value=>value.trim()==='*'||value.trim().replace(/^W\//,'')===etag);
 function publicView(dataset){
   // Drafts may contain unpublished organizer details; never return them publicly.
   return {...dataset,events:dataset.events.filter(e=>e.state!=='draft')};
 }
 async function createContentServer(options={}){
   const file=options.file||process.env.CONTENT_FILE||path.resolve(__dirname,'../data/published-campus.json');
+  const communityFile=options.communityFile||process.env.COMMUNITY_FILE||process.env.PUBLIC_SNAPSHOT||path.resolve(__dirname,'../data/published-community-yongin.json');
+  const pathKey=value=>process.platform==='win32'?path.resolve(value).toLowerCase():path.resolve(value);
+  if(pathKey(file)===pathKey(communityFile))throw new Error('Community and campus content require separate files');
   const adminToken=options.adminToken??process.env.ADMIN_TOKEN??'';
   if(adminToken&&adminToken.length<32)throw new Error('ADMIN_TOKEN must contain at least 32 characters.');
   let current;
   try{const raw=await fs.readFile(file,'utf8');if(Buffer.byteLength(raw)>MAX_BYTES)throw new Error('Oversized stored dataset');current=JSON.parse(raw);}
   catch(error){if(error.code==='ENOENT')current=structuredClone(liveSeed);else throw error;}
   const errors=validateDataset(current,'live');if(errors.length)throw new Error('Stored campus dataset invalid: '+errors.join('; '));
+  let community;
+  try{community=await readCommunitySnapshot(communityFile);}catch(error){if(error.code==='ENOENT')community=emptyCommunitySnapshot();else throw new Error('Stored community snapshot invalid: '+error.message);}
+  let communityWriteQueue=Promise.resolve();
+  let communityWire=communityRepresentation(community);
+  const communityTag=()=>communityWire.etag;
   let writeQueue=Promise.resolve();const limits=new Map();
   const tag=()=>`"campus-v${current.version}"`;
-  const json=(res,status,body,headers={})=>{res.writeHead(status,{'Content-Type':'application/json; charset=utf-8','X-Content-Type-Options':'nosniff','Cache-Control':'no-store',...headers});res.end(body===undefined?'':JSON.stringify(body));};
+  const encodedJson=(res,status,body,headers={})=>{res.writeHead(status,{'Content-Type':'application/json; charset=utf-8','X-Content-Type-Options':'nosniff','Cache-Control':'no-store',...headers});res.end(body===undefined?'':body);};
+  const json=(res,status,body,headers={})=>encodedJson(res,status,body===undefined?undefined:JSON.stringify(body),headers);
   const authenticate=req=>!!adminToken&&typeof req.headers.authorization==='string'&&equalToken(req.headers.authorization,`Bearer ${adminToken}`);
-  async function readBody(req){
+  async function readBody(req,maxBytes=MAX_BYTES,strictUtf8=false){
     if(!String(req.headers['content-type']||'').startsWith('application/json'))throw Object.assign(new Error('Use application/json'),{status:415});
     let length=0;const chunks=[];
-    for await(const chunk of req){length+=chunk.length;if(length>MAX_BYTES)throw Object.assign(new Error('Request too large'),{status:413});chunks.push(chunk);}
-    try{return JSON.parse(Buffer.concat(chunks).toString('utf8'));}catch{throw Object.assign(new Error('Invalid JSON'),{status:400});}
+    for await(const chunk of req){length+=chunk.length;if(length>maxBytes)throw Object.assign(new Error('Request too large'),{status:413});chunks.push(chunk);}
+    try{return strictUtf8?parseInput(Buffer.concat(chunks)):JSON.parse(Buffer.concat(chunks).toString('utf8'));}catch{throw Object.assign(new Error('Invalid JSON or UTF-8'),{status:400});}
   }
   const server=http.createServer(async(req,res)=>{
     try{
@@ -38,6 +52,37 @@ async function createContentServer(options={}){
       if(++limit.count>240)return json(res,429,{error:'Too many requests'},{'Retry-After':'60'});
       const url=new URL(req.url||'/','http://localhost');
       if(req.method==='GET'&&url.pathname==='/health')return json(res,200,{ok:true,readOnly:!adminToken});
+      if(url.pathname==='/v1/community/yongin'){
+        const headers={'Access-Control-Allow-Origin':'*','Access-Control-Expose-Headers':'ETag','Cache-Control':'public, no-cache','ETag':communityTag()};
+        if(req.method==='OPTIONS'){
+          res.writeHead(204,{...headers,'Access-Control-Allow-Methods':'GET, HEAD, OPTIONS','Access-Control-Allow-Headers':'If-None-Match'});return res.end();
+        }
+        if(!['GET','HEAD'].includes(req.method))return json(res,405,{error:'Method not allowed'},{'Allow':'GET, HEAD, OPTIONS'});
+        if(matchesReadTag(req.headers['if-none-match'],communityTag()))return json(res,304,undefined,headers);
+        // Do not filter by today's date here: clients apply KST validity, while
+        // the immutable revision and ETag continue to identify the whole snapshot.
+        return encodedJson(res,200,req.method==='HEAD'?undefined:communityWire.json,headers);
+      }
+      if(url.pathname==='/v1/admin/community/yongin'){
+        if(Object.hasOwn(req.headers,'origin'))return json(res,403,{error:'Browser-origin administration is disabled'});
+        if(!authenticate(req))return json(res,401,{error:'Authorized administrator required'},{'WWW-Authenticate':'Bearer'});
+        if(req.method==='GET')return encodedJson(res,200,communityWire.json,{'ETag':communityTag()});
+        if(req.method!=='PUT')return json(res,405,{error:'Method not allowed'},{'Allow':'GET, PUT'});
+        const input=await readBody(req,MAX_COMMUNITY_BYTES,true);
+        let candidate;
+        try{candidate=reviewedCommunitySnapshot(input);}catch(error){return json(res,422,{error:'Community snapshot validation failed',details:[error.message]});}
+        const updateCommunity=async()=>{
+          if(req.headers['if-match']!==communityTag())return json(res,412,{error:'Version changed. Read current snapshot before retrying.'});
+          if(candidate.version!==community.version+1)return json(res,409,{error:'New version must be exactly current version + 1'});
+          if(Date.parse(candidate.updatedAt)<Date.parse(community.updatedAt))return json(res,422,{error:'updatedAt cannot move backwards'});
+          const encoded=await writeCommunitySnapshot(communityFile,candidate);
+          community=candidate;
+          communityWire=communityRepresentation(community);
+          options.onAudit?.({action:'community-publish',campusId:'yongin',version:community.version,at:new Date().toISOString(),sha256:digest(encoded).toString('hex')});
+          return json(res,200,{ok:true,version:community.version},{'ETag':communityTag()});
+        };
+        communityWriteQueue=communityWriteQueue.then(updateCommunity,updateCommunity);await communityWriteQueue;return;
+      }
       if(url.pathname==='/v1/content'&&req.method==='OPTIONS'){
         res.writeHead(204,{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Methods':'GET, HEAD, OPTIONS','Access-Control-Allow-Headers':'If-None-Match'});return res.end();
       }

@@ -143,7 +143,8 @@ test('reference-map building lookup preserves the dormitory name conflict', () =
   const answer = k.answerQuestion('Where is Y32?');
   assert.deepEqual(answer.placeCodes, ['Y32']);
   assert.equal(answer.status, 'limited');
-  assert.match(answer.answer, /Confirm the current dormitory name/);
+  assert.match(answer.answer, /Dormitory names differ between sources/);
+  assert.match(answer.answer, /Confirm your assigned residence/);
   assert.ok(answer.citations.includes('user-campus-reference'));
 });
 test('English and Korean coffee questions use the same official venue records', () => {
@@ -151,7 +152,8 @@ test('English and Korean coffee questions use the same official venue records', 
   const ko = k.answerQuestion('커피 어디에서 사요?', 'ko');
   assert.deepEqual(en.placeCodes, ko.placeCodes);
   assert.ok(en.citations.includes('mju-welfare'));
-  assert.match(ko.answer, /미확인/);
+  assert.match(ko.answer, /CAFEING/);
+  assert.match(ko.answer, /운영 시간과 가격을 확인/);
   assert.equal(k.answerQuestion('Where are cafes?').status, 'supported');
 });
 test('coffee queries with building codes do not invent a cafe in that building', () => {

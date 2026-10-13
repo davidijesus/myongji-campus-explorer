@@ -15,7 +15,7 @@ test('every modeled structure has a visual reference record, including evidence 
 });
 test('close-up claims require corresponding reviewed evidence, not just a directory entry',()=>{
  for(const [id,ref] of Object.entries(VISUAL_REFERENCES)){
-  if(ref.coverage==='closeup-photo')assert.ok(ref.sources.some(s=>s.reviewed&&['official-photo','architect-photo'].includes(s.kind)),id);
+  if(ref.coverage==='closeup-photo')assert.ok(ref.sources.some(s=>s.reviewed&&['official-photo','architect-photo','primary-photo'].includes(s.kind)),id);
   if(ref.coverage==='video-frame')assert.ok(ref.sources.some(s=>s.reviewed&&s.kind==='official-video'&&s.frameTime),id);
   for(const s of ref.sources){const url=new URL(s.url);assert.equal(url.protocol,'https:',id);assert.equal(url.username,'');assert.equal(url.password,'');}
  }

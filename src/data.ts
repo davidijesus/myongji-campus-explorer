@@ -8,7 +8,7 @@ export const OFFICIAL_EVIDENCE: Evidence = { status: 'verified', sourceUrl: SOUR
 export const liveSeed: Dataset = {
     schemaVersion: 1, id: 'mju-yongin-live', mode: 'live', version: 2, updatedAt: '2026-09-29T14:00:00Z',
     campus: { id: CAMPUS_ID, name: tr('Myongji University · Natural Science Campus', '명지대학교 자연캠퍼스'), address: tr('116 Myongji-ro, Cheoin-gu, Yongin-si, Gyeonggi-do, 17058, Korea', '경기도 용인시 처인구 명지로 116 (17058)'), evidence: OFFICIAL_EVIDENCE, origin: null, boundary: null, geometryEvidence: UNKNOWN_EVIDENCE },
-    places: [{ id: 'mju-yongin-campus', name: tr('Natural Science Campus', '자연캠퍼스'), aliases: ['Myongji Yongin', '명지대학교 자연캠퍼스', 'Yongin campus', '용인'], category: 'services', description: tr('The official campus address is available. A verified entrance survey and pedestrian network are still needed before in-app campus navigation can be enabled.', '공식 캠퍼스 주소를 확인할 수 있습니다. 앱 내 길 안내에는 출입구와 보행로의 검증된 현장 조사가 필요합니다.'), code: null, point: null, evidence: OFFICIAL_EVIDENCE, geometryEvidence: UNKNOWN_EVIDENCE, buildingId: null, entranceIds: [], photo: null }],
+    places: [{ id: 'mju-yongin-campus', name: tr('Natural Science Campus', '자연캠퍼스'), aliases: ['Myongji Yongin', '명지대학교 자연캠퍼스', 'Yongin campus', '용인'], category: 'services', description: { en: '116 Myongji-ro, Cheoin-gu, Yongin.', ko: '용인시 처인구 명지로 116.', zh: '龙仁市处仁区明知路116号。' }, code: null, point: null, evidence: OFFICIAL_EVIDENCE, geometryEvidence: UNKNOWN_EVIDENCE, buildingId: null, entranceIds: [], photo: null }],
     buildings: [], entrances: [], nodes: [], edges: [], food: [], events: [], rooms: []
 };
 liveSeed.places.push(...createReferencePlaces());

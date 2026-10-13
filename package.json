@@ -1,6 +1,6 @@
 {
   "name": "myongji-campus-explorer",
-  "version": "0.5.0",
+  "version": "0.6.1",
   "private": true,
   "description": "Independent student campus guide with sourced buildings, bus timetables and a local cited assistant",
   "scripts": {
@@ -14,7 +14,9 @@
     "build:pwa": "npm run build && node scripts/build-pwa.cjs",
     "preview:pwa": "node scripts/serve-pwa.cjs",
     "test:pwa": "node tests/pwa-browser.cjs",
-    "test:campuses": "node tests/browser-campuses.cjs"
+    "test:campuses": "node tests/browser-campuses.cjs",
+    "test:installation": "node tests/mobile-installation.cjs",
+    "test:location": "node tests/location-browser.cjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0",

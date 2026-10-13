@@ -8,6 +8,30 @@ export const SEOUL_OVERVIEW_URL = 'https://www.mju.ac.kr/bbs/record/359/168757/d
 export const SEOUL_FRONT_PHOTO_URL = 'https://gsca.mju.ac.kr/CrossEditor/binary/images/000355/20251128163849970_107N73HV.png';
 export const SEOUL_CODES_URL = 'https://www.mju.ac.kr/bbs/ice1/1157/156902/download.do';
 export const SEOUL_REFERENCE_CHECKED = '2026-10-01T00:00:00+09:00';
+export const SEOUL_CONTENT_CHECKED = '2026-10-06';
+
+/** Content verification is separate from the unchanged map-marker review. */
+export const SEOUL_BUILDING_SOURCES = [
+    {id:'seoul-college-offices',url:'https://www.mju.ac.kr/mjukr/274/subview.do',title:tr('Academic administration offices','통합교학팀','教务办公室')},
+    {id:'seoul-student-affairs',url:'https://www.mju.ac.kr/mjukr/202/subview.do',title:tr('Student support and counseling','학생지원 및 상담','学生支援与咨询')},
+    {id:'seoul-health-center',url:'https://www.mju.ac.kr/mjukr/3132/subview.do',title:tr('Health Center','보건의료센터','保健医疗中心')},
+    {id:'seoul-international-affairs',url:'https://www.mju.ac.kr/mjukr/5217/subview.do',title:tr('International Affairs','국제교류처','国际交流处')},
+    {id:'seoul-residence',url:'https://www.mju.ac.kr/mjukr/7696/subview.do',title:tr('Residence halls','생활관 안내','宿舍介绍')},
+    {id:'seoul-facility-locations',url:'https://ice1.mju.ac.kr/ice1/7617/subview.do',title:tr('Student facility locations','학생편의시설','学生设施位置')},
+    {id:'seoul-library-introduction',url:'https://www.mju.ac.kr/bbs/mjukr/167/199623/artclView.do',title:tr('Bangmok library introduction','방목학술정보관 소개','Bangmok图书馆介绍')},
+    {id:'seoul-mcc-facilities',url:'https://www.mju.ac.kr/mjukr/9418/subview.do',title:tr('MCC facilities','MCC 시설 소개','MCC设施介绍')},
+    {id:'seoul-graduate-office',url:'https://gse.mju.ac.kr/gse/1965/subview.do',title:tr('Graduate administration location','대학원교학팀 위치','研究生院教务组位置')},
+];
+export const SEOUL_BUILDING_CONTENT:Record<string,{description:Localized;sourceIds:string[]}> = {
+    S1:{description:tr('Student Support is on floor 2. Social Sciences administration is on floor 6; Humanities administration is on floor 7.','학생지원팀은 2층에 있습니다. 사회과학대학교학팀은 6층, 인문대학교학팀은 7층에 있습니다.','学生支援组位于2楼，社会科学学院教务组位于6楼，人文学院教务组位于7楼。'),sourceIds:['seoul-student-affairs','seoul-college-offices']},
+    S2:{description:tr('The student cafeteria and café are on floor 3.','학생식당과 카페는 3층에 있습니다.','学生食堂和咖啡厅位于3楼。'),sourceIds:['seoul-facility-locations','seoul-breakfast-2026']},
+    S3:{description:tr('The College of Future Convergence academic administration team is on floor 2.','미래융합대학교학팀은 2층에 있습니다.','未来融合学院教务组位于2楼。'),sourceIds:['seoul-college-offices']},
+    S4:{description:tr('The Health Center, Disability Support Center and Student Counseling Center are on floor 1.','보건의료센터, 장애학생지원센터, 학생상담센터는 1층에 있습니다.','保健医疗中心、残障学生支援中心和学生咨询中心位于1楼。'),sourceIds:['seoul-health-center','seoul-student-affairs']},
+    S5:{description:tr('International Exchange Support is on floor 4. The bank and convenience store are on floor 1.','국제교류지원팀은 4층에 있습니다. 은행과 편의점은 1층에 있습니다.','国际交流支援组位于4楼，银行和便利店位于1楼。'),sourceIds:['seoul-international-affairs','seoul-welfare']},
+    S8:{description:tr('Student housing with shared laundry, lounges and seminar rooms.','세탁실, 휴게실, 세미나실을 갖춘 학생 생활관입니다.','学生宿舍，设有公共洗衣房、休息室和研讨室。'),sourceIds:['seoul-residence']},
+    S9:{description:tr('The Humanities Campus library.','인문캠퍼스 도서관입니다.','人文校区图书馆。'),sourceIds:['seoul-library-introduction']},
+    S10:{description:tr('MCC combines Veritas Hall classrooms and offices with Koinonia Hall shops and services. Business academic administration is on floor 4; graduate administration is in Veritas Hall, floor 3, room 10350.','MCC는 강의실과 사무실이 있는 베리타스홀, 상업·복지시설이 있는 코이노니아홀로 구성됩니다. 경영대학교학팀은 4층, 대학원교학팀은 베리타스홀 3층 10350호에 있습니다.','MCC由设有教室和办公室的Veritas Hall及设有商店和服务设施的Koinonia Hall组成。经营学院教务组位于4楼，研究生院教务组位于Veritas Hall 3楼10350室。'),sourceIds:['seoul-mcc-facilities','seoul-college-offices','seoul-graduate-office']},
+};
 
 /** Official-directory POIs projected to a local scene, never surveyed centroids/entrances. */
 export const SEOUL_REFERENCE_PROJECTION = {
@@ -26,9 +50,9 @@ export function seoulMarkerToReferencePoint(lat:number,lon:number):[number,numbe
     return [(-Math.sin(lambda)*dx+Math.cos(lambda)*dy)*s,-(-Math.sin(phi)*Math.cos(lambda)*dx-Math.sin(phi)*Math.sin(lambda)*dy+Math.cos(phi)*dz)*s];
 }
 const geometryNote=tr(
-    'Official directory markers supply relative placement only. Building shapes, sizes, heights and landscape are schematic interpretations of the university’s illustrated overview and campus photograph, not measured footprints or current surveyed geometry. No entrance, route or floor assignment is verified.',
-    '상대 위치는 공식 목록 표식을 사용합니다. 건물 형태·크기·높이와 조경은 대학의 그림 안내도와 사진을 참고한 개략 표현이며, 실측 외곽이나 현재 측량 자료가 아닙니다. 출입구·경로·층 배정은 확인되지 않았습니다.',
-    '相对位置来自官方目录标记。建筑形状、尺寸、高度及景观参考大学示意图和照片作概略表达，并非实测轮廓或当前测绘数据。入口、路线和楼层分配均未核实。');
+    'Map positions and building shapes are approximate. Check signs for entrances and step-free routes.',
+    '지도 위치와 건물 형태는 대략적입니다. 출입구와 무단차 경로는 현장 안내를 확인하세요.',
+    '地图位置和建筑形状为近似值。入口及无台阶通道请以现场标识为准。');
 const geometryEvidence:Evidence={status:'unverified',sourceUrl:SEOUL_OVERVIEW_URL,checkedAt:null,note:geometryNote};
 export const SEOUL_CAMPUS:Dataset['campus']={
     id:'mju-seoul-humanities',
@@ -71,9 +95,9 @@ export function createSeoulReferencePlaces():Place[] {
     return SEOUL_REFERENCE_FEATURES.map(f=>({
         id:f.id,name:f.name,code:f.code,category:f.category,
         aliases:[f.name.en,f.name.ko,f.name.zh||'',...(f.code?[f.code,f.code.slice(1)]:[]),...(f.code==='S1'?['Main Building','본관']:[]),...(f.code==='S4'?['경상관']:[]),...(f.code==='S9'?['library','도서관','图书馆']:[]),...(f.code==='S10'?['MCC','베리타스홀','코이노니아홀','Veritas Hall','Koinonia Hall']:[])],
-        description:f.note||geometryNote,point:null,buildingId:null,entranceIds:[],photo:null,
-        evidence:{status:'verified',sourceUrl:SEOUL_DIRECTORY_URL,checkedAt:SEOUL_REFERENCE_CHECKED,note:tr('Name checked against the official Seoul campus directory. Building numbers follow the university’s Seoul code convention. English and Chinese names are descriptive translations; no personal timetable, room or entrance is verified.','이름은 공식 인문캠퍼스 목록을 확인했습니다. 건물 번호는 대학의 서울 코드 표기법을 따릅니다. 영어와 중국어는 설명을 위한 번역이며 개인 시간표·강의실·출입구는 확인하지 않았습니다.','名称已查对官方人文校区目录，楼号沿用大学的首尔校区编号规则。英文和中文名称为说明性翻译；未核实个人课表、教室或入口。')},
-        geometryEvidence:{...geometryEvidence,note:f.note||geometryNote},
+        description:(f.code&&SEOUL_BUILDING_CONTENT[f.code]?.description)||f.name,point:null,buildingId:null,entranceIds:[],photo:null,
+        evidence:{status:'verified',sourceUrl:(f.code&&SEOUL_BUILDING_SOURCES.find(s=>s.id===SEOUL_BUILDING_CONTENT[f.code!]?.sourceIds[0])?.url)||SEOUL_DIRECTORY_URL,checkedAt:f.code&&SEOUL_BUILDING_CONTENT[f.code]?`${SEOUL_CONTENT_CHECKED}T00:00:00+09:00`:SEOUL_REFERENCE_CHECKED,note:tr('University building and facility information.','대학 건물 및 시설 안내.','大学建筑与设施信息。')},
+        geometryEvidence,
     }));
 }
 export const getSeoulPlaces=createSeoulReferencePlaces;
