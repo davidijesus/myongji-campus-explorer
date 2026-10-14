@@ -1,0 +1,28 @@
+{
+  "title": "Blue campus architectural illustration",
+  "createdAt": "2026-10-14",
+  "authorship": "Original AI-generated illustration commissioned for Myongji Campus Explorer; not an official university identity asset.",
+  "creationMethod": "image_gen.imagegen, text-only generation. No reference image or photograph was supplied to the generation service. The generated PNG is preserved unchanged as icon-master.png.",
+  "designBrief": "Square navy launcher icon showing an illustrative three-quarter isometric academic hall: a horizontal white elevated bar, narrow vertical windows, a dark blue glazed end, open pilotis, a lower block and broad forecourt stair. Muted blue plinth, restrained depth, no text, official seal, university signature, location pin, green or gold.",
+  "architecturalBasis": {
+    "reference": "Creative Arts Hall (Y2), Yongin campus",
+    "reviewedProjectRecords": ["src/visual-references.ts", "src/scene.ts", "docs/VISUAL_REFERENCE_AUDIT.md"],
+    "publicSourcesRecordedByProject": [
+      "https://www.mju.ac.kr/mjukr/160/subview.do",
+      "https://www.gansam.com/works/work.php?code=works&idx=2527"
+    ],
+    "limitation": "A simplified original icon inspired by documented architectural features, not a measured reconstruction or a photograph of the building."
+  },
+  "master": {
+    "file": "icon-master.png",
+    "width": 1254,
+    "height": 1254,
+    "sha256": "466bd3b9d35900ab3b0aff283251b350a82ed1fbf6727b76aaa1d795994821dc"
+  },
+  "packaging": {
+    "script": "scripts/generate-pwa-icons.cjs",
+    "pillowVersion": "10.4.0",
+    "method": "Pillow LANCZOS proportional resize; PNG optimization; no recoloring, retouching, cropping or compositing.",
+    "sizes": [180, 192, 512]
+  }
+}

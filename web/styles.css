@@ -112,7 +112,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,ca
 .selector-row{display:flex;align-items:center;gap:12px;min-width:0}
 .selector-control{display:flex;flex-direction:column;gap:2px;min-width:0;font-size:calc(10px * var(--font-scale));color:var(--body-secondary);font-weight:650;letter-spacing:.02em}
 .selector-control select{min-height:44px;max-width:260px;width:100%;margin:0;border:1px solid var(--border-control);border-radius:10px;padding:7px 26px 7px 10px;background:#fff;color:var(--mju-navy);font:inherit;font-size:calc(13px * var(--font-scale));letter-spacing:0;cursor:pointer;text-overflow:ellipsis}
-.language-control select{width:132px}.header-tools{min-width:0}.transport-empty .source-link{margin-top:12px}
+.language-control select{width:132px}.header-tools{min-width:0}.transport-empty>.source-actions{justify-content:center;margin-top:12px}
 @media(max-width:760px){
  :root{--header-height:130px}
  .app-header{display:grid;grid-template-columns:minmax(0,1fr) 44px;grid-template-rows:48px 66px;gap:0 8px;padding:5px 14px 9px}
@@ -213,3 +213,10 @@ html[data-large-text='true'] .language-control select{width:172px}
 /* Display the supplied university signature intact, with external breathing room. */
 .about-signature{display:block;width:237px;max-width:calc(100% - 24px);height:auto;object-fit:contain;background:var(--surface);margin:12px}
 .about-signature img{display:block;width:100%;height:auto;object-fit:contain}
+
+/* Keep related actions distinct, aligned and readable when labels wrap. */
+.dialog-actions,.source-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;min-width:0;max-width:100%}
+.dialog-actions{margin-top:12px}
+.source-actions{margin-top:8px}
+.dialog-actions>button,.source-actions>button{min-width:0;max-width:100%;min-height:44px;white-space:normal;overflow-wrap:anywhere;text-align:left;line-height:1.5}
+.dialog-actions>button>.icon,.source-actions>button>.icon{flex-shrink:0}

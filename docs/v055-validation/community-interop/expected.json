@@ -1,0 +1,17 @@
+{
+  "synthetic": true,
+  "validationTime": 1791115200000,
+  "version": 2,
+  "etag": "\"community-yongin-v2-8d8c556af34e12fc917a2abf2da8a70f85b9f3b9fee2f1e9427a713a5111707e\"",
+  "canonicalUtf8Bytes": 1186,
+  "coverage": [
+    "official unknown publication with observation",
+    "Instagram known publication",
+    "KO/ZH",
+    "emoji",
+    "U+2028/U+2029",
+    "curly apostrophe",
+    "quote/backslash",
+    "offset timestamps"
+  ]
+}
