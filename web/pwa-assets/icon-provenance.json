@@ -6,7 +6,11 @@
   "designBrief": "Square navy launcher icon showing an illustrative three-quarter isometric academic hall: a horizontal white elevated bar, narrow vertical windows, a dark blue glazed end, open pilotis, a lower block and broad forecourt stair. Muted blue plinth, restrained depth, no text, official seal, university signature, location pin, green or gold.",
   "architecturalBasis": {
     "reference": "Creative Arts Hall (Y2), Yongin campus",
-    "reviewedProjectRecords": ["src/visual-references.ts", "src/scene.ts", "docs/VISUAL_REFERENCE_AUDIT.md"],
+    "reviewedProjectRecords": [
+      "src/visual-references.ts",
+      "src/scene.ts",
+      "docs/VISUAL_REFERENCE_AUDIT.md"
+    ],
     "publicSourcesRecordedByProject": [
       "https://www.mju.ac.kr/mjukr/160/subview.do",
       "https://www.gansam.com/works/work.php?code=works&idx=2527"
@@ -22,7 +26,39 @@
   "packaging": {
     "script": "scripts/generate-pwa-icons.cjs",
     "pillowVersion": "10.4.0",
-    "method": "Pillow LANCZOS proportional resize; PNG optimization; no recoloring, retouching, cropping or compositing.",
-    "sizes": [180, 192, 512]
+    "method": "Apply a centered circular alpha mask at 98 percent diameter with 4x supersampling and LANCZOS antialiasing, then LANCZOS resize and PNG optimization. Original master and RGB pixels at the mask stage remain unchanged; no artwork recreation, recoloring or retouching.",
+    "circularTreatmentVersion": "0.6.3",
+    "sizes": [
+      180,
+      192,
+      512,
+      1024
+    ],
+    "outputs": [
+      {
+        "file": "web/pwa-assets/icon-180.png",
+        "size": 180,
+        "mode": "RGBA",
+        "sha256": "172ab08eb2674c9b0940f07ec2e8e2da3b8f9b53efe87f627ee0e5861a3cc7a1"
+      },
+      {
+        "file": "web/pwa-assets/icon-192.png",
+        "size": 192,
+        "mode": "RGBA",
+        "sha256": "40006badd05f9f6621adfebeeef75fcd00929535212af8ae5505f4c937d73197"
+      },
+      {
+        "file": "web/pwa-assets/icon-512.png",
+        "size": 512,
+        "mode": "RGBA",
+        "sha256": "4b869965ce9f2b1f8c41f6edd8ba2706a7cac9bc248b37303d63e813a3260af2"
+      },
+      {
+        "file": "mobile/assets/icon.png",
+        "size": 1024,
+        "mode": "RGBA",
+        "sha256": "c2b31d621ea838993de48d50edc65ed3fbe00c69af78c02787d78cfc343d75a1"
+      }
+    ]
   }
 }

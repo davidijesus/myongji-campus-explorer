@@ -30,8 +30,8 @@ android {
         applicationId publisherId ?: 'dev.student.myongjiexplorer.standalone'
         minSdk 24
         targetSdk 36
-        versionCode 14
-        versionName '0.6.2'
+        versionCode 15
+        versionName '0.6.3'
     }
     sourceSets.main {
         java.srcDirs = ["$buildDir/prepared/java"]
@@ -59,13 +59,13 @@ tasks.register('prepareOfflineContent') {
     doLast {
         def page = file('../preview.html')
         def hash = java.security.MessageDigest.getInstance('SHA-256').digest(page.bytes).encodeHex().toString()
-        if (hash != 'e3b968f148d76971dd474b3ba885420e2806cb9f28b28f3c74388858f0981455') throw new GradleException('Review the changed HTML before updating its pinned hash.')
+        if (hash != '0c17dda6e51204a9ac77a82f1760f8269c7dad50e57fa888bad48d0d8f8ea1cf') throw new GradleException('Review the changed HTML before updating its pinned hash.')
         copy { from 'src'; into "$buildDir/prepared/java"; exclude '**/CommunityEndpoint.java' }
         def endpointSource = file("$buildDir/prepared/java/dev/student/myongjiexplorer/standalone/CommunityEndpoint.java")
         endpointSource.parentFile.mkdirs()
         endpointSource.setText('package dev.student.myongjiexplorer.standalone; public final class CommunityEndpoint { public static final String URL = "' + communityEndpoint + '"; private CommunityEndpoint() {} }', 'UTF-8')
         copy { from page; into "$buildDir/prepared/assets"; rename 'preview.html', 'index.html' }
-        copy { from '../mobile/assets/icon.png'; into "$buildDir/prepared/res/mipmap-nodpi"; rename 'icon.png', 'ic_launcher.png' }
+        copy { from '../mobile/assets/icon.png'; into "$buildDir/prepared/res/drawable-nodpi"; rename 'icon.png', 'ic_launcher_art.png' }
     }
 }
 tasks.named('preBuild').configure { dependsOn 'prepareOfflineContent' }

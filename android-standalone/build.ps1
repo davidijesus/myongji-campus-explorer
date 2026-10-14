@@ -23,7 +23,7 @@ if ($CommunityEndpoint) {
 $project = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 $work = [IO.Path]::GetFullPath((Join-Path $project '..'))
 if (!$BuildRoot) { $BuildRoot = Join-Path $work ('android-standalone-build\' + (Get-Date -Format 'yyyyMMdd-HHmmss')) }
-if (!$OutputApk) { $OutputApk = Join-Path $BuildRoot 'myongji-campus-explorer-v0.6.2-development.apk' }
+if (!$OutputApk) { $OutputApk = Join-Path $BuildRoot 'myongji-campus-explorer-v0.6.3-development.apk' }
 if (!$Keystore) { throw 'Pass the existing authorized development keystore explicitly. This build never creates keys.' }
 $BuildRoot = [IO.Path]::GetFullPath($BuildRoot)
 $OutputApk = [IO.Path]::GetFullPath($OutputApk)
@@ -35,9 +35,9 @@ $androidJar = Join-Path $Sdk 'platforms\android-36\android.jar'
 foreach ($tool in @("$tools\aapt.exe","$tools\aapt2.exe","$tools\d8.bat","$tools\zipalign.exe","$tools\apksigner.bat","$Jdk\bin\javac.exe","$Jdk\bin\java.exe",$androidJar)) {
     if (!(Test-Path -LiteralPath $tool)) { throw "Missing build tool: $tool" }
 }
-$expectedHash = 'e3b968f148d76971dd474b3ba885420e2806cb9f28b28f3c74388858f0981455'
+$expectedHash = '0c17dda6e51204a9ac77a82f1760f8269c7dad50e57fa888bad48d0d8f8ea1cf'
 $html = Join-Path $project 'preview.html'
-if ((Get-FileHash -LiteralPath $html -Algorithm SHA256).Hash.ToLowerInvariant() -ne $expectedHash) { throw 'The HTML differs from the reviewed v0.6.2 bundle. Review before changing expectedHash.' }
+if ((Get-FileHash -LiteralPath $html -Algorithm SHA256).Hash.ToLowerInvariant() -ne $expectedHash) { throw 'The HTML differs from the reviewed v0.6.3 bundle. Review before changing expectedHash.' }
 $previousJavaHome = $env:JAVA_HOME
 $env:JAVA_HOME = $Jdk
 function Run([string]$Executable, [string[]]$Arguments) {
@@ -48,9 +48,10 @@ try {
     $classes = Join-Path $BuildRoot 'classes'; $dex = Join-Path $BuildRoot 'dex'; $assets = Join-Path $BuildRoot 'assets'; $resources = Join-Path $BuildRoot 'res'
     foreach ($directory in @($classes,$dex,$assets,$resources,(Split-Path $OutputApk))) { New-Item -ItemType Directory -Path $directory -Force | Out-Null }
     Copy-Item -LiteralPath $html -Destination (Join-Path $assets 'index.html')
-    Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'res\values') -Destination $resources -Recurse
-    New-Item -ItemType Directory -Path (Join-Path $resources 'mipmap-nodpi') -Force | Out-Null
-    Copy-Item -LiteralPath (Join-Path $project 'mobile\assets\icon.png') -Destination (Join-Path $resources 'mipmap-nodpi\ic_launcher.png')
+    # Package the complete resource graph, including API26 adaptive icon XML.
+    Get-ChildItem -LiteralPath (Join-Path $PSScriptRoot 'res') | Copy-Item -Destination $resources -Recurse -Force
+    New-Item -ItemType Directory -Path (Join-Path $resources 'drawable-nodpi') -Force | Out-Null
+    Copy-Item -LiteralPath (Join-Path $project 'mobile\assets\icon.png') -Destination (Join-Path $resources 'drawable-nodpi\ic_launcher_art.png')
     $generatedSources = Join-Path $BuildRoot 'generated-sources'
     New-Item -ItemType Directory -Path $generatedSources -Force | Out-Null
     $endpointSource = Join-Path $generatedSources 'CommunityEndpoint.java'

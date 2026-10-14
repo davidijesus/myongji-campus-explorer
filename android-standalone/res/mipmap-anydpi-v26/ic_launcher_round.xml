@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Explicit non-adaptive round resource prevents AAPT2 from auto-generating
+     an adaptive alias to ic_launcher on API26. Keep the approved PNG alpha. -->
+<bitmap xmlns:android="http://schemas.android.com/apk/res/android"
+    android:src="@drawable/ic_launcher_art"
+    android:gravity="fill" android:filter="true" />

@@ -2,9 +2,9 @@
 // Versioned offline shell only. API responses and external sources are never cached here.
 // Updates follow the browser lifecycle: close all app windows to activate a waiting release.
 const prefix='myongji-shell-'+encodeURIComponent(new URL(self.registration.scope).pathname)+'-';
-const cacheName=prefix+"0.6.2-"+"6a8c803e51ddd37e";
+const cacheName=prefix+"0.6.3-"+"ba002ccb77495ad7";
 const local=name=>new URL(name,self.registration.scope).href;
-const digests=new Map(Object.entries({"index.html":"3066d7e0ddc22c9fb44e237066e3115581ad811df645ffedc9447e962725f6a2","manifest.webmanifest":"ee507caa0ccd83d7129a9f80ec5d28cafeb7b755952f9de57dd1dde580c67f3a","icon-180.png":"b0fe3c8db3a5f2d5ba5dccd862ccd63b30b2a8468e0836f98accbfe7e2fe6bff","icon-192.png":"da11e9309a4721ba1b3ca130c0599b62bd8471a28484ba8fd957562233715f8e","icon-512.png":"e57e5dce5419227bd39f46f7bca64352558e239bfb17f6f45d14e2e71dc9cf3a"}).map(([name,hash])=>[local(name),hash]));
+const digests=new Map(Object.entries({"index.html":"37a76202da4d3a0b147b39f5f194ec8f7aebed549dbb4bf67d3c0931a5def530","manifest.webmanifest":"ee507caa0ccd83d7129a9f80ec5d28cafeb7b755952f9de57dd1dde580c67f3a","icon-180.png":"172ab08eb2674c9b0940f07ec2e8e2da3b8f9b53efe87f627ee0e5861a3cc7a1","icon-192.png":"40006badd05f9f6621adfebeeef75fcd00929535212af8ae5505f4c937d73197","icon-512.png":"4b869965ce9f2b1f8c41f6edd8ba2706a7cac9bc248b37303d63e813a3260af2"}).map(([name,hash])=>[local(name),hash]));
 const pending=new Map();
 async function download(url){
  const response=await fetch(url,{cache:'no-cache'});

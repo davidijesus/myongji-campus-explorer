@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 21/108 on each side places the unmodified circular artwork within the
+     central 66dp safe zone of Android's 108dp adaptive layer. Percent insets
+     preserve that ratio when a launcher requests a different drawable size. -->
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:insetLeft="19.444444%"
+    android:insetTop="19.444444%"
+    android:insetRight="19.444444%"
+    android:insetBottom="19.444444%">
+    <bitmap android:src="@drawable/ic_launcher_art"
+        android:gravity="fill" android:filter="true" />
+</inset>

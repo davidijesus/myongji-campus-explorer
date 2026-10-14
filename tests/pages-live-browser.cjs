@@ -1,10 +1,11 @@
 'use strict';
 // Run only after the release owner confirms the public GitHub Pages deployment.
 // Headless desktop Chrome; no external links, geolocation, installation or source mutation.
+// A newly created profile tests a fresh installation and its offline restart, not an upgrade from an older release.
 const {chromium,request}=require('@playwright/test');
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'..');
-const out=path.resolve(process.env.MCE_TEST_OUTPUT||path.join(root,'build/design-062/live'));
+const out=path.resolve(process.env.MCE_TEST_OUTPUT||path.join(root,'build/design-063/live'));
 const publishedURL=new URL(process.env.MCE_PUBLISHED_URL||'https://davidijesus.github.io/myongji-campus-explorer/');
 const commit=process.env.MCE_DEPLOY_COMMIT||'',sourceCommit=process.env.MCE_DEPLOY_SOURCE_COMMIT||'',runURL=process.env.MCE_DEPLOY_RUN_URL||'';
 const expectedRoot=path.resolve(process.env.MCE_EXPECTED_PWA_DIR||path.join(root,'pwa'));
@@ -15,7 +16,9 @@ const cachedAssets=['index.html','manifest.webmanifest','icon-180.png','icon-192
 const sha=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');
 const expectedHashes=Object.fromEntries(assets.map(name=>[name,sha(fs.readFileSync(path.join(expectedRoot,name)))]));
 const expectedCache=`myongji-shell-${encodeURIComponent(publishedURL.pathname)}-${expectedVersion.version}-${expectedVersion.shellHash}`;
+const expectedWorkerURL=new URL('service-worker.js',publishedURL).href;
 const checks=[],errors=[],network=[],blockedRequests=[],responses=[],screenshots=[],offlineRequests=[],contexts=[];
+const workerSnapshots=[],offlineHTMLResponses=[];
 const offlineContexts=new WeakSet();
 let api,context,page,browserVersion,profile,failure,initialURLResponse,initialTLS;
 fs.mkdirSync(out,{recursive:true});
@@ -36,14 +39,29 @@ async function openProfile(directory,offline=false){
  });
  if(offline){await current.setOffline(true);offlineContexts.add(current);}
  context=current;page=await current.newPage();page.on('pageerror',error=>errors.push(error.message));
+ // Keep only this test tab; a restored tab must not retain an older controlling worker.
+ await Promise.all(current.pages().filter(existing=>existing!==page).map(existing=>existing.close()));
  return current;
 }
 async function workerReady(){
  await page.waitForSelector('.map-label',{state:'attached'});
- await page.waitForFunction(()=>navigator.serviceWorker.controller?.state==='activated',null,{timeout:30000});
- const registration=await bounded(page.evaluate(async()=>{const r=await navigator.serviceWorker.getRegistration();return {scope:r?.scope,active:r?.active?.state,waiting:r?.waiting?.state,updateViaCache:r?.updateViaCache,secure:isSecureContext};}),'registration');
- check('Active worker stays in the published project scope',registration.scope===publishedURL.href&&registration.active==='activated'&&registration.secure,registration);
+ let registration;
+ try{
+  await page.waitForFunction(async({scope,workerURL,cacheName})=>{
+   const r=await navigator.serviceWorker.getRegistration(scope),controller=navigator.serviceWorker.controller,names=await caches.keys();
+   return isSecureContext&&r?.scope===scope&&r.active?.state==='activated'&&r.active.scriptURL===workerURL&&controller===r.active&&controller.state==='activated'&&!r.installing&&!r.waiting&&names.length===1&&names[0]===cacheName;
+  },{scope:publishedURL.href,workerURL:expectedWorkerURL,cacheName:expectedCache},{timeout:30000,polling:200});
+ }finally{
+  registration=await bounded(page.evaluate(async()=>{const r=await navigator.serviceWorker.getRegistration(),controller=navigator.serviceWorker.controller;return {scope:r?.scope,active:r?.active?.state,activeScriptURL:r?.active?.scriptURL,installing:r?.installing?.state,waiting:r?.waiting?.state,controllerState:controller?.state,controllerScriptURL:controller?.scriptURL,controllerIsActive:!!controller&&controller===r?.active,cacheNames:await caches.keys(),updateViaCache:r?.updateViaCache,secure:isSecureContext};}),'registration');
+  workerSnapshots.push({url:page.url(),offlineMode:offlineContexts.has(context),...registration});
+ }
+ check('Fresh installation has the active scoped worker and expected release cache',registration.scope===publishedURL.href&&registration.active==='activated'&&registration.activeScriptURL===expectedWorkerURL&&registration.controllerIsActive&&registration.controllerState==='activated'&&!registration.installing&&!registration.waiting&&registration.cacheNames.length===1&&registration.cacheNames[0]===expectedCache&&registration.secure,registration);
  return registration;
+}
+async function verifyOfflineHTML(response,label){
+ const record={label,url:response.url(),status:response.status(),fromServiceWorker:response.fromServiceWorker(),sha256:sha(await bounded(response.body(),'offline HTML response'))};
+ offlineHTMLResponses.push(record);
+ check(`${label}: HTML bytes match the exact reviewed release`,record.status===200&&record.sha256===expectedHashes['index.html'],record);
 }
 async function help(){await page.locator('[data-action="about"]').click();await page.locator('#pwa-install-help summary').click();await page.waitForFunction(()=>document.querySelector('#pwa-install-help')?.dataset.state==='ready');}
 async function closeHelp(){await page.locator('[data-action="close-dialog"]').click();await settle();}
@@ -64,7 +82,7 @@ async function auditLayout(label){
  check('Source commit is identified separately from published artifact',/^[0-9a-f]{40}$/i.test(sourceCommit));
  check('Deployment CI run is identified',/^https:\/\/github\.com\/davidijesus\/myongji-campus-explorer\/actions\/runs\/\d+(?:\/.*)?$/.test(runURL));
  check('Public target is the approved HTTPS project URL',publishedURL.href==='https://davidijesus.github.io/myongji-campus-explorer/');
- check('Local reviewed release is the explicitly confirmed 0.6.2 candidate',expectedVersion.version==='0.6.2'&&/^[0-9a-f]{12}$/.test(approvedAppHash)&&/^[0-9a-f]{16}$/.test(approvedShellHash)&&expectedVersion.appHash===approvedAppHash&&expectedVersion.shellHash===approvedShellHash);
+ check('Local reviewed release is the explicitly confirmed 0.6.3 candidate',expectedVersion.version==='0.6.3'&&/^[0-9a-f]{12}$/.test(approvedAppHash)&&/^[0-9a-f]{16}$/.test(approvedShellHash)&&expectedVersion.appHash===approvedAppHash&&expectedVersion.shellHash===approvedShellHash);
  check('Expected publication HTML matches the frozen reviewed release',/^[0-9a-f]{64}$/.test(approvedIndexHash)&&expectedHashes['index.html']===approvedIndexHash);
  api=await request.newContext({ignoreHTTPSErrors:false,timeout:30000});
  for(const name of assets){
@@ -85,16 +103,17 @@ async function auditLayout(label){
   if(name.endsWith('.png'))check(`${name}: icon response is PNG`,/^image\/png(?:;|$)/i.test(headers['content-type']||''));
  }
  await api.dispose();api=null;
- const profileRoot=path.join(root,'build/test-tmp');fs.mkdirSync(profileRoot,{recursive:true});profile=fs.mkdtempSync(path.join(profileRoot,'pages-live-062-'));
+ const profileRoot=path.join(root,'build/test-tmp');fs.mkdirSync(profileRoot,{recursive:true});profile=fs.mkdtempSync(path.join(profileRoot,'pages-live-063-'));
  await openProfile(profile);
  const response=await page.goto(publishedURL.href);initialURLResponse={status:response.status(),url:response.url(),sha256:sha(await response.body()),headers:headerSummary(await response.allHeaders())};initialTLS=await response.securityDetails();
  check('Project directory serves the exact reviewed HTML over HTTPS',initialURLResponse.status===200&&initialURLResponse.url===publishedURL.href&&initialURLResponse.sha256===expectedHashes['index.html'],initialURLResponse);
  check('Browser negotiated TLS for the public page',!!initialTLS?.protocol,initialTLS);
  await workerReady();
+ check('Header omits the removed Campus Explorer subtitle',await page.locator('.app-header').evaluate(header=>!header.querySelector('.brand-caption')&&!/Campus\s+Explorer/i.test(header.textContent||'')));
  const metadata=await page.evaluate(async()=>({manifestURL:document.querySelector('link[rel="manifest"]').href,manifest:await(await fetch(document.querySelector('link[rel="manifest"]').href)).json(),metaCSP:document.querySelector('meta[http-equiv="Content-Security-Policy"]')?.content,installEvents:window.__liveQA.installEvents}));
  check('Manifest id, scope and start URL stay inside project',metadata.manifestURL===new URL('manifest.webmanifest',publishedURL).href&&['id','scope','start_url'].every(key=>new URL(metadata.manifest[key],metadata.manifestURL).href===publishedURL.href));
  check('Published page retains its embedded worker policy',metadata.metaCSP?.includes("worker-src 'self'")&&metadata.metaCSP?.includes("manifest-src 'self'"));
- const cache=await bounded(page.evaluate(async expected=>{const names=await caches.keys();const store=await caches.open(expected),urls=await store.keys(),files=[];for(const request of urls){const response=await store.match(request);files.push({url:request.url,sha256:Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',await response.arrayBuffer())),b=>b.toString(16).padStart(2,'0')).join('')});}return {names,files};},expectedCache),'verify cached shell',20000);
+ const cache=await bounded(page.evaluate(async expected=>{const names=await caches.keys(),files=[];if(!names.includes(expected))return {names,files,missingExpectedCache:true};const store=await caches.open(expected),urls=await store.keys();for(const request of urls){const response=await store.match(request);files.push({url:request.url,sha256:Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',await response.arrayBuffer())),b=>b.toString(16).padStart(2,'0')).join('')});}return {names,files};},expectedCache),'verify cached shell',20000);
  check('Worker cache contains exactly the five reviewed local assets',cache.names.length===1&&cache.names[0]===expectedCache&&cache.files.length===cachedAssets.length&&cachedAssets.every(name=>cache.files.some(file=>file.url===new URL(name,publishedURL).href&&file.sha256===expectedHashes[name])),cache);
  for(const campus of ['yongin','seoul'])for(const language of ['en','ko','zh']){
   await page.locator('#campus-select').selectOption(campus);await page.locator('#language-select').selectOption(language);await tab('explore');
@@ -130,6 +149,7 @@ async function auditLayout(label){
  check('No browser geolocation provider was used',await page.evaluate(()=>window.__liveQA.gpsCalls===0));
  await context.setOffline(true);offlineContexts.add(context);const offlineNavigation=await page.goto(new URL('index.html?launch=offline-check',publishedURL).href);await workerReady();
  check('Offline direct navigation is served by the service worker',offlineNavigation.fromServiceWorker());
+ await verifyOfflineHTML(offlineNavigation,'Offline direct navigation');
  check('Offline direct navigation retains campus, language and favorite',await page.evaluate(()=>{const state=MCE.getState();return state.campusId==='seoul'&&state.language==='zh'&&state.favorites.includes('mju-y30');}));
  await tab('chat');await page.locator('#chat-input').fill('Where is S9?');await page.locator('#chat-form button[type="submit"]').click();await settle();
  check('Offline chat produces its map action',await page.locator('.answer-message').last().locator('[data-chat-map][data-place="mju-s9"]').count()===1);
@@ -137,10 +157,11 @@ async function auditLayout(label){
  await context.close();context=null;
  await openProfile(profile,true);const offlineReopen=await page.goto(publishedURL.href);await workerReady();
  check('Offline process restart is served by the service worker',offlineReopen.fromServiceWorker());
+ await verifyOfflineHTML(offlineReopen,'Offline process restart');
  check('New offline browser process reopens cached project with preferences',await page.evaluate(()=>MCE.getState().campusId==='seoul'&&MCE.getState().language==='zh'&&MCE.getState().favorites.includes('mju-y30'))&&await page.locator('.place-card').count()===11);
  check('Transient chat does not persist into reopened process',await page.evaluate(()=>MCE.getState().chatMessages===0));
  await screenshot('live-offline-process-reopen.png');await context.close();context=null;
- const emptyProfile=fs.mkdtempSync(path.join(profileRoot,'pages-live-062-uncached-'));await openProfile(emptyProfile,true);let uncachedFailure;
+ const emptyProfile=fs.mkdtempSync(path.join(profileRoot,'pages-live-063-uncached-'));await openProfile(emptyProfile,true);let uncachedFailure;
  try{await page.goto(publishedURL.href);}catch(error){uncachedFailure=error.message;}
  check('Brand-new offline profile cannot claim an uncached first launch',!!uncachedFailure&&await page.locator('.map-label').count()===0,uncachedFailure);
  await context.close();context=null;
@@ -149,6 +170,6 @@ async function auditLayout(label){
  for(const name of assets)check(`${name}: local expected artifact remained unchanged`,sha(fs.readFileSync(path.join(expectedRoot,name)))===expectedHashes[name]);
 })().catch(error=>{failure=error.stack;console.error(error);process.exitCode=1;}).finally(async()=>{
  await api?.dispose().catch(()=>{});for(const item of contexts)await item.close().catch(()=>{});
- fs.writeFileSync(path.join(out,'results.json'),JSON.stringify({executedAt:new Date().toISOString(),publishedURL:publishedURL.href,releaseOwnerProvidedArtifactCommit:commit,releaseOwnerProvidedSourceCommit:sourceCommit,releaseOwnerProvidedCIRun:runURL,expectedRoot,expectedVersion,expectedHashes,browserVersion,scope:'Actual public HTTPS GitHub Pages deployment; fresh isolated desktop headless Chrome profile. Mobile-sized viewports and browser offline mode, not Android/iPhone installation. No install prompt fixture, real GPS, external links or public writes. CI attribution is supplied by release owner; public bytes are independently hash-verified. A hidden .nojekyll marker may return 404 and is reported explicitly rather than counted as byte-verified.',initialURLResponse,initialTLS,checks,passed:checks.filter(item=>item.passed).length,responses,screenshots,network,offlineRequests,blockedRequests,errors,failure},null,2)+'\n');
+ fs.writeFileSync(path.join(out,'results.json'),JSON.stringify({executedAt:new Date().toISOString(),publishedURL:publishedURL.href,releaseOwnerProvidedArtifactCommit:commit,releaseOwnerProvidedSourceCommit:sourceCommit,releaseOwnerProvidedCIRun:runURL,expectedRoot,expectedVersion,expectedHashes,browserVersion,scope:'Actual public HTTPS GitHub Pages deployment; fresh installation in a newly created isolated desktop headless Chrome profile, followed by offline restart of that same release. Upgrade from a previous release is not tested; there is no prepared older-version profile. Mobile-sized viewports and browser offline mode, not Android/iPhone installation. No install prompt fixture, real GPS, external links or public writes. CI attribution is supplied by release owner; public bytes are independently hash-verified. A hidden .nojekyll marker may return 404 and is reported explicitly rather than counted as byte-verified.',initialURLResponse,initialTLS,workerSnapshots,offlineHTMLResponses,checks,passed:checks.filter(item=>item.passed).length,responses,screenshots,network,offlineRequests,blockedRequests,errors,failure},null,2)+'\n');
  console.log(JSON.stringify({checks:checks.length,passed:checks.filter(item=>item.passed).length,errors:errors.length,failure,out}));
 });

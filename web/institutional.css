@@ -2,11 +2,10 @@
    component typography below is the app's own, not a university typeface. */
 :root{--header-height:112px;--nav-height:64px;--control-radius:4px;--panel-radius:8px}
 
-/* Identity has a clear second line and its own space above the campus tools. */
+/* Preserve the official signature above the campus tools. */
 .app-header{padding:10px 32px;gap:24px;box-shadow:none;border-top:3px solid var(--mju-navy);background:#fff}
 .brand{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:7px;padding:0;flex:0 1 237px;max-width:237px;min-height:44px;border-radius:2px;text-align:left}
 .brand-signature{display:block;width:210px;max-width:100%;height:auto;object-fit:contain}
-.brand>.brand-caption{display:block;margin:0;font-size:calc(14px * var(--font-scale));font-weight:600;line-height:1.3;letter-spacing:.025em;color:var(--mju-navy)}
 .header-tools{gap:20px}
 .selector-row{gap:16px}
 .selector-control{gap:5px;font-weight:600;letter-spacing:0}
@@ -135,7 +134,6 @@ dialog::backdrop{background:#14253666;backdrop-filter:none}
  :root{--header-height:172px;--nav-height:calc(68px + env(safe-area-inset-bottom,0px))}
  .app-header{grid-template-rows:92px 66px;padding:8px 16px 6px;gap:0 12px}
  .brand{width:210px;max-width:100%;justify-self:start;gap:7px}
- .brand>.brand-caption{font-size:calc(13px * var(--font-scale));line-height:1.3;letter-spacing:.02em}
  .selector-row{gap:10px}
  .selector-control{gap:4px}
  .selector-control select{font-size:calc(12px * var(--font-scale))}

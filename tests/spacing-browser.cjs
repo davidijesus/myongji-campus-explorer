@@ -8,6 +8,7 @@
 // SPACING_OUTPUT_DIR and SPACING_BEFORE_DIR isolate reports and link comparisons
 // when reusing this audit for a later visual revision.
 // SPACING_VIEWPORTS may be a JSON array of [width,height] viewport pairs.
+// SPACING_EXPECT_NO_HEADER_CAPTION=1 asserts the 0.6.3 header in every scenario.
 const { chromium } = require('@playwright/test');
 const fs = require('node:fs');
 const path = require('node:path');
@@ -141,6 +142,7 @@ async function headerLayout(page,key){
     return {problems,count:parts.length};
   });
   check(`${key}: brand, campus/language selectors and About fit without overlap`,result.count===4&&result.problems.length===0,result.problems.length?result.problems:undefined);
+  if(process.env.SPACING_EXPECT_NO_HEADER_CAPTION==='1')check(`${key}: header caption removed while university signature remains`,await page.locator('.app-header .brand-caption').count()===0&&!/Campus Explorer/.test(await page.locator('.app-header').innerText())&&await page.locator('.app-header .brand-signature').count()===1);
 }
 async function matrix(page) {
   const list=[];

@@ -1,6 +1,6 @@
 {
   "name": "myongji-campus-explorer",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "private": true,
   "description": "Independent student campus guide with sourced buildings, bus timetables and a local cited assistant",
   "scripts": {

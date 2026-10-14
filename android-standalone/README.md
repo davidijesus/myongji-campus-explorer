@@ -1,58 +1,49 @@
-# Android Java shell - 0.6.2
+# Android Java shell - 0.6.3
 
-This folder contains the Java/System WebView wrapper used by the 0.6.2 development APK, continuing the existing Android package and signing identity.
+This folder contains the Java/System WebView wrapper used by the signed 0.6.3 development APK. Package `dev.student.myongjiexplorer.standalone`, minimum API 24 and target/compile API 36 remain unchanged. Version code 15 follows the delivered 0.6.2/code 14. The eight Java production files are unchanged.
 
-The 0.6.2 configuration uses application ID `dev.student.myongjiexplorer.standalone`, version code **14**, minimum API 24 and target API 36. The previous signed 0.6.1 APK uses code 13. The existing development certificate must be reused for a compatible update; no signing key is included in the source handover, and the direct build script refuses to generate one.
+Artifact: `myongji-campus-explorer-v0.6.3-development.apk`, **1,143,594 bytes**, SHA-256 `dd589bf70baf3f44a64f52b4c704dd39adf251411a93da1ad2f71cecccd644d6`. Both build scripts pin HTML SHA-256 `0c17dda6e51204a9ac77a82f1760f8269c7dad50e57fa888bad48d0d8f8ea1cf`. The approved circular launcher PNG SHA-256 is `c2b31d621ea838993de48d50edc65ed3fbe00c69af78c02787d78cfc343d75a1`.
 
-The signed development APK was built and verified with the reviewed HTML SHA-256 `e3b968f148d76971dd474b3ba885420e2806cb9f28b28f3c74388858f0981455`. Both build scripts pin these exact bytes. The 1024px launcher icon uses the approved blue campus illustration, separate from the official symbol and wordmark embedded in the page.
+The development signing certificate SHA-256 is `dc047d342057bbf022d14f94865f186f7a0dc52872275f5777f59b3d5a3dac32`, matching the previous APK. The private key is not included. This is a signed test installation artifact, not a store publisher release.
 
-Artifact: `myongji-campus-explorer-v0.6.2-development.apk`, **1,135,139 bytes**, SHA-256 `97c46cb61ea4c7e7d388e6c8aea9c001dea9772d0d0d1f894c6d57c787070297`. Its development signing certificate SHA-256 is `dc047d342057bbf022d14f94865f186f7a0dc52872275f5777f59b3d5a3dac32`, matching 0.6.1. This is a test installation artifact, not a store publisher release.
+## Build
 
-## Build inputs
+Use the complete frontend source with PowerShell 7, Node 22, JDK 18, Android SDK platform 36 and build-tools 36.0.0. Run `npm ci` and `npm run build` from the project root to create `preview.html` and `build/core`. Review the resulting HTML and update both build-script SHA-256 pins only after approval.
 
-Keep this folder with the final web project source. The direct build requires:
-
-- `preview.html`, reviewed and matching the SHA-256 pins in `build.ps1` and `build.gradle`;
-- `mobile/assets/icon.png`, the reviewed illustrative application icon;
-- `scripts/naver-fixtures.cjs` and the generated `build/core` modules produced by the web build;
-- `docs/v055-validation/community-interop/imported.snapshot.json`, `canonical.snapshot.json` and `expected.json`, the synthetic snapshot interoperability fixtures;
-- this folder's manifests, styles, eight production Java classes and native tests.
-
-The fixture generator produces test data from the actual final campus modules. Fixtures are not packaged in the APK. The only packaged web asset is the reviewed HTML; the icon is a native resource. Keys, local configuration files, logs, build intermediates, private data and node_modules are not part of the clean source handover.
-
-## Direct development APK build
-
-Use PowerShell 7, JDK 18, Android SDK platform 36, build-tools 36.0.0 and Node.js. The script does not use Expo, Gradle, Maven downloads or the NDK. In the complete web source checkout, run `npm ci` and `npm run build` before native packaging so `preview.html` and `build/core` exist. Review any changed HTML before updating its pinned hash.
-
-Run from the complete project root, selecting a fresh build directory and an existing authorized keystore outside the distributable source:
+Required source support files include `scripts/naver-fixtures.cjs`, all three JSON files in `docs/v055-validation/community-interop`, and this Android folder's source/tests/resources. Use an existing authorized development keystore outside the source tree; the script will not create or replace it.
 
 ```powershell
 pwsh -NoProfile -File android-standalone/build.ps1 `
   -Sdk "$env:LOCALAPPDATA\Android\Sdk" `
   -Jdk 'C:\Program Files\Java\jdk-18.0.2.1' `
-  -BuildRoot 'C:\Builds\myongji-062-reviewed' `
+  -BuildRoot 'C:\Builds\myongji-063-reviewed' `
   -Keystore 'C:\Signing\existing-development.p12' `
-  -OutputApk 'C:\Builds\myongji-campus-explorer-v0.6.2-development.apk'
+  -OutputApk 'C:\Builds\myongji-campus-explorer-v0.6.3-development.apk'
 ```
 
-The configured signing flow is a development build, not a store publisher release. The direct script uses the existing demonstration alias and credentials from the established build flow; it cannot create or rotate signing material. The private key must be supplied separately by its authorized maintainer.
+Choose a fresh build directory. Omit CommunityEndpoint for the offline release: it defaults to empty. The optional Gradle publisher path uses the same resource graph and HTML pin but is not the delivered development build; it requires the maintainer's explicit publisher identity and signing environment. It has not been executed for this release.
 
-Omit `-CommunityEndpoint` for the offline release. It stays empty by default and is regenerated for every build. Any future configured endpoint must be a fixed canonical HTTPS URL set at build time; the application UI cannot change it. Configuring a URL does not deploy a backend.
+## Circular icon resource contract
 
-The script runs external-link, Naver-map, foreground-location, snapshot and refresh/cache tests on the host JVM. It then builds DEX, packages and aligns the APK, signs and verifies it, inspects the manifest, checks for unexpected native libraries, and verifies exact packaged HTML bytes. `tests/asset-browser.cjs` is a separate desktop Chromium test of the local asset origin and CSP; it requires the complete project's Playwright dependency and is not an Android runtime test. Run it from the project root with `node android-standalone/tests/asset-browser.cjs` after installing the project's Playwright browser.
+`mobile/assets/icon.png` is the approved 1024x1024 RGBA circle with transparent pixels outside its blue artwork. Packaging copies its bytes unchanged to `drawable-nodpi/ic_launcher_art.png` before SDK resource processing.
 
-Validation for this artifact: **762 host JVM checks** (129 external-link, 243 Naver, 31 location-policy, 232 snapshot and 127 refresh/cache), plus **6 desktop local-origin/CSP checks**, all passed. SDK tools verified version metadata, the three permissions, v2/v3 signatures and 16KB ZIP alignment. Every APK entry passed CRC validation; there are exactly eight expected entries, no native `.so` libraries, private signing material or databases. Packaged HTML matches the pinned file, and packaged icon pixels match the approved 1024px PNG. DEX and resource-table bytes match 0.6.1; package, certificate, local origin, cache and preference code remain unchanged. Update compatibility was checked structurally, not by installing an update.
+Default `mipmap/ic_launcher` and `mipmap/ic_launcher_round` aliases point to that artwork. API 24/25 and round-icon consumers receive the transparent legacy PNG. Only normal `ic_launcher` has a `mipmap-anydpi-v26` adaptive override. An explicit non-adaptive API 26 bitmap resource keeps `roundIcon` on the transparent PNG; otherwise AAPT2 can automatically generate a round alias to the adaptive icon. The adaptive foreground uses proportional 21/108 insets on each side, leaving the artwork within the central 66/108 safe circle, over an opaque pale `#F4F7FB` background. The PNG is not painted onto a new blue square.
 
-## Runtime and permissions
+The adaptive background is intentionally opaque: Android's AdaptiveIconDrawable initializes its internal bitmap with black, so a transparent background can reveal black inside the mask. Its outer silhouette and launcher normalization remain system-controlled. We do not promise a circular outer contour or transparent adaptive corners on every device; supported round-icon consumers use the separate circular legacy resource.
 
-The page runs only at `https://appassets.androidplatform.net/assets/index.html`, served locally by the native wrapper. WebView network loads, arbitrary navigation and embedded remote resources remain blocked. Reviewed external sources open outside the WebView. The Naver integration uses the existing validated native/web fallback policy.
+References: [Android adaptive-icon guidance](https://developer.android.com/develop/ui/compose/system/icon_design_adaptive), [Android 16 AdaptiveIconDrawable source](https://raw.githubusercontent.com/aosp-mirror/platform_frameworks_base/android-16.0.0_r1/graphics/java/android/graphics/drawable/AdaptiveIconDrawable.java), and [Android 8 implementation](https://raw.githubusercontent.com/aosp-mirror/platform_frameworks_base/android-8.0.0_r1/graphics/java/android/graphics/drawable/AdaptiveIconDrawable.java).
 
-The permission set remains INTERNET plus optional foreground COARSE/FINE location. There is no background location service. The community client supports explicit manual refresh, conditional ETag requests and validated private caching, but makes no community request when its build-time endpoint is empty. Existing private cache, local-origin storage and preference identifiers remain unchanged.
+## Runtime and verification limits
 
-The theme already uses navy accent `#002E66` and pale blue startup/system-bar background `#F4F7FB`. There is no separate custom splash image in this Java project. The new illustrative launcher resource is separate from the genuine university symbol and wordmark rendered in the web header. Actual launcher and system-startup rendering require Android execution; none is claimed by the desktop validation.
+The native wrapper still serves the reviewed local HTML at `https://appassets.androidplatform.net/assets/index.html`. WebView networking and arbitrary embedded remote resources remain blocked. The permission set remains INTERNET plus optional foreground COARSE/FINE location; no background permission or service is added. Native community refresh is explicit and disabled by an empty build-time endpoint. Cache/preferences, Naver navigation, lifecycle and back behavior remain unchanged.
 
-## Optional publisher path
+The direct builder executes native JVM policies, signs with the existing development identity, verifies SDK metadata/signature/alignment and exact HTML, and rejects unexpected `.so` libraries. Desktop CSP smoke tests are separate from Android runtime tests. New resource compile/link probes are not installed applications and do not demonstrate launcher appearance. No device installation, emulator test, store publication or new signing key was performed for this release.
 
-`build.gradle`, `settings.gradle` and `publisher/AndroidManifest.xml` preserve the separate Gradle publisher path with AGP 8.12.0. It is not the direct development build and has not been executed for this release. A maintainer must supply its own authorized publisher configuration through `MCE_APPLICATION_ID`, `MCE_KEYSTORE`, `MCE_KEY_ALIAS`, `MCE_STORE_PASSWORD` and `MCE_KEY_PASSWORD`; the Gradle release task refuses to run without them. The optional `-PcommunityEndpoint=...` has the same fixed-endpoint policy and defaults to empty.
 
-No store publication, device installation or emulator execution was performed for this release.
+## Verification of this artifact
+
+All **762 host JVM checks** passed: 129 external-link, 243 Naver destination/link, 31 native location-policy, 232 snapshot/interoperability and 127 refresh/cache checks. The final HTML passed **6 desktop native-origin/CSP checks**, including map startup, local assistant and favorite persistence after reload, without unexpected network requests or script errors. These checks do not run Android WebView or GPS.
+
+SDK tools verified version 15/0.6.3, API 24/36, the three unchanged permissions, v2/v3 signatures and ZIP alignment. All 11 expected entries passed CRC; no native `.so` library, private key or database is packaged. Embedded HTML exactly matches the pinned input. Packaged icon RGBA pixels exactly match the approved 1024px image: all four corner alpha values are 0 and the center is 255. DEX and all eight Java production files match 0.6.2. Previous 0.6.2 APK bytes were preserved.
+
+The compiled resource graph preserves the pale opaque adaptive background, proportional foreground insets and separate non-adaptive round bitmap. Actual installed update compatibility, launcher rendering and Android runtime behavior still require device or emulator execution; none is claimed here.

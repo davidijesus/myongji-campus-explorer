@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Adaptive compositing must be opaque; transparent backgrounds can expose
+         Android's black internal bitmap. The blue disc remains clearly visible. -->
+    <color name="ic_launcher_background">#F4F7FB</color>
+    <!-- API24/25 and round-icon consumers share the transparent circular PNG.
+         Only ic_launcher has an API26 adaptive override. -->
+    <item type="mipmap" name="ic_launcher">@drawable/ic_launcher_art</item>
+    <item type="mipmap" name="ic_launcher_round">@drawable/ic_launcher_art</item>
+</resources>
