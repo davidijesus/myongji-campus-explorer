@@ -313,7 +313,8 @@ html[data-large-text='true'] .language-control select{width:172px}
 .campus-map-links>button{flex:0 1 auto;border:0;border-bottom:3px solid transparent;border-radius:0;padding:12px 10px;background:transparent;font-weight:500}
 .campus-map-links>button[aria-pressed='true']{background:transparent;color:var(--mju-navy);border-bottom-color:var(--mju-navy);font-weight:650}
 .campus-map-links>button:hover{background:var(--surface-soft)}
-.place-sheet{box-shadow:none}
+.place-sheet{box-shadow:none;grid-template-columns:minmax(0,1fr)}
+.place-sheet .sheet-actions{grid-column:1/-1;grid-row:5;align-self:start;flex-direction:row;flex-wrap:wrap;align-items:center;gap:7px;margin-top:14px}
 .sheet-heading .icon-button{border-radius:var(--control-radius)}
 /* Bundled official photographs stay below the building identity and never cover the map. */
 .building-gallery,.building-photos-missing{grid-column:1/-1;grid-row:4;min-width:0}

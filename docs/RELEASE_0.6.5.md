@@ -2,6 +2,14 @@
 
 **Published on 4 November 2026** to the existing [public GitHub Pages site](https://davidijesus.github.io/myongji-campus-explorer/). The successful Pages build completed at **12:46:57 UTC**, public HTTP verification confirmed version **0.6.5** with all ten app/feed files matching the reviewed artifact bytes, and **64 live-site browser checks passed at 12:49:10 UTC**. No production/store Android release is asserted.
 
+## Photo placement correction — 4 November
+
+The building sheet now uses the same vertical order at every viewport: building title and alternate name, photograph gallery (or the existing missing-photo notice), then action buttons. Desktop CSS previously placed the action buttons beside the titles. The correction preserves the gallery controls, credits, full photo composition, favorites, map/chat navigation and panel scrolling. Y12 and Y32 still have no approved photograph.
+
+The corrected web build keeps version 0.6.5 and has shell hash `d040f009b7c124ec`. Its preview SHA-256 is `a24106bff48c0ff018de46e5c566daedfef81a8e01fa5252d7d4aed25b80acad`, and PWA HTML SHA-256 is `f3ec20a176382a0538cbe01bea6ac9491ff3ee73fa251ac8764be22a6f3df01d`. The menu snapshot and all photo bytes are unchanged. The deployment records and broader verification below describe the initial 0.6.5 publication.
+
+Focused browser verification passed 404 checks across Y31/S10 with photos and Y12/Y32 without approved photos, at 320/390/967/1440px in EN/KO/ZH. It checks measured visual order, accessible action buttons, gallery controls, information, favorites and chat/map return, without photo cropping or unexpected requests.
+
 ## Included changes
 
 - **20 reviewed official photo assets for 15 buildings:** 11 assets for nine Yongin buildings and nine assets for six Seoul buildings. Complete source compositions, captions, attribution and quality/date limitations remain available. Buildings with no approved photograph keep that state; **Y32 remains excluded**. No missing views were invented or generated.
@@ -25,7 +33,7 @@ The release uses the existing **`gh-pages` branch-based Pages deployment**. The 
 
 Automatic client checks only read the latest published snapshot. Until scheduling is enabled, source recollection/review/publication is explicit; expired data must remain visibly expired. The app does not create freshness by reopening or downloading an unchanged feed.
 
-## Verification record
+## Initial release verification record
 
 The 3 November menu component implementation passed TypeScript, 307 Node tests, 33 browser checks and Java checks for 283 snapshot/interoperability, 164 refresh/cache and 31 origin/location-policy cases. A separate development review of the combined photos/navigation/menu application passed 315 Node tests, 850 host-JVM checks and 1,245 desktop-browser checks, including 50 actual chat-to-map/return interactions. These earlier results provide regression evidence; they are not proof of the final public 0.6.5 artifact.
 
