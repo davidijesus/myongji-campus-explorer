@@ -35,7 +35,7 @@ $androidJar = Join-Path $Sdk 'platforms\android-36\android.jar'
 foreach ($tool in @("$tools\aapt.exe","$tools\aapt2.exe","$tools\d8.bat","$tools\zipalign.exe","$tools\apksigner.bat","$Jdk\bin\javac.exe","$Jdk\bin\java.exe",$androidJar)) {
     if (!(Test-Path -LiteralPath $tool)) { throw "Missing build tool: $tool" }
 }
-$expectedHash = 'b2cce56974e34ae3b6f8281eae23730ec55bf8c4d3f999d191d486ff68c6ea0d'
+$expectedHash = '0905948d43ececbe30a9c47f4448a12b1d966e46d7c7f2277f87a9bf4b142b2f'
 $html = Join-Path $project 'preview.html'
 if ((Get-FileHash -LiteralPath $html -Algorithm SHA256).Hash.ToLowerInvariant() -ne $expectedHash) { throw 'The HTML differs from the reviewed v0.6.5 bundle. Review before changing expectedHash.' }
 $previousJavaHome = $env:JAVA_HOME

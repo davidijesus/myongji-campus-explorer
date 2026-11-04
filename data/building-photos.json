@@ -138,10 +138,10 @@
       "identificationEvidence": "The official HYSTEC homepage uses _index_bg01.jpg. The photograph visibly carries 하이브리드구조실험센터 signage and building number 24; directory article 87 names the center and lists Y24 rooms. Elevated wide view includes the hall, annex and yard.",
       "directoryArticle": 87,
       "identitySourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/87/artclDetailView.do",
-      "width": 1600,
-      "height": 808,
-      "bytes": 278384,
-      "sha256": "0e9f24b057348116a59e223c2c6343c7c3970b1efd8c35e426d8fb0f55e6bd61",
+      "width": 1920,
+      "height": 970,
+      "bytes": 1249369,
+      "sha256": "806da08176e8619fab1552f35c6843a777cf3c893b5cc10d3a0f4e36dd299eb1",
       "captureDate": null,
       "checkedAt": "2026-10-16",
       "officialOrganization": "Myongji University",
@@ -157,12 +157,7 @@
         "bytes": 1249369
       },
       "displayTransform": {
-        "kind": "proportional-resize",
-        "maxEdge": 1600,
-        "resampling": "Lanczos",
-        "jpegQuality": 88,
-        "progressive": true,
-        "subsampling": 0,
+        "kind": "original-bytes",
         "cropped": false,
         "retouched": false,
         "AIUsed": false
@@ -183,10 +178,10 @@
       "identificationEvidence": "The official HYSTEC homepage uses _index_bg02.jpg. The same center is identifiable by its Korean façade sign and architecture. This is a closer, lower viewpoint than _index_bg01.jpg, showing the entrance and façade; it is a distinct view rather than a crop of the wide photograph.",
       "directoryArticle": 87,
       "identitySourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/87/artclDetailView.do",
-      "width": 1600,
-      "height": 808,
-      "bytes": 181934,
-      "sha256": "48caa8c5a40cfab318ee01d49fad78d3df7b1629aa798d8c36ec0fdfd1933fa2",
+      "width": 1920,
+      "height": 970,
+      "bytes": 829017,
+      "sha256": "bb9c1f523f997039c1a68c12445a4684b3372db7322483d736ca1e606a987331",
       "captureDate": null,
       "checkedAt": "2026-10-16",
       "officialOrganization": "Myongji University",
@@ -202,12 +197,7 @@
         "bytes": 829017
       },
       "displayTransform": {
-        "kind": "proportional-resize",
-        "maxEdge": 1600,
-        "resampling": "Lanczos",
-        "jpegQuality": 88,
-        "progressive": true,
-        "subsampling": 0,
+        "kind": "original-bytes",
         "cropped": false,
         "retouched": false,
         "AIUsed": false
@@ -228,10 +218,10 @@
       "identificationEvidence": "Dormitory facilities page associates this exterior filename with the 명현관 section. Building number 30 and the entrance name are visible in the photograph. Directory article 50 names 생활관(명현관).",
       "directoryArticle": 50,
       "identitySourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/50/artclDetailView.do",
-      "width": 1600,
-      "height": 1200,
-      "bytes": 467176,
-      "sha256": "b20361549a6287180ee16e2e1c38ff55025f29348abaea20a80d23c959076252",
+      "width": 4032,
+      "height": 3024,
+      "bytes": 3089478,
+      "sha256": "d61832ef3450995fc012e1b77fd09d63e075f24ad2de8150c472470e73220470",
       "captureDate": null,
       "checkedAt": "2026-10-16",
       "officialOrganization": "Myongji University",
@@ -247,15 +237,14 @@
         "bytes": 3274498
       },
       "displayTransform": {
-        "kind": "proportional-resize",
-        "maxEdge": 1600,
-        "resampling": "Lanczos",
-        "jpegQuality": 88,
-        "progressive": true,
-        "subsampling": 0,
+        "kind": "metadata-stripped-original",
         "cropped": false,
         "retouched": false,
-        "AIUsed": false
+        "AIUsed": false,
+        "metadataRemoved": true,
+        "jpegRecompressed": false,
+        "decodedPixelsUnchanged": true,
+        "colorProfilePreserved": true
       }
     },
     {
@@ -273,10 +262,10 @@
       "identificationEvidence": "Dormitory facilities page associates the filename with 명덕관. The photograph shows the curved front façade and large number 31. Directory article 47 names 생활관(명덕관).",
       "directoryArticle": 47,
       "identitySourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/47/artclDetailView.do",
-      "width": 1600,
-      "height": 1200,
-      "bytes": 448877,
-      "sha256": "05f2b9e42f93caad739fadd1cedec208aa34f31537701d0f57676e7a53686411",
+      "width": 4032,
+      "height": 3024,
+      "bytes": 3123999,
+      "sha256": "336c84b38a3adb3f4d09057417811740db86ef4918585e2b42dddbde80d5d041",
       "captureDate": null,
       "checkedAt": "2026-10-16",
       "officialOrganization": "Myongji University",
@@ -292,15 +281,14 @@
         "bytes": 3294338
       },
       "displayTransform": {
-        "kind": "proportional-resize",
-        "maxEdge": 1600,
-        "resampling": "Lanczos",
-        "jpegQuality": 88,
-        "progressive": true,
-        "subsampling": 0,
+        "kind": "metadata-stripped-original",
         "cropped": false,
         "retouched": false,
-        "AIUsed": false
+        "AIUsed": false,
+        "metadataRemoved": true,
+        "jpegRecompressed": false,
+        "decodedPixelsUnchanged": true,
+        "colorProfilePreserved": true
       }
     },
     {
@@ -318,10 +306,10 @@
       "identificationEvidence": "The same 명덕관 section provides this second exterior image. Its visible number 31 and curved façade match the frontal photograph. The elevated left-hand viewpoint includes a different perspective of the entrance approach and building, so it is a distinct angle.",
       "directoryArticle": 47,
       "identitySourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/47/artclDetailView.do",
-      "width": 1600,
-      "height": 1200,
-      "bytes": 384062,
-      "sha256": "deaea9d305092b304eb023b2d6d2af5ca2df0a3622428c443c3209a391c7a09c",
+      "width": 4032,
+      "height": 3024,
+      "bytes": 2645112,
+      "sha256": "225f69e021fe23e16fb2a41ca870f89f1202bec13720daaffffec983a6008551",
       "captureDate": null,
       "checkedAt": "2026-10-16",
       "officialOrganization": "Myongji University",
@@ -337,15 +325,14 @@
         "bytes": 2793992
       },
       "displayTransform": {
-        "kind": "proportional-resize",
-        "maxEdge": 1600,
-        "resampling": "Lanczos",
-        "jpegQuality": 88,
-        "progressive": true,
-        "subsampling": 0,
+        "kind": "metadata-stripped-original",
         "cropped": false,
         "retouched": false,
-        "AIUsed": false
+        "AIUsed": false,
+        "metadataRemoved": true,
+        "jpegRecompressed": false,
+        "decodedPixelsUnchanged": true,
+        "colorProfilePreserved": true
       }
     },
     {
@@ -363,10 +350,10 @@
       "identificationEvidence": "Dormitory facilities page places this photograph directly under 4동. Directory article 77 names 생활관(제3학생기숙사(4동)) and lists Y33002/Y33101/Y33110/Y33114 rooms, directly supporting Y33.",
       "directoryArticle": 77,
       "identitySourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/77/artclDetailView.do",
-      "width": 1600,
-      "height": 1238,
-      "bytes": 765352,
-      "sha256": "44eb1f2cec30cee3a49af3efcd07af2f3a65eff433ceb79bdcd36130dbe909b7",
+      "width": 3521,
+      "height": 2725,
+      "bytes": 2799744,
+      "sha256": "3a8abe415b503c0e208ca3a7adb2caf4d64c654114613fb0600f5a443f43970e",
       "captureDate": null,
       "checkedAt": "2026-10-16",
       "officialOrganization": "Myongji University",
@@ -382,15 +369,14 @@
         "bytes": 2801516
       },
       "displayTransform": {
-        "kind": "proportional-resize",
-        "maxEdge": 1600,
-        "resampling": "Lanczos",
-        "jpegQuality": 88,
-        "progressive": true,
-        "subsampling": 0,
+        "kind": "metadata-stripped-original",
         "cropped": false,
         "retouched": false,
-        "AIUsed": false
+        "AIUsed": false,
+        "metadataRemoved": true,
+        "jpegRecompressed": false,
+        "decodedPixelsUnchanged": true,
+        "colorProfilePreserved": true
       }
     },
     {
@@ -408,10 +394,10 @@
       "identificationEvidence": "Dormitory facilities page places this photograph directly under 5동. Directory article 78 names 생활관(제3학생기숙사(5동)); the existing project crosswalk assigns Y34. Caption refers to the foreground residence, not other buildings visible behind it.",
       "directoryArticle": 78,
       "identitySourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/78/artclDetailView.do",
-      "width": 1600,
-      "height": 1167,
-      "bytes": 646616,
-      "sha256": "a3180ecb5c4da6dfc3f582d3e20ad3f785d552ef3972eadc043477b64f95ddd7",
+      "width": 3886,
+      "height": 2834,
+      "bytes": 3053264,
+      "sha256": "72646478d18e835eac7d53488d8fcfe53f177854fb0b36659bfd7264fb4c97e6",
       "captureDate": null,
       "checkedAt": "2026-10-16",
       "officialOrganization": "Myongji University",
@@ -427,15 +413,14 @@
         "bytes": 3055016
       },
       "displayTransform": {
-        "kind": "proportional-resize",
-        "maxEdge": 1600,
-        "resampling": "Lanczos",
-        "jpegQuality": 88,
-        "progressive": true,
-        "subsampling": 0,
+        "kind": "metadata-stripped-original",
         "cropped": false,
         "retouched": false,
-        "AIUsed": false
+        "AIUsed": false,
+        "metadataRemoved": true,
+        "jpegRecompressed": false,
+        "decodedPixelsUnchanged": true,
+        "colorProfilePreserved": true
       }
     },
     {

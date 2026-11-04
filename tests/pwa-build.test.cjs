@@ -1,6 +1,7 @@
 'use strict';
 const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),os=require('node:os'),path=require('node:path'),vm=require('node:vm');
 const {build,createWorker,assetNames}=require('../scripts/build-pwa.cjs');
+const {webcrypto,createHash}=require('node:crypto');
 
 function fixture(t,html='<!doctype html><html><head><meta http-equiv="Content-Security-Policy" content="img-src data: https:; connect-src https:;"></head><body><div id="app"></div></body></html>'){
  const root=fs.mkdtempSync(path.join(os.tmpdir(),'mce-pwa-generator-'));
@@ -36,4 +37,32 @@ test('Offline readiness is true only when all five files remain in the active re
  assert.equal(await status(),true);stored.delete('icon-512.png');assert.equal(await status(),false);stored.add('icon-512.png');assert.equal(await status(),true);
  cacheExists=false;const prior=opened;assert.equal(await status(),false);assert.equal(opened,prior,'Readiness cannot create an empty replacement cache');
  callbacks.get('message')({data:{type:'other'},ports:[]});callbacks.get('message')({data:{type:'mce-shell-status'},ports:[]});assert.equal(responses.length,4);
+});
+
+test('A large decoded release remains exact and readable when saved for offline use',async()=>{
+ const payload=Buffer.alloc(28*1024*1024,65),hash=createHash('sha256').update(payload).digest('hex');
+ const callbacks=new Map(),saved=new Map();
+ const {worker}=createWorker({version:'large-test',assetDigests:{'index.html':hash}});
+ const sandbox={URL,Map,Promise,Uint8Array,Headers,Response,crypto:webcrypto,encodeURIComponent,
+  self:{registration:{scope:'https://example.org/campus/'},addEventListener:(type,cb)=>callbacks.set(type,cb)},
+  fetch:async()=>new Response(payload,{headers:{'Content-Type':'text/html; charset=utf-8','Content-Encoding':'gzip','Content-Length':'123','X-Content-Type-Options':'nosniff'}}),
+  caches:{open:async()=>({put:async(url,response)=>saved.set(url,response)}),delete:async()=>{throw Error('Unexpected failed cache write');}}};
+ vm.runInNewContext(worker,sandbox);let installed;
+ callbacks.get('install')({waitUntil:value=>{installed=value;}});await installed;
+ const response=saved.get('https://example.org/campus/index.html');
+ assert.ok(response);assert.equal(response.headers.get('content-type'),'text/html; charset=utf-8');
+ assert.equal(response.headers.get('content-encoding'),null);assert.equal(response.headers.get('content-length'),null);
+ assert.equal(response.headers.get('x-content-type-options'),'nosniff');
+ const bytes=Buffer.from(await response.arrayBuffer());assert.deepEqual(bytes,payload);
+ assert.equal(createHash('sha256').update(bytes).digest('hex'),hash);
+});
+
+test('A changed download is rejected before an offline cache can be written',async()=>{
+ const callbacks=new Map();let opened=0;
+ const {worker}=createWorker({version:'integrity-test',assetDigests:{'index.html':'0'.repeat(64)}});
+ vm.runInNewContext(worker,{URL,Map,Promise,Uint8Array,Headers,Response,crypto:webcrypto,encodeURIComponent,
+  self:{registration:{scope:'https://example.org/campus/'},addEventListener:(type,cb)=>callbacks.set(type,cb)},
+  fetch:async()=>new Response('unreviewed content'),caches:{open:async()=>{opened++;throw Error('Must not open cache');}}});
+ let installed;callbacks.get('install')({waitUntil:value=>{installed=value;}});
+ await assert.rejects(installed,/Offline shell release does not match/);assert.equal(opened,0);
 });

@@ -4,7 +4,7 @@ const {installHelp,styles:installStyles}=require('./pwa-install.cjs');
 const digest=content=>crypto.createHash('sha256').update(content).digest('hex');
 const assetNames=['index.html','manifest.webmanifest','icon-180.png','icon-192.png','icon-512.png'];
 function createWorker({version,assetDigests}){
- const shellHash=digest(JSON.stringify({strategy:3,assetDigests})).slice(0,16);
+ const shellHash=digest(JSON.stringify({strategy:4,assetDigests})).slice(0,16);
  return {shellHash,worker:`'use strict';
 // Versioned offline shell only. API responses and external sources are never cached here.
 // Updates follow the browser lifecycle: close all app windows to activate a waiting release.
@@ -16,9 +16,15 @@ const pending=new Map();
 async function download(url){
  const response=await fetch(url,{cache:'no-cache'});
  if(!response.ok||response.redirected)throw new Error('Offline shell download failed');
- const actual=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',await response.clone().arrayBuffer())),byte=>byte.toString(16).padStart(2,'0')).join('');
+ // Consume the network body once. Retaining a cloned network stream can make
+ // Cache.put fail for a large, verified offline bundle in Chromium.
+ const bytes=await response.arrayBuffer();
+ const actual=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),byte=>byte.toString(16).padStart(2,'0')).join('');
  if(actual!==digests.get(url))throw new Error('Offline shell release does not match');
- return response;
+ // Fetch has decoded transport compression; these headers no longer describe bytes.
+ const headers=new Headers(response.headers);
+ headers.delete('content-encoding');headers.delete('content-length');
+ return new Response(bytes,{status:response.status,statusText:response.statusText,headers});
 }
 self.addEventListener('install',event=>event.waitUntil((async()=>{
  // Verify the whole release before writing. A partial deployment cannot replace the active shell.
