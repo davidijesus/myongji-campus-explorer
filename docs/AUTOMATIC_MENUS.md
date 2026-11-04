@@ -1,6 +1,6 @@
 # Official Yongin menus and automatic client refresh
 
-The 0.6.5 source adds a menu feed to the web app and main Java/System WebView Android client. The clients automatically check the published feed; **scheduled recollection of university sources is not enabled**. The current publication path uses the existing `gh-pages` site and an explicitly collected, validated snapshot. The Actions implementation is retained as a non-executing [template](ci/pages-menus.pending.yml), pending workflow-write authorization. Consult the [release record](RELEASE_0.6.5.md) for confirmed live version and feed checks; a prepared file is not deployment evidence.
+Version **0.6.5 and its validated Yongin menu feed were published on 4 November 2026** through the existing `gh-pages` site. The clients automatically check the published feed; **scheduled recollection of university sources is not enabled**. The current snapshot was explicitly collected and validated before publication. The Actions implementation is retained as a non-executing [template](ci/pages-menus.pending.yml), pending workflow-write authorization. The [release record](RELEASE_0.6.5.md) links the source/Pages commits and successful build, records exact served-byte verification and the 64 passing live-site browser checks.
 
 ## Sources and content
 
@@ -16,11 +16,11 @@ All fragment URLs use `https://www.mju.ac.kr`. The requested Monday is derived u
 
 The original Korean title, menu text and other information are retained, with line breaks. The automatic path does not summarize, translate or truncate fields to force validation. It does not infer opening hours, restaurant closure, allergens beyond the source text, or publication time. An explicitly empty official table means **no menu was published in that response**, not that the cafeteria is closed.
 
-A 3 November source check found **25 meals for 2-6 November** in the week beginning 2 November: 5 library lunches, 10 Student Union meals and 10 dormitory meals. All three fragments returned HTTP 200 without ETag or Last-Modified; conditional-cache support does not imply that these responses currently offer bandwidth savings. The 4 November publication requires a fresh collection; its actual revision, timestamps and live verification belong in the release record rather than being inferred from this earlier check.
+The published **4 November** collection contains **25 meals for 2-6 November** in the week beginning 2 November: 5 library lunches, 10 Student Union meals and 10 dormitory meals. All three sources validated; the snapshot has `updatedAt: 2026-11-04T12:40:56.121Z` and revision `1793796056121`. Its served bytes matched SHA-256 `a75d2142778eaf47fbbf34288f0a5d082828efaafa33f8db21311f23813a583e`. This is the collection/validation time, not a claimed university publication time. An earlier 3 November check returned no ETag or Last-Modified; conditional-cache support does not imply that these sources currently offer bandwidth savings.
 
 ## Feed contract
 
-The intended public URL is:
+The published public URL is:
 
 ```text
 https://davidijesus.github.io/myongji-campus-explorer/menus/yongin.json
@@ -88,7 +88,7 @@ GitHub's schedule is best effort: runs can be delayed or dropped during load, an
 
 ## Verification and recovery
 
-The 3 November menu implementation passed **307 Node tests**, covering KST week/date boundaries, original-Korean fields, total/partial source failure, explicit empty tables, byte limits, rollback, corrupted data, previous-feed failures and absence of implicit initialization. Java checks passed for **283 snapshot/interoperability, 164 refresh/cache and 31 origin/location-policy cases**; that day's real 25-menu snapshot survived Java validation/cache roundtrip with all values preserved. Its 33 automatic-menu browser checks passed for EN/KO/ZH, Korean originals, startup/resume refresh, bounded requests, cache retention, offline expiry and failure handling, with no unexpected requests or JavaScript errors. These are prior component results. Final combined-release and live-feed verification are recorded separately in [RELEASE_0.6.5.md](RELEASE_0.6.5.md). No actual scheduled execution is claimed.
+The final combined 0.6.5 build passed **315 Node tests and 1,020 local browser checks**, including 33 menu checks for EN/KO/ZH, Korean originals, startup/resume refresh, bounded requests, cache retention, offline expiry and failure handling. The Node coverage includes KST week/date boundaries, total/partial source failure, explicit empty tables, byte limits, rollback, corrupted data, previous-feed failures and absence of implicit initialization. Public HTTP verification matched all ten deployed app/feed files, including the 4 November snapshot. **All 64 live-site browser checks passed**, including acceptance/caching of the real 25-meal feed and its recovery after opening a new browser process offline. Java component checks on 3 November passed **283 snapshot/interoperability, 164 refresh/cache and 31 origin/location-policy cases**; that day's real 25-menu snapshot survived validation/cache roundtrip with all values preserved. Full release verification is in [RELEASE_0.6.5.md](RELEASE_0.6.5.md). No actual scheduled execution is claimed.
 
 To investigate a failure, inspect the workflow step and collection diagnostic before changing the parser or data. Keep the currently published valid feed and any evidence of the rejected response. A source-layout change needs a parser/fixture update and review. Repair and validate the previous snapshot explicitly if it is missing or corrupted; do not suppress the failure by publishing an empty feed. Recovery versions must remain higher than clients' saved versions.
 
