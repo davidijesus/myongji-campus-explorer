@@ -25,3 +25,16 @@ test('unreviewed building-photo gaps stay visible in catalogue',()=>{
  assert.ok(gaps.length>0);
  assert.ok(gaps.every(r=>r.unknowns.length>0));
 });
+
+test('Y32 keeps its ambiguous historical candidate without offering a reviewed building photo',()=>{
+ const ref=VISUAL_REFERENCES['mju-y32'];
+ assert.equal(ref.reviewed,false);
+ assert.equal(ref.coverage,'not-visually-confirmed');
+ assert.equal(ref.imageUrl,null);
+ assert.ok(ref.sources.every(source=>source.reviewed===false));
+ const candidate=ref.sources.find(source=>source.localResearchFile==='dorm-11.jpg');
+ assert.ok(candidate,'Keep the historical research record for future identification');
+ assert.equal(candidate.url,'https://dorm.mju.ac.kr/dorm/6640/subview.do');
+ assert.match(candidate.imageUrl,/\/20260819153556719_OQOFT8CU\.jpg$/);
+ assert.ok(ref.unknowns.some(note=>note.includes('mapping to Y32')&&note.includes('inconsistent name')),'Retain the unresolved attribution evidence');
+});

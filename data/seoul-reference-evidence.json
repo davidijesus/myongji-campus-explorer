@@ -126,7 +126,7 @@
   "limitations": [
     "Directory POIs are not surveyed building centroids or entrances.",
     "Widths, depths, angles, heights and landscape are illustrations; no scaled plan was established for Seoul.",
-    "No Seoul road geometry, walking routes, entrances, indoor positions or accessible paths are asserted.",
+    "Illustrated paved corridors are documented separately in seoul-path-evidence.json. No surveyed road geometry, walking routes, entrances, indoor positions or accessible paths are asserted.",
     "Directory details supplied no usable building photos (all imgPath values end in /null).",
     "English and Chinese place labels are descriptive translations."
   ],
@@ -138,5 +138,6 @@
       "main gate",
       "gatehouse"
     ]
-  }
+  },
+  "pavementIllustration": "seoul-path-evidence.json"
 }

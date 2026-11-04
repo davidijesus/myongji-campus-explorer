@@ -8,8 +8,8 @@ def signingPassword = System.getenv('MCE_STORE_PASSWORD')
 def keyPassword = System.getenv('MCE_KEY_PASSWORD')
 def hasPublisherSigning = publisherId && signingFile && signingAlias && signingPassword && keyPassword
 def generated = layout.buildDirectory.dir('prepared')
-// Only an explicit Gradle property configures networking. An absent property is empty.
-def communityEndpoint = providers.gradleProperty('communityEndpoint').getOrElse('')
+// The approved menu feed is the default; an explicit empty property disables the client.
+def communityEndpoint = providers.gradleProperty('communityEndpoint').getOrElse('https://davidijesus.github.io/myongji-campus-explorer/menus/yongin.json')
 if (communityEndpoint) {
     def uri = new java.net.URI(communityEndpoint)
     if (!(communityEndpoint ==~ /https:\/\/[a-z0-9.-]+\/[A-Za-z0-9_.\/-]+/) ||
@@ -30,8 +30,8 @@ android {
         applicationId publisherId ?: 'dev.student.myongjiexplorer.standalone'
         minSdk 24
         targetSdk 36
-        versionCode 15
-        versionName '0.6.3'
+        versionCode 20
+        versionName '0.6.5'
     }
     sourceSets.main {
         java.srcDirs = ["$buildDir/prepared/java"]
@@ -59,7 +59,7 @@ tasks.register('prepareOfflineContent') {
     doLast {
         def page = file('../preview.html')
         def hash = java.security.MessageDigest.getInstance('SHA-256').digest(page.bytes).encodeHex().toString()
-        if (hash != '0c17dda6e51204a9ac77a82f1760f8269c7dad50e57fa888bad48d0d8f8ea1cf') throw new GradleException('Review the changed HTML before updating its pinned hash.')
+        if (hash != 'aebb45b1ad2228a1bfa971698a18fdda501fcccffce734f62446123e64869658') throw new GradleException('Review the changed HTML before updating its pinned hash.')
         copy { from 'src'; into "$buildDir/prepared/java"; exclude '**/CommunityEndpoint.java' }
         def endpointSource = file("$buildDir/prepared/java/dev/student/myongjiexplorer/standalone/CommunityEndpoint.java")
         endpointSource.parentFile.mkdirs()

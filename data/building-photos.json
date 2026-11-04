@@ -1,0 +1,818 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-16",
+  "photos": [
+    {
+      "id": "y2-creative-arts",
+      "placeId": "mju-y2",
+      "src": "web/building-photos/yongin/y2-creative-arts.png",
+      "sourcePageUrl": "https://www.mju.ac.kr/mjukr/160/subview.do",
+      "imageUrl": "https://www.mju.ac.kr/sites/mjukr/images/sub01/hisbox01.png",
+      "caption": {
+        "en": "Creative Arts Hall exterior",
+        "ko": "창조예술관 외관",
+        "zh": "创造艺术馆外观"
+      },
+      "originalCaption": "창조예술관 전경",
+      "identificationEvidence": "Official university history page places this image beneath 창조예술관, with alt text 창조예술관 전경. The directory names article 56 창조관 예술관; the existing project crosswalk assigns Y2. The photograph shows the white upper volume, glazed end and supporting columns.",
+      "directoryArticle": 56,
+      "identitySourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/56/artclDetailView.do",
+      "width": 330,
+      "height": 230,
+      "bytes": 151334,
+      "sha256": "77d52cd179f78c5ff9fea6ad91cbe0054d2502d8f83c830ec7f75b8f54570760",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "view": "exterior",
+      "originalFile": "research-064/yongin/originals/y2-history.png",
+      "copyrightNotice": "COPYRIGHT(C) MYONGJI UNIV. ALL RIGHTS RESERVED.",
+      "rightsNote": "Official-source photograph. No open-license grant was located; this image is not covered by the repository MIT license.",
+      "originalAsset": {
+        "sha256": "77d52cd179f78c5ff9fea6ad91cbe0054d2502d8f83c830ec7f75b8f54570760",
+        "width": 330,
+        "height": 230,
+        "bytes": 151334
+      },
+      "displayTransform": {
+        "kind": "original-bytes",
+        "cropped": false,
+        "retouched": false,
+        "AIUsed": false
+      }
+    },
+    {
+      "id": "y14-structural-materials",
+      "placeId": "mju-y14",
+      "src": "web/building-photos/yongin/y14-structural-materials.png",
+      "sourcePageUrl": "https://hystec.mju.ac.kr/theme/mypage1/page_html/exper_facility.html",
+      "imageUrl": "https://hystec.mju.ac.kr/theme/mypage1/add_img/sub03/15/15_01_03.png",
+      "caption": {
+        "en": "Structural Materials Testing Building exterior",
+        "ko": "구조재료시험동 외관",
+        "zh": "结构材料试验楼外观"
+      },
+      "originalCaption": "구조재료시험동 / Structural Materials Testing Building",
+      "identificationEvidence": "Official HYSTEC facility data explicitly pairs key structure and label 구조재료시험동 with image 15_01_03.png. Its official location-map image labels 구조재료실험동, while directory article 43 names 구조재료실험동 and lists Y14101–Y14208 rooms. This supports Y14 independently of the nearly coincident Y83 directory marker; this image is not assigned to Y83.",
+      "directoryArticle": 43,
+      "identitySourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/43/artclDetailView.do",
+      "width": 389,
+      "height": 226,
+      "bytes": 187420,
+      "sha256": "33df59c177c315a830055a8ea2033f6ec0e57e4f859f07a947e5161fdb70ee20",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "view": "exterior",
+      "originalFile": "research-064/yongin/originals/hystec-structure.png",
+      "copyrightNotice": null,
+      "rightsNote": "Official-source photograph. No open-license grant was located; this image is not covered by the repository MIT license.",
+      "additionalEvidenceUrl": "https://hystec.mju.ac.kr/theme/mypage1/add_img/sub03/03_01_01_b.png",
+      "originalAsset": {
+        "sha256": "33df59c177c315a830055a8ea2033f6ec0e57e4f859f07a947e5161fdb70ee20",
+        "width": 389,
+        "height": 226,
+        "bytes": 187420
+      },
+      "displayTransform": {
+        "kind": "original-bytes",
+        "cropped": false,
+        "retouched": false,
+        "AIUsed": false
+      }
+    },
+    {
+      "id": "y22-chapel",
+      "placeId": "mju-y22",
+      "src": "web/building-photos/yongin/y22-chapel.png",
+      "sourcePageUrl": "https://www.mju.ac.kr/bbs/mjukr/166/209975/artclView.do",
+      "imageUrl": "https://www.mju.ac.kr/CrossEditor/binary/images/000209/20240312134604908_4DD5JKDT.png",
+      "caption": {
+        "en": "60th Anniversary Chapel exterior",
+        "ko": "60주년채플관 외관",
+        "zh": "60周年礼拜堂外观"
+      },
+      "originalCaption": "명지대학교 60 주년 채플관",
+      "identificationEvidence": "University news article published 2024-03-12 explicitly captions this photograph 명지대학교 60 주년 채플관. Directory article 40 identifies the chapel; the existing project crosswalk assigns Y22. The snowy exterior is a photograph, unlike the separate sports-area rendering in the article.",
+      "directoryArticle": 40,
+      "identitySourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/40/artclDetailView.do",
+      "width": 317,
+      "height": 238,
+      "bytes": 201875,
+      "sha256": "2e8992de2b91a14ce257c9e24ffc201a364743189bbc63a3e835293e53259ca1",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "view": "exterior",
+      "originalFile": "research-064/yongin/originals/y22-chapel.png",
+      "copyrightNotice": "COPYRIGHT(C) MYONGJI UNIV. ALL RIGHTS RESERVED.",
+      "rightsNote": "Official-source photograph. No open-license grant was located; this image is not covered by the repository MIT license.",
+      "originalAsset": {
+        "sha256": "2e8992de2b91a14ce257c9e24ffc201a364743189bbc63a3e835293e53259ca1",
+        "width": 317,
+        "height": 238,
+        "bytes": 201875
+      },
+      "displayTransform": {
+        "kind": "original-bytes",
+        "cropped": false,
+        "retouched": false,
+        "AIUsed": false
+      }
+    },
+    {
+      "id": "y24-hystec-wide",
+      "placeId": "mju-y24",
+      "src": "web/building-photos/yongin/y24-hystec-wide.jpg",
+      "sourcePageUrl": "https://hystec.mju.ac.kr/",
+      "imageUrl": "https://hystec.mju.ac.kr/theme/mypage1/images/_index_bg01.jpg",
+      "caption": {
+        "en": "HYSTEC — elevated exterior view",
+        "ko": "하이브리드 구조실험센터 — 높은 곳에서 본 외관",
+        "zh": "混合结构试验中心 — 高处斜视外观"
+      },
+      "originalCaption": null,
+      "identificationEvidence": "The official HYSTEC homepage uses _index_bg01.jpg. The photograph visibly carries 하이브리드구조실험센터 signage and building number 24; directory article 87 names the center and lists Y24 rooms. Elevated wide view includes the hall, annex and yard.",
+      "directoryArticle": 87,
+      "identitySourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/87/artclDetailView.do",
+      "width": 1600,
+      "height": 808,
+      "bytes": 278384,
+      "sha256": "0e9f24b057348116a59e223c2c6343c7c3970b1efd8c35e426d8fb0f55e6bd61",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "view": "elevated-wide",
+      "originalFile": "research-064/yongin/originals/y24-hystec-front.jpg",
+      "copyrightNotice": null,
+      "rightsNote": "Official-source photograph. No open-license grant was located; this image is not covered by the repository MIT license.",
+      "originalAsset": {
+        "sha256": "806da08176e8619fab1552f35c6843a777cf3c893b5cc10d3a0f4e36dd299eb1",
+        "width": 1920,
+        "height": 970,
+        "bytes": 1249369
+      },
+      "displayTransform": {
+        "kind": "proportional-resize",
+        "maxEdge": 1600,
+        "resampling": "Lanczos",
+        "jpegQuality": 88,
+        "progressive": true,
+        "subsampling": 0,
+        "cropped": false,
+        "retouched": false,
+        "AIUsed": false
+      }
+    },
+    {
+      "id": "y24-hystec-entrance",
+      "placeId": "mju-y24",
+      "src": "web/building-photos/yongin/y24-hystec-entrance.jpg",
+      "sourcePageUrl": "https://hystec.mju.ac.kr/",
+      "imageUrl": "https://hystec.mju.ac.kr/theme/mypage1/images/_index_bg02.jpg",
+      "caption": {
+        "en": "HYSTEC — entrance and façade",
+        "ko": "하이브리드 구조실험센터 — 출입구와 외관",
+        "zh": "混合结构试验中心 — 入口及正面"
+      },
+      "originalCaption": null,
+      "identificationEvidence": "The official HYSTEC homepage uses _index_bg02.jpg. The same center is identifiable by its Korean façade sign and architecture. This is a closer, lower viewpoint than _index_bg01.jpg, showing the entrance and façade; it is a distinct view rather than a crop of the wide photograph.",
+      "directoryArticle": 87,
+      "identitySourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/87/artclDetailView.do",
+      "width": 1600,
+      "height": 808,
+      "bytes": 181934,
+      "sha256": "48caa8c5a40cfab318ee01d49fad78d3df7b1629aa798d8c36ec0fdfd1933fa2",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "view": "ground-level-entrance",
+      "originalFile": "research-064/yongin/originals/y24-hystec-side.jpg",
+      "copyrightNotice": null,
+      "rightsNote": "Official-source photograph. No open-license grant was located; this image is not covered by the repository MIT license.",
+      "originalAsset": {
+        "sha256": "bb9c1f523f997039c1a68c12445a4684b3372db7322483d736ca1e606a987331",
+        "width": 1920,
+        "height": 970,
+        "bytes": 829017
+      },
+      "displayTransform": {
+        "kind": "proportional-resize",
+        "maxEdge": 1600,
+        "resampling": "Lanczos",
+        "jpegQuality": 88,
+        "progressive": true,
+        "subsampling": 0,
+        "cropped": false,
+        "retouched": false,
+        "AIUsed": false
+      }
+    },
+    {
+      "id": "y30-myeonghyeon",
+      "placeId": "mju-y30",
+      "src": "web/building-photos/yongin/y30-myeonghyeon.jpg",
+      "sourcePageUrl": "https://dorm.mju.ac.kr/dorm/6640/subview.do",
+      "imageUrl": "https://dorm.mju.ac.kr/sites/dorm/contents/images/000001/%EB%AA%85%ED%98%84_%EA%B1%B4%EB%AC%BC%EC%99%B8%EA%B4%80_1.jpg",
+      "caption": {
+        "en": "Myeonghyeon Residence — front view",
+        "ko": "명현관 — 정면",
+        "zh": "明贤馆 — 正面"
+      },
+      "originalCaption": "명현관; image filename 명현_건물외관_1.jpg",
+      "identificationEvidence": "Dormitory facilities page associates this exterior filename with the 명현관 section. Building number 30 and the entrance name are visible in the photograph. Directory article 50 names 생활관(명현관).",
+      "directoryArticle": 50,
+      "identitySourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/50/artclDetailView.do",
+      "width": 1600,
+      "height": 1200,
+      "bytes": 467176,
+      "sha256": "b20361549a6287180ee16e2e1c38ff55025f29348abaea20a80d23c959076252",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "view": "front",
+      "originalFile": "research-064/yongin/originals/y30-myeonghyeon.jpg",
+      "copyrightNotice": "Copyright ⓒ 2018 인문캠퍼스 생활관, 2017 자연캠퍼스 생활관. All rights reserved.",
+      "rightsNote": "Official-source photograph. No open-license grant was located; this image is not covered by the repository MIT license.",
+      "originalAsset": {
+        "sha256": "58b100d0058afd1f46a2021cfb3fc84975a0ed80b21167df1bd53e183ae7148e",
+        "width": 4032,
+        "height": 3024,
+        "bytes": 3274498
+      },
+      "displayTransform": {
+        "kind": "proportional-resize",
+        "maxEdge": 1600,
+        "resampling": "Lanczos",
+        "jpegQuality": 88,
+        "progressive": true,
+        "subsampling": 0,
+        "cropped": false,
+        "retouched": false,
+        "AIUsed": false
+      }
+    },
+    {
+      "id": "y31-myeongdeok-front",
+      "placeId": "mju-y31",
+      "src": "web/building-photos/yongin/y31-myeongdeok-front.jpg",
+      "sourcePageUrl": "https://dorm.mju.ac.kr/dorm/6640/subview.do",
+      "imageUrl": "https://dorm.mju.ac.kr/sites/dorm/contents/images/000001/%EB%AA%85%EB%8D%95_%EA%B1%B4%EB%AC%BC%EC%99%B8%EA%B4%80.jpg",
+      "caption": {
+        "en": "Myeongdeok Residence — front view",
+        "ko": "명덕관 — 정면",
+        "zh": "明德馆 — 正面"
+      },
+      "originalCaption": "명덕관; image filename 명덕_건물외관.jpg",
+      "identificationEvidence": "Dormitory facilities page associates the filename with 명덕관. The photograph shows the curved front façade and large number 31. Directory article 47 names 생활관(명덕관).",
+      "directoryArticle": 47,
+      "identitySourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/47/artclDetailView.do",
+      "width": 1600,
+      "height": 1200,
+      "bytes": 448877,
+      "sha256": "05f2b9e42f93caad739fadd1cedec208aa34f31537701d0f57676e7a53686411",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "view": "front",
+      "originalFile": "research-064/yongin/originals/y31-myeongdeok-front.jpg",
+      "copyrightNotice": "Copyright ⓒ 2018 인문캠퍼스 생활관, 2017 자연캠퍼스 생활관. All rights reserved.",
+      "rightsNote": "Official-source photograph. No open-license grant was located; this image is not covered by the repository MIT license.",
+      "originalAsset": {
+        "sha256": "3721b33fec431eb232fe1d37eafa76d54930d29ee4fa2448d40069f74c9dbd07",
+        "width": 4032,
+        "height": 3024,
+        "bytes": 3294338
+      },
+      "displayTransform": {
+        "kind": "proportional-resize",
+        "maxEdge": 1600,
+        "resampling": "Lanczos",
+        "jpegQuality": 88,
+        "progressive": true,
+        "subsampling": 0,
+        "cropped": false,
+        "retouched": false,
+        "AIUsed": false
+      }
+    },
+    {
+      "id": "y31-myeongdeok-oblique",
+      "placeId": "mju-y31",
+      "src": "web/building-photos/yongin/y31-myeongdeok-oblique.jpg",
+      "sourcePageUrl": "https://dorm.mju.ac.kr/dorm/6640/subview.do",
+      "imageUrl": "https://www.mju.ac.kr/sites/dorm/contents/images/000001/%EB%AA%85%EB%8D%95_%EA%B1%B4%EB%AC%BC%EC%99%B8%EA%B4%802.jpg",
+      "caption": {
+        "en": "Myeongdeok Residence — elevated oblique view",
+        "ko": "명덕관 — 높은 곳에서 본 사선 전경",
+        "zh": "明德馆 — 高处斜视外观"
+      },
+      "originalCaption": "명덕관; image filename 명덕_건물외관2.jpg",
+      "identificationEvidence": "The same 명덕관 section provides this second exterior image. Its visible number 31 and curved façade match the frontal photograph. The elevated left-hand viewpoint includes a different perspective of the entrance approach and building, so it is a distinct angle.",
+      "directoryArticle": 47,
+      "identitySourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/47/artclDetailView.do",
+      "width": 1600,
+      "height": 1200,
+      "bytes": 384062,
+      "sha256": "deaea9d305092b304eb023b2d6d2af5ca2df0a3622428c443c3209a391c7a09c",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "view": "elevated-oblique",
+      "originalFile": "research-064/yongin/originals/y31-myeongdeok-side.jpg",
+      "copyrightNotice": "Copyright ⓒ 2018 인문캠퍼스 생활관, 2017 자연캠퍼스 생활관. All rights reserved.",
+      "rightsNote": "Official-source photograph. No open-license grant was located; this image is not covered by the repository MIT license.",
+      "originalAsset": {
+        "sha256": "4834e554eac7d39ef2fcb162d92038d3549f086afe62e71e924ce08044e1ad23",
+        "width": 4032,
+        "height": 3024,
+        "bytes": 2793992
+      },
+      "displayTransform": {
+        "kind": "proportional-resize",
+        "maxEdge": 1600,
+        "resampling": "Lanczos",
+        "jpegQuality": 88,
+        "progressive": true,
+        "subsampling": 0,
+        "cropped": false,
+        "retouched": false,
+        "AIUsed": false
+      }
+    },
+    {
+      "id": "y33-residence4",
+      "placeId": "mju-y33",
+      "src": "web/building-photos/yongin/y33-residence4.jpg",
+      "sourcePageUrl": "https://dorm.mju.ac.kr/dorm/6640/subview.do",
+      "imageUrl": "https://dorm.mju.ac.kr/sites/dorm/contents/images/000001/20260819153954912_2G6DLNCW.jpg",
+      "caption": {
+        "en": "Residence 4 exterior",
+        "ko": "생활관 4동 외관",
+        "zh": "4号宿舍楼外观"
+      },
+      "originalCaption": "4동",
+      "identificationEvidence": "Dormitory facilities page places this photograph directly under 4동. Directory article 77 names 생활관(제3학생기숙사(4동)) and lists Y33002/Y33101/Y33110/Y33114 rooms, directly supporting Y33.",
+      "directoryArticle": 77,
+      "identitySourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/77/artclDetailView.do",
+      "width": 1600,
+      "height": 1238,
+      "bytes": 765352,
+      "sha256": "44eb1f2cec30cee3a49af3efcd07af2f3a65eff433ceb79bdcd36130dbe909b7",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "view": "exterior",
+      "originalFile": "research-064/yongin/originals/y33-residence4.jpg",
+      "copyrightNotice": "Copyright ⓒ 2018 인문캠퍼스 생활관, 2017 자연캠퍼스 생활관. All rights reserved.",
+      "rightsNote": "Official-source photograph. No open-license grant was located; this image is not covered by the repository MIT license.",
+      "originalAsset": {
+        "sha256": "eeb261652c5d6312432cf2781f1705aeeb8b79a9ed90f2a8a630e1645222c509",
+        "width": 3521,
+        "height": 2725,
+        "bytes": 2801516
+      },
+      "displayTransform": {
+        "kind": "proportional-resize",
+        "maxEdge": 1600,
+        "resampling": "Lanczos",
+        "jpegQuality": 88,
+        "progressive": true,
+        "subsampling": 0,
+        "cropped": false,
+        "retouched": false,
+        "AIUsed": false
+      }
+    },
+    {
+      "id": "y34-residence5",
+      "placeId": "mju-y34",
+      "src": "web/building-photos/yongin/y34-residence5.jpg",
+      "sourcePageUrl": "https://dorm.mju.ac.kr/dorm/6640/subview.do",
+      "imageUrl": "https://dorm.mju.ac.kr/sites/dorm/contents/images/000001/20260819154108950_T1GMY4EV.jpg",
+      "caption": {
+        "en": "Residence 5 exterior",
+        "ko": "생활관 5동 외관",
+        "zh": "5号宿舍楼外观"
+      },
+      "originalCaption": "5동",
+      "identificationEvidence": "Dormitory facilities page places this photograph directly under 5동. Directory article 78 names 생활관(제3학생기숙사(5동)); the existing project crosswalk assigns Y34. Caption refers to the foreground residence, not other buildings visible behind it.",
+      "directoryArticle": 78,
+      "identitySourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/78/artclDetailView.do",
+      "width": 1600,
+      "height": 1167,
+      "bytes": 646616,
+      "sha256": "a3180ecb5c4da6dfc3f582d3e20ad3f785d552ef3972eadc043477b64f95ddd7",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "view": "exterior",
+      "originalFile": "research-064/yongin/originals/y34-residence5.jpg",
+      "copyrightNotice": "Copyright ⓒ 2018 인문캠퍼스 생활관, 2017 자연캠퍼스 생활관. All rights reserved.",
+      "rightsNote": "Official-source photograph. No open-license grant was located; this image is not covered by the repository MIT license.",
+      "originalAsset": {
+        "sha256": "82ce54f803b46cf9da8fefe61fdf2eb35cf7896461f122d713ffb1c5176774dc",
+        "width": 3886,
+        "height": 2834,
+        "bytes": 3055016
+      },
+      "displayTransform": {
+        "kind": "proportional-resize",
+        "maxEdge": 1600,
+        "resampling": "Lanczos",
+        "jpegQuality": 88,
+        "progressive": true,
+        "subsampling": 0,
+        "cropped": false,
+        "retouched": false,
+        "AIUsed": false
+      }
+    },
+    {
+      "id": "y35-welfare",
+      "placeId": "mju-y35",
+      "src": "web/building-photos/yongin/y35-welfare.gif",
+      "sourcePageUrl": "https://dorm.mju.ac.kr/dorm/6642/subview.do",
+      "imageUrl": "https://dorm.mju.ac.kr/sites/dorm/images/main/facility1.gif",
+      "caption": {
+        "en": "Residence welfare building exterior",
+        "ko": "생활관 부대시설동 외관",
+        "zh": "宿舍附属设施楼外观"
+      },
+      "originalCaption": "부대시설동",
+      "identificationEvidence": "Official dormitory convenience page explicitly labels facility1.gif 부대시설동 and identifies its dining facility in 복지동 1층. Directory article 79 identifies residence B동 and lists Y35103 식당 plus other Y35 welfare rooms. This supports the existing Y35 welfare-building crosswalk. The small exterior image was visually checked and retained at original resolution.",
+      "directoryArticle": 79,
+      "identitySourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/79/artclDetailView.do",
+      "width": 186,
+      "height": 114,
+      "bytes": 18658,
+      "sha256": "7e631d7b29e1a3ed8a9f653805aa93e93e8750898d24b30fc61e8f61b554df70",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "view": "exterior",
+      "originalFile": "research-064/yongin/originals/y35-welfare.gif",
+      "copyrightNotice": "Copyright ⓒ 2018 인문캠퍼스 생활관, 2017 자연캠퍼스 생활관. All rights reserved.",
+      "rightsNote": "Official-source photograph. No open-license grant was located; this image is not covered by the repository MIT license.",
+      "limitations": [
+        "Original is only 186×114 pixels; no upscaling or enhancement was applied."
+      ],
+      "originalAsset": {
+        "sha256": "7e631d7b29e1a3ed8a9f653805aa93e93e8750898d24b30fc61e8f61b554df70",
+        "width": 186,
+        "height": 114,
+        "bytes": 18658
+      },
+      "displayTransform": {
+        "kind": "original-bytes",
+        "cropped": false,
+        "retouched": false,
+        "AIUsed": false
+      }
+    },
+    {
+      "id": "seoul-s1-official-day-night",
+      "placeId": "mju-s1",
+      "src": "web/building-photos/seoul/s1-general-hall-day-night.jpg",
+      "sourcePageUrl": "https://news.mju.ac.kr/news/articleView.html?idxno=12317",
+      "imageUrl": "https://news.mju.ac.kr/news/photo/202310/12317_12899_5348.jpg",
+      "caption": {
+        "en": "General Hall — day/night montage published by the university newspaper in 2023.",
+        "ko": "종합관 — 명대신문이 2023년에 게재한 주·야간 합성 사진입니다.",
+        "zh": "综合馆 — 校报于2023年刊登的日间与夜间拼图。"
+      },
+      "originalCaption": "▲사진은 현판이 교체된 명지대학교 종합관의 모습이다.",
+      "identificationEvidence": "The official university newspaper caption explicitly identifies 종합관. The photograph shows its long facade with vertical gray strips and rooftop 명지대학교 sign. The university numbering page https://www.mju.ac.kr/ice1/7631/subview.do maps 종합관 to 1. One original publisher-made diptych; it is one asset, not two carousel angles.",
+      "width": 600,
+      "height": 676,
+      "sha256": "bf77a0b82bf08bf45f9d198b17cb2d35b1d0c2d3eb0ab71cc469564cf4c2c5d0",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "bytes": 135349,
+      "sourcePublicationDate": "2023-10",
+      "rights": "Copyright remains with Myongji University / the credited university publisher; not covered by the application MIT license. Public availability does not establish a redistribution license.",
+      "presentationNote": "Keep the original montage and newspaper watermark; contain without cropping.",
+      "originalAsset": {
+        "sha256": "bf77a0b82bf08bf45f9d198b17cb2d35b1d0c2d3eb0ab71cc469564cf4c2c5d0",
+        "width": 600,
+        "height": 676,
+        "bytes": 135349
+      },
+      "displayTransform": {
+        "kind": "original-bytes",
+        "cropped": false,
+        "retouched": false,
+        "AIUsed": false
+      }
+    },
+    {
+      "id": "seoul-s2-official-archive",
+      "placeId": "mju-s2",
+      "src": "web/building-photos/seoul/s2-student-union-archive.jpg",
+      "sourcePageUrl": "https://news.mju.ac.kr/news/articleView.html?idxno=1357",
+      "imageUrl": "https://news.mju.ac.kr/news/photo/oldfile/201011/img_1357_18.jpg",
+      "caption": {
+        "en": "Student Union — university archive published in 2010; its appearance may have changed.",
+        "ko": "학생회관 — 2010년 게재된 대학 기록 사진으로 현재 모습과 다를 수 있습니다.",
+        "zh": "学生会馆 — 2010年刊登的大学档案照片，现貌可能已有变化。"
+      },
+      "originalCaption": "가운데는 현 학생회관. 과거 국제대학의 본관으로 사용됐다.",
+      "identificationEvidence": "Official 2010 article caption identifies the middle photograph as 학생회관. The surviving second image is the tall rectangular facade with projecting square window frames, broad glass ground entrance and steps. Its distinctive grid facade and form match building 2 학생회관 in the current KLEC labelled overview https://klec.mju.ac.kr/cmnct/view.php?campus_gubun=s&db_code=notice&itemnum=582&sMenu=eng51; https://www.mju.ac.kr/ice1/7631/subview.do supplies the current identifier. Historical appearance is explicitly labelled in the caption; no claim of a current capture.",
+      "width": 620,
+      "height": 932,
+      "sha256": "bd7ec939d69c5424c290d5a2fb7b672f33356ec8671c9ee4eb18ef41b9858c46",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "bytes": 535814,
+      "sourcePublicationDate": "2010-11-22",
+      "rights": "Copyright remains with Myongji University / the credited university publisher; not covered by the application MIT license. Public availability does not establish a redistribution license.",
+      "presentationNote": null,
+      "originalAsset": {
+        "sha256": "bd7ec939d69c5424c290d5a2fb7b672f33356ec8671c9ee4eb18ef41b9858c46",
+        "width": 620,
+        "height": 932,
+        "bytes": 535814
+      },
+      "displayTransform": {
+        "kind": "original-bytes",
+        "cropped": false,
+        "retouched": false,
+        "AIUsed": false
+      }
+    },
+    {
+      "id": "seoul-s3-official-archive",
+      "placeId": "mju-s3",
+      "src": "web/building-photos/seoul/s3-mirae-hall-archive.jpg",
+      "sourcePageUrl": "https://news.mju.ac.kr/news/articleView.html?idxno=1357",
+      "imageUrl": "https://news.mju.ac.kr/news/photo/oldfile/201011/img_1357_17.jpg",
+      "caption": {
+        "en": "Mirae Hall — university archive published in 2010, then labelled Social Education Institute; its appearance may have changed.",
+        "ko": "미래관 — 당시 사회교육원으로 표기된 2010년 대학 기록 사진으로 현재 모습과 다를 수 있습니다.",
+        "zh": "未来馆 — 2010年大学档案照片，当时标为社会教育院；现貌可能已有变化。"
+      },
+      "originalCaption": "현 사회교육원. 과거 명지초등학교로 사용됐다.",
+      "identificationEvidence": "The 2010 article identifies this first image as the then 사회교육원 building. The current university directions page https://www.mju.ac.kr/ice1/7631/subview.do explicitly assigns 미래관(미래교육원,어린이집) to building 3. Official 2023 notice https://www.mju.ac.kr/bbs/mjukr/141/203182/artclView.do explicitly pairs 미래관 with 사회교육원(교학팀). The official photographic panorama https://welfare.mju.ac.kr/bbs/welfare/243/227771/artclView.do labels the same broad low block 미래관: stacked continuous rows of grouped green windows divided by broad light horizontal bands, flat roof, and the contrasting stair-bay section match this archive image. This is a historical facade identification supported by institutional function and distinctive architectural features, not proximity to a map marker. Current condition is not asserted.",
+      "width": 620,
+      "height": 932,
+      "sha256": "340b0c60b42cbbc2c778d715aaf6e176feb633dab16cb3d347371f286ade2e30",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "bytes": 452208,
+      "sourcePublicationDate": "2010-11-22",
+      "rights": "Copyright remains with Myongji University / the credited university publisher; not covered by the application MIT license. Public availability does not establish a redistribution license.",
+      "presentationNote": null,
+      "originalAsset": {
+        "sha256": "340b0c60b42cbbc2c778d715aaf6e176feb633dab16cb3d347371f286ade2e30",
+        "width": 620,
+        "height": 932,
+        "bytes": 452208
+      },
+      "displayTransform": {
+        "kind": "original-bytes",
+        "cropped": false,
+        "retouched": false,
+        "AIUsed": false
+      }
+    },
+    {
+      "id": "seoul-s8-official-exterior",
+      "placeId": "mju-s8",
+      "src": "web/building-photos/seoul/s8-humanities-residence.png",
+      "sourcePageUrl": "https://www.mju.ac.kr/mjukr/7696/subview.do",
+      "imageUrl": "https://www.mju.ac.kr/sites/mjukr/images/sub02/center1Img.png",
+      "caption": {
+        "en": "Humanities Residence — exterior photograph in the university’s original graphic.",
+        "ko": "인문생활관 — 대학의 원본 그래픽에 포함된 외관 사진입니다.",
+        "zh": "人文生活馆 — 大学原始宣传图中的建筑外观照片。"
+      },
+      "originalCaption": "인문생활관 대표이미지",
+      "identificationEvidence": "Official page heading 명지대학교 인문생활관 and image alt 인문생활관 대표이미지 explicitly identify the residence. The original university graphic contains a real exterior photograph of the arched red-brick/white residence. Building 8 생활관 is independently listed at https://www.mju.ac.kr/ice1/7631/subview.do. This is a photographic graphic, not a clean rectangular photo; the university border is retained.",
+      "width": 432,
+      "height": 300,
+      "sha256": "6fbaf862c3bea0519828fd97a5cc6d344a38697e726eec86e44ec50ca61ab66d",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "bytes": 169580,
+      "sourcePublicationDate": null,
+      "rights": "Copyright remains with Myongji University / the credited university publisher; not covered by the application MIT license. Public availability does not establish a redistribution license.",
+      "presentationNote": "Original circular framing and graphic border retained; contain without cropping.",
+      "originalAsset": {
+        "sha256": "6fbaf862c3bea0519828fd97a5cc6d344a38697e726eec86e44ec50ca61ab66d",
+        "width": 432,
+        "height": 300,
+        "bytes": 169580
+      },
+      "displayTransform": {
+        "kind": "original-bytes",
+        "cropped": false,
+        "retouched": false,
+        "AIUsed": false
+      }
+    },
+    {
+      "id": "seoul-s9-official-day",
+      "placeId": "mju-s9",
+      "src": "web/building-photos/seoul/s9-bangmok-day.png",
+      "sourcePageUrl": "https://www.mju.ac.kr/bbs/mjukr/464/228882/artclView.do",
+      "imageUrl": "https://www.mju.ac.kr/CrossEditor/binary/images/000203/111.png",
+      "caption": {
+        "en": "Bangmok Academic Information Center — daytime exterior with the university’s photo-zone annotation.",
+        "ko": "방목학술정보관 — 대학의 포토존 위치 표시가 포함된 주간 외관 사진입니다.",
+        "zh": "方牧学术信息馆 — 日间外观，保留大学原图中的拍照区标注。"
+      },
+      "originalCaption": "방목학술정보관 / 포토존 설치 위치",
+      "identificationEvidence": "Official graduation notice identifies the Bangmok Academic Information Center photo-zone and publishes this annotated exterior. Visible LIBRARY sign, curved translucent facade, entrance and pedestrian bridge match the explicitly labelled 방목학술정보관 history image. Number 9 is listed at https://www.mju.ac.kr/ice1/7631/subview.do. The red box/arrow are already in the university original.",
+      "width": 810,
+      "height": 543,
+      "sha256": "aa0f1b38c48881c3d91b60d62e63b0194ff1301488a5ab15669748007d615204",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "bytes": 1028260,
+      "sourcePublicationDate": "2026-01-26",
+      "rights": "Copyright remains with Myongji University / the credited university publisher; not covered by the application MIT license. Public availability does not establish a redistribution license.",
+      "presentationNote": "University annotations retained; contain without cropping.",
+      "originalAsset": {
+        "sha256": "aa0f1b38c48881c3d91b60d62e63b0194ff1301488a5ab15669748007d615204",
+        "width": 810,
+        "height": 543,
+        "bytes": 1028260
+      },
+      "displayTransform": {
+        "kind": "original-bytes",
+        "cropped": false,
+        "retouched": false,
+        "AIUsed": false
+      }
+    },
+    {
+      "id": "seoul-s9-official-night",
+      "placeId": "mju-s9",
+      "src": "web/building-photos/seoul/s9-bangmok-night.png",
+      "sourcePageUrl": "https://www.mju.ac.kr/mjukr/161/subview.do",
+      "imageUrl": "https://www.mju.ac.kr/sites/mjukr/images/sub01/hisbox02.png",
+      "caption": {
+        "en": "Bangmok Academic Information Center — night view from beneath the pedestrian bridge.",
+        "ko": "방목학술정보관 — 연결다리 아래쪽에서 바라본 야간 외관입니다.",
+        "zh": "方牧学术信息馆 — 从人行连桥下方拍摄的夜间外观。"
+      },
+      "originalCaption": "방목학술정보관",
+      "identificationEvidence": "The university history page uses both heading and image alt 방목학술정보관. The night photograph shows the glass entrance, column-supported pedestrian bridge and LIBRARY pylon. Visually compared with the daytime photo: this view looks beneath and along the bridge from a lower/side viewpoint, whereas the day view shows the curved right facade frontally. Distinct viewpoint, not merely a duplicate with changed lighting.",
+      "width": 330,
+      "height": 230,
+      "sha256": "963266da1573b079d6af3b855089a4c2b53a26f0b7b17d53c738afcaeca57a46",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "bytes": 138364,
+      "sourcePublicationDate": null,
+      "rights": "Copyright remains with Myongji University / the credited university publisher; not covered by the application MIT license. Public availability does not establish a redistribution license.",
+      "presentationNote": "Original low resolution 330×230; do not upscale the source asset.",
+      "originalAsset": {
+        "sha256": "963266da1573b079d6af3b855089a4c2b53a26f0b7b17d53c738afcaeca57a46",
+        "width": 330,
+        "height": 230,
+        "bytes": 138364
+      },
+      "displayTransform": {
+        "kind": "original-bytes",
+        "cropped": false,
+        "retouched": false,
+        "AIUsed": false
+      }
+    },
+    {
+      "id": "seoul-s10-official-front",
+      "placeId": "mju-s10",
+      "src": "web/building-photos/seoul/s10-mcc-front.jpg",
+      "sourcePageUrl": "https://news.mju.ac.kr/news/articleView.html?idxno=12317",
+      "imageUrl": "https://news.mju.ac.kr/news/photo/202310/12317_12903_5537.jpg",
+      "caption": {
+        "en": "MCC — front plaza, exterior stairs and university lettering, published in 2023.",
+        "ko": "MCC관 — 2023년에 게재된 전면 광장, 외부 계단과 교명 조형물 사진입니다.",
+        "zh": "MCC馆 — 前广场、室外楼梯及大学标志字样，刊登于2023年。"
+      },
+      "originalCaption": "▲MCC 건물 앞에 ‘명지대학교’ 기립 글자 조형물이 세워져 있다.",
+      "identificationEvidence": "Official newspaper caption explicitly names MCC 건물. The photograph shows the lower stepped facade, central outside stairs and freestanding 명지대학교 letters. Building 10 MCC is listed at https://www.mju.ac.kr/ice1/7631/subview.do. Visual comparison with the garage and stair-detail images confirms different viewpoints and subject scale.",
+      "width": 600,
+      "height": 338,
+      "sha256": "69c88dff64b8e27b6df2a7e9392b708b9d8d9686a5fb8ef234f088225bb8383a",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "bytes": 162521,
+      "sourcePublicationDate": "2023-10",
+      "rights": "Copyright remains with Myongji University / the credited university publisher; not covered by the application MIT license. Public availability does not establish a redistribution license.",
+      "presentationNote": null,
+      "originalAsset": {
+        "sha256": "69c88dff64b8e27b6df2a7e9392b708b9d8d9686a5fb8ef234f088225bb8383a",
+        "width": 600,
+        "height": 338,
+        "bytes": 162521
+      },
+      "displayTransform": {
+        "kind": "original-bytes",
+        "cropped": false,
+        "retouched": false,
+        "AIUsed": false
+      }
+    },
+    {
+      "id": "seoul-s10-official-stairs",
+      "placeId": "mju-s10",
+      "src": "web/building-photos/seoul/s10-mcc-stairs.jpg",
+      "sourcePageUrl": "https://news.mju.ac.kr/news/articleView.html?idxno=12317",
+      "imageUrl": "https://news.mju.ac.kr/news/photo/202310/12317_12901_550.jpg",
+      "caption": {
+        "en": "MCC — exterior detail beside the central stairs, published in 2023.",
+        "ko": "MCC관 — 2023년에 게재된 외부 중앙 계단 옆 세부 모습입니다.",
+        "zh": "MCC馆 — 中央室外楼梯旁的细节，刊登于2023年。"
+      },
+      "originalCaption": "▲MCC 외부 중앙 계단 옆 경사면에 명지대학교 로고가 새겨진 원형 현판이 설치돼 있다.",
+      "identificationEvidence": "Official caption explicitly identifies the slope beside the MCC exterior central stairs. The original image is a close side view of the crest and railings, materially different from the distant frontal plaza view and the garage entrance. It is labelled as an exterior detail, not a whole-building facade.",
+      "width": 600,
+      "height": 338,
+      "sha256": "1ba5ec2f098837c8d6c7142bc00544553824f4a2b2c3dd33c1e2b8ea35c333ff",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "bytes": 125959,
+      "sourcePublicationDate": "2023-10",
+      "rights": "Copyright remains with Myongji University / the credited university publisher; not covered by the application MIT license. Public availability does not establish a redistribution license.",
+      "presentationNote": null,
+      "originalAsset": {
+        "sha256": "1ba5ec2f098837c8d6c7142bc00544553824f4a2b2c3dd33c1e2b8ea35c333ff",
+        "width": 600,
+        "height": 338,
+        "bytes": 125959
+      },
+      "displayTransform": {
+        "kind": "original-bytes",
+        "cropped": false,
+        "retouched": false,
+        "AIUsed": false
+      }
+    },
+    {
+      "id": "seoul-s10-official-garage",
+      "placeId": "mju-s10",
+      "src": "web/building-photos/seoul/s10-mcc-garage.png",
+      "sourcePageUrl": "https://news.mju.ac.kr/news/articleView.html?idxno=12317",
+      "imageUrl": "https://news.mju.ac.kr/news/photo/202310/12317_12900_5437.png",
+      "caption": {
+        "en": "MCC — vehicle parking entrance at night, published in 2023.",
+        "ko": "MCC관 — 2023년에 게재된 야간 주차장 차량 출입구 사진입니다.",
+        "zh": "MCC馆 — 夜间车辆停车场入口，刊登于2023年。"
+      },
+      "originalCaption": "▲정문의 MCC 1층 주차장 입구에 명지대학교 건물임을 나타내는 ‘MYONGJI CAMPUS COMPLEX’ 문구가 설치돼 있다.",
+      "identificationEvidence": "Official caption explicitly identifies the MCC first-floor parking entrance beside the main gate. The original night photo visibly reads MYONGJI CAMPUS COMPLEX and shows the garage entrance. Distinct ground-level location from the plaza and central-stair detail. This is a vehicle entrance photograph, not a recommendation for a pedestrian route.",
+      "width": 600,
+      "height": 450,
+      "sha256": "dc33ae76c7db0b53a9b27444fc72e794d03cbfbddab2e29467b7a89cd35f9927",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "bytes": 497311,
+      "sourcePublicationDate": "2023-10",
+      "rights": "Copyright remains with Myongji University / the credited university publisher; not covered by the application MIT license. Public availability does not establish a redistribution license.",
+      "presentationNote": null,
+      "originalAsset": {
+        "sha256": "dc33ae76c7db0b53a9b27444fc72e794d03cbfbddab2e29467b7a89cd35f9927",
+        "width": 600,
+        "height": 450,
+        "bytes": 497311
+      },
+      "displayTransform": {
+        "kind": "original-bytes",
+        "cropped": false,
+        "retouched": false,
+        "AIUsed": false
+      }
+    }
+  ]
+}

@@ -52,7 +52,50 @@ public final class CommunitySnapshotTest {
         return result.toString();
     }
 
+    private static void automaticOriginals() throws Exception {
+        String record = "{\"id\":\"mju-menu-library-2026-10-02-lunch\",\"sourceId\":\"mju-menu-library\",\"kind\":\"menu\","
+            + "\"originalLanguage\":\"ko\",\"originalText\":\"쌀밥\\n김치\\n알레르기 1.2.3.5.6.7.8.9.10.12.14.15\",\"meal\":\"lunch\","
+            + "\"sourceUrl\":\"https://www.mju.ac.kr/diet/mjukr/4/view.do?monday=2026.09.28\","
+            + "\"publishedAt\":null,\"reviewedAt\":null,\"observedAt\":\"2026-10-01T12:00:00Z\",\"validatedAt\":\"2026-10-03T12:00:00Z\","
+            + "\"validFrom\":\"2026-10-02\",\"validThrough\":\"2026-10-02\"}";
+        CommunitySnapshot parsed = good(snapshot(record));
+        expect(parsed.canonicalJson.contains("쌀밥") && parsed.canonicalJson.contains("1.2.3.5.6.7.8.9.10.12.14.15"), "Original Korean and allergen numbering survive without summary or translation");
+        expect(!parsed.canonicalJson.contains("\"summary\"") && parsed.canonicalJson.contains("\"reviewedAt\":null"), "Automatic records do not manufacture human review");
+        expect(good(parsed.canonicalJson).canonicalJson.equals(parsed.canonicalJson), "Original line breaks survive canonical cache round trip");
+        for (String[] source : new String[][]{{"mju-menu-library", "4"}, {"mju-menu-student", "5"}, {"mju-menu-dorm", "6"}}) {
+            for (String meal : new String[]{"breakfast", "lunch", "dinner"}) good(snapshot(record.replace("mju-menu-library", source[0]).replace("/4/view", "/" + source[1] + "/view").replace("\"meal\":\"lunch\"", "\"meal\":\"" + meal + "\"")));
+        }
+        good(snapshot(record.replace("\"observedAt\":\"2026-10-01T12:00:00Z\"", "\"observedAt\":\"2026-10-03T21:00:00+09:00\"")));
+        for (String key : new String[]{"originalLanguage", "originalText", "meal", "observedAt", "validatedAt"}) {
+            bad("Missing automatic field " + key, snapshot(record.replaceAll("\\\"" + key + "\\\":\\\"(?:[^\\\"\\\\]|\\\\.)*\\\",?", "").replace(",}", "}")));
+        }
+        bad("Automatic records cannot contain translated summaries", snapshot(record.replace("\"originalLanguage\":", "\"summary\":" + SUMMARY + ",\"originalLanguage\":")));
+        bad("Automatic source cannot be an Instagram account", snapshot(record.replace("mju-menu-library", "mjhs_lounge")));
+        bad("Automatic source cannot be Seoul without an approved schema", snapshot(record.replace("mju-menu-library", "mju-menu-seoul").replace("/4/view", "/10/view")));
+        bad("Automatic wrong source endpoint", snapshot(record.replace("/4/view", "/6/view")));
+        bad("Automatic source cannot supply announcements", snapshot(record.replace("\"kind\":\"menu\"", "\"kind\":\"announcement\"")));
+        bad("Automatic language cannot imply a translation", snapshot(record.replace("\"originalLanguage\":\"ko\"", "\"originalLanguage\":\"en\"")));
+        bad("Automatic meal labels are bounded", snapshot(record.replace("\"meal\":\"lunch\"", "\"meal\":\"snack\"")));
+        bad("Automatic publication time remains unknown", snapshot(record.replace("\"publishedAt\":null", "\"publishedAt\":\"2026-10-01T12:00:00Z\"")));
+        bad("Automatic content cannot assert human review", snapshot(record.replace("\"reviewedAt\":null", "\"reviewedAt\":\"2026-10-03T12:00:00Z\"")));
+        bad("Validation cannot precede observation", snapshot(record.replace("\"validatedAt\":\"2026-10-03T12:00:00Z\"", "\"validatedAt\":\"2026-10-01T11:59:59Z\"")));
+        bad("Validation cannot follow the published snapshot", snapshot(record.replace("\"validatedAt\":\"2026-10-03T12:00:00Z\"", "\"validatedAt\":\"2026-10-03T12:00:00.001Z\"")));
+        bad("Automatic meal cannot silently span several days", snapshot(record.replace("\"validThrough\":\"2026-10-02\"", "\"validThrough\":\"2026-10-03\"")));
+        bad("Automatic meal cannot move to another week", snapshot(record.replace("\"validFrom\":\"2026-10-02\",\"validThrough\":\"2026-10-02\"", "\"validFrom\":\"2026-10-05\",\"validThrough\":\"2026-10-05\"")));
+        String text = "쌀밥\\n김치\\n알레르기 1.2.3.5.6.7.8.9.10.12.14.15";
+        good(snapshot(record.replace(text, repeat("식", 6000))));
+        good(snapshot(record.replace(text, repeat(new String(Character.toChars(0x1f35a)), 6000))));
+        bad("Oversized Korean original is rejected rather than truncated", snapshot(record.replace(text, repeat("식", 6001))));
+        for (String invalid : new String[]{"", " leading", "trailing ", "\\nleading", "trailing\\n", "A\\rB", "A\\tB", "A\\u0085B", "<b>밥</b>", "https://example.test", "person@example.test", "password: SECRET_SENTINEL", "ghp_abcdefghijk"}) {
+            bad("Original public plain-text constraints", snapshot(record.replace(text, invalid)));
+        }
+        // Legacy human records retain all earlier review/translation requirements.
+        bad("Human record cannot omit review", snapshot(RECORD.replace("\"reviewedAt\":\"2026-10-02T12:00:00Z\"", "\"reviewedAt\":null")));
+        good(snapshot(RECORD + "," + record));
+    }
+
     public static void main(String[] args) throws Exception {
+        automaticOriginals();
         CommunitySnapshot empty = good(snapshot(""));
         expect(empty.version == 1L && empty.updatedAt.equals("2026-10-03T12:00:00Z"), "Public metadata");
         expect(empty.canonicalJson.equals("{\"campusId\":\"yongin\",\"schemaVersion\":1,\"updatedAt\":\"2026-10-03T12:00:00Z\",\"updates\":[],\"version\":1}"), "Sorted canonical root");

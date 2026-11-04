@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "url": "https://www.mju.ac.kr/sites/mjukr/images/temp_1783296837696100.png",
+    "pageUrl": "https://www.mju.ac.kr/mjukr/12348/subview.do",
+    "sha256": "d39ab84a9163d81a39a36a45711a816c6467bd20b85baf37399cbf59092fd810",
+    "dimensions": [
+      1200,
+      818
+    ],
+    "checkedAt": "2026-10-16",
+    "type": "official-oblique-campus-illustration"
+  },
+  "corroboration": [
+    {
+      "url": "https://www.mju.ac.kr/bbs/record/359/168757/download.do",
+      "page": 6,
+      "pageIndex": 5,
+      "sha256": "605c3c14a10c4aa70fc764d7c8bb1c934ae35e70b9604ab4cd62ff104d025585",
+      "note": "2025 admissions guide, labelled Humanities campus illustration on physical page 6."
+    },
+    {
+      "url": "https://klec.mju.ac.kr/home_up_file/2025/20250306_202041_2.png",
+      "pageUrl": "https://klec.mju.ac.kr/cmnct/view.php?campus_gubun=s&db_code=notice&itemnum=582&sMenu=eng51",
+      "note": "Official language-centre building-number overview. Its route arrow is not traced or turned into navigation geometry."
+    },
+    {
+      "url": "https://news.mju.ac.kr/news/articleView.html?idxno=12317",
+      "imageUrl": "https://news.mju.ac.kr/news/photo/202310/12317_12904_561.jpg",
+      "imageSha256": "c65a9bb10c7f016a301b6ca69e52c5a6e13c3a835fa5d491efcf53f0b2c08882",
+      "note": "Official university newspaper photo caption identifies the corridor from the main gate toward Student Union (정문에서 학생회관으로 가는 길목). It corroborates that corridor only, not measured geometry or current access."
+    }
+  ],
+  "frame": "illustration",
+  "method": "Manual corridor interpretation of visible paved spaces, fitted to the existing schematic building anchors without moving those anchors. Source image regions are pixel rectangles [left,top,right,bottom], not a surveyed coordinate transform. Scene points are illustrative centre lines; line widths are visual styling.",
+  "surveyed": false,
+  "navigationGeometry": false,
+  "sourceImageCoordinateOrder": "x right, y down",
+  "sceneCoordinateOrder": "x east, z south in the existing local illustration",
+  "paths": [
+    {
+      "id": "gate-inner-corridor",
+      "label": "Inner main-gate corridor toward the gap beside Student Union",
+      "sourceImageRegions": [
+        [
+          590,
+          548,
+          758,
+          723
+        ]
+      ],
+      "visibleEvidence": "The white paved approach continues from the labelled main gate along the planted island and beside the east side of Student Union. Only the visible internal corridor is retained.",
+      "points": [
+        [
+          25.6,
+          17
+        ],
+        [
+          20,
+          6
+        ],
+        [
+          18,
+          -2
+        ],
+        [
+          18,
+          -21
+        ]
+      ]
+    },
+    {
+      "id": "general-hall-frontage",
+      "label": "Paved frontage between General Hall / Student Union and the sports terrace",
+      "sourceImageRegions": [
+        [
+          274,
+          389,
+          608,
+          520
+        ],
+        [
+          568,
+          487,
+          722,
+          588
+        ]
+      ],
+      "visibleEvidence": "The pale frontage in front of General Hall continues west toward the gap beside Mirae Hall; its east end joins the visible paved space in front of Student Union. The sports terrace and its stairs are not interpreted as a level crossing.",
+      "points": [
+        [
+          20,
+          6
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          -29,
+          6
+        ],
+        [
+          -54,
+          6
+        ]
+      ]
+    },
+    {
+      "id": "international-library-gap",
+      "label": "Visible paved gap toward International Hall and the library",
+      "sourceImageRegions": [
+        [
+          727,
+          500,
+          920,
+          564
+        ]
+      ],
+      "visibleEvidence": "The white ground strip is visible in front of International Hall and beside the library. The trace stops in this gap and does not continue behind either building or into the elevated library connection.",
+      "points": [
+        [
+          18,
+          -21
+        ],
+        [
+          32,
+          -21
+        ],
+        [
+          32,
+          -29
+        ]
+      ]
+    }
+  ],
+  "omitted": [
+    "No inferred closed loop or back-of-building connections.",
+    "No connection through MCC, across the raised sports terrace or over stairs.",
+    "No library elevated bridge, indoor route, entrance point or accessibility assertion.",
+    "The campus tour sequence is not route geometry."
+  ],
+  "rejectedReference": {
+    "url": "https://bizhrd.mju.ac.kr/default/img/guide_02.pdf",
+    "sha256": "74428be1c4eb1c03f2c5afaecc3f05f2fd7325de99a447911682b8f9f30124b8",
+    "pages": 73,
+    "reason": "Current 2026 BCC guide: physical page42/printed page41 is a UCheckPlus manual, not the previously reported campus map. It was not used for tracing."
+  }
+}

@@ -94,12 +94,16 @@ const details: Record<string, Detail> = {
 export const VISUAL_REFERENCES: Readonly<Record<string, VisualReference>> = Object.fromEntries(
     REFERENCE_CAMPUS.features.filter(f => f.kind === 'building' || f.kind === 'gate').map(f => {
         const d = details[f.id];
-        const sources: VisualSource[] = d?.sources ?? [{ url: DIRECTORY, kind: 'directory', reviewed: false, captureDate: null }];
+        // Keep the historical candidate for audit, but do not offer its photo
+        // as Y32 until the inconsistent residence identification is resolved.
+        const unresolvedResidence = f.code === 'Y32';
+        const sources: VisualSource[] = (d?.sources ?? [{ url: DIRECTORY, kind: 'directory' as const, reviewed: false, captureDate: null }])
+            .map(source => unresolvedResidence ? { ...source, reviewed: false } : source);
         const first = sources[0] ?? { url: DIRECTORY, kind: 'directory' as const, reviewed: false, captureDate: null };
         const record: VisualReference = {
             featureId: f.id, code: f.code, nameEn: f.name.en, checkedAt: d?.checkedAt ?? VISUAL_REVIEW_DATE,
-            sourceUrl: first.url, imageUrl: first.imageUrl ?? null, reviewed: Boolean(d),
-            coverage: d?.coverage ?? 'not-visually-confirmed', observations: d?.observations ?? [],
+            sourceUrl: first.url, imageUrl: unresolvedResidence ? null : first.imageUrl ?? null, reviewed: Boolean(d) && !unresolvedResidence,
+            coverage: unresolvedResidence ? 'not-visually-confirmed' : d?.coverage ?? 'not-visually-confirmed', observations: d?.observations ?? [],
             unknowns: [...COMMON_UNKNOWNS, ...(d?.unknowns ?? ['No usable individually identified exterior photo was obtained. The directory photo field is null.']),
                 ...(f.code === 'Y32' ? ['The official dormitory photo is labelled 3동. Its mapping to Y32 follows the supplied illustration; the directory still uses an inconsistent name.'] : []),
                 ...(f.code === 'Y14' || f.code === 'Y83' ? ['Official markers overlap; illustrative separation is not evidence of distinct surveyed footprints.'] : [])],

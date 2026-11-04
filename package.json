@@ -1,12 +1,12 @@
 {
   "name": "myongji-campus-explorer",
-  "version": "0.6.3",
+  "version": "0.6.5",
   "private": true,
   "description": "Independent student campus guide with sourced buildings, bus timetables and a local cited assistant",
   "scripts": {
-    "build": "tsc -p tsconfig.json && tsc -p tsconfig.node.json && node scripts/bundle.cjs",
-    "test": "tsc -p tsconfig.node.json && node --test tests/*.test.cjs",
-    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "build": "node scripts/prepare-building-photos.cjs && tsc -p tsconfig.json && tsc -p tsconfig.node.json && node scripts/bundle.cjs",
+    "test": "node scripts/prepare-building-photos.cjs && tsc -p tsconfig.node.json && node --test tests/*.test.cjs",
+    "typecheck": "node scripts/prepare-building-photos.cjs && tsc -p tsconfig.json --noEmit",
     "preview": "node scripts/serve.cjs",
     "content": "node server/server.cjs",
     "validate": "node scripts/validate.cjs",
@@ -16,7 +16,10 @@
     "test:pwa": "node tests/pwa-browser.cjs",
     "test:campuses": "node tests/browser-campuses.cjs",
     "test:installation": "node tests/mobile-installation.cjs",
-    "test:location": "node tests/location-browser.cjs"
+    "test:location": "node tests/location-browser.cjs",
+    "menus:update": "node scripts/update-official-menu-feed.cjs",
+    "menus:pages": "node scripts/build-pages-menu-feed.cjs",
+    "test:chat-map": "node tests/chat-map-browser.cjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0",

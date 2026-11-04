@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-/** Manual refresh state machine. Every network/cache mutation uses one worker. */
+/** Cached refresh state machine. Every network/cache mutation uses one worker. */
 public final class CommunityRefreshClient {
+    public static final String AUTOMATIC_ENDPOINT = "https://davidijesus.github.io/myongji-campus-explorer/menus/yongin.json";
+    static final long AUTOMATIC_INTERVAL_MS = 15L * 60L * 1000L;
     public interface Store { Object lock(); byte[] read() throws IOException; void write(byte[] bytes) throws IOException; }
     public interface Transport { Response fetch(String endpoint, String etag, Cancellation cancellation) throws Failure; }
     public static final class Response {
@@ -43,6 +45,8 @@ public final class CommunityRefreshClient {
     private final Clock clock;
     private long generation;
     private boolean active, pageReady, cacheLoaded, busy, closed;
+    private boolean attempted, networkInFlight;
+    private long lastAttemptAt;
     private Cancellation operation;
     private CommunitySnapshot current;
     private State last;
@@ -64,7 +68,7 @@ public final class CommunityRefreshClient {
             if (closed) return;
             active = true;
             if (pageReady && !cacheLoaded && !busy) loadCacheLocked();
-            else if (pageReady) dispatchLocked(last);
+            else if (pageReady) { dispatchLocked(last); automaticRefreshLocked(); }
         }
     }
     public void ready() {
@@ -73,7 +77,7 @@ public final class CommunityRefreshClient {
             pageReady = true;
             if (!active) return;
             if (!cacheLoaded && !busy) loadCacheLocked();
-            else dispatchLocked(last);
+            else { dispatchLocked(last); automaticRefreshLocked(); }
         }
     }
     public void pageLoading() { cancel(true, false); }
@@ -86,6 +90,10 @@ public final class CommunityRefreshClient {
             if (operation != null) operation.cancel();
             operation = null;
             boolean wasBusy = busy;
+            // A cancelled fetch never completed an attempt. Retry when foreground
+            // returns; completed failures retain their cooldown to avoid loops.
+            if (networkInFlight) attempted = false;
+            networkInFlight = false;
             busy = false;
             if (clearPage) pageReady = false;
             if (deactivate) active = false;
@@ -108,60 +116,73 @@ public final class CommunityRefreshClient {
                 current = loaded; cacheLoaded = true; busy = false; operation = null;
                 last = new State(!configured() ? "unconfigured" : reason != null ? "error" : current == null ? "idle" : "cached", reason, current);
                 dispatchLocked(last);
+                automaticRefreshLocked();
             }
         });
     }
     public void refresh() {
         synchronized (lock) {
-            if (closed || !active || !pageReady) return;
-            if (!configured()) { last = new State("unconfigured", endpoint.isEmpty() ? null : "invalid_endpoint", current); dispatchLocked(last); return; }
-            if (busy) return;
-            if (!cacheLoaded) { loadCacheLocked(); return; }
-            final long owner = ++generation;
-            final Cancellation token = new Cancellation(); operation = token; busy = true;
-            final CommunitySnapshot requested = current;
-            last = new State("loading", null, current); dispatchLocked(last);
-            worker.execute(() -> {
-                try {
-                    Response response = transport.fetch(endpoint, requested == null ? null : requested.etag(), token); token.check();
-                    CommunitySnapshot candidate;
-                    try {
-                        if (response.notModified) {
-                            if (requested == null || response.bytes != null) throw new Failure("invalid_snapshot");
-                            candidate = requested;
-                        } else candidate = CommunitySnapshot.parse(response.bytes, clock.now());
-                    }
-                    catch (Exception invalid) { throw new Failure("invalid_snapshot"); }
-                    token.check();
-                    synchronized (lock) {
-                        if (!owns(owner, token)) return;
-                        // Across Activity recreation, every reader and writer shares this lock.
-                        // Re-read inside the transaction: an old response cannot replace a
-                        // newer snapshot committed by a different client instance.
-                        synchronized (store.lock()) {
-                            CommunitySnapshot persistent = null;
-                            try {
-                                byte[] saved = store.read();
-                                if (saved != null) {
-                                    try { persistent = CommunitySnapshot.parse(saved, clock.now()); }
-                                    catch (CommunitySnapshot.ValidationException invalid) { /* A valid refresh can repair corrupt cache. */ }
-                                }
-                            } catch (IOException error) { throw new Failure("cache_read"); }
-                            if (persistent != null && (current == null || persistent.version > current.version)) current = persistent;
-                            validateTransition(candidate, current);
-                            validateTransition(candidate, persistent);
-                            token.check();
-                            if (persistent == null || !candidate.canonicalJson.equals(persistent.canonicalJson)) {
-                                try { store.write(candidate.bytes()); } catch (IOException error) { throw new Failure("cache_write"); }
-                            }
-                        }
-                        current = candidate; busy = false; operation = null;
-                        last = new State(response.notModified ? "cached" : "updated", null, current); dispatchLocked(last);
-                    }
-                } catch (Failure error) { finishFailure(owner, token, error.reason); }
-                catch (Exception error) { finishFailure(owner, token, "network"); }
-            });
+            refreshLocked();
         }
+    }
+    private void automaticRefreshLocked() {
+        // Only the explicitly approved public menu feed has lifecycle refresh.
+        // Other configured community services keep their existing manual behavior.
+        if (!AUTOMATIC_ENDPOINT.equals(endpoint) || closed || !active || !pageReady || !cacheLoaded || busy) return;
+        long now = clock.now();
+        if (attempted && now >= lastAttemptAt && now - lastAttemptAt < AUTOMATIC_INTERVAL_MS) return;
+        refreshLocked();
+    }
+    private void refreshLocked() {
+        if (closed || !active || !pageReady) return;
+        if (!configured()) { last = new State("unconfigured", endpoint.isEmpty() ? null : "invalid_endpoint", current); dispatchLocked(last); return; }
+        if (busy) return;
+        if (!cacheLoaded) { loadCacheLocked(); return; }
+        lastAttemptAt = clock.now(); attempted = true; networkInFlight = true;
+        final long owner = ++generation;
+        final Cancellation token = new Cancellation(); operation = token; busy = true;
+        final CommunitySnapshot requested = current;
+        last = new State("loading", null, current); dispatchLocked(last);
+        worker.execute(() -> {
+            try {
+                Response response = transport.fetch(endpoint, requested == null ? null : requested.etag(), token); token.check();
+                CommunitySnapshot candidate;
+                try {
+                    if (response.notModified) {
+                        if (requested == null || response.bytes != null) throw new Failure("invalid_snapshot");
+                        candidate = requested;
+                    } else candidate = CommunitySnapshot.parse(response.bytes, clock.now());
+                }
+                catch (Exception invalid) { throw new Failure("invalid_snapshot"); }
+                token.check();
+                synchronized (lock) {
+                    if (!owns(owner, token)) return;
+                    // Across Activity recreation, every reader and writer shares this lock.
+                    // Re-read inside the transaction: an old response cannot replace a
+                    // newer snapshot committed by a different client instance.
+                    synchronized (store.lock()) {
+                        CommunitySnapshot persistent = null;
+                        try {
+                            byte[] saved = store.read();
+                            if (saved != null) {
+                                try { persistent = CommunitySnapshot.parse(saved, clock.now()); }
+                                catch (CommunitySnapshot.ValidationException invalid) { /* A valid refresh can repair corrupt cache. */ }
+                            }
+                        } catch (IOException error) { throw new Failure("cache_read"); }
+                        if (persistent != null && (current == null || persistent.version > current.version)) current = persistent;
+                        validateTransition(candidate, current);
+                        validateTransition(candidate, persistent);
+                        token.check();
+                        if (persistent == null || !candidate.canonicalJson.equals(persistent.canonicalJson)) {
+                            try { store.write(candidate.bytes()); } catch (IOException error) { throw new Failure("cache_write"); }
+                        }
+                    }
+                    current = candidate; busy = false; operation = null; networkInFlight = false;
+                    last = new State(response.notModified ? "cached" : "updated", null, current); dispatchLocked(last);
+                }
+            } catch (Failure error) { finishFailure(owner, token, error.reason); }
+            catch (Exception error) { finishFailure(owner, token, "network"); }
+        });
     }
     private static void validateTransition(CommunitySnapshot candidate, CommunitySnapshot previous) throws Failure {
         if (previous == null) return;
@@ -172,7 +193,7 @@ public final class CommunityRefreshClient {
     private void finishFailure(long owner, Cancellation token, String reason) {
         synchronized (lock) {
             if (!owns(owner, token)) return;
-            busy = false; operation = null;
+            busy = false; operation = null; networkInFlight = false;
             last = new State(reason.equals("cancelled") ? "cancelled" : "error", reason, current);
             dispatchLocked(last);
         }

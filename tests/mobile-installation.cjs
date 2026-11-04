@@ -55,7 +55,21 @@ const state=page=>page.evaluate(()=>MCE.getState());
     await page.setViewportSize({width,height});await page.evaluate(scale=>MCE.receive({type:'font-scale',scale}),scale);
     const id=campus==='yongin'?'mju-y3':'mju-s9';
     await page.locator(`.place-card[data-place="${id}"]`).click();await page.waitForTimeout(80);
-    check(`${campus}/${language}/${width}x${height}/${scale}x: selected actions stay above navigation`,await page.locator('.sheet-actions').evaluate(el=>{const r=el.getBoundingClientRect(),n=document.querySelector('.bottom-nav').getBoundingClientRect();return r.bottom<=n.top+1&&r.top>=document.querySelector('.app-header').getBoundingClientRect().bottom-1;}));
+    // Photos precede the actions in a scrollable building sheet. On short
+    // screens/large text, verify each control is reachable and unobstructed
+    // instead of requiring the entire action group to fit immediately.
+    const actions=page.locator('.sheet-actions button,.sheet-actions a');
+    check(`${campus}/${language}/${width}x${height}/${scale}x: building actions remain available`,await actions.count()>0);
+    for(const action of await actions.all()){
+     await action.scrollIntoViewIfNeeded();
+     const label=(await action.innerText()).trim();
+     check(`${campus}/${language}/${width}x${height}/${scale}x: ${label} is reachable above navigation`,await action.evaluate(el=>{
+      const r=el.getBoundingClientRect(),n=document.querySelector('.bottom-nav').getBoundingClientRect(),h=document.querySelector('.app-header').getBoundingClientRect(),w=document.querySelector('#workspace').getBoundingClientRect();
+      const hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);
+      return r.top>=Math.max(h.bottom,w.top)-1&&r.bottom<=Math.min(n.top,w.bottom)+1&&r.left>=-1&&r.right<=innerWidth+1&&(hit===el||el.contains(hit));
+     }));
+     await action.click({trial:true});
+    }
     check(`${campus}/${language}/${width}x${height}/${scale}x: no horizontal overflow`,await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
     await back(page);
    }

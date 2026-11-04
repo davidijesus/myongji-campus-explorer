@@ -1,0 +1,1878 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-16",
+  "scope": "Official university photo selection for the currently modeled Yongin and Seoul reference places; coverage by building identity, not a survey of all real campus structures.",
+  "gapMeaning": "A reviewed gap means no suitably identified dedicated exterior asset was approved in the examined official sources. It does not prove that no photograph exists. Additional unreviewed outdoor POIs are separately marked.",
+  "classification": "Buildings use scene kind building in src/campus.ts and src/seoul.ts. Other scene kinds are reference POIs. Seoul gatehouse is therefore a building even though the source research inventories it among separate POIs.",
+  "summary": {
+    "selectedPhotoAssetCount": 20,
+    "placesWithSelectedPhotos": 15,
+    "yongin": {
+      "photoAssets": 11,
+      "placesWithPhotos": 9
+    },
+    "seoul": {
+      "photoAssets": 9,
+      "placesWithPhotos": 6
+    },
+    "modeledPlacesRepresented": 61,
+    "buildingsBySceneKind": 48,
+    "buildingsWithoutSelectedPhotos": 33,
+    "nonBuildingReferencePois": 13,
+    "reviewedReferencePoisWithoutSelectedPhotos": 3,
+    "additionalReferencePoisNotReviewedForDedicatedPhotos": 10,
+    "placesInCompletedPhotoAudit": 51
+  },
+  "sourceCatalogs": [
+    "research-064/yongin/approved-photos.json",
+    "research-064/yongin/building-inventory.json",
+    "research-064/yongin/gaps.json",
+    "research-064/seoul-photos/approved-photos.json",
+    "research-064/seoul-photos/gaps.json"
+  ],
+  "assetPolicy": {
+    "originals": "Research originals remain preserved with source SHA-256 and dimensions. This coverage document does not mutate source catalogues or originals.",
+    "displayDerivatives": "The build prepares deterministic local JPEG display derivatives no larger than 1600 pixels on the longest edge, without upscaling, cropping, retouching or AI services. Runtime provenance records source and derivative dimensions and SHA-256 separately.",
+    "presentation": "Preserve publisher-created diptychs, circular framing, graphic borders, annotations and watermarks. Historical photographs retain historical captions. Fit the full image inside the gallery; do not crop away source context.",
+    "sizes": "For the validated 0.6.4-dev.1 build, the twenty original assets preserved in research total 21,102,399 bytes, and the twenty display assets total 6,977,054 bytes. Seven large JPEG display copies were resized locally to a maximum longest edge of 1600 pixels; research originals remain unchanged.",
+    "rights": "Photographs retain the university or credited publisher rights and are not covered by the application MIT license. Public availability does not establish a redistribution license."
+  },
+  "buildings": [
+    {
+      "campus": "yongin",
+      "placeId": "mju-y-main",
+      "code": "Y_",
+      "name": {
+        "en": "Engineering Hall 1",
+        "ko": "제1공학관"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "photo-gap",
+      "approvedPhotoIds": [],
+      "reason": "No identifiable exterior photograph matched to this building in the reviewed university sources. The fresh directory record exposes an image path ending in /null. No generic or third-party image was substituted.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/73/artclDetailView.do"
+      ],
+      "directoryArticle": 73,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null"
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-y1",
+      "code": "Y1",
+      "name": {
+        "en": "Student Union",
+        "ko": "학생회관"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "photo-gap",
+      "approvedPhotoIds": [],
+      "reason": "No identifiable exterior photograph matched to this building in the reviewed university sources. The fresh directory record exposes an image path ending in /null. No generic or third-party image was substituted.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/93/artclDetailView.do"
+      ],
+      "directoryArticle": 93,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null"
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-y2",
+      "code": "Y2",
+      "name": {
+        "en": "Creative Arts Hall",
+        "ko": "창조관 예술관"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "verified-photo",
+      "approvedPhotoIds": [
+        "y2-creative-arts"
+      ],
+      "reason": null,
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/56/artclDetailView.do"
+      ],
+      "directoryArticle": 56,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null",
+      "limitations": "Capture date unknown. A verified identity does not establish current building condition or measured geometry."
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-y3",
+      "code": "Y3",
+      "name": {
+        "en": "Myongjin Hall",
+        "ko": "명진당"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "photo-gap",
+      "approvedPhotoIds": [],
+      "reason": "No identifiable exterior photograph matched to this building in the reviewed university sources. The fresh directory record exposes an image path ending in /null. No generic or third-party image was substituted.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/49/artclDetailView.do"
+      ],
+      "directoryArticle": 49,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null"
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-y5",
+      "code": "Y5",
+      "name": {
+        "en": "Engineering Hall 5",
+        "ko": "제5공학관"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "photo-gap",
+      "approvedPhotoIds": [],
+      "reason": "No identifiable exterior photograph matched to this building in the reviewed university sources. The fresh directory record exposes an image path ending in /null. No generic or third-party image was substituted.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/81/artclDetailView.do"
+      ],
+      "directoryArticle": 81,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null"
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-y6",
+      "code": "Y6",
+      "name": {
+        "en": "Sports & Culture Hall",
+        "ko": "체육문화관"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "photo-gap",
+      "approvedPhotoIds": [],
+      "reason": "No identifiable exterior photograph matched to this building in the reviewed university sources. The fresh directory record exposes an image path ending in /null. No generic or third-party image was substituted.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/68/artclDetailView.do"
+      ],
+      "directoryArticle": 68,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null"
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-y7",
+      "code": "Y7",
+      "name": {
+        "en": "Gymnasium",
+        "ko": "체육관"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "photo-gap",
+      "approvedPhotoIds": [],
+      "reason": "No identifiable exterior photograph matched to this building in the reviewed university sources. The fresh directory record exposes an image path ending in /null. No generic or third-party image was substituted.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/83/artclDetailView.do"
+      ],
+      "directoryArticle": 83,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null"
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-y8",
+      "code": "Y8",
+      "name": {
+        "en": "Engineering Hall 2",
+        "ko": "제2공학관(에코바이오관)"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "photo-gap",
+      "approvedPhotoIds": [],
+      "reason": "No identifiable exterior photograph matched to this building in the reviewed university sources. The fresh directory record exposes an image path ending in /null. No generic or third-party image was substituted.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/66/artclDetailView.do"
+      ],
+      "directoryArticle": 66,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null"
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-y9",
+      "code": "Y9",
+      "name": {
+        "en": "Hambak Hall",
+        "ko": "함박관"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "photo-gap",
+      "approvedPhotoIds": [],
+      "reason": "No identifiable exterior photograph matched to this building in the reviewed university sources. The fresh directory record exposes an image path ending in /null. No generic or third-party image was substituted.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/94/artclDetailView.do"
+      ],
+      "directoryArticle": 94,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null"
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-y10",
+      "code": "Y10",
+      "name": {
+        "en": "Athletes’ Residence",
+        "ko": "선수숙소"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "photo-gap",
+      "approvedPhotoIds": [],
+      "reason": "No identifiable exterior photograph matched to this building in the reviewed university sources. The fresh directory record exposes an image path ending in /null. No generic or third-party image was substituted.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/59/artclDetailView.do"
+      ],
+      "directoryArticle": 59,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null"
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-y11",
+      "code": "Y11",
+      "name": {
+        "en": "ROTC",
+        "ko": "학군단"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "photo-gap",
+      "approvedPhotoIds": [],
+      "reason": "No identifiable exterior photograph matched to this building in the reviewed university sources. The fresh directory record exposes an image path ending in /null. No generic or third-party image was substituted.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/89/artclDetailView.do"
+      ],
+      "directoryArticle": 89,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null"
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-y12",
+      "code": "Y12",
+      "name": {
+        "en": "Design & Modeling Center",
+        "ko": "디자인조형센터"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "photo-gap",
+      "approvedPhotoIds": [],
+      "reason": "No identifiable exterior photograph matched to this building in the reviewed university sources. The fresh directory record exposes an image path ending in /null. No generic or third-party image was substituted.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/46/artclDetailView.do"
+      ],
+      "directoryArticle": 46,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null"
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-y13",
+      "code": "Y13",
+      "name": {
+        "en": "Engineering Hall 4",
+        "ko": "제4공학관"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "photo-gap",
+      "approvedPhotoIds": [],
+      "reason": "No identifiable exterior photograph matched to this building in the reviewed university sources. The fresh directory record exposes an image path ending in /null. No generic or third-party image was substituted.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/80/artclDetailView.do"
+      ],
+      "directoryArticle": 80,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null"
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-y14",
+      "code": "Y14",
+      "name": {
+        "en": "Structural Materials Lab",
+        "ko": "구조재료실험동"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "verified-photo",
+      "approvedPhotoIds": [
+        "y14-structural-materials"
+      ],
+      "reason": null,
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/43/artclDetailView.do"
+      ],
+      "directoryArticle": 43,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null",
+      "limitations": "Capture date unknown. A verified identity does not establish current building condition or measured geometry."
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-y15",
+      "code": "Y15",
+      "name": {
+        "en": "Hydraulic Modeling Lab",
+        "ko": "수리모형실습동"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "photo-gap",
+      "approvedPhotoIds": [],
+      "reason": "No identifiable exterior photograph matched to this building in the reviewed university sources. The fresh directory record exposes an image path ending in /null. No generic or third-party image was substituted.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/62/artclDetailView.do"
+      ],
+      "directoryArticle": 62,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null"
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-y16",
+      "code": "Y16",
+      "name": {
+        "en": "Bangmok Memorial Hall",
+        "ko": "방목기념관"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "photo-gap",
+      "approvedPhotoIds": [],
+      "reason": "No identifiable exterior photograph matched to this building in the reviewed university sources. The fresh directory record exposes an image path ending in /null. No generic or third-party image was substituted. Previously cited Gyeonggi public-library architecture publication is outside the university-only source scope.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/52/artclDetailView.do"
+      ],
+      "directoryArticle": 52,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null"
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-y17",
+      "code": "Y17",
+      "name": {
+        "en": "Industry-Academic Cooperation Hall",
+        "ko": "산학협력관"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "photo-gap",
+      "approvedPhotoIds": [],
+      "reason": "No identifiable exterior photograph matched to this building in the reviewed university sources. The fresh directory record exposes an image path ending in /null. No generic or third-party image was substituted.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/95/artclDetailView.do"
+      ],
+      "directoryArticle": 95,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null"
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-y18",
+      "code": "Y18",
+      "name": {
+        "en": "Joint Laboratory",
+        "ko": "공동실험동"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "photo-gap",
+      "approvedPhotoIds": [],
+      "reason": "No identifiable exterior photograph matched to this building in the reviewed university sources. The fresh directory record exposes an image path ending in /null. No generic or third-party image was substituted.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/42/artclDetailView.do"
+      ],
+      "directoryArticle": 42,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null"
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-y19",
+      "code": "Y19",
+      "name": {
+        "en": "Engineering Hall 3",
+        "ko": "제3공학관"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "photo-gap",
+      "approvedPhotoIds": [],
+      "reason": "No identifiable exterior photograph matched to this building in the reviewed university sources. The fresh directory record exposes an image path ending in /null. No generic or third-party image was substituted.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/74/artclDetailView.do"
+      ],
+      "directoryArticle": 74,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null"
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-y20",
+      "code": "Y20",
+      "name": {
+        "en": "Architecture & Urban Design Institute",
+        "ko": "건축도시설계원"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "photo-gap",
+      "approvedPhotoIds": [],
+      "reason": "No identifiable exterior photograph matched to this building in the reviewed university sources. The fresh directory record exposes an image path ending in /null. No generic or third-party image was substituted.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/41/artclDetailView.do"
+      ],
+      "directoryArticle": 41,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null"
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-y21",
+      "code": "Y21",
+      "name": {
+        "en": "Student Welfare Hall",
+        "ko": "학생복지관"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "photo-gap",
+      "approvedPhotoIds": [],
+      "reason": "No identifiable exterior photograph matched to this building in the reviewed university sources. The fresh directory record exposes an image path ending in /null. No generic or third-party image was substituted.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/90/artclDetailView.do"
+      ],
+      "directoryArticle": 90,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null"
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-y22",
+      "code": "Y22",
+      "name": {
+        "en": "60th Anniversary Chapel",
+        "ko": "60주년채플관"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "verified-photo",
+      "approvedPhotoIds": [
+        "y22-chapel"
+      ],
+      "reason": null,
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/40/artclDetailView.do"
+      ],
+      "directoryArticle": 40,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null",
+      "limitations": "Capture date unknown. A verified identity does not establish current building condition or measured geometry."
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-y23",
+      "code": "Y23",
+      "name": {
+        "en": "Next Generation Science Hall",
+        "ko": "차세대과학관"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "photo-gap",
+      "approvedPhotoIds": [],
+      "reason": "No identifiable exterior photograph matched to this building in the reviewed university sources. The fresh directory record exposes an image path ending in /null. No generic or third-party image was substituted.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/82/artclDetailView.do"
+      ],
+      "directoryArticle": 82,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null"
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-y24",
+      "code": "Y24",
+      "name": {
+        "en": "Hybrid Structural Testing Center",
+        "ko": "하이브리드 구조실험센터"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "verified-photo",
+      "approvedPhotoIds": [
+        "y24-hystec-wide",
+        "y24-hystec-entrance"
+      ],
+      "reason": null,
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/87/artclDetailView.do"
+      ],
+      "directoryArticle": 87,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null",
+      "limitations": "Capture date unknown. A verified identity does not establish current building condition or measured geometry."
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-y30",
+      "code": "Y30",
+      "name": {
+        "en": "Myeonghyeon Residence",
+        "ko": "생활관(명현관)"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "verified-photo",
+      "approvedPhotoIds": [
+        "y30-myeonghyeon"
+      ],
+      "reason": null,
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/50/artclDetailView.do"
+      ],
+      "directoryArticle": 50,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null",
+      "limitations": "Capture date unknown. A verified identity does not establish current building condition or measured geometry."
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-y31",
+      "code": "Y31",
+      "name": {
+        "en": "Myeongdeok Residence",
+        "ko": "생활관(명덕관)"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "verified-photo",
+      "approvedPhotoIds": [
+        "y31-myeongdeok-front",
+        "y31-myeongdeok-oblique"
+      ],
+      "reason": null,
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/47/artclDetailView.do"
+      ],
+      "directoryArticle": 47,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null",
+      "limitations": "Capture date unknown. A verified identity does not establish current building condition or measured geometry."
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-y32",
+      "code": "Y32",
+      "name": {
+        "en": "Residence 3 — unresolved annex label",
+        "ko": "생활관(제3학생기숙사(1동))"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "excluded-identity-conflict",
+      "approvedPhotoIds": [],
+      "reason": "Official dorm facilities page labels the candidate 3동; fresh directory article 76 still says 제3학생기숙사(1동) and provides no Y32 room code or photo. No authoritative crosswalk resolving that mismatch was found. The existing app also marks Y32 identity unverified.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/76/artclDetailView.do"
+      ],
+      "directoryArticle": 76,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null",
+      "excludedCandidate": {
+        "candidateImageUrl": "https://dorm.mju.ac.kr/sites/dorm/contents/images/000001/20260819153556719_OQOFT8CU.jpg",
+        "candidateSourcePageUrl": "https://dorm.mju.ac.kr/dorm/6640/subview.do",
+        "candidateOriginalFile": "research-064/yongin/originals/y32-residence3-candidate.jpg"
+      }
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-y33",
+      "code": "Y33",
+      "name": {
+        "en": "Residence 4",
+        "ko": "생활관(제3학생기숙사(4동))"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "verified-photo",
+      "approvedPhotoIds": [
+        "y33-residence4"
+      ],
+      "reason": null,
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/77/artclDetailView.do"
+      ],
+      "directoryArticle": 77,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null",
+      "limitations": "Capture date unknown. A verified identity does not establish current building condition or measured geometry."
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-y34",
+      "code": "Y34",
+      "name": {
+        "en": "Residence 5",
+        "ko": "생활관(제3학생기숙사(5동))"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "verified-photo",
+      "approvedPhotoIds": [
+        "y34-residence5"
+      ],
+      "reason": null,
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/78/artclDetailView.do"
+      ],
+      "directoryArticle": 78,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null",
+      "limitations": "Capture date unknown. A verified identity does not establish current building condition or measured geometry."
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-y35",
+      "code": "Y35",
+      "name": {
+        "en": "Residence Welfare Building B",
+        "ko": "생활관(제3학생기숙사(B동))"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "verified-photo",
+      "approvedPhotoIds": [
+        "y35-welfare"
+      ],
+      "reason": null,
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/79/artclDetailView.do"
+      ],
+      "directoryArticle": 79,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null",
+      "limitations": "Only a 186×114-pixel source exterior is available in this selection; do not upscale."
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-y82",
+      "code": "Y82",
+      "name": {
+        "en": "Greenhouse",
+        "ko": "온실"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "photo-gap",
+      "approvedPhotoIds": [],
+      "reason": "No identifiable exterior photograph matched to this building in the reviewed university sources. The fresh directory record exposes an image path ending in /null. No generic or third-party image was substituted.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/69/artclDetailView.do"
+      ],
+      "directoryArticle": 69,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null"
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-y83",
+      "code": "Y83",
+      "name": {
+        "en": "Model Testing Laboratory",
+        "ko": "모형실험동"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "photo-gap",
+      "approvedPhotoIds": [],
+      "reason": "No identifiable exterior photograph matched to this building in the reviewed university sources. The fresh directory record exposes an image path ending in /null. No generic or third-party image was substituted. HYSTEC 구조재료시험동 photo belongs to Y14; 건설인프라연구동 photo has no verified Y83 crosswalk and was not assigned.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/51/artclDetailView.do"
+      ],
+      "directoryArticle": 51,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null"
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-e",
+      "code": "E",
+      "name": {
+        "en": "Indoor Tennis Hall",
+        "ko": "실내테니스장"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "photo-gap",
+      "approvedPhotoIds": [],
+      "reason": "No identifiable exterior photograph matched to this building in the reviewed university sources. The fresh directory record exposes an image path ending in /null. No generic or third-party image was substituted.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/64/artclDetailView.do"
+      ],
+      "directoryArticle": 64,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null"
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-elpenheim",
+      "code": null,
+      "name": {
+        "en": "Elpenheim",
+        "ko": "엘펜하임"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "photo-gap",
+      "approvedPhotoIds": [],
+      "reason": "No identifiable exterior photograph matched to this building in the reviewed university sources. The fresh directory record exposes an image path ending in /null. No generic or third-party image was substituted.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/48/artclDetailView.do"
+      ],
+      "directoryArticle": 48,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null"
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-visitors",
+      "code": null,
+      "name": {
+        "en": "Visitor Residence",
+        "ko": "방문자숙소"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "photo-gap",
+      "approvedPhotoIds": [],
+      "reason": "No identifiable exterior photograph matched to this building in the reviewed university sources. The fresh directory record exposes an image path ending in /null. No generic or third-party image was substituted.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/53/artclDetailView.do"
+      ],
+      "directoryArticle": 53,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null"
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-bus-office",
+      "code": null,
+      "name": {
+        "en": "Bus Management Office",
+        "ko": "버스관리사무소"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "photo-gap",
+      "approvedPhotoIds": [],
+      "reason": "No identifiable exterior photograph matched to this building in the reviewed university sources. The fresh directory record exposes an image path ending in /null. No generic or third-party image was substituted.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/58/artclDetailView.do"
+      ],
+      "directoryArticle": 58,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null"
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-guardhouse",
+      "code": null,
+      "name": {
+        "en": "Guardhouse",
+        "ko": "수위실"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "photo-gap",
+      "approvedPhotoIds": [],
+      "reason": "No identifiable exterior photograph matched to this building in the reviewed university sources. The fresh directory record exposes an image path ending in /null. No generic or third-party image was substituted.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/63/artclDetailView.do"
+      ],
+      "directoryArticle": 63,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null"
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-hydraulics",
+      "code": null,
+      "name": {
+        "en": "Hydraulics Laboratory",
+        "ko": "유압실"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "photo-gap",
+      "approvedPhotoIds": [],
+      "reason": "No identifiable exterior photograph matched to this building in the reviewed university sources. The fresh directory record exposes an image path ending in /null. No generic or third-party image was substituted.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/71/artclDetailView.do"
+      ],
+      "directoryArticle": 71,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null"
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-tennis-office",
+      "code": null,
+      "name": {
+        "en": "Tennis Court Office",
+        "ko": "테니스장관리사무소"
+      },
+      "sceneKind": "building",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "photo-gap",
+      "approvedPhotoIds": [],
+      "reason": "No identifiable exterior photograph matched to this building in the reviewed university sources. The fresh directory record exposes an image path ending in /null. No generic or third-party image was substituted.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/85/artclDetailView.do"
+      ],
+      "directoryArticle": 85,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null"
+    },
+    {
+      "campus": "seoul",
+      "placeId": "mju-s1",
+      "code": "S1",
+      "name": {
+        "en": "General Hall",
+        "ko": "종합관"
+      },
+      "sceneKind": "building",
+      "researchGroup": "buildings",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "approved",
+      "approvedPhotoIds": [
+        "seoul-s1-official-day-night"
+      ],
+      "reason": null,
+      "limitations": "One original publisher-made day/night montage, not two independent carousel slides. No additional distinct source photograph approved.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/ice1/7631/subview.do"
+      ]
+    },
+    {
+      "campus": "seoul",
+      "placeId": "mju-s2",
+      "code": "S2",
+      "name": {
+        "en": "Student Union",
+        "ko": "학생회관"
+      },
+      "sceneKind": "building",
+      "researchGroup": "buildings",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "approved_historical_only",
+      "approvedPhotoIds": [
+        "seoul-s2-official-archive"
+      ],
+      "reason": null,
+      "limitations": "Only an exterior published in the official newspaper in 2010 is approved. No contemporary dedicated exterior or second distinct angle verified. Current-looking background/partial views were not substituted.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/ice1/7631/subview.do"
+      ]
+    },
+    {
+      "campus": "seoul",
+      "placeId": "mju-s3",
+      "code": "S3",
+      "name": {
+        "en": "Mirae Hall",
+        "ko": "미래관"
+      },
+      "sceneKind": "building",
+      "researchGroup": "buildings",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "approved_historical_only",
+      "approvedPhotoIds": [
+        "seoul-s3-official-archive"
+      ],
+      "reason": null,
+      "limitations": "Only a 2010 historical facade, then labelled Social Education Institute, is approved. Current official numbering/function evidence and a labelled university photographic panorama establish the bridge to S3; details are in identificationEvidence. No contemporary dedicated facade or second angle verified.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/ice1/7631/subview.do"
+      ],
+      "corroboratingSources": [
+        "https://www.mju.ac.kr/ice1/7631/subview.do",
+        "https://www.mju.ac.kr/bbs/mjukr/141/203182/artclView.do",
+        "https://welfare.mju.ac.kr/bbs/welfare/243/227771/artclView.do"
+      ]
+    },
+    {
+      "campus": "seoul",
+      "placeId": "mju-s4",
+      "code": "S4",
+      "name": {
+        "en": "International Hall",
+        "ko": "국제관"
+      },
+      "sceneKind": "building",
+      "researchGroup": "buildings",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "gap",
+      "approvedPhotoIds": [],
+      "reason": "No dedicated university photograph adequately shows the facade. The KLEC guide explicitly identifies S4 but uses a third-party street-view screenshot; not promoted as a university original photo. In the 2023 newspaper sign photo, the visible 4 corroborates identity but the facade is mostly obscured by a banner, so it remains research evidence.",
+      "limitations": "No dedicated university photograph adequately shows the facade. The KLEC guide explicitly identifies S4 but uses a third-party street-view screenshot; not promoted as a university original photo. In the 2023 newspaper sign photo, the visible 4 corroborates identity but the facade is mostly obscured by a banner, so it remains research evidence.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/ice1/7631/subview.do"
+      ],
+      "candidateSources": [
+        "https://klec.mju.ac.kr/home_up_file/2022/20220325_172701_9.pdf#page=23",
+        "https://news.mju.ac.kr/news/articleView.html?idxno=12317"
+      ],
+      "localEvidence": [
+        "klec-guide-p23-xref76.png",
+        "s5-news-sign.jpg"
+      ]
+    },
+    {
+      "campus": "seoul",
+      "placeId": "mju-s5",
+      "code": "S5",
+      "name": {
+        "en": "Administration Building",
+        "ko": "행정동"
+      },
+      "sceneKind": "building",
+      "researchGroup": "buildings",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "gap",
+      "approvedPhotoIds": [],
+      "reason": "KLEC guide contains clearly labelled front and rear street-view screenshots, retained as research evidence only. The university newspaper photo of the sign beside Administration does not show a usable Administration facade. Event/group pictures inside the building are not substitutes.",
+      "limitations": "KLEC guide contains clearly labelled front and rear street-view screenshots, retained as research evidence only. The university newspaper photo of the sign beside Administration does not show a usable Administration facade. Event/group pictures inside the building are not substitutes.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/ice1/7631/subview.do"
+      ],
+      "candidateSources": [
+        "https://klec.mju.ac.kr/home_up_file/2022/20220325_172701_9.pdf#page=23",
+        "https://news.mju.ac.kr/news/articleView.html?idxno=12317"
+      ],
+      "localEvidence": [
+        "klec-guide-p23-xref75.png",
+        "klec-guide-p23-xref76.png",
+        "s5-news-sign.jpg"
+      ]
+    },
+    {
+      "campus": "seoul",
+      "placeId": "mju-s8",
+      "code": "S8",
+      "name": {
+        "en": "Humanities Residence",
+        "ko": "인문생활관"
+      },
+      "sceneKind": "building",
+      "researchGroup": "buildings",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "approved_graphic_with_real_photo",
+      "approvedPhotoIds": [
+        "seoul-s8-official-exterior"
+      ],
+      "reason": null,
+      "limitations": "Original university graphic contains a real exterior in a circular frame; preserve framing. No clean rectangular exterior or distinct second angle verified. Dorm homepage sliders show the library, General Hall and a book, not the residence.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/ice1/7631/subview.do"
+      ]
+    },
+    {
+      "campus": "seoul",
+      "placeId": "mju-s9",
+      "code": "S9",
+      "name": {
+        "en": "Bangmok Academic Information Center",
+        "ko": "방목학술정보관"
+      },
+      "sceneKind": "building",
+      "researchGroup": "buildings",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "approved_multiple_viewpoints",
+      "approvedPhotoIds": [
+        "seoul-s9-official-day",
+        "seoul-s9-official-night"
+      ],
+      "reason": null,
+      "limitations": "Day original includes university photo-zone annotation. Night original is only 330×230. Day view exposes the curved right facade; night view looks under and along the bridge, a distinct viewpoint. Gallery interior and website banner crop were excluded.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/ice1/7631/subview.do"
+      ]
+    },
+    {
+      "campus": "seoul",
+      "placeId": "mju-s10",
+      "code": "S10",
+      "name": {
+        "en": "MCC Myongji Campus Complex",
+        "ko": "MCC관"
+      },
+      "sceneKind": "building",
+      "researchGroup": "buildings",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "approved_multiple_viewpoints",
+      "approvedPhotoIds": [
+        "seoul-s10-official-front",
+        "seoul-s10-official-stairs",
+        "seoul-s10-official-garage"
+      ],
+      "reason": null,
+      "limitations": "Front plaza, exterior stair detail and vehicle entrance are distinct views. Stair detail is not a complete facade; garage is not a pedestrian route recommendation. Original 8.64 MB history panorama and 2.10 MB annotated version of that same view remain in research; neither adds a distinct carousel angle.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/ice1/7631/subview.do"
+      ]
+    },
+    {
+      "campus": "seoul",
+      "placeId": "mju-seoul-guardhouse",
+      "code": null,
+      "name": {
+        "en": "Gatehouse",
+        "ko": "경비실"
+      },
+      "sceneKind": "building",
+      "researchGroup": "nonBuildingReferences",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "gap",
+      "approvedPhotoIds": [],
+      "reason": "A small gatehouse-like booth appears in the 2023 newspaper route photo, but the caption identifies lamp banners along the main-gate-to-Student-Union approach rather than the booth. No precise POI identity or unique facade caption is established; do not map it generically.",
+      "limitations": "A small gatehouse-like booth appears in the 2023 newspaper route photo, but the caption identifies lamp banners along the main-gate-to-Student-Union approach rather than the booth. No precise POI identity or unique facade caption is established; do not map it generically.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/ice1/7631/subview.do"
+      ],
+      "sourcePageUrl": "https://news.mju.ac.kr/news/articleView.html?idxno=12317",
+      "localEvidence": [
+        "gate-studentunion-path.jpg"
+      ],
+      "classificationNote": "The research inventory groups this separately as a reference POI, but src/seoul.ts gives it scene kind building. This coverage file classifies it with buildings and retains the original research group."
+    }
+  ],
+  "referencePois": [
+    {
+      "campus": "yongin",
+      "placeId": "mju-gate",
+      "code": null,
+      "name": {
+        "en": "Main Gate",
+        "ko": "정문"
+      },
+      "sceneKind": "gate",
+      "researchGroup": "modeled-buildings-and-gate",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "photo-gap",
+      "approvedPhotoIds": [],
+      "reason": "No identifiable exterior photograph matched to this building in the reviewed university sources. The fresh directory record exposes an image path ending in /null. No generic or third-party image was substituted.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
+        "https://www.mju.ac.kr/campusMap/mjukr/72/artclDetailView.do"
+      ],
+      "directoryArticle": 72,
+      "directoryImagePath": "/mbs/sites/mjukr/atchmnfl/campusMap/null"
+    },
+    {
+      "campus": "seoul",
+      "placeId": "mju-seoul-field",
+      "code": null,
+      "name": {
+        "en": "Campus Sports Field",
+        "ko": "운동장"
+      },
+      "sceneKind": "field",
+      "researchGroup": "nonBuildingReferences",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "reference_only",
+      "approvedPhotoIds": [],
+      "reason": "The official MCC panorama labels 운동장 진입. It depicts an access reference and partially visible rooftop sports area; no dedicated field photo is approved.",
+      "limitations": "The official MCC panorama labels 운동장 진입. It depicts an access reference and partially visible rooftop sports area; no dedicated field photo is approved.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/ice1/7631/subview.do"
+      ],
+      "sourcePageUrl": "https://welfare.mju.ac.kr/bbs/welfare/243/227771/artclView.do",
+      "localEvidence": [
+        "mcc-campus.png"
+      ]
+    },
+    {
+      "campus": "seoul",
+      "placeId": "mju-seoul-gate",
+      "code": null,
+      "name": {
+        "en": "Main Gate",
+        "ko": "정문"
+      },
+      "sceneKind": "gate",
+      "researchGroup": "nonBuildingReferences",
+      "photoReviewStatus": "reviewed",
+      "photoStatus": "reference_only",
+      "approvedPhotoIds": [],
+      "reason": "2010 university newspaper historic-gate.jpg explicitly shows the then main gate. KLEC2022 guide labels the front gate on a street-view screenshot. Retained separately because the approved catalogue covers numbered buildings; the gate's appearance and surroundings have changed with MCC construction.",
+      "limitations": "2010 university newspaper historic-gate.jpg explicitly shows the then main gate. KLEC2022 guide labels the front gate on a street-view screenshot. Retained separately because the approved catalogue covers numbered buildings; the gate's appearance and surroundings have changed with MCC construction.",
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/ice1/7631/subview.do"
+      ],
+      "sourcePageUrl": "https://news.mju.ac.kr/news/articleView.html?idxno=1357",
+      "localEvidence": [
+        "historic-gate.jpg",
+        "klec-guide-p23-xref76.png",
+        "gate-studentunion-path.jpg"
+      ]
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-a",
+      "code": "A",
+      "name": {
+        "en": "Main Sports Field",
+        "ko": "대운동장"
+      },
+      "sceneKind": "field",
+      "researchGroup": "additional-outdoor-reference",
+      "photoReviewStatus": "not-reviewed-for-dedicated-photo",
+      "photoStatus": "not-selected",
+      "approvedPhotoIds": [],
+      "reason": "Outside the 40-building/gate Yongin photo audit. No dedicated photo was selected or verified in this task; this is not a finding that an official photo is unavailable.",
+      "directoryArticle": 44,
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B"
+      ],
+      "identityNote": "Name and identifier follow the existing app reference feature and official directory."
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-b",
+      "code": "B",
+      "name": {
+        "en": "Athletes’ Tennis Courts",
+        "ko": "선수전용테니스장"
+      },
+      "sceneKind": "tennis",
+      "researchGroup": "additional-outdoor-reference",
+      "photoReviewStatus": "not-reviewed-for-dedicated-photo",
+      "photoStatus": "not-selected",
+      "approvedPhotoIds": [],
+      "reason": "Outside the 40-building/gate Yongin photo audit. No dedicated photo was selected or verified in this task; this is not a finding that an official photo is unavailable.",
+      "directoryArticle": 60,
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B"
+      ],
+      "identityNote": "Name and identifier follow the existing app reference feature and official directory."
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-c",
+      "code": "C",
+      "name": {
+        "en": "Small Sports Field",
+        "ko": "소운동장"
+      },
+      "sceneKind": "field",
+      "researchGroup": "additional-outdoor-reference",
+      "photoReviewStatus": "not-reviewed-for-dedicated-photo",
+      "photoStatus": "not-selected",
+      "approvedPhotoIds": [],
+      "reason": "Outside the 40-building/gate Yongin photo audit. No dedicated photo was selected or verified in this task; this is not a finding that an official photo is unavailable.",
+      "directoryArticle": 61,
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B"
+      ],
+      "identityNote": "Name and identifier follow the existing app reference feature and official directory."
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-d",
+      "code": "D",
+      "name": {
+        "en": "Tennis Courts",
+        "ko": "테니스장"
+      },
+      "sceneKind": "tennis",
+      "researchGroup": "additional-outdoor-reference",
+      "photoReviewStatus": "not-reviewed-for-dedicated-photo",
+      "photoStatus": "not-selected",
+      "approvedPhotoIds": [],
+      "reason": "Outside the 40-building/gate Yongin photo audit. No dedicated photo was selected or verified in this task; this is not a finding that an official photo is unavailable.",
+      "directoryArticle": 84,
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B"
+      ],
+      "identityNote": "Name and identifier follow the existing app reference feature and official directory."
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-f",
+      "code": "F",
+      "name": {
+        "en": "Outdoor Music Hall",
+        "ko": "야외음악당"
+      },
+      "sceneKind": "stage",
+      "researchGroup": "additional-outdoor-reference",
+      "photoReviewStatus": "not-reviewed-for-dedicated-photo",
+      "photoStatus": "not-selected",
+      "approvedPhotoIds": [],
+      "reason": "Outside the 40-building/gate Yongin photo audit. No dedicated photo was selected or verified in this task; this is not a finding that an official photo is unavailable.",
+      "directoryArticle": 65,
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B"
+      ],
+      "identityNote": "Name and identifier follow the existing app reference feature and official directory."
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-g",
+      "code": "G",
+      "name": {
+        "en": "White Horse Statue",
+        "ko": "백마상"
+      },
+      "sceneKind": "plaza",
+      "researchGroup": "additional-outdoor-reference",
+      "photoReviewStatus": "not-reviewed-for-dedicated-photo",
+      "photoStatus": "not-selected",
+      "approvedPhotoIds": [],
+      "reason": "Outside the 40-building/gate Yongin photo audit. No dedicated photo was selected or verified in this task; this is not a finding that an official photo is unavailable.",
+      "directoryArticle": 57,
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B"
+      ],
+      "identityNote": "Name and identifier follow the existing app reference feature and official directory."
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-h",
+      "code": "H",
+      "name": {
+        "en": "Student Tennis Courts",
+        "ko": "학생테니스"
+      },
+      "sceneKind": "tennis",
+      "researchGroup": "additional-outdoor-reference",
+      "photoReviewStatus": "not-reviewed-for-dedicated-photo",
+      "photoStatus": "not-selected",
+      "approvedPhotoIds": [],
+      "reason": "Outside the 40-building/gate Yongin photo audit. No dedicated photo was selected or verified in this task; this is not a finding that an official photo is unavailable.",
+      "directoryArticle": 92,
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B"
+      ],
+      "identityNote": "Name and identifier follow the existing app reference feature and official directory."
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-i",
+      "code": "I",
+      "name": {
+        "en": "Outdoor Basketball Court",
+        "ko": "야외농구장"
+      },
+      "sceneKind": "basketball",
+      "researchGroup": "additional-outdoor-reference",
+      "photoReviewStatus": "not-reviewed-for-dedicated-photo",
+      "photoStatus": "not-selected",
+      "approvedPhotoIds": [],
+      "reason": "Outside the 40-building/gate Yongin photo audit. No dedicated photo was selected or verified in this task; this is not a finding that an official photo is unavailable.",
+      "directoryArticle": null,
+      "identitySourceUrls": [],
+      "identityNote": "Named on the historical campus plan; no matching official directory marker."
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-j",
+      "code": "J",
+      "name": {
+        "en": "Futsal Court",
+        "ko": "풋살장"
+      },
+      "sceneKind": "futsal",
+      "researchGroup": "additional-outdoor-reference",
+      "photoReviewStatus": "not-reviewed-for-dedicated-photo",
+      "photoStatus": "not-selected",
+      "approvedPhotoIds": [],
+      "reason": "Outside the 40-building/gate Yongin photo audit. No dedicated photo was selected or verified in this task; this is not a finding that an official photo is unavailable.",
+      "directoryArticle": null,
+      "identitySourceUrls": [],
+      "identityNote": "Named on the historical campus plan; no matching official directory marker."
+    },
+    {
+      "campus": "yongin",
+      "placeId": "mju-k",
+      "code": "K",
+      "name": {
+        "en": "Commuter Bus Boarding Area",
+        "ko": "통학버스승강장"
+      },
+      "sceneKind": "bus",
+      "researchGroup": "additional-outdoor-reference",
+      "photoReviewStatus": "not-reviewed-for-dedicated-photo",
+      "photoStatus": "not-selected",
+      "approvedPhotoIds": [],
+      "reason": "Outside the 40-building/gate Yongin photo audit. No dedicated photo was selected or verified in this task; this is not a finding that an official photo is unavailable.",
+      "directoryArticle": 86,
+      "identitySourceUrls": [
+        "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B"
+      ],
+      "identityNote": "Name and identifier follow the existing app reference feature and official directory."
+    }
+  ],
+  "selectedPhotoProvenance": [
+    {
+      "id": "y2-creative-arts",
+      "placeId": "mju-y2",
+      "sourcePageUrl": "https://www.mju.ac.kr/mjukr/160/subview.do",
+      "imageUrl": "https://www.mju.ac.kr/sites/mjukr/images/sub01/hisbox01.png",
+      "caption": {
+        "en": "Creative Arts Hall exterior",
+        "ko": "창조예술관 외관",
+        "zh": "创造艺术馆外观"
+      },
+      "originalCaption": "창조예술관 전경",
+      "identificationEvidence": "Official university history page places this image beneath 창조예술관, with alt text 창조예술관 전경. The directory names article 56 창조관 예술관; the existing project crosswalk assigns Y2. The photograph shows the white upper volume, glazed end and supporting columns.",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "sourceImage": {
+        "width": 330,
+        "height": 230,
+        "sha256": "77d52cd179f78c5ff9fea6ad91cbe0054d2502d8f83c830ec7f75b8f54570760"
+      },
+      "rights": "Official-source photograph. No open-license grant was located; this image is not covered by the repository MIT license.",
+      "copyrightNotice": "COPYRIGHT(C) MYONGJI UNIV. ALL RIGHTS RESERVED.",
+      "identitySourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/56/artclDetailView.do"
+    },
+    {
+      "id": "y14-structural-materials",
+      "placeId": "mju-y14",
+      "sourcePageUrl": "https://hystec.mju.ac.kr/theme/mypage1/page_html/exper_facility.html",
+      "imageUrl": "https://hystec.mju.ac.kr/theme/mypage1/add_img/sub03/15/15_01_03.png",
+      "caption": {
+        "en": "Structural Materials Testing Building exterior",
+        "ko": "구조재료시험동 외관",
+        "zh": "结构材料试验楼外观"
+      },
+      "originalCaption": "구조재료시험동 / Structural Materials Testing Building",
+      "identificationEvidence": "Official HYSTEC facility data explicitly pairs key structure and label 구조재료시험동 with image 15_01_03.png. Its official location-map image labels 구조재료실험동, while directory article 43 names 구조재료실험동 and lists Y14101–Y14208 rooms. This supports Y14 independently of the nearly coincident Y83 directory marker; this image is not assigned to Y83.",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "sourceImage": {
+        "width": 389,
+        "height": 226,
+        "sha256": "33df59c177c315a830055a8ea2033f6ec0e57e4f859f07a947e5161fdb70ee20"
+      },
+      "rights": "Official-source photograph. No open-license grant was located; this image is not covered by the repository MIT license.",
+      "copyrightNotice": null,
+      "additionalEvidenceUrl": "https://hystec.mju.ac.kr/theme/mypage1/add_img/sub03/03_01_01_b.png",
+      "identitySourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/43/artclDetailView.do"
+    },
+    {
+      "id": "y22-chapel",
+      "placeId": "mju-y22",
+      "sourcePageUrl": "https://www.mju.ac.kr/bbs/mjukr/166/209975/artclView.do",
+      "imageUrl": "https://www.mju.ac.kr/CrossEditor/binary/images/000209/20240312134604908_4DD5JKDT.png",
+      "caption": {
+        "en": "60th Anniversary Chapel exterior",
+        "ko": "60주년채플관 외관",
+        "zh": "60周年礼拜堂外观"
+      },
+      "originalCaption": "명지대학교 60 주년 채플관",
+      "identificationEvidence": "University news article published 2024-03-12 explicitly captions this photograph 명지대학교 60 주년 채플관. Directory article 40 identifies the chapel; the existing project crosswalk assigns Y22. The snowy exterior is a photograph, unlike the separate sports-area rendering in the article.",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "sourceImage": {
+        "width": 317,
+        "height": 238,
+        "sha256": "2e8992de2b91a14ce257c9e24ffc201a364743189bbc63a3e835293e53259ca1"
+      },
+      "rights": "Official-source photograph. No open-license grant was located; this image is not covered by the repository MIT license.",
+      "copyrightNotice": "COPYRIGHT(C) MYONGJI UNIV. ALL RIGHTS RESERVED.",
+      "identitySourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/40/artclDetailView.do"
+    },
+    {
+      "id": "y24-hystec-wide",
+      "placeId": "mju-y24",
+      "sourcePageUrl": "https://hystec.mju.ac.kr/",
+      "imageUrl": "https://hystec.mju.ac.kr/theme/mypage1/images/_index_bg01.jpg",
+      "caption": {
+        "en": "HYSTEC — elevated exterior view",
+        "ko": "하이브리드 구조실험센터 — 높은 곳에서 본 외관",
+        "zh": "混合结构试验中心 — 高处斜视外观"
+      },
+      "originalCaption": null,
+      "identificationEvidence": "The official HYSTEC homepage uses _index_bg01.jpg. The photograph visibly carries 하이브리드구조실험센터 signage and building number 24; directory article 87 names the center and lists Y24 rooms. Elevated wide view includes the hall, annex and yard.",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "sourceImage": {
+        "width": 1920,
+        "height": 970,
+        "sha256": "806da08176e8619fab1552f35c6843a777cf3c893b5cc10d3a0f4e36dd299eb1"
+      },
+      "rights": "Official-source photograph. No open-license grant was located; this image is not covered by the repository MIT license.",
+      "copyrightNotice": null,
+      "identitySourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/87/artclDetailView.do"
+    },
+    {
+      "id": "y24-hystec-entrance",
+      "placeId": "mju-y24",
+      "sourcePageUrl": "https://hystec.mju.ac.kr/",
+      "imageUrl": "https://hystec.mju.ac.kr/theme/mypage1/images/_index_bg02.jpg",
+      "caption": {
+        "en": "HYSTEC — entrance and façade",
+        "ko": "하이브리드 구조실험센터 — 출입구와 외관",
+        "zh": "混合结构试验中心 — 入口及正面"
+      },
+      "originalCaption": null,
+      "identificationEvidence": "The official HYSTEC homepage uses _index_bg02.jpg. The same center is identifiable by its Korean façade sign and architecture. This is a closer, lower viewpoint than _index_bg01.jpg, showing the entrance and façade; it is a distinct view rather than a crop of the wide photograph.",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "sourceImage": {
+        "width": 1920,
+        "height": 970,
+        "sha256": "bb9c1f523f997039c1a68c12445a4684b3372db7322483d736ca1e606a987331"
+      },
+      "rights": "Official-source photograph. No open-license grant was located; this image is not covered by the repository MIT license.",
+      "copyrightNotice": null,
+      "identitySourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/87/artclDetailView.do"
+    },
+    {
+      "id": "y30-myeonghyeon",
+      "placeId": "mju-y30",
+      "sourcePageUrl": "https://dorm.mju.ac.kr/dorm/6640/subview.do",
+      "imageUrl": "https://dorm.mju.ac.kr/sites/dorm/contents/images/000001/%EB%AA%85%ED%98%84_%EA%B1%B4%EB%AC%BC%EC%99%B8%EA%B4%80_1.jpg",
+      "caption": {
+        "en": "Myeonghyeon Residence — front view",
+        "ko": "명현관 — 정면",
+        "zh": "明贤馆 — 正面"
+      },
+      "originalCaption": "명현관; image filename 명현_건물외관_1.jpg",
+      "identificationEvidence": "Dormitory facilities page associates this exterior filename with the 명현관 section. Building number 30 and the entrance name are visible in the photograph. Directory article 50 names 생활관(명현관).",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "sourceImage": {
+        "width": 4032,
+        "height": 3024,
+        "sha256": "58b100d0058afd1f46a2021cfb3fc84975a0ed80b21167df1bd53e183ae7148e"
+      },
+      "rights": "Official-source photograph. No open-license grant was located; this image is not covered by the repository MIT license.",
+      "copyrightNotice": "Copyright ⓒ 2018 인문캠퍼스 생활관, 2017 자연캠퍼스 생활관. All rights reserved.",
+      "identitySourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/50/artclDetailView.do"
+    },
+    {
+      "id": "y31-myeongdeok-front",
+      "placeId": "mju-y31",
+      "sourcePageUrl": "https://dorm.mju.ac.kr/dorm/6640/subview.do",
+      "imageUrl": "https://dorm.mju.ac.kr/sites/dorm/contents/images/000001/%EB%AA%85%EB%8D%95_%EA%B1%B4%EB%AC%BC%EC%99%B8%EA%B4%80.jpg",
+      "caption": {
+        "en": "Myeongdeok Residence — front view",
+        "ko": "명덕관 — 정면",
+        "zh": "明德馆 — 正面"
+      },
+      "originalCaption": "명덕관; image filename 명덕_건물외관.jpg",
+      "identificationEvidence": "Dormitory facilities page associates the filename with 명덕관. The photograph shows the curved front façade and large number 31. Directory article 47 names 생활관(명덕관).",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "sourceImage": {
+        "width": 4032,
+        "height": 3024,
+        "sha256": "3721b33fec431eb232fe1d37eafa76d54930d29ee4fa2448d40069f74c9dbd07"
+      },
+      "rights": "Official-source photograph. No open-license grant was located; this image is not covered by the repository MIT license.",
+      "copyrightNotice": "Copyright ⓒ 2018 인문캠퍼스 생활관, 2017 자연캠퍼스 생활관. All rights reserved.",
+      "identitySourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/47/artclDetailView.do"
+    },
+    {
+      "id": "y31-myeongdeok-oblique",
+      "placeId": "mju-y31",
+      "sourcePageUrl": "https://dorm.mju.ac.kr/dorm/6640/subview.do",
+      "imageUrl": "https://www.mju.ac.kr/sites/dorm/contents/images/000001/%EB%AA%85%EB%8D%95_%EA%B1%B4%EB%AC%BC%EC%99%B8%EA%B4%802.jpg",
+      "caption": {
+        "en": "Myeongdeok Residence — elevated oblique view",
+        "ko": "명덕관 — 높은 곳에서 본 사선 전경",
+        "zh": "明德馆 — 高处斜视外观"
+      },
+      "originalCaption": "명덕관; image filename 명덕_건물외관2.jpg",
+      "identificationEvidence": "The same 명덕관 section provides this second exterior image. Its visible number 31 and curved façade match the frontal photograph. The elevated left-hand viewpoint includes a different perspective of the entrance approach and building, so it is a distinct angle.",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "sourceImage": {
+        "width": 4032,
+        "height": 3024,
+        "sha256": "4834e554eac7d39ef2fcb162d92038d3549f086afe62e71e924ce08044e1ad23"
+      },
+      "rights": "Official-source photograph. No open-license grant was located; this image is not covered by the repository MIT license.",
+      "copyrightNotice": "Copyright ⓒ 2018 인문캠퍼스 생활관, 2017 자연캠퍼스 생활관. All rights reserved.",
+      "identitySourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/47/artclDetailView.do"
+    },
+    {
+      "id": "y33-residence4",
+      "placeId": "mju-y33",
+      "sourcePageUrl": "https://dorm.mju.ac.kr/dorm/6640/subview.do",
+      "imageUrl": "https://dorm.mju.ac.kr/sites/dorm/contents/images/000001/20260819153954912_2G6DLNCW.jpg",
+      "caption": {
+        "en": "Residence 4 exterior",
+        "ko": "생활관 4동 외관",
+        "zh": "4号宿舍楼外观"
+      },
+      "originalCaption": "4동",
+      "identificationEvidence": "Dormitory facilities page places this photograph directly under 4동. Directory article 77 names 생활관(제3학생기숙사(4동)) and lists Y33002/Y33101/Y33110/Y33114 rooms, directly supporting Y33.",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "sourceImage": {
+        "width": 3521,
+        "height": 2725,
+        "sha256": "eeb261652c5d6312432cf2781f1705aeeb8b79a9ed90f2a8a630e1645222c509"
+      },
+      "rights": "Official-source photograph. No open-license grant was located; this image is not covered by the repository MIT license.",
+      "copyrightNotice": "Copyright ⓒ 2018 인문캠퍼스 생활관, 2017 자연캠퍼스 생활관. All rights reserved.",
+      "identitySourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/77/artclDetailView.do"
+    },
+    {
+      "id": "y34-residence5",
+      "placeId": "mju-y34",
+      "sourcePageUrl": "https://dorm.mju.ac.kr/dorm/6640/subview.do",
+      "imageUrl": "https://dorm.mju.ac.kr/sites/dorm/contents/images/000001/20260819154108950_T1GMY4EV.jpg",
+      "caption": {
+        "en": "Residence 5 exterior",
+        "ko": "생활관 5동 외관",
+        "zh": "5号宿舍楼外观"
+      },
+      "originalCaption": "5동",
+      "identificationEvidence": "Dormitory facilities page places this photograph directly under 5동. Directory article 78 names 생활관(제3학생기숙사(5동)); the existing project crosswalk assigns Y34. Caption refers to the foreground residence, not other buildings visible behind it.",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "sourceImage": {
+        "width": 3886,
+        "height": 2834,
+        "sha256": "82ce54f803b46cf9da8fefe61fdf2eb35cf7896461f122d713ffb1c5176774dc"
+      },
+      "rights": "Official-source photograph. No open-license grant was located; this image is not covered by the repository MIT license.",
+      "copyrightNotice": "Copyright ⓒ 2018 인문캠퍼스 생활관, 2017 자연캠퍼스 생활관. All rights reserved.",
+      "identitySourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/78/artclDetailView.do"
+    },
+    {
+      "id": "y35-welfare",
+      "placeId": "mju-y35",
+      "sourcePageUrl": "https://dorm.mju.ac.kr/dorm/6642/subview.do",
+      "imageUrl": "https://dorm.mju.ac.kr/sites/dorm/images/main/facility1.gif",
+      "caption": {
+        "en": "Residence welfare building exterior",
+        "ko": "생활관 부대시설동 외관",
+        "zh": "宿舍附属设施楼外观"
+      },
+      "originalCaption": "부대시설동",
+      "identificationEvidence": "Official dormitory convenience page explicitly labels facility1.gif 부대시설동 and identifies its dining facility in 복지동 1층. Directory article 79 identifies residence B동 and lists Y35103 식당 plus other Y35 welfare rooms. This supports the existing Y35 welfare-building crosswalk. The small exterior image was visually checked and retained at original resolution.",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "sourceImage": {
+        "width": 186,
+        "height": 114,
+        "sha256": "7e631d7b29e1a3ed8a9f653805aa93e93e8750898d24b30fc61e8f61b554df70"
+      },
+      "rights": "Official-source photograph. No open-license grant was located; this image is not covered by the repository MIT license.",
+      "copyrightNotice": "Copyright ⓒ 2018 인문캠퍼스 생활관, 2017 자연캠퍼스 생활관. All rights reserved.",
+      "identitySourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/79/artclDetailView.do"
+    },
+    {
+      "id": "seoul-s1-official-day-night",
+      "placeId": "mju-s1",
+      "sourcePageUrl": "https://news.mju.ac.kr/news/articleView.html?idxno=12317",
+      "imageUrl": "https://news.mju.ac.kr/news/photo/202310/12317_12899_5348.jpg",
+      "caption": {
+        "en": "General Hall — day/night montage published by the university newspaper in 2023.",
+        "ko": "종합관 — 명대신문이 2023년에 게재한 주·야간 합성 사진입니다.",
+        "zh": "综合馆 — 校报于2023年刊登的日间与夜间拼图。"
+      },
+      "originalCaption": "▲사진은 현판이 교체된 명지대학교 종합관의 모습이다.",
+      "identificationEvidence": "The official university newspaper caption explicitly identifies 종합관. The photograph shows its long facade with vertical gray strips and rooftop 명지대학교 sign. The university numbering page https://www.mju.ac.kr/ice1/7631/subview.do maps 종합관 to 1. One original publisher-made diptych; it is one asset, not two carousel angles.",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "sourceImage": {
+        "width": 600,
+        "height": 676,
+        "sha256": "bf77a0b82bf08bf45f9d198b17cb2d35b1d0c2d3eb0ab71cc469564cf4c2c5d0"
+      },
+      "rights": "Copyright remains with Myongji University / the credited university publisher; not covered by the application MIT license. Public availability does not establish a redistribution license.",
+      "presentationNote": "Keep the original montage and newspaper watermark; contain without cropping.",
+      "sourcePublicationDate": "2023-10"
+    },
+    {
+      "id": "seoul-s2-official-archive",
+      "placeId": "mju-s2",
+      "sourcePageUrl": "https://news.mju.ac.kr/news/articleView.html?idxno=1357",
+      "imageUrl": "https://news.mju.ac.kr/news/photo/oldfile/201011/img_1357_18.jpg",
+      "caption": {
+        "en": "Student Union — university archive published in 2010; its appearance may have changed.",
+        "ko": "학생회관 — 2010년 게재된 대학 기록 사진으로 현재 모습과 다를 수 있습니다.",
+        "zh": "学生会馆 — 2010年刊登的大学档案照片，现貌可能已有变化。"
+      },
+      "originalCaption": "가운데는 현 학생회관. 과거 국제대학의 본관으로 사용됐다.",
+      "identificationEvidence": "Official 2010 article caption identifies the middle photograph as 학생회관. The surviving second image is the tall rectangular facade with projecting square window frames, broad glass ground entrance and steps. Its distinctive grid facade and form match building 2 학생회관 in the current KLEC labelled overview https://klec.mju.ac.kr/cmnct/view.php?campus_gubun=s&db_code=notice&itemnum=582&sMenu=eng51; https://www.mju.ac.kr/ice1/7631/subview.do supplies the current identifier. Historical appearance is explicitly labelled in the caption; no claim of a current capture.",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "sourceImage": {
+        "width": 620,
+        "height": 932,
+        "sha256": "bd7ec939d69c5424c290d5a2fb7b672f33356ec8671c9ee4eb18ef41b9858c46"
+      },
+      "rights": "Copyright remains with Myongji University / the credited university publisher; not covered by the application MIT license. Public availability does not establish a redistribution license.",
+      "presentationNote": null,
+      "sourcePublicationDate": "2010-11-22"
+    },
+    {
+      "id": "seoul-s3-official-archive",
+      "placeId": "mju-s3",
+      "sourcePageUrl": "https://news.mju.ac.kr/news/articleView.html?idxno=1357",
+      "imageUrl": "https://news.mju.ac.kr/news/photo/oldfile/201011/img_1357_17.jpg",
+      "caption": {
+        "en": "Mirae Hall — university archive published in 2010, then labelled Social Education Institute; its appearance may have changed.",
+        "ko": "미래관 — 당시 사회교육원으로 표기된 2010년 대학 기록 사진으로 현재 모습과 다를 수 있습니다.",
+        "zh": "未来馆 — 2010年大学档案照片，当时标为社会教育院；现貌可能已有变化。"
+      },
+      "originalCaption": "현 사회교육원. 과거 명지초등학교로 사용됐다.",
+      "identificationEvidence": "The 2010 article identifies this first image as the then 사회교육원 building. The current university directions page https://www.mju.ac.kr/ice1/7631/subview.do explicitly assigns 미래관(미래교육원,어린이집) to building 3. Official 2023 notice https://www.mju.ac.kr/bbs/mjukr/141/203182/artclView.do explicitly pairs 미래관 with 사회교육원(교학팀). The official photographic panorama https://welfare.mju.ac.kr/bbs/welfare/243/227771/artclView.do labels the same broad low block 미래관: stacked continuous rows of grouped green windows divided by broad light horizontal bands, flat roof, and the contrasting stair-bay section match this archive image. This is a historical facade identification supported by institutional function and distinctive architectural features, not proximity to a map marker. Current condition is not asserted.",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "sourceImage": {
+        "width": 620,
+        "height": 932,
+        "sha256": "340b0c60b42cbbc2c778d715aaf6e176feb633dab16cb3d347371f286ade2e30"
+      },
+      "rights": "Copyright remains with Myongji University / the credited university publisher; not covered by the application MIT license. Public availability does not establish a redistribution license.",
+      "presentationNote": null,
+      "sourcePublicationDate": "2010-11-22"
+    },
+    {
+      "id": "seoul-s8-official-exterior",
+      "placeId": "mju-s8",
+      "sourcePageUrl": "https://www.mju.ac.kr/mjukr/7696/subview.do",
+      "imageUrl": "https://www.mju.ac.kr/sites/mjukr/images/sub02/center1Img.png",
+      "caption": {
+        "en": "Humanities Residence — exterior photograph in the university’s original graphic.",
+        "ko": "인문생활관 — 대학의 원본 그래픽에 포함된 외관 사진입니다.",
+        "zh": "人文生活馆 — 大学原始宣传图中的建筑外观照片。"
+      },
+      "originalCaption": "인문생활관 대표이미지",
+      "identificationEvidence": "Official page heading 명지대학교 인문생활관 and image alt 인문생활관 대표이미지 explicitly identify the residence. The original university graphic contains a real exterior photograph of the arched red-brick/white residence. Building 8 생활관 is independently listed at https://www.mju.ac.kr/ice1/7631/subview.do. This is a photographic graphic, not a clean rectangular photo; the university border is retained.",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "sourceImage": {
+        "width": 432,
+        "height": 300,
+        "sha256": "6fbaf862c3bea0519828fd97a5cc6d344a38697e726eec86e44ec50ca61ab66d"
+      },
+      "rights": "Copyright remains with Myongji University / the credited university publisher; not covered by the application MIT license. Public availability does not establish a redistribution license.",
+      "presentationNote": "Original circular framing and graphic border retained; contain without cropping.",
+      "sourcePublicationDate": null
+    },
+    {
+      "id": "seoul-s9-official-day",
+      "placeId": "mju-s9",
+      "sourcePageUrl": "https://www.mju.ac.kr/bbs/mjukr/464/228882/artclView.do",
+      "imageUrl": "https://www.mju.ac.kr/CrossEditor/binary/images/000203/111.png",
+      "caption": {
+        "en": "Bangmok Academic Information Center — daytime exterior with the university’s photo-zone annotation.",
+        "ko": "방목학술정보관 — 대학의 포토존 위치 표시가 포함된 주간 외관 사진입니다.",
+        "zh": "方牧学术信息馆 — 日间外观，保留大学原图中的拍照区标注。"
+      },
+      "originalCaption": "방목학술정보관 / 포토존 설치 위치",
+      "identificationEvidence": "Official graduation notice identifies the Bangmok Academic Information Center photo-zone and publishes this annotated exterior. Visible LIBRARY sign, curved translucent facade, entrance and pedestrian bridge match the explicitly labelled 방목학술정보관 history image. Number 9 is listed at https://www.mju.ac.kr/ice1/7631/subview.do. The red box/arrow are already in the university original.",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "sourceImage": {
+        "width": 810,
+        "height": 543,
+        "sha256": "aa0f1b38c48881c3d91b60d62e63b0194ff1301488a5ab15669748007d615204"
+      },
+      "rights": "Copyright remains with Myongji University / the credited university publisher; not covered by the application MIT license. Public availability does not establish a redistribution license.",
+      "presentationNote": "University annotations retained; contain without cropping.",
+      "sourcePublicationDate": "2026-01-26"
+    },
+    {
+      "id": "seoul-s9-official-night",
+      "placeId": "mju-s9",
+      "sourcePageUrl": "https://www.mju.ac.kr/mjukr/161/subview.do",
+      "imageUrl": "https://www.mju.ac.kr/sites/mjukr/images/sub01/hisbox02.png",
+      "caption": {
+        "en": "Bangmok Academic Information Center — night view from beneath the pedestrian bridge.",
+        "ko": "방목학술정보관 — 연결다리 아래쪽에서 바라본 야간 외관입니다.",
+        "zh": "方牧学术信息馆 — 从人行连桥下方拍摄的夜间外观。"
+      },
+      "originalCaption": "방목학술정보관",
+      "identificationEvidence": "The university history page uses both heading and image alt 방목학술정보관. The night photograph shows the glass entrance, column-supported pedestrian bridge and LIBRARY pylon. Visually compared with the daytime photo: this view looks beneath and along the bridge from a lower/side viewpoint, whereas the day view shows the curved right facade frontally. Distinct viewpoint, not merely a duplicate with changed lighting.",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "sourceImage": {
+        "width": 330,
+        "height": 230,
+        "sha256": "963266da1573b079d6af3b855089a4c2b53a26f0b7b17d53c738afcaeca57a46"
+      },
+      "rights": "Copyright remains with Myongji University / the credited university publisher; not covered by the application MIT license. Public availability does not establish a redistribution license.",
+      "presentationNote": "Original low resolution 330×230; do not upscale the source asset.",
+      "sourcePublicationDate": null
+    },
+    {
+      "id": "seoul-s10-official-front",
+      "placeId": "mju-s10",
+      "sourcePageUrl": "https://news.mju.ac.kr/news/articleView.html?idxno=12317",
+      "imageUrl": "https://news.mju.ac.kr/news/photo/202310/12317_12903_5537.jpg",
+      "caption": {
+        "en": "MCC — front plaza, exterior stairs and university lettering, published in 2023.",
+        "ko": "MCC관 — 2023년에 게재된 전면 광장, 외부 계단과 교명 조형물 사진입니다.",
+        "zh": "MCC馆 — 前广场、室外楼梯及大学标志字样，刊登于2023年。"
+      },
+      "originalCaption": "▲MCC 건물 앞에 ‘명지대학교’ 기립 글자 조형물이 세워져 있다.",
+      "identificationEvidence": "Official newspaper caption explicitly names MCC 건물. The photograph shows the lower stepped facade, central outside stairs and freestanding 명지대학교 letters. Building 10 MCC is listed at https://www.mju.ac.kr/ice1/7631/subview.do. Visual comparison with the garage and stair-detail images confirms different viewpoints and subject scale.",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "sourceImage": {
+        "width": 600,
+        "height": 338,
+        "sha256": "69c88dff64b8e27b6df2a7e9392b708b9d8d9686a5fb8ef234f088225bb8383a"
+      },
+      "rights": "Copyright remains with Myongji University / the credited university publisher; not covered by the application MIT license. Public availability does not establish a redistribution license.",
+      "presentationNote": null,
+      "sourcePublicationDate": "2023-10"
+    },
+    {
+      "id": "seoul-s10-official-stairs",
+      "placeId": "mju-s10",
+      "sourcePageUrl": "https://news.mju.ac.kr/news/articleView.html?idxno=12317",
+      "imageUrl": "https://news.mju.ac.kr/news/photo/202310/12317_12901_550.jpg",
+      "caption": {
+        "en": "MCC — exterior detail beside the central stairs, published in 2023.",
+        "ko": "MCC관 — 2023년에 게재된 외부 중앙 계단 옆 세부 모습입니다.",
+        "zh": "MCC馆 — 中央室外楼梯旁的细节，刊登于2023年。"
+      },
+      "originalCaption": "▲MCC 외부 중앙 계단 옆 경사면에 명지대학교 로고가 새겨진 원형 현판이 설치돼 있다.",
+      "identificationEvidence": "Official caption explicitly identifies the slope beside the MCC exterior central stairs. The original image is a close side view of the crest and railings, materially different from the distant frontal plaza view and the garage entrance. It is labelled as an exterior detail, not a whole-building facade.",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "sourceImage": {
+        "width": 600,
+        "height": 338,
+        "sha256": "1ba5ec2f098837c8d6c7142bc00544553824f4a2b2c3dd33c1e2b8ea35c333ff"
+      },
+      "rights": "Copyright remains with Myongji University / the credited university publisher; not covered by the application MIT license. Public availability does not establish a redistribution license.",
+      "presentationNote": null,
+      "sourcePublicationDate": "2023-10"
+    },
+    {
+      "id": "seoul-s10-official-garage",
+      "placeId": "mju-s10",
+      "sourcePageUrl": "https://news.mju.ac.kr/news/articleView.html?idxno=12317",
+      "imageUrl": "https://news.mju.ac.kr/news/photo/202310/12317_12900_5437.png",
+      "caption": {
+        "en": "MCC — vehicle parking entrance at night, published in 2023.",
+        "ko": "MCC관 — 2023년에 게재된 야간 주차장 차량 출입구 사진입니다.",
+        "zh": "MCC馆 — 夜间车辆停车场入口，刊登于2023年。"
+      },
+      "originalCaption": "▲정문의 MCC 1층 주차장 입구에 명지대학교 건물임을 나타내는 ‘MYONGJI CAMPUS COMPLEX’ 문구가 설치돼 있다.",
+      "identificationEvidence": "Official caption explicitly identifies the MCC first-floor parking entrance beside the main gate. The original night photo visibly reads MYONGJI CAMPUS COMPLEX and shows the garage entrance. Distinct ground-level location from the plaza and central-stair detail. This is a vehicle entrance photograph, not a recommendation for a pedestrian route.",
+      "captureDate": null,
+      "checkedAt": "2026-10-16",
+      "officialOrganization": "Myongji University",
+      "visualVerified": true,
+      "sourceImage": {
+        "width": 600,
+        "height": 450,
+        "sha256": "dc33ae76c7db0b53a9b27444fc72e794d03cbfbddab2e29467b7a89cd35f9927"
+      },
+      "rights": "Copyright remains with Myongji University / the credited university publisher; not covered by the application MIT license. Public availability does not establish a redistribution license.",
+      "presentationNote": null,
+      "sourcePublicationDate": "2023-10"
+    }
+  ]
+}

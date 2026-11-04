@@ -13,6 +13,7 @@
   },
   "include": [
     "src/types.ts",
+    "src/building-photos.ts",
     "src/core.ts",
     "src/data.ts",
     "src/knowledge.ts",
@@ -25,6 +26,7 @@
     "src/model-location.ts",
     "src/community.ts",
     "src/community-updates.ts",
-    "src/community-sync.ts"
+    "src/community-sync.ts",
+    "src/community-web.ts"
   ]
 }

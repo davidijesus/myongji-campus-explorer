@@ -6,7 +6,7 @@ param(
     [string]$BuildRoot,
     [string]$OutputApk,
     [string]$Keystore,
-    [string]$CommunityEndpoint = ''
+    [string]$CommunityEndpoint = 'https://davidijesus.github.io/myongji-campus-explorer/menus/yongin.json'
 )
 $ErrorActionPreference = 'Stop'
 # This option is explicit and is never populated from the environment or UI.
@@ -23,7 +23,7 @@ if ($CommunityEndpoint) {
 $project = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 $work = [IO.Path]::GetFullPath((Join-Path $project '..'))
 if (!$BuildRoot) { $BuildRoot = Join-Path $work ('android-standalone-build\' + (Get-Date -Format 'yyyyMMdd-HHmmss')) }
-if (!$OutputApk) { $OutputApk = Join-Path $BuildRoot 'myongji-campus-explorer-v0.6.3-development.apk' }
+if (!$OutputApk) { $OutputApk = Join-Path $BuildRoot 'myongji-campus-explorer-v0.6.5-development.apk' }
 if (!$Keystore) { throw 'Pass the existing authorized development keystore explicitly. This build never creates keys.' }
 $BuildRoot = [IO.Path]::GetFullPath($BuildRoot)
 $OutputApk = [IO.Path]::GetFullPath($OutputApk)
@@ -35,9 +35,9 @@ $androidJar = Join-Path $Sdk 'platforms\android-36\android.jar'
 foreach ($tool in @("$tools\aapt.exe","$tools\aapt2.exe","$tools\d8.bat","$tools\zipalign.exe","$tools\apksigner.bat","$Jdk\bin\javac.exe","$Jdk\bin\java.exe",$androidJar)) {
     if (!(Test-Path -LiteralPath $tool)) { throw "Missing build tool: $tool" }
 }
-$expectedHash = '0c17dda6e51204a9ac77a82f1760f8269c7dad50e57fa888bad48d0d8f8ea1cf'
+$expectedHash = 'aebb45b1ad2228a1bfa971698a18fdda501fcccffce734f62446123e64869658'
 $html = Join-Path $project 'preview.html'
-if ((Get-FileHash -LiteralPath $html -Algorithm SHA256).Hash.ToLowerInvariant() -ne $expectedHash) { throw 'The HTML differs from the reviewed v0.6.3 bundle. Review before changing expectedHash.' }
+if ((Get-FileHash -LiteralPath $html -Algorithm SHA256).Hash.ToLowerInvariant() -ne $expectedHash) { throw 'The HTML differs from the reviewed v0.6.5 bundle. Review before changing expectedHash.' }
 $previousJavaHome = $env:JAVA_HOME
 $env:JAVA_HOME = $Jdk
 function Run([string]$Executable, [string[]]$Arguments) {

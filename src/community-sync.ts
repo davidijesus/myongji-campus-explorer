@@ -1,4 +1,4 @@
-import { CommunityUpdate, getCommunitySource, isCommunityPermalink } from './community';
+import { CommunityUpdate, getCommunitySource, isCommunityPermalink, isValidOfficialMenuUpdate } from './community';
 
 export type CommunitySnapshot = {
   schemaVersion: 1;
@@ -39,6 +39,14 @@ export function validateCommunitySnapshot(value: unknown, now = Date.now()): Com
     if (!Number.isFinite(updated) || updated > now || !Array.isArray(value.updates) || value.updates.length > 100 || new TextEncoder().encode(JSON.stringify(value)).length > 262144) return null;
     const updates: CommunityUpdate[] = [], ids = new Set<string>();
     for (const record of value.updates) {
+      if (record && typeof record === 'object' && 'originalLanguage' in record) {
+        if (!isValidOfficialMenuUpdate(record, updated) || ids.has(record.id)) return null;
+        ids.add(record.id);
+        updates.push({ id: record.id, sourceId: record.sourceId, kind: 'menu', originalLanguage: 'ko', originalText: record.originalText,
+          meal: record.meal, sourceUrl: record.sourceUrl, publishedAt: null, reviewedAt: null, observedAt: record.observedAt,
+          validatedAt: record.validatedAt, validFrom: record.validFrom, validThrough: record.validThrough });
+        continue;
+      }
       if (!exact(record, ['id', 'sourceId', 'kind', 'summary', 'sourceUrl', 'publishedAt', 'reviewedAt', 'validFrom', 'validThrough'], ['observedAt'])) return null;
       if (typeof record.id !== 'string' || !/^[a-z0-9][a-z0-9_-]{0,79}$/.test(record.id) || ids.has(record.id) || typeof record.sourceId !== 'string') return null;
       const source = getCommunitySource(record.sourceId);
@@ -64,7 +72,7 @@ export function validateCommunitySnapshot(value: unknown, now = Date.now()): Com
     return { schemaVersion: 1, campusId: 'yongin', version: value.version as number, updatedAt: value.updatedAt as string, updates };
   } catch { return null; }
 }
-/** The same version may be delivered again only with the same reviewed content. */
+/** The same version may be delivered again only with identical canonical content. */
 export function acceptCommunitySnapshot(candidate: unknown, previous: CommunitySnapshot | null, now = Date.now()): CommunitySnapshot | null {
   const next = validateCommunitySnapshot(candidate, now);
   if (!next || (previous && (next.version < previous.version || Date.parse(next.updatedAt) < Date.parse(previous.updatedAt) || (next.version === previous.version && JSON.stringify(next) !== JSON.stringify(previous))))) return null;

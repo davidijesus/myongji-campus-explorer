@@ -29,3 +29,11 @@ The signature artwork at web/assets/identity/myongji-signature.png is
 copyright Myongji University and is not covered by the MIT grant above.
 Myongji University retains its rights in this third-party artwork.
 Official source: https://www.mju.ac.kr/us/3475/subview.do
+
+Building photographs at web/building-photos are university material, not
+first-party artwork, and are excluded from the MIT grant above. Large JPEGs
+have local display copies resized proportionally, without cropping or retouching;
+smaller photographs retain their original bytes. Myongji University and the
+credited institutional publishers retain their rights. Individual source pages,
+original image URLs, identification evidence, original/display checksums and
+resize parameters are recorded in data/building-photos.json.

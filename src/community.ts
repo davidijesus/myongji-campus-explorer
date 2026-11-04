@@ -16,7 +16,7 @@ export type CommunitySource = {
   note: Localized;
 };
 /** A human-reviewed offline summary, never a feed item inferred from a handle. */
-export type CommunityUpdate = {
+export type ReviewedCommunityUpdate = {
   id: string;
   sourceId: CommunitySourceId;
   kind: CommunityKind;
@@ -30,15 +30,36 @@ export type CommunityUpdate = {
   validFrom: string;
   validThrough: string;
 };
+/** Verbatim meal text from an allowlisted university page, without a human review or translation claim. */
+export type OfficialMenuUpdate = {
+  id: string;
+  sourceId: CommunitySourceId;
+  kind: 'menu';
+  originalLanguage: 'ko';
+  originalText: string;
+  meal: 'breakfast' | 'lunch' | 'dinner';
+  sourceUrl: string;
+  publishedAt: null;
+  reviewedAt: null;
+  observedAt: string;
+  /** Last successful source validation (including an HTTP 304); not a human review. */
+  validatedAt: string;
+  validFrom: string;
+  validThrough: string;
+};
+export type CommunityUpdate = ReviewedCommunityUpdate | OfficialMenuUpdate;
+export function isOfficialMenuUpdate(update: CommunityUpdate): update is OfficialMenuUpdate {
+  return 'originalLanguage' in update;
+}
 
 const l = (en: string, ko: string, zh: string): Localized => ({ en, ko, zh });
 function officialMenuSource(id: CommunitySourceId, page: number, title: Localized, location: Localized): CommunitySource {
   return { id, handle: 'MJU', url: `https://www.mju.ac.kr/mjukr/${page}/subview.do`, title,
     kind: 'menu', campusId: 'yongin', guidePage: null, guideLocation: location,
     sourceType: 'official-menu', profileStatus: 'official',
-    note: l('Official university weekly menu page. A missing menu is not evidence that the cafeteria is closed. Dates and meals must be reviewed before saving a summary.',
-      '대학 공식 주간 식단 페이지입니다. 식단이 없다고 식당이 문을 닫았다는 뜻은 아닙니다. 요약을 저장하기 전에 날짜와 식사를 검토해야 합니다.',
-      '大学官方每周菜单页面。未发布菜单不表示食堂关闭。保存摘要前须审核日期和餐次。') };
+    note: l('Official university weekly menu page. Automatic imports retain the Korean original without adding translations. A missing menu does not confirm that the cafeteria is closed.',
+      '대학 공식 주간 식단 페이지입니다. 자동으로 가져온 식단은 번역을 추가하지 않고 한국어 원문을 유지합니다. 식단이 없다고 식당이 문을 닫았다는 뜻은 아닙니다.',
+      '大学官方每周菜单页面。自动导入的菜单保留韩文原文，不添加翻译。未发布菜单不表示食堂关闭。') };
 }
 export const COMMUNITY_GUIDE_REVIEWED_AT = '2026-10-04';
 export const COMMUNITY_SOURCES: readonly CommunitySource[] = [
@@ -102,6 +123,30 @@ function timestamp(value: unknown): number {
   if (typeof value !== 'string' || !/^20\d{2}-\d{2}-\d{2}T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:\.\d{1,3})?(?:Z|[+-](?:0\d|1[0-3]):[0-5]\d|[+-]14:00)$/.test(value) || !calendarDate(value.slice(0, 10))) return NaN;
   return Date.parse(value);
 }
+/** Meal cells may contain line breaks and numbered allergens; retain them exactly. */
+export function isOfficialMenuText(value: unknown): value is string {
+  if (typeof value !== 'string' || !value || value.trim() !== value || [...value].length > 6000 || new TextEncoder().encode(value).length > 24000) return false;
+  if (/[<>\u0000-\u0009\u000b-\u001f\u007f-\u009f\ud800-\udfff]/u.test(value)) return false;
+  if (/(?:https?:\/\/|www\.|mailto:|tel:|data:|javascript:)/i.test(value) || /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i.test(value)) return false;
+  return !/(?:-----BEGIN|\b(?:sk-|ghp_|github_pat_|AKIA)[A-Za-z0-9_-]{8,}|\b(?:password|access[_ -]?token|api[_ -]?key)\s*[:=])/i.test(value);
+}
+/** Validate the automated branch independently of any display language or bundled summaries. */
+export function isValidOfficialMenuUpdate(value: unknown, now = Date.now()): value is OfficialMenuUpdate {
+  if (!Number.isFinite(now) || !value || typeof value !== 'object' || Array.isArray(value)) return false;
+  const update = value as Record<string, unknown>;
+  const keys = ['id', 'sourceId', 'kind', 'originalLanguage', 'originalText', 'meal', 'sourceUrl', 'publishedAt', 'reviewedAt', 'observedAt', 'validatedAt', 'validFrom', 'validThrough'];
+  if (Object.keys(update).length !== keys.length || !keys.every(key => Object.prototype.hasOwnProperty.call(update, key))) return false;
+  if (typeof update.id !== 'string' || !/^[a-z0-9][a-z0-9_-]{0,79}$/.test(update.id) || typeof update.sourceId !== 'string') return false;
+  const source = getCommunitySource(update.sourceId);
+  if (source?.sourceType !== 'official-menu' || update.kind !== 'menu' || update.originalLanguage !== 'ko' || !isOfficialMenuText(update.originalText)) return false;
+  if (!['breakfast', 'lunch', 'dinner'].includes(update.meal as string) || update.publishedAt !== null || update.reviewedAt !== null || !isCommunityPermalink(update.sourceUrl, source.id)) return false;
+  const observed = timestamp(update.observedAt), validated = timestamp(update.validatedAt);
+  if (!Number.isFinite(observed) || !Number.isFinite(validated) || observed > validated || validated > now) return false;
+  if (!calendarDate(update.validFrom) || !calendarDate(update.validThrough) || update.validFrom !== update.validThrough) return false;
+  const monday = Date.parse(update.sourceUrl.slice(-10).replace(/\./g, '-') + 'T00:00:00Z');
+  const date = Date.parse(update.validFrom + 'T00:00:00Z');
+  return date >= monday && date <= monday + 6 * 86400000;
+}
 /** Reviewed original links only. Availability and authorship need human review. */
 export function isCommunityPermalink(url: unknown, sourceId: string): url is string {
   if (typeof url !== 'string' || !getCommunitySource(sourceId)) return false;
@@ -126,6 +171,11 @@ function reviewedCommunityUpdates(updates: readonly CommunityUpdate[], kind: Com
     if (!update || typeof update.id !== 'string' || !update.id.trim() || seen.has(update.id)) return false;
     const source = getCommunitySource(update.sourceId);
     if (!source || (update.kind !== 'menu' && update.kind !== 'announcement') || (kind && update.kind !== kind) || (update.kind === 'menu' && source.kind !== 'menu') || (source.sourceType === 'official-menu' && update.kind !== 'menu')) return false;
+    if (isOfficialMenuUpdate(update)) {
+      if (!isValidOfficialMenuUpdate(update, currentTime)) return false;
+      seen.add(update.id);
+      return true;
+    }
     if (!update.summary || !['en', 'ko', 'zh'].every(language => typeof update.summary[language as keyof Localized] === 'string' && !!update.summary[language as keyof Localized]?.trim())) return false;
     if (!isCommunityPermalink(update.sourceUrl, update.sourceId)) return false;
     const reviewed = timestamp(update.reviewedAt);
@@ -152,7 +202,7 @@ export function currentCommunityUpdates(updates: readonly CommunityUpdate[], kin
 }
 
 export type CommunitySourceAvailability = {
-  /** Describes reviewed saved records, never remote profile availability or opening hours. */
+  /** Describes validated saved records, never live profile availability or opening hours. */
   state: 'current' | 'outdated' | 'upcoming' | 'unavailable';
   current: CommunityUpdate[];
   lastValidThrough: string | null;

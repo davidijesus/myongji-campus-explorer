@@ -1,0 +1,101 @@
+'use strict';
+const fs = require('node:fs');
+const path = require('node:path');
+const crypto = require('node:crypto');
+const root = path.resolve(__dirname, '..');
+const sha256 = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
+const token = id => `__MJU_BUILDING_PHOTO_${id}__`;
+
+function officialURL(value) {
+  try {
+    const url = new URL(value);
+    return url.protocol === 'https:' && !url.username && !url.password && !url.port
+      && (url.hostname === 'mju.ac.kr' || url.hostname.endsWith('.mju.ac.kr'));
+  } catch { return false; }
+}
+
+function imageInfo(bytes) {
+  if (bytes.subarray(0, 8).toString('hex') === '89504e470d0a1a0a') {
+    return { mime: 'image/png', width: bytes.readUInt32BE(16), height: bytes.readUInt32BE(20) };
+  }
+  if (/^GIF8[79]a$/.test(bytes.subarray(0, 6).toString())) {
+    return { mime: 'image/gif', width: bytes.readUInt16LE(6), height: bytes.readUInt16LE(8) };
+  }
+  if (bytes[0] === 0xff && bytes[1] === 0xd8) {
+    let i = 2;
+    while (i + 8 < bytes.length) {
+      if (bytes[i++] !== 0xff) throw new Error('Invalid JPEG marker');
+      while (bytes[i] === 0xff) i++;
+      const marker = bytes[i++];
+      if (marker === 0xd9 || marker === 0xda) break;
+      if (marker === 0x01 || (marker >= 0xd0 && marker <= 0xd7)) continue;
+      const size = bytes.readUInt16BE(i);
+      if (size < 2 || i + size > bytes.length) throw new Error('Invalid JPEG segment');
+      if ([0xc0, 0xc1, 0xc2, 0xc3, 0xc5, 0xc6, 0xc7, 0xc9, 0xca, 0xcb, 0xcd, 0xce, 0xcf].includes(marker)) {
+        return { mime: 'image/jpeg', height: bytes.readUInt16BE(i + 3), width: bytes.readUInt16BE(i + 5) };
+      }
+      i += size;
+    }
+  }
+  throw new Error('Only reviewed PNG, JPEG or GIF photographs are supported');
+}
+
+function readReviewedPhotos(projectRoot = root) {
+  const manifest = JSON.parse(fs.readFileSync(path.join(projectRoot, 'data/building-photos.json'), 'utf8'));
+  if (manifest.schemaVersion !== 1 || !Array.isArray(manifest.photos)) throw new Error('Invalid photo manifest');
+  const ids = new Set(), hashesByPlace = new Set();
+  return manifest.photos.map(photo => {
+    if (!/^[a-z0-9-]+$/.test(photo.id) || ids.has(photo.id)) throw new Error('Invalid or repeated photo ID');
+    ids.add(photo.id);
+    if (!/^mju-[a-z0-9-]+$/.test(photo.placeId) || photo.visualVerified !== true) throw new Error('Photo lacks a reviewed place association');
+    if (!officialURL(photo.sourcePageUrl) || !officialURL(photo.imageUrl)) throw new Error('Photo must retain official university source URLs');
+    for (const lang of ['en', 'ko', 'zh']) if (typeof photo.caption?.[lang] !== 'string' || !photo.caption[lang].trim()) throw new Error('Missing localized photo caption');
+    for (const name of ['identificationEvidence', 'officialOrganization', 'checkedAt']) if (typeof photo[name] !== 'string' || !photo[name].trim()) throw new Error('Missing photo provenance: ' + photo.id);
+    if (photo.originalCaption !== null && (typeof photo.originalCaption !== 'string' || !photo.originalCaption.trim())) throw new Error('Original caption must be present or explicitly null');
+    if (photo.captureDate !== null && !/^\d{4}-\d{2}-\d{2}$/.test(photo.captureDate)) throw new Error('Capture date must be known or explicitly null');
+    if (!/^web\/building-photos\/(yongin|seoul)\/[a-z0-9._-]+\.(png|jpg|jpeg|gif)$/.test(photo.src)) throw new Error('Unsafe photo asset path');
+    const assetRoot = path.resolve(projectRoot, 'web/building-photos');
+    const assetPath = fs.realpathSync(path.join(projectRoot, photo.src));
+    const relative = path.relative(assetRoot, assetPath);
+    if (relative.startsWith('..') || path.isAbsolute(relative)) throw new Error('Photo path leaves asset directory');
+    const bytes = fs.readFileSync(assetPath), info = imageInfo(bytes);
+    if (sha256(bytes) !== photo.sha256 || info.width !== photo.width || info.height !== photo.height) throw new Error('Photo bytes differ from the reviewed manifest: ' + photo.id);
+    if (info.width < 1 || info.height < 1 || info.width * info.height > 24000000 || bytes.length > 10000000) throw new Error('Photo exceeds the reviewed mobile asset budget');
+    const association = photo.placeId + ':' + photo.sha256;
+    if (hashesByPlace.has(association)) throw new Error('Duplicate photograph is not a distinct carousel angle');
+    hashesByPlace.add(association);
+    return { photo, bytes, info };
+  });
+}
+
+function prepare(projectRoot = root) {
+  const entries = readReviewedPhotos(projectRoot);
+  const catalog = entries.map(({ photo }) => {
+    const publicRecord = {};
+    for (const field of ['id', 'placeId', 'caption', 'sourcePageUrl', 'imageUrl', 'originalCaption',
+      'width', 'height', 'captureDate', 'checkedAt', 'officialOrganization', 'sha256', 'identificationEvidence']) {
+      publicRecord[field] = photo[field];
+    }
+    return { ...publicRecord, src: token(photo.id) };
+  });
+  const output = '// Generated by scripts/prepare-building-photos.cjs from the reviewed manifest.\n'
+    + "import type { BuildingPhoto } from './building-photos';\n"
+    + 'export const BUILDING_PHOTO_CATALOG: readonly BuildingPhoto[] = '
+    + JSON.stringify(catalog, null, 2) + ';\n';
+  const target = path.join(projectRoot, 'src/building-photo-catalog.ts');
+  if (!fs.existsSync(target) || fs.readFileSync(target, 'utf8') !== output) fs.writeFileSync(target, output);
+  return { photos: entries.length, bytes: entries.reduce((sum, item) => sum + item.bytes.length, 0) };
+}
+
+function embed(compiled, projectRoot = root) {
+  for (const { photo, bytes, info } of readReviewedPhotos(projectRoot)) {
+    const marker = token(photo.id);
+    if (compiled.split(marker).length !== 2) throw new Error('Expected one compiled photo token: ' + photo.id);
+    compiled = compiled.replace(marker, `data:${info.mime};base64,${bytes.toString('base64')}`);
+  }
+  if (compiled.includes('__MJU_BUILDING_PHOTO_')) throw new Error('Unresolved building photograph token');
+  return compiled;
+}
+
+if (require.main === module) console.log('Reviewed building photos:', prepare());
+module.exports = { prepare, embed, readReviewedPhotos, officialURL, imageInfo, token };

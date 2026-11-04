@@ -1,5 +1,7 @@
 import { Category, Dataset, Evidence, Localized, Place } from './types';
 import { ReferenceFeature } from './campus';
+import { SEOUL_REFERENCE_ROADS } from './seoul-paths';
+export { SEOUL_REFERENCE_ROADS } from './seoul-paths';
 
 const tr = (en:string,ko:string,zh:string):Localized => ({en,ko,zh});
 export const SEOUL_DIRECTORY_URL = 'https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=A';
@@ -84,8 +86,7 @@ SEOUL_REFERENCE_FEATURES.push(
     {id:'mju-seoul-gate',code:null,name:tr('Main Gate','정문','正门'),category:'services',kind:'gate',form:'low',marker:{article:38,lat:37.579700,lon:126.923930},center:seoulMarkerToReferencePoint(37.579700,126.923930),size:[5.4,1.2,3.2],angle:0,note:tr('Official directory label and marker. The rendered gateway is an abstract locator, not a verified entrance shape or accessible entrance.','공식 목록의 이름과 표식입니다. 그림의 문은 추상적인 위치 표시이며, 실제 출입구 형태나 무장애 출입구를 확인한 것이 아닙니다.','名称和标记来自官方目录。所绘门形只是抽象位置标识，不代表已核实的入口形状或无障碍入口。')},
     {id:'mju-seoul-guardhouse',code:null,name:tr('Gatehouse','수위실','门卫室'),category:'services',kind:'building',form:'low',marker:{article:39,lat:37.579656,lon:126.923794},center:seoulMarkerToReferencePoint(37.579656,126.923794),size:[2.6,2,3.4],angle:0,note:tr('Official directory label and marker; the small block is a locator with unverified dimensions and appearance.','공식 목록의 이름과 표식이며, 작은 블록의 크기와 외관은 미확인입니다.','名称和标记来自官方目录；小方块的尺寸及外观未核实。')},
 );
-/** No Seoul road/route geometry has been independently established. */
-export const SEOUL_REFERENCE_ROADS:[number,number][][]=[];
+/** Pavement traces are illustration-only; the live navigation graph remains empty. */
 export const SEOUL_REFERENCE_CAMPUS={
     id:'myongji-seoul-reference-2026-10-01',frame:'illustration' as const,
     sourceUrl:SEOUL_DIRECTORY_URL,checkedAt:SEOUL_REFERENCE_CHECKED,

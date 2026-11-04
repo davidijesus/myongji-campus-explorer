@@ -27,10 +27,19 @@ public final class CommunityRefreshClientTest {
 
     private static final class MemoryStore implements CommunityRefreshClient.Store {
         volatile byte[] bytes;
-        volatile boolean failWrite, failRead;
+        volatile boolean failWrite, failRead, blockRead;
         volatile int writes, reads;
+        final CountDownLatch readEntered = new CountDownLatch(1);
         public Object lock() { return this; }
-        public byte[] read() throws IOException { reads++; if (failRead) throw new IOException("Synthetic read failure"); return bytes; }
+        public byte[] read() throws IOException {
+            reads++; readEntered.countDown();
+            while (blockRead) {
+                try { Thread.sleep(2); }
+                catch (InterruptedException interrupted) { Thread.currentThread().interrupt(); throw new IOException("Synthetic read interrupted"); }
+            }
+            if (failRead) throw new IOException("Synthetic read failure");
+            return bytes;
+        }
         public void write(byte[] value) throws IOException { if (failWrite) throw new IOException("Synthetic write failure"); bytes = value.clone(); writes++; }
     }
     private static final class FakeTransport implements CommunityRefreshClient.Transport {
@@ -54,13 +63,18 @@ public final class CommunityRefreshClientTest {
         final List<CommunityRefreshClient.State> states = Collections.synchronizedList(new ArrayList<>());
         final ExecutorService worker = Executors.newSingleThreadExecutor();
         final CommunityRefreshClient client;
+        volatile long now = NOW;
         Fixture(String endpoint, byte[] cache) { this(endpoint, cache, new MemoryStore()); }
         Fixture(String endpoint, byte[] cache, MemoryStore shared) {
             store = shared; store.bytes = cache;
-            client = new CommunityRefreshClient(endpoint, store, network, states::add, Runnable::run, worker, () -> NOW);
+            client = new CommunityRefreshClient(endpoint, store, network, states::add, Runnable::run, worker, () -> now);
         }
         void ready() throws Exception { client.resume(); client.ready(); settle(); }
-        void settle() throws Exception { worker.submit(() -> {}).get(10, TimeUnit.SECONDS); }
+        void settle() throws Exception {
+            // Cache loading may queue an automatic refresh behind the first barrier.
+            worker.submit(() -> {}).get(10, TimeUnit.SECONDS);
+            worker.submit(() -> {}).get(10, TimeUnit.SECONDS);
+        }
         CommunityRefreshClient.State last() { return states.get(states.size() - 1); }
         void refresh() throws Exception { client.refresh(); settle(); }
         public void close() throws Exception { client.close(); check(worker.awaitTermination(10, TimeUnit.SECONDS), "worker stops on destroy"); }
@@ -78,7 +92,7 @@ public final class CommunityRefreshClientTest {
             check(fixture.store.reads == 0 && fixture.network.calls == 0, "inactive page does no I/O");
             fixture.client.resume(); fixture.settle();
             check(fixture.last().status.equals("idle"), "configured empty cache becomes idle");
-            check(fixture.network.calls == 0, "foreground/page readiness never auto-fetches");
+            check(fixture.network.calls == 0, "custom community endpoints retain manual refresh");
             fixture.refresh();
             check(fixture.last().status.equals("updated") && fixture.last().snapshot.version == 1, "manual refresh publishes a validated snapshot");
             check(fixture.store.writes == 1, "validated snapshot persisted once");
@@ -130,6 +144,89 @@ public final class CommunityRefreshClientTest {
             check(fixture.store.writes == 0, "page replacement cancels persistence");
             fixture.client.ready(); fixture.settle();
             check(fixture.states.size() > emitted && fixture.network.calls == 1, "replacement page gets state without network restart");
+        }
+    }
+
+    private static void automaticLifecycle() throws Exception {
+        final String feed = CommunityRefreshClient.AUTOMATIC_ENDPOINT;
+        check(CommunityTransport.validEndpoint(feed), "approved Pages feed passes the existing endpoint policy");
+        try (Fixture fixture = new Fixture(feed, null)) {
+            fixture.client.ready(); fixture.settle();
+            check(fixture.network.calls == 0 && fixture.store.reads == 0, "automatic feed does no work before foreground");
+            fixture.client.resume(); fixture.settle();
+            check(fixture.network.calls == 1 && fixture.last().status.equals("updated"), "ready before resume fetches automatically after loading cache");
+            check(fixture.last().snapshot.version == 1 && fixture.store.writes == 1, "first automatic response is validated and saved");
+            for (int i = 0; i < 20; i++) { fixture.client.ready(); fixture.client.resume(); }
+            fixture.settle();
+            check(fixture.network.calls == 1, "repeated readiness does not bypass cooldown");
+            fixture.now += CommunityRefreshClient.AUTOMATIC_INTERVAL_MS - 1;
+            fixture.client.pause(); fixture.client.resume(); fixture.settle();
+            check(fixture.network.calls == 1, "resume one millisecond before cooldown expires uses cached data");
+            fixture.network.response = snapshot(2); fixture.now++;
+            fixture.client.pause(); fixture.client.resume(); fixture.settle();
+            check(fixture.network.calls == 2 && fixture.last().snapshot.version == 2, "resume at exactly fifteen minutes fetches one newer snapshot");
+            fixture.network.response = snapshot(3); fixture.refresh();
+            check(fixture.network.calls == 3 && fixture.last().snapshot.version == 3, "manual refresh remains available inside the automatic cooldown");
+            fixture.client.pause(); fixture.client.resume(); fixture.settle();
+            check(fixture.network.calls == 3, "manual attempts also prevent immediate lifecycle duplication");
+        }
+        try (Fixture fixture = new Fixture(feed, snapshot(4))) {
+            fixture.network.fail = "timeout";
+            fixture.ready();
+            check(fixture.network.calls == 1 && fixture.last().reason.equals("timeout"), "resume before ready automatically attempts the approved feed");
+            check(fixture.last().snapshot.version == 4 && fixture.store.writes == 0, "automatic network failure preserves the last valid cache");
+            for (int i = 0; i < 10; i++) { fixture.client.pause(); fixture.client.resume(); fixture.client.ready(); }
+            fixture.settle();
+            check(fixture.network.calls == 1, "failed automatic attempt also has a cooldown while offline");
+            fixture.network.fail = null; fixture.network.response = snapshot(5);
+            fixture.now += CommunityRefreshClient.AUTOMATIC_INTERVAL_MS;
+            fixture.client.resume(); fixture.settle();
+            check(fixture.network.calls == 2 && fixture.last().snapshot.version == 5, "next eligible foreground event recovers from an offline attempt");
+        }
+        try (Fixture fixture = new Fixture(feed, snapshot(4))) {
+            fixture.network.blocked = true; fixture.network.response = snapshot(5);
+            fixture.client.resume(); fixture.client.ready();
+            check(fixture.network.entered.await(10, TimeUnit.SECONDS), "automatic request enters synthetic transport");
+            for (int i = 0; i < 10; i++) { fixture.client.ready(); fixture.client.resume(); fixture.client.refresh(); }
+            check(fixture.network.calls == 1, "manual and lifecycle requests coalesce while automatic request is in flight");
+            fixture.client.pause(); fixture.settle();
+            check(fixture.store.writes == 0 && fixture.last().snapshot.version == 4, "pause cancels automatic response before persistence");
+            fixture.network.blocked = false;
+            fixture.client.resume(); fixture.settle();
+            check(fixture.network.calls == 2 && fixture.last().snapshot.version == 5, "cancelled unfinished attempt retries on return instead of waiting fifteen minutes");
+        }
+        try (Fixture fixture = new Fixture(feed, "broken".getBytes(StandardCharsets.UTF_8))) {
+            fixture.ready();
+            check(fixture.network.calls == 1 && fixture.last().status.equals("updated") && fixture.store.writes == 1, "automatic fetch repairs invalid private cache only with validated response");
+        }
+        try (Fixture fixture = new Fixture(feed, snapshot(2))) {
+            fixture.store.blockRead = true; fixture.network.response = snapshot(3);
+            fixture.client.resume(); fixture.client.ready();
+            check(fixture.store.readEntered.await(10, TimeUnit.SECONDS), "automatic startup begins with private cache read");
+            fixture.client.pause(); fixture.store.blockRead = false; fixture.settle();
+            check(fixture.network.calls == 0 && fixture.store.writes == 0, "pausing cache load does not fetch or persist in background");
+            fixture.client.resume(); fixture.settle();
+            check(fixture.network.calls == 1 && fixture.last().snapshot.version == 3, "cancelled cache load does not consume network cooldown");
+        }
+        try (Fixture fixture = new Fixture(feed, snapshot(3))) {
+            fixture.network.notModified = true; fixture.ready();
+            check(fixture.network.calls == 1 && fixture.last().status.equals("cached") && fixture.store.writes == 0, "automatic conditional response reuses cache without rewriting");
+            fixture.network.notModified = false; fixture.network.response = snapshot(2);
+            fixture.now += CommunityRefreshClient.AUTOMATIC_INTERVAL_MS;
+            fixture.client.resume(); fixture.settle();
+            check(fixture.last().reason.equals("rollback") && fixture.last().snapshot.version == 3, "automatic responses preserve rollback protection");
+            check(fixture.store.writes == 0, "automatic rollback never replaces persistent data");
+        }
+        try (Fixture fixture = new Fixture(feed, snapshot(2))) {
+            fixture.network.response = snapshot(3); fixture.store.failWrite = true; fixture.ready();
+            check(fixture.last().reason.equals("cache_write") && fixture.last().snapshot.version == 2, "automatic save failure retains last valid visible content");
+            fixture.store.failWrite = false; fixture.now -= 1000; fixture.client.resume(); fixture.settle();
+            check(fixture.network.calls == 2 && fixture.last().snapshot.version == 3, "clock correction does not suppress refresh indefinitely");
+        }
+        for (String other : new String[]{feed + "/", "https://other.example/menus/yongin.json"}) {
+            try (Fixture fixture = new Fixture(other, null)) {
+                fixture.ready(); check(fixture.network.calls == 0, "only the exact approved Pages URL receives automatic requests");
+            }
         }
     }
 
@@ -233,7 +330,7 @@ public final class CommunityRefreshClientTest {
         check(new CommunityTransport(url -> noTag).fetch(ENDPOINT, tag, new CommunityRefreshClient.Cancellation()).notModified, "304 without response validator still refers to sent condition");
     }
     public static void main(String[] args) throws Exception {
-        stateMachine(); transportPolicy(); conditionalAndConcurrent();
+        stateMachine(); transportPolicy(); conditionalAndConcurrent(); automaticLifecycle();
         System.out.println(checks + " native community client/transport checks passed; synthetic connections only, no Android device or network");
     }
 }

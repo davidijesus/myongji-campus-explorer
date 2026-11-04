@@ -2,6 +2,7 @@ import { Dataset, Language, Route, Building, Point } from './types';
 import { localPoint, usable } from './core';
 import { REFERENCE_CAMPUS, ReferenceFeature } from './campus';
 import { SEOUL_REFERENCE_CAMPUS } from './seoul';
+import { seoulPavementDistance } from './seoul-paths';
 import { localize } from './i18n';
 import { GeographicFix } from './geographic';
 import { assessModelLocation } from './model-location';
@@ -908,13 +909,23 @@ export class CampusScene {
     private seoulTerrain(g:Geometry) {
         this.terrainHeight = () => -.72;
         // A compact urban presentation board. Its edge is NOT a campus boundary;
-        // paving/planting are illustrative context, never pedestrian-route data.
+        // planting is illustrative context. Source-backed pavement centre lines below
+        // remain schematic and are never pedestrian-route data.
         g.box(-7,-1.5,2,184,.6,143,color('#dfe3d8'));
         g.box(-7,-.88,2,181,.10,140,color('#e8e9dc'));
         for(let x=-91;x<79;x+=8) for(let z=-65;z<70;z+=8) {
             if((Math.floor(x/8)+Math.floor(z/8))%3===0) g.box(x,-.76,z,7.7,.035,7.7,color('#e2e5d8'));
         }
-        const clear=(x:number,z:number)=>this.referenceCampus.features.every(f=>Math.abs(x-f.center[0])>f.size[0]/2+6||Math.abs(z-f.center[1])>f.size[1]/2+6);
+        // Same pale shoulder / muted pavement palette as Yongin. Widths are
+        // presentation choices, not measured road widths or access categories.
+        for(const path of this.referenceCampus.paths) for(let i=1;i<path.length;i++) {
+            const a=path[i-1]!,b=path[i]!;
+            for(const [width,height,tint] of [[3.0,-.64,'#d8d8c7'],[2.4,-.60,'#909891'],[1.9,-.56,'#9da39b']] as const) {
+                g.segment([a[0],height,a[1]],[b[0],height,b[1]],width,color(tint));
+                for(const p of i===path.length-1?[a,b]:[a]) g.disk(p[0],height+.003,p[1],width/2,color(tint),10);
+            }
+        }
+        const clear=(x:number,z:number)=>seoulPavementDistance(x,z)>6&&this.referenceCampus.features.every(f=>Math.abs(x-f.center[0])>f.size[0]/2+6||Math.abs(z-f.center[1])>f.size[1]/2+6);
         const tree=(x:number,z:number,i:number)=>{
             if(!clear(x,z)) return;
             g.disk(x,-.65,z,3.7,color('#bcc8a4'),10);g.box(x,-.6,z,.42,2.8,.42,color('#96896e'));

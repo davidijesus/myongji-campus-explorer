@@ -1,10 +1,12 @@
-# Protected content-update workflow
+# Manual protected content-update workflow
 
-This optional server workflow is used by the Expo integration when configured. The primary Java/System WebView Android app has no remote content-refresh feature; its bundled data is updated through a new build. See [V05_NATIVE_CHANGES.md](V05_NATIVE_CHANGES.md) for variant details.
+This document describes the optional administrator-reviewed content server and its existing manual tools. **Official Yongin menus use a separate [validated Pages feed](AUTOMATIC_MENUS.md)** and need neither this server nor an administrative secret. The current web and Java/System WebView clients can check that fixed feed automatically when opened or resumed; older APKs with an empty endpoint require one initial app update. University-source collection is currently run explicitly, with reviewed snapshots published through the existing `gh-pages` branch. The proposed Actions schedule is a non-executing template pending authorization, not an active daily service.
+
+Keep the two content paths distinct. `collect-mju-menus.cjs` records source evidence; the manual `import-community.cjs` importer still requires genuine human review and reviewed EN/KO/ZH summaries. The automatic `update-official-menu-feed.cjs` path instead publishes validated original Korean records with `reviewedAt: null`, without creating translations or claiming human review. It does not publish Instagram posts or administrative edits. The older [V05_NATIVE_CHANGES.md](V05_NATIVE_CHANGES.md) describes a historical variant, not the current refresh behavior.
 
 ## Run the service
 
-Build the shared code first. Configure environment variables from `server/.env.example`; this file is an example, not automatically loaded. Node can load an actual server-only file with `--env-file`, or a deployment platform can inject secrets.
+For a separately authorized manual server deployment, build the shared code first and configure environment variables from `server/.env.example`; this file is an example, not automatically loaded. Node can load an actual server-only file with `--env-file`, or a deployment platform can inject secrets. These instructions do not authorize creating credentials or deploying an additional service for the automatic menu feature.
 
 ```sh
 npm run build

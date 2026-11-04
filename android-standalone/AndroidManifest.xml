@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="dev.student.myongjiexplorer.standalone" android:versionCode="15" android:versionName="0.6.3">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="dev.student.myongjiexplorer.standalone" android:versionCode="20" android:versionName="0.6.5">
     <uses-sdk android:minSdkVersion="24" android:targetSdkVersion="36" />
-    <!-- INTERNET is used only by the manual fixed-endpoint community client.
+    <!-- INTERNET is used only by the fixed-endpoint community client, including automatic menu refresh.
          The WebView still blocks network loads. Location is optional foreground only. -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />

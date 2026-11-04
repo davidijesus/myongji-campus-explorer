@@ -50,8 +50,9 @@
       ],
       "category": "services",
       "description": {
-        "en": "The official campus address is available. A verified entrance survey and pedestrian network are still needed before in-app campus navigation can be enabled.",
-        "ko": "공식 캠퍼스 주소를 확인할 수 있습니다. 앱 내 길 안내에는 출입구와 보행로의 검증된 현장 조사가 필요합니다."
+        "en": "116 Myongji-ro, Cheoin-gu, Yongin.",
+        "ko": "용인시 처인구 명지로 116.",
+        "zh": "龙仁市处仁区明知路116号。"
       },
       "code": null,
       "point": null,
@@ -94,8 +95,9 @@
         "Yxxx"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Copy room on 1F.",
+        "ko": "1층에 복사실이 있습니다.",
+        "zh": "1层设有复印室。"
       },
       "point": null,
       "evidence": {
@@ -103,8 +105,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -134,8 +137,9 @@
         "Y1"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Cafeteria, café, convenience store, postal counter and Health Center on 1F.",
+        "ko": "1층에 학생식당, 카페, 편의점, 우편취급국과 보건의료센터가 있습니다.",
+        "zh": "1层设有食堂、咖啡店、便利店、邮政代办所和保健医疗中心。"
       },
       "point": null,
       "evidence": {
@@ -143,8 +147,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -174,8 +179,9 @@
         "Y2"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Paris Baguette is in the 4F lobby.",
+        "ko": "4층 로비에 파리바게트가 있습니다.",
+        "zh": "巴黎贝甜位于4层大厅。"
       },
       "point": null,
       "evidence": {
@@ -183,8 +189,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -217,8 +224,9 @@
         "Myongjindang"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Library, reading rooms and study rooms; cafeteria and convenience store in the basement.",
+        "ko": "도서관, 열람실과 스터디룸이 있으며 지하에는 식당과 편의점이 있습니다.",
+        "zh": "设有图书馆、阅览室和自习室，地下设有食堂和便利店。"
       },
       "point": null,
       "evidence": {
@@ -226,8 +234,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -257,8 +266,9 @@
         "Y5"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Smart Mobility office on 3F; copy room on 1F.",
+        "ko": "3층에 스마트모빌리티공학전공 사무실, 1층에 복사실이 있습니다.",
+        "zh": "3层设有智能交通工程专业办公室，1层设有复印室。"
       },
       "point": null,
       "evidence": {
@@ -266,8 +276,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -297,8 +308,8 @@
         "Y6"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Sports & Culture Hall",
+        "ko": "체육문화관"
       },
       "point": null,
       "evidence": {
@@ -306,8 +317,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -337,8 +349,8 @@
         "Y7"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Gymnasium",
+        "ko": "체육관"
       },
       "point": null,
       "evidence": {
@@ -346,8 +358,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -377,8 +390,8 @@
         "Y8"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Engineering Hall 2",
+        "ko": "제2공학관 (에코바이오관)"
       },
       "point": null,
       "evidence": {
@@ -386,8 +399,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -417,8 +431,9 @@
         "Y9"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Cheongnyeon Bakery and 7-Eleven on 3F.",
+        "ko": "3층에 청년제빵소와 세븐일레븐이 있습니다.",
+        "zh": "3层设有青年面包店和7-Eleven。"
       },
       "point": null,
       "evidence": {
@@ -426,8 +441,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -457,8 +473,8 @@
         "Y10"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Athletes’ Residence",
+        "ko": "선수숙소"
       },
       "point": null,
       "evidence": {
@@ -466,8 +482,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -497,8 +514,8 @@
         "Y11"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "ROTC",
+        "ko": "학군단"
       },
       "point": null,
       "evidence": {
@@ -506,8 +523,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -537,8 +555,9 @@
         "Y12"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "College of Architecture; CAFEING on 1F.",
+        "ko": "건축대학이 있으며 1층에 CAFEING이 있습니다.",
+        "zh": "建筑学院所在地，1层设有CAFEING咖啡店。"
       },
       "point": null,
       "evidence": {
@@ -546,8 +565,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -577,8 +597,9 @@
         "Y13"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Civil Engineering office.",
+        "ko": "토목공학 사무실이 있습니다.",
+        "zh": "土木工程办公室所在地。"
       },
       "point": null,
       "evidence": {
@@ -586,8 +607,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -617,8 +639,8 @@
         "Y14"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Structural Materials Lab",
+        "ko": "구조재료실험동"
       },
       "point": null,
       "evidence": {
@@ -626,8 +648,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -657,8 +680,8 @@
         "Y15"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Hydraulic Modeling Lab",
+        "ko": "수리모형실습동"
       },
       "point": null,
       "evidence": {
@@ -666,8 +689,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -697,8 +721,9 @@
         "Y16"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Staff cafeteria.",
+        "ko": "교직원식당이 있습니다.",
+        "zh": "设有教职工食堂。"
       },
       "point": null,
       "evidence": {
@@ -706,8 +731,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -737,8 +763,9 @@
         "Y17"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Industry-Academic Cooperation Foundation on 3F.",
+        "ko": "3층에 산학협력단이 있습니다.",
+        "zh": "3层设有产学合作团办公室。"
       },
       "point": null,
       "evidence": {
@@ -746,8 +773,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -777,8 +805,8 @@
         "Y18"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Joint Laboratory",
+        "ko": "공동실험동"
       },
       "point": null,
       "evidence": {
@@ -786,8 +814,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -817,8 +846,9 @@
         "Y19"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "GRAZIE café; emart24 and copy room in the basement.",
+        "ko": "GRAZIE 카페가 있으며 지하에 이마트24와 복사실이 있습니다.",
+        "zh": "设有GRAZIE咖啡店，地下设有emart24便利店和复印室。"
       },
       "point": null,
       "evidence": {
@@ -826,8 +856,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -857,8 +888,8 @@
         "Y20"
       ],
       "description": {
-        "en": "The university’s 2021 plan places this hall at the southwest end of the Design & Modeling complex. The two model envelopes divide that connected complex approximately; no invented gap or verified internal boundary is implied.",
-        "ko": "대학의 2021 배치도는 디자인조형센터 단지 남서쪽에 이 건물을 표시합니다. 연결된 단지를 두 모형으로 대략 나누었으며 임의의 간격이나 확인된 내부 경계를 의미하지 않습니다."
+        "en": "Architecture & Urban Design Institute",
+        "ko": "건축도시설계원"
       },
       "point": null,
       "evidence": {
@@ -866,8 +897,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "The university’s 2021 plan places this hall at the southwest end of the Design & Modeling complex. The two model envelopes divide that connected complex approximately; no invented gap or verified internal boundary is implied.",
-          "ko": "대학의 2021 배치도는 디자인조형센터 단지 남서쪽에 이 건물을 표시합니다. 연결된 단지를 두 모형으로 대략 나누었으며 임의의 간격이나 확인된 내부 경계를 의미하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -897,8 +929,9 @@
         "Y21"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Hana Bank on 1F; café and shops on 2F.",
+        "ko": "1층에 하나은행, 2층에 카페와 매장이 있습니다.",
+        "zh": "1层设有韩亚银行，2层设有咖啡店和商店。"
       },
       "point": null,
       "evidence": {
@@ -906,8 +939,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -939,8 +973,9 @@
         "채플관"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Mission Support Team on 4F.",
+        "ko": "4층에 선교지원팀이 있습니다.",
+        "zh": "4层设有宗教事务支持团队办公室。"
       },
       "point": null,
       "evidence": {
@@ -948,8 +983,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -979,8 +1015,9 @@
         "Y23"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Copy room on 4F.",
+        "ko": "4층에 복사실이 있습니다.",
+        "zh": "4层设有复印室。"
       },
       "point": null,
       "evidence": {
@@ -988,8 +1025,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -1019,8 +1057,9 @@
         "Y24"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Structural testing for construction research and education.",
+        "ko": "건설 분야 연구·교육을 위한 구조실험 시설입니다.",
+        "zh": "用于建设领域研究与教学的结构试验设施。"
       },
       "point": null,
       "evidence": {
@@ -1028,8 +1067,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -1059,8 +1099,9 @@
         "Y30"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Student residence.",
+        "ko": "학생 생활관입니다.",
+        "zh": "学生宿舍。"
       },
       "point": null,
       "evidence": {
@@ -1068,8 +1109,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -1099,8 +1141,9 @@
         "Y31"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Student residence.",
+        "ko": "학생 생활관입니다.",
+        "zh": "学生宿舍。"
       },
       "point": null,
       "evidence": {
@@ -1108,8 +1151,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -1139,8 +1183,9 @@
         "Y32"
       ],
       "description": {
-        "en": "The attached map calls Y32 “3동”; the official directory calls its corresponding marker “제3학생기숙사(1동)”. Confirm the current dormitory name before relying on this label.",
-        "ko": "첨부 지도는 Y32를 “3동”으로, 공식 목록은 해당 표식을 “제3학생기숙사(1동)”으로 표기합니다. 현재 동 명칭은 확인이 필요합니다."
+        "en": "Student residence.",
+        "ko": "학생 생활관입니다.",
+        "zh": "学生宿舍。"
       },
       "point": null,
       "evidence": {
@@ -1148,8 +1193,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "The attached map calls Y32 “3동”; the official directory calls its corresponding marker “제3학생기숙사(1동)”. Confirm the current dormitory name before relying on this label.",
-          "ko": "첨부 지도는 Y32를 “3동”으로, 공식 목록은 해당 표식을 “제3학생기숙사(1동)”으로 표기합니다. 현재 동 명칭은 확인이 필요합니다."
+          "en": "Dormitory names differ between sources. Confirm your assigned residence.",
+          "ko": "자료마다 생활관 명칭이 다릅니다. 배정된 생활관을 확인하세요.",
+          "zh": "不同资料中的宿舍名称有差异。请确认分配给您的宿舍。"
         }
       },
       "geometryEvidence": {
@@ -1179,8 +1225,9 @@
         "Y33"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Student residence.",
+        "ko": "학생 생활관입니다.",
+        "zh": "学生宿舍。"
       },
       "point": null,
       "evidence": {
@@ -1188,8 +1235,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -1219,8 +1267,9 @@
         "Y34"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Student residence.",
+        "ko": "학생 생활관입니다.",
+        "zh": "学生宿舍。"
       },
       "point": null,
       "evidence": {
@@ -1228,8 +1277,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -1259,8 +1309,8 @@
         "Y35"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Residence Welfare Building B",
+        "ko": "생활관 복지동 (B동)"
       },
       "point": null,
       "evidence": {
@@ -1268,8 +1318,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -1299,8 +1350,8 @@
         "Y82"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Greenhouse",
+        "ko": "온실"
       },
       "point": null,
       "evidence": {
@@ -1308,8 +1359,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -1339,8 +1391,8 @@
         "Y83"
       ],
       "description": {
-        "en": "The directory pin nearly coincides with Y14, but the university’s 2021 plan labels two distinct buildings. This model follows the labelled plan footprint beside Engineering Hall 4; the original directory pin is preserved separately.",
-        "ko": "공식 목록 표식은 Y14와 거의 일치하지만 대학의 2021 배치도는 두 건물을 별도로 표시합니다. 모형은 제4공학관 옆에 표기된 도면 외곽을 따르며 원래 목록 표식은 별도로 보존합니다."
+        "en": "Model Testing Laboratory",
+        "ko": "모형실험동"
       },
       "point": null,
       "evidence": {
@@ -1348,8 +1400,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "The directory pin nearly coincides with Y14, but the university’s 2021 plan labels two distinct buildings. This model follows the labelled plan footprint beside Engineering Hall 4; the original directory pin is preserved separately.",
-          "ko": "공식 목록 표식은 Y14와 거의 일치하지만 대학의 2021 배치도는 두 건물을 별도로 표시합니다. 모형은 제4공학관 옆에 표기된 도면 외곽을 따르며 원래 목록 표식은 별도로 보존합니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -1379,8 +1432,8 @@
         "A"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Main Sports Field",
+        "ko": "대운동장"
       },
       "point": null,
       "evidence": {
@@ -1388,8 +1441,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -1419,8 +1473,8 @@
         "B"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Athletes’ Tennis Courts",
+        "ko": "선수전용테니스장"
       },
       "point": null,
       "evidence": {
@@ -1428,8 +1482,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -1459,8 +1514,8 @@
         "C"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Small Sports Field",
+        "ko": "소운동장"
       },
       "point": null,
       "evidence": {
@@ -1468,8 +1523,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -1499,8 +1555,8 @@
         "D"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Tennis Courts",
+        "ko": "테니스장"
       },
       "point": null,
       "evidence": {
@@ -1508,8 +1564,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -1539,8 +1596,8 @@
         "E"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Indoor Tennis Hall",
+        "ko": "실내테니스장"
       },
       "point": null,
       "evidence": {
@@ -1548,8 +1605,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -1579,8 +1637,8 @@
         "F"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Outdoor Music Hall",
+        "ko": "야외음악당"
       },
       "point": null,
       "evidence": {
@@ -1588,8 +1646,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -1619,8 +1678,8 @@
         "G"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "White Horse Statue",
+        "ko": "백마상"
       },
       "point": null,
       "evidence": {
@@ -1628,8 +1687,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -1659,8 +1719,8 @@
         "H"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Student Tennis Courts",
+        "ko": "학생테니스장"
       },
       "point": null,
       "evidence": {
@@ -1668,8 +1728,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -1699,8 +1760,8 @@
         "I"
       ],
       "description": {
-        "en": "This labelled outdoor area is traced from the university’s 2021 plan. No corresponding current directory marker was found; present operation and access remain unverified.",
-        "ko": "대학의 2021 배치도에 이름이 표시된 야외 시설을 참고했습니다. 현재 목록의 대응 표식이 없어 현재 운영과 접근 여부는 미확인입니다."
+        "en": "Outdoor Basketball Court",
+        "ko": "야외농구장"
       },
       "point": null,
       "evidence": {
@@ -1708,8 +1769,9 @@
         "sourceUrl": null,
         "checkedAt": null,
         "note": {
-          "en": "This labelled outdoor area is traced from the university’s 2021 plan. No corresponding current directory marker was found; present operation and access remain unverified.",
-          "ko": "대학의 2021 배치도에 이름이 표시된 야외 시설을 참고했습니다. 현재 목록의 대응 표식이 없어 현재 운영과 접근 여부는 미확인입니다."
+          "en": "Named on the 2021 campus plan; current use is unconfirmed.",
+          "ko": "2021년 캠퍼스 배치도에 표시된 명칭이며 현재 이용 여부는 확인되지 않았습니다.",
+          "zh": "名称来自2021年校园规划图，目前使用情况未确认。"
         }
       },
       "geometryEvidence": {
@@ -1739,8 +1801,8 @@
         "J"
       ],
       "description": {
-        "en": "This labelled outdoor area is traced from the university’s 2021 plan. No corresponding current directory marker was found; present operation and access remain unverified.",
-        "ko": "대학의 2021 배치도에 이름이 표시된 야외 시설을 참고했습니다. 현재 목록의 대응 표식이 없어 현재 운영과 접근 여부는 미확인입니다."
+        "en": "Futsal Court",
+        "ko": "풋살장"
       },
       "point": null,
       "evidence": {
@@ -1748,8 +1810,9 @@
         "sourceUrl": null,
         "checkedAt": null,
         "note": {
-          "en": "This labelled outdoor area is traced from the university’s 2021 plan. No corresponding current directory marker was found; present operation and access remain unverified.",
-          "ko": "대학의 2021 배치도에 이름이 표시된 야외 시설을 참고했습니다. 현재 목록의 대응 표식이 없어 현재 운영과 접근 여부는 미확인입니다."
+          "en": "Named on the 2021 campus plan; current use is unconfirmed.",
+          "ko": "2021년 캠퍼스 배치도에 표시된 명칭이며 현재 이용 여부는 확인되지 않았습니다.",
+          "zh": "名称来自2021年校园规划图，目前使用情况未确认。"
         }
       },
       "geometryEvidence": {
@@ -1779,8 +1842,8 @@
         "K"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Commuter Bus Boarding Area",
+        "ko": "통학버스승강장"
       },
       "point": null,
       "evidence": {
@@ -1788,8 +1851,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -1818,8 +1882,8 @@
         "엘펜하임"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Elpenheim",
+        "ko": "엘펜하임"
       },
       "point": null,
       "evidence": {
@@ -1827,8 +1891,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -1857,8 +1922,8 @@
         "방문자숙소"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Visitor Residence",
+        "ko": "방문자숙소"
       },
       "point": null,
       "evidence": {
@@ -1866,8 +1931,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -1896,8 +1962,9 @@
         "버스관리사무소"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Hana Bank ATM outside the bus office.",
+        "ko": "버스관리사무소 앞에 하나은행 ATM이 있습니다.",
+        "zh": "公交管理办公室前设有韩亚银行ATM。"
       },
       "point": null,
       "evidence": {
@@ -1905,8 +1972,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -1935,8 +2003,8 @@
         "수위실"
       ],
       "description": {
-        "en": "The plan’s small entrance-side footprint is provisionally associated with the guardhouse using the directory marker and its surroundings. The footprint itself has no readable building label in the plan; that association remains unconfirmed.",
-        "ko": "배치도의 입구 쪽 작은 외곽을 목록 표식과 주변 관계에 따라 잠정적으로 수위실에 대응시켰습니다. 도면 외곽에 읽을 수 있는 건물명이 없어 이 대응은 미확인입니다."
+        "en": "Guardhouse",
+        "ko": "수위실"
       },
       "point": null,
       "evidence": {
@@ -1944,8 +2012,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "The plan’s small entrance-side footprint is provisionally associated with the guardhouse using the directory marker and its surroundings. The footprint itself has no readable building label in the plan; that association remains unconfirmed.",
-          "ko": "배치도의 입구 쪽 작은 외곽을 목록 표식과 주변 관계에 따라 잠정적으로 수위실에 대응시켰습니다. 도면 외곽에 읽을 수 있는 건물명이 없어 이 대응은 미확인입니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -1974,8 +2043,8 @@
         "유압실"
       ],
       "description": {
-        "en": "The 2021 university plan labels this small structure at the southeast end of the Hydraulic Modeling Lab. The model follows that labelled footprint. The separate directory pin is retained as published despite its conflicting position.",
-        "ko": "대학의 2021 배치도는 수리모형실습동 남동쪽 끝에 이 작은 구조물을 표시합니다. 모형은 해당 외곽을 따릅니다. 위치가 상충하는 목록 표식은 원문 그대로 별도로 보존합니다."
+        "en": "Hydraulics Laboratory",
+        "ko": "유압실"
       },
       "point": null,
       "evidence": {
@@ -1983,8 +2052,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "The 2021 university plan labels this small structure at the southeast end of the Hydraulic Modeling Lab. The model follows that labelled footprint. The separate directory pin is retained as published despite its conflicting position.",
-          "ko": "대학의 2021 배치도는 수리모형실습동 남동쪽 끝에 이 작은 구조물을 표시합니다. 모형은 해당 외곽을 따릅니다. 위치가 상충하는 목록 표식은 원문 그대로 별도로 보존합니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -2013,8 +2083,8 @@
         "정문"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Main Gate",
+        "ko": "정문"
       },
       "point": null,
       "evidence": {
@@ -2022,8 +2092,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {
@@ -2052,8 +2123,8 @@
         "테니스장관리사무소"
       ],
       "description": {
-        "en": "Explore this landmark in the 3D reference. Where identifiable, placement, orientation and relative size follow the university’s 2021 scaled plan; other entries retain approximate directory-based placement. This is not a current surveyed reconstruction.",
-        "ko": "3D 참고 지도에서 이 장소를 확인할 수 있습니다. 식별 가능한 항목은 대학의 2021 축척 배치도에 따른 위치·방향·상대 크기를 사용하며 나머지는 대략적인 목록 표식 배치를 유지합니다. 현재 상태를 실측 재현한 것은 아닙니다."
+        "en": "Tennis Court Office",
+        "ko": "테니스장관리사무소"
       },
       "point": null,
       "evidence": {
@@ -2061,8 +2132,9 @@
         "sourceUrl": "https://www.mju.ac.kr/campusMap/mjukr/view.do?findType=B",
         "checkedAt": "2026-09-30T00:00:00+09:00",
         "note": {
-          "en": "Name checked against the official campus directory. Code and simplified architectural appearance refer to the attached overview; English is a descriptive translation. No room, entrance or access claim is implied.",
-          "ko": "건물명은 공식 캠퍼스 목록을 참고했습니다. 코드와 단순화한 건물 형태는 첨부 지도를 참고하며 영어는 설명을 위한 번역입니다. 강의실·출입구·접근성 정보는 포함하지 않습니다."
+          "en": "Name listed in the official campus directory.",
+          "ko": "공식 캠퍼스 안내에 등재된 명칭입니다.",
+          "zh": "名称载于官方校园目录。"
         }
       },
       "geometryEvidence": {

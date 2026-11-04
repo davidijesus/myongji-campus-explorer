@@ -37,6 +37,7 @@ public final class CommunitySnapshot {
     private static final Pattern CREDENTIAL = Pattern.compile("-----BEGIN|\\b(?:sk-|ghp_|github_pat_|AKIA)[A-Za-z0-9_-]{8,}|\\b(?:password|access[_ -]?token|api[_ -]?key)\\s*[:=]", Pattern.CASE_INSENSITIVE);
     private static final String[] ROOT_KEYS = {"schemaVersion", "campusId", "version", "updatedAt", "updates"};
     private static final String[] UPDATE_KEYS = {"id", "sourceId", "kind", "summary", "sourceUrl", "publishedAt", "reviewedAt", "validFrom", "validThrough"};
+    private static final String[] ORIGINAL_KEYS = {"id", "sourceId", "kind", "originalLanguage", "originalText", "meal", "sourceUrl", "publishedAt", "reviewedAt", "observedAt", "validatedAt", "validFrom", "validThrough"};
     private static final String[] LANGUAGES = {"en", "ko", "zh"};
 
     public final long version;
@@ -96,7 +97,8 @@ public final class CommunitySnapshot {
         int index = 0;
         for (Object value : (List<?>) values) {
             String field = "updates[" + index++ + "]";
-            Map<String, Object> record = exactObject(value, UPDATE_KEYS, true, field);
+            boolean original = value instanceof Map && ((Map<?, ?>) value).containsKey("originalLanguage");
+            Map<String, Object> record = exactObject(value, original ? ORIGINAL_KEYS : UPDATE_KEYS, !original, field);
             String id = string(record.get("id"), field + ".id");
             if (!id.matches("[a-z0-9][a-z0-9_-]{0,79}")) throw invalid(field + ".id", "invalid record ID");
             if (!ids.add(id)) throw invalid(field + ".id", "duplicate ID");
@@ -108,12 +110,25 @@ public final class CommunitySnapshot {
             if (official != 0 ? !"menu".equals(kind) : !("announcement".equals(kind) || ("menu".equals(kind) && !"o_ulami".equals(source)))) {
                 throw invalid(field + ".kind", "unsupported kind for source");
             }
-            validateSummary(record.get("summary"), field + ".summary");
+            if (original) {
+                if (official == 0 || !"ko".equals(record.get("originalLanguage")) || record.get("publishedAt") != null || record.get("reviewedAt") != null) {
+                    throw invalid(field, "automatic originals require an official Korean menu with unknown publication and no human review");
+                }
+                if (!Arrays.asList("breakfast", "lunch", "dinner").contains(record.get("meal"))) throw invalid(field + ".meal", "unsupported meal");
+                validateText(record.get("originalText"), field + ".originalText", true);
+            } else validateSummary(record.get("summary"), field + ".summary");
             long from = day(record.get("validFrom"), field + ".validFrom");
             long through = day(record.get("validThrough"), field + ".validThrough");
             long days = (through - from) / DAY_MS + 1L;
             if (days < 1L || days > ("menu".equals(kind) ? 7L : 366L)) throw invalid(field, "validity exceeds the permitted inclusive KST days");
+            if (original && days != 1L) throw invalid(field, "an original meal must be valid on its single KST calendar date");
             sourceUrl(record.get("sourceUrl"), source, official, from, through, field + ".sourceUrl");
+            if (original) {
+                long observed = timestamp(record.get("observedAt"), field + ".observedAt");
+                long validated = timestamp(record.get("validatedAt"), field + ".validatedAt");
+                if (observed > validated || validated > updated) throw invalid(field, "observation must not follow validation or snapshot time");
+                continue;
+            }
             long reviewed = timestamp(record.get("reviewedAt"), field + ".reviewedAt");
             if (reviewed > now) throw invalid(field + ".reviewedAt", "timestamp must not be in the future");
             if (reviewed > updated) throw invalid("updatedAt", "must be at or after every review");
@@ -236,23 +251,29 @@ public final class CommunitySnapshot {
         Map<String, Object> summary = exactObject(value, LANGUAGES, false, field);
         for (String language : LANGUAGES) {
             String key = field + "." + language;
-            String text = string(summary.get(language), key);
-            if (text.isEmpty() || trimSpace(text.codePointAt(0)) || trimSpace(text.codePointBefore(text.length()))) throw invalid(key, "expected nonempty trimmed plain text");
-            if (text.codePointCount(0, text.length()) > 400 || text.getBytes(StandardCharsets.UTF_8).length > 2000) throw invalid(key, "summary exceeds length limit");
-            for (int i = 0; i < text.length();) {
-                int codepoint = text.codePointAt(i);
-                if (codepoint == '<' || codepoint == '>' || codepoint < 0x20 || (codepoint >= 0x7f && codepoint <= 0x9f) || (codepoint >= 0xd800 && codepoint <= 0xdfff)) throw invalid(key, "HTML, controls or invalid Unicode are not allowed");
-                i += Character.charCount(codepoint);
-            }
-            if (EMBEDDED_URL.matcher(text).find() || EMAIL.matcher(text).find()) throw invalid(key, "embedded URLs and contact details are not allowed");
-            Matcher phone = PHONE.matcher(text);
-            while (phone.find()) {
-                int digits = 0;
-                for (int i = phone.start(); i < phone.end(); i++) if (text.charAt(i) >= '0' && text.charAt(i) <= '9') digits++;
-                if (digits >= 10) throw invalid(key, "possible personal phone number");
-            }
-            if (CREDENTIAL.matcher(text).find()) throw invalid(key, "possible credential");
+            validateText(summary.get(language), key, false);
         }
+    }
+
+    private static void validateText(Object value, String key, boolean original) throws ValidationException {
+        String text = string(value, key);
+        if (text.isEmpty() || trimSpace(text.codePointAt(0)) || trimSpace(text.codePointBefore(text.length()))) throw invalid(key, "expected nonempty trimmed plain text");
+        if (text.codePointCount(0, text.length()) > (original ? 6000 : 400) || text.getBytes(StandardCharsets.UTF_8).length > (original ? 24000 : 2000)) throw invalid(key, "text exceeds length limit");
+        for (int i = 0; i < text.length();) {
+            int codepoint = text.codePointAt(i);
+            if (codepoint == '<' || codepoint == '>' || (codepoint < 0x20 && !(original && codepoint == '\n')) || (codepoint >= 0x7f && codepoint <= 0x9f) || (codepoint >= 0xd800 && codepoint <= 0xdfff)) throw invalid(key, "HTML, controls or invalid Unicode are not allowed");
+            i += Character.charCount(codepoint);
+        }
+        if (EMBEDDED_URL.matcher(text).find() || EMAIL.matcher(text).find()) throw invalid(key, "embedded URLs and contact details are not allowed");
+        Matcher phone = PHONE.matcher(text);
+        // Official allergen codes and price lists resemble phone numbers.
+        // Preserve those source cells; the reviewed-summary policy is unchanged.
+        while (!original && phone.find()) {
+            int digits = 0;
+            for (int i = phone.start(); i < phone.end(); i++) if (text.charAt(i) >= '0' && text.charAt(i) <= '9') digits++;
+            if (digits >= 10) throw invalid(key, "possible personal phone number");
+        }
+        if (CREDENTIAL.matcher(text).find()) throw invalid(key, "possible credential");
     }
 
     @SuppressWarnings("unchecked")

@@ -4,17 +4,26 @@ An independent student guide to **Myongji University’s Yongin and Seoul campus
 
 **English · 한국어 · 简体中文**
 
-[Open the web app](https://davidijesus.github.io/myongji-campus-explorer/) · [Release 0.6.3](docs/RELEASE_0.6.3.md) · [MIT license and third-party material](LICENSE)
+[Open the web app](https://davidijesus.github.io/myongji-campus-explorer/) · [Release 0.6.5](docs/RELEASE_0.6.5.md) · [Photos and coverage](docs/BUILDING_PHOTOS.md) · [Official menus](docs/AUTOMATIC_MENUS.md) · [MIT license and third-party material](LICENSE)
 
-## Release 0.6.3
+## Version 0.6.5: building photos, navigation and official menus
 
-Version 0.6.3 keeps the university's original symbol and wordmark intact and removes the separate Campus Explorer subtitle from the header. The surrounding interface has consistent buttons, quieter panels, underlined navigation and wrapping source actions. The blue campus-inspired favicon and legacy launcher artwork are circular with transparent corners. Android also has a round-icon resource and an adaptive foreground; the launcher controls the outer adaptive mask. The approved Yongin and Seoul maps, geometry and content remain unchanged. This is an independent student project, not an official university application.
+This version brings **20 reviewed official photo assets for 15 buildings** into the offline gallery: 11 assets in Yongin and nine in Seoul. Full source compositions and attribution are retained. Coverage is partial; buildings without an approved photograph keep their missing-photo state, and **Y32 remains excluded**. Existing reviewed Seoul path references, building selection and the return from the map to a retained chat answer are included. The gallery does not turn schematic map geometry into a measured reconstruction.
+
+The web app and a newly configured Android build check the official Yongin menu feed when opened or resumed, with a minimum 15-minute interval between automatic attempts and a manual refresh button. Valid cached menus remain available when the network fails. Meal dates and expired-data labels use **Asia/Seoul**, including after offline reopening.
+
+Menus retain the **original Korean text** and official links. Automatic import does not create English/Chinese translations or claim human review. The interface distinguishes these records from the older reviewed summaries. Seoul has an identified official source, but automatic collection in this version covers Yongin only; see the [source and location limitations](docs/AUTOMATIC_MENUS.md#seoul-source-and-limitation).
+
+The publication target is the existing branch-based GitHub Pages site, with a separately validated menu snapshot. **Scheduled collection is not enabled.** Automatic client refresh reads the latest published snapshot; it does not cause the university sources to be recollected. The proposed Actions schedule remains a non-executing template pending workflow-write authorization. See the [release verification record](docs/RELEASE_0.6.5.md) for the distinction between prepared content and confirmed live publication.
+
+The university's original symbol and wordmark, circular artwork, reference maps and geometry are unchanged. This is an independent student project, not an official university application.
 
 - Explore Yongin and Seoul, search names or building codes, select places and save favorites. Pan, rotate and zoom the 3D map; the software renderer supports browsers without WebGL.
 - Ask campus questions locally, follow citations and jump from answers to places. No remote chatbot, account, advertising or analytics is configured.
+- Open the reviewed building-photo gallery, read its source and capture-date limitations, and return to the map or retained answer. Missing photographs are not replaced with invented views.
 - Switch between English, Korean and Simplified Chinese. Campus, language and favorites persist locally; chat history lasts for the page session.
 - Install the web app when your browser supports it. Load it once online and wait for the app’s offline-ready message before relying on offline reopening. External university and map links still need a connection.
-- Read 25 dated official menu summaries for October 12–16, 2026. Later menus and Instagram posts are not collected automatically. No content server is deployed.
+- Read original official Yongin menus from the configured feed, with observation/check times and individual meal dates. Older bundled summaries remain dated evidence; expired meals are not presented as today's menu. Instagram posts are not collected automatically, and this feature needs no content server or administrative secret.
 
 Try **Y9228** in Yongin, **S10303** in Seoul, or ask where to buy coffee. Building-code results do not verify a room’s existence, floor, entrance or current class assignment.
 
@@ -38,16 +47,16 @@ The generated launcher sizes are included. Regenerating them with `node scripts/
 
 Open `http://127.0.0.1:4174`. The generated `pwa/` directory is the complete web distribution. `preview.html` also works as a local browser preview, but opening a file directly does not install a PWA.
 
-The public site is served from the root of the dedicated `gh-pages` branch, which contains only the nine generated PWA files. TypeScript checks, the full 257-test Node suite, a fresh PWA build and an artifact-boundary check run locally before publication. A push to `gh-pages` triggers the GitHub-managed Pages deployment; a push to `main` alone does not publish the site. See [release details](docs/RELEASE_0.6.3.md) and the [existing hosting method](docs/PAGES_0.6.1.md).
+The site is prepared for the existing **`gh-pages` branch deployment**. The [pending Pages workflow template](docs/ci/pages-menus.pending.yml) proposes builds on pushes to `main`, manual dispatch and daily at **07:17, 11:17 and 17:17 Asia/Seoul**. Its location under `docs/ci/` means it does not execute. Activation requires a separately authorized workflow publication and Pages configuration change. The template uses GitHub's built-in deployment token with job-scoped permissions; a missing or invalid previous menu feed stops deployment. See [setup, manual refresh, recovery and scheduling limits](docs/AUTOMATIC_MENUS.md).
 
 ## Scope and validation
 
-The release is checked with TypeScript, the complete 257-test Node suite and browser checks covering both campuses, all three languages, narrow mobile screens, enlarged text, keyboard focus, chat-to-map actions, favorites and offline reopening. Exact release hashes and validation results are recorded in the release details.
+The 3 November menu implementation passed TypeScript, **307 Node tests**, **33 automatic-menu browser checks** and Java checks for **283 snapshot/interoperability, 164 refresh/cache and 31 native origin/location-policy cases**. Those are prior component results, not proof of the final 0.6.5 deployment. The [release record](docs/RELEASE_0.6.5.md) tracks the combined photos/navigation/menu build and public verification separately. Scheduled execution remains blocked by workflow-write authorization.
 
-The current Android implementation is the Java/System WebView wrapper in [android-standalone](android-standalone/README.md). The separately delivered 0.6.3 APK retains its existing development signing identity and increments the Android version code. The historical Expo directory is not the Android build path for this release. No physical Android device, iPhone/Safari validation, app-store submission or production publisher signing is claimed. Signing credentials are excluded from source and delivery archives.
+The current Android implementation is the Java/System WebView wrapper in [android-standalone](android-standalone/README.md). Source configuration is **0.6.5/code 20**. This web/source publication does not assert a newly delivered or installed APK with that version. Existing APKs with an empty content endpoint need one initial app update; later published menu snapshots use the feed without rebuilding the app. The historical Expo directory is not this Android build path. Host Java/browser tests do not establish physical Android, emulator, GPS, iPhone/Safari or store readiness. Signing credentials are excluded from source and delivery archives.
 
 ## Sources and license
 
 University sources take precedence over conflicting student guidance. Yongin has 50 selectable references; Seoul has eight buildings plus the sports field, gate and gatehouse. English and Chinese names are descriptive translations, with the original Korean names available. Source links are included in the app; reference photographs and videos are not loaded as map textures.
 
-First-party code and original geometric assets use the [MIT License](LICENSE). University artwork and other third-party material retain their own terms. This independent project is not endorsed by Myongji University, Naver, Apple or Google.
+First-party code and original geometric assets use the [MIT License](LICENSE). **Photographs are not covered by that license**: copyright remains with Myongji University or the credited publisher, and public availability does not establish an open redistribution license. University artwork and other third-party material retain their own terms; source links, credits, borders and watermarks are preserved. See [photo provenance and rights](docs/BUILDING_PHOTOS.md#attribution-and-rights). This independent project is not endorsed by Myongji University, Naver, Apple or Google.
