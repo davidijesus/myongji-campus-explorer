@@ -59,7 +59,7 @@ tasks.register('prepareOfflineContent') {
     doLast {
         def page = file('../preview.html')
         def hash = java.security.MessageDigest.getInstance('SHA-256').digest(page.bytes).encodeHex().toString()
-        if (hash != 'a24106bff48c0ff018de46e5c566daedfef81a8e01fa5252d7d4aed25b80acad') throw new GradleException('Review the changed HTML before updating its pinned hash.')
+        if (hash != 'b2cce56974e34ae3b6f8281eae23730ec55bf8c4d3f999d191d486ff68c6ea0d') throw new GradleException('Review the changed HTML before updating its pinned hash.')
         copy { from 'src'; into "$buildDir/prepared/java"; exclude '**/CommunityEndpoint.java' }
         def endpointSource = file("$buildDir/prepared/java/dev/student/myongjiexplorer/standalone/CommunityEndpoint.java")
         endpointSource.parentFile.mkdirs()

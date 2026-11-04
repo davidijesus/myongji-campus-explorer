@@ -96,10 +96,9 @@
 /* Bundled official photographs stay below the building identity and never cover the map. */
 .building-gallery,.building-photos-missing{grid-column:1/-1;grid-row:4;min-width:0}
 .building-gallery{margin-top:14px;border-top:1px solid var(--border-subtle);padding-top:12px}
-.building-gallery>h3{font-size:calc(12px * var(--font-scale));font-weight:650;line-height:1.5;margin:0 0 8px;color:var(--body-ink)}
 .building-photo{display:grid;grid-template-columns:minmax(140px,260px) minmax(0,1fr);gap:8px 16px;align-items:start;margin:0}
 .building-photo-frame{position:relative;grid-column:1;grid-row:1;width:100%;height:clamp(140px,19dvh,190px);min-width:0;border:1px solid var(--border-subtle);border-radius:var(--control-radius);background:var(--surface-page);overflow:hidden;touch-action:pan-y pinch-zoom}
-.building-photo-frame>img{display:block;width:100%;height:100%;object-fit:contain;user-select:none}
+.building-photo-frame>img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;user-select:none}
 .building-photo-frame>img[hidden],.building-photo-feedback[hidden]{display:none!important}
 .place-sheet .building-photo-feedback{position:absolute;inset:0;display:grid;place-content:center;margin:0;padding:14px;font-size:calc(12px * var(--font-scale));line-height:1.6;color:var(--body-secondary);text-align:center}
 .building-photo>figcaption{grid-column:2;grid-row:1/3;min-width:0;overflow-wrap:anywhere}

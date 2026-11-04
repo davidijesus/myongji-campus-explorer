@@ -2,11 +2,19 @@
 
 **Published on 4 November 2026** to the existing [public GitHub Pages site](https://davidijesus.github.io/myongji-campus-explorer/). The successful Pages build completed at **12:46:57 UTC**, public HTTP verification confirmed version **0.6.5** with all ten app/feed files matching the reviewed artifact bytes, and **64 live-site browser checks passed at 12:49:10 UTC**. No production/store Android release is asserted.
 
-## Photo placement correction — 4 November
+## Photo frame adjustment - 4 November
+
+The visible "Official photographs" heading is removed. Photographs now fill the entire frame with a centered proportional crop (`object-fit: cover`), without stretching. The accessible gallery label, image alternatives, captions, credits, source links and carousel remain. Names still precede the photographs and action buttons follow them. Original and bundled image bytes are unchanged, and Y12/Y32 still have no approved image.
+
+Pre-publication verification passed **1771 headless Chrome checks**: all 20 approved assets at 320/390/967/1440px in EN/KO/ZH (240 photo cases), 24 missing-photo cases and navigation/favorite checks. Image dimensions, exact embedded bytes, frame coverage, no horizontal overflow, retained attribution and title/photo/button order were checked. Landscape, narrow, composite and small-source images were reviewed visually. These are desktop-browser tests with mobile viewports, not Android device or emulator tests.
+
+This adjustment keeps version 0.6.5 with shell hash `5e2f0ec6e5fef752`, preview SHA-256 `b2cce56974e34ae3b6f8281eae23730ec55bf8c4d3f999d191d486ff68c6ea0d` and PWA HTML SHA-256 `709fede0809c786907e8b4af19943e6e599ff71aa908d574411d34930e31fafa`. The menu snapshot is unchanged. Earlier deployment hashes and full-composition display behavior below are historical records, superseded by this frame adjustment; no new APK is asserted.
+
+## Earlier photo placement correction - 4 November
 
 The building sheet now uses the same vertical order at every viewport: building title and alternate name, photograph gallery (or the existing missing-photo notice), then action buttons. Desktop CSS previously placed the action buttons beside the titles. The correction preserves the gallery controls, credits, full photo composition, favorites, map/chat navigation and panel scrolling. Y12 and Y32 still have no approved photograph.
 
-The corrected web build keeps version 0.6.5 and has shell hash `d040f009b7c124ec`. Its preview SHA-256 is `a24106bff48c0ff018de46e5c566daedfef81a8e01fa5252d7d4aed25b80acad`, and PWA HTML SHA-256 is `f3ec20a176382a0538cbe01bea6ac9491ff3ee73fa251ac8764be22a6f3df01d`. The menu snapshot and all photo bytes are unchanged. The deployment records and broader verification below describe the initial 0.6.5 publication.
+That placement correction kept version 0.6.5 and has shell hash `d040f009b7c124ec`. Its preview SHA-256 is `a24106bff48c0ff018de46e5c566daedfef81a8e01fa5252d7d4aed25b80acad`, and PWA HTML SHA-256 is `f3ec20a176382a0538cbe01bea6ac9491ff3ee73fa251ac8764be22a6f3df01d`. The menu snapshot and all photo bytes are unchanged. The deployment records and broader verification below describe the initial 0.6.5 publication.
 
 Focused browser verification passed 404 checks across Y31/S10 with photos and Y12/Y32 without approved photos, at 320/390/967/1440px in EN/KO/ZH. It checks measured visual order, accessible action buttons, gallery controls, information, favorites and chat/map return, without photo cropping or unexpected requests.
 

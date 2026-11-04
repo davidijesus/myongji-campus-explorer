@@ -113,7 +113,7 @@ These entries are listed for complete map coverage. They were outside the buildi
 - **S10 MCC:** retain the original front-plaza, stair-detail and vehicle-entrance images. The stair detail is not a full façade, and the garage image does not establish a pedestrian route. The large historical panorama and its annotated duplicate remain research evidence, not extra carousel angles.
 - **Y35 welfare building:** the only selected source is 186×114 pixels. Preserve that limitation rather than generating or inventing missing detail.
 
-The gallery should contain the full source composition, preserving annotations, borders and watermarks rather than cropping them away.
+The bundled image files preserve the full source composition, including annotations, borders and watermarks. Following the 4 November display adjustment, the gallery fills its frame using a centered proportional crop (`object-fit: cover`), without stretching the photograph. The viewport may hide source edges; the unmodified source remains accessible through its official link, and visible captions and publisher credits remain below or beside the frame. No image files are cropped or retouched.
 
 ## Excluded or unresolved evidence
 
