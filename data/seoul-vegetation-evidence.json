@@ -1,0 +1,164 @@
+{
+  "reviewedAt": "2026-11-09",
+  "surveyed": false,
+  "navigationGeometry": false,
+  "individualTreeInventory": false,
+  "sourceCoordinates": "Image pixels refer only to the oblique tour illustration; they are not scene coordinates and have no metric transform.",
+  "sources": [
+    {
+      "id": "tour",
+      "pageUrl": "https://www.mju.ac.kr/mjukr/12348/subview.do",
+      "imageUrl": "https://www.mju.ac.kr/sites/mjukr/images/temp_1783296837696100.png",
+      "dimensions": [
+        1200,
+        818
+      ],
+      "sha256": "d39ab84a9163d81a39a36a45711a816c6467bd20b85baf37399cbf59092fd810",
+      "kind": "official-illustration",
+      "captureDate": null
+    },
+    {
+      "id": "gate-photo",
+      "pageUrl": "https://news.mju.ac.kr/news/articleView.html?idxno=12317",
+      "imageUrl": "https://news.mju.ac.kr/news/photo/202310/12317_12904_561.jpg",
+      "dimensions": [
+        600,
+        338
+      ],
+      "sha256": "c65a9bb10c7f016a301b6ca69e52c5a6e13c3a835fa5d491efcf53f0b2c08882",
+      "kind": "university-newspaper-photo",
+      "publicationDate": "2023-10-10",
+      "captureDate": null
+    },
+    {
+      "id": "mcc-front",
+      "pageUrl": "https://news.mju.ac.kr/news/articleView.html?idxno=12317",
+      "imageUrl": "https://news.mju.ac.kr/news/photo/202310/12317_12903_5537.jpg",
+      "dimensions": [
+        600,
+        338
+      ],
+      "sha256": "69c88dff64b8e27b6df2a7e9392b708b9d8d9686a5fb8ef234f088225bb8383a",
+      "kind": "university-newspaper-photo",
+      "publicationDate": "2023-10-10",
+      "captureDate": null
+    },
+    {
+      "id": "mcc-panorama",
+      "pageUrl": "https://welfare.mju.ac.kr/bbs/welfare/243/227771/artclView.do",
+      "imageUrl": "https://gsca.mju.ac.kr/CrossEditor/binary/images/000355/20251128163849970_107N73HV.png",
+      "dimensions": [
+        1294,
+        858
+      ],
+      "sha256": "30dfaae19191c0f3020ab16f2e124e82f670d9430e7a0373f5f9bcfee52e3e79",
+      "kind": "official-photo",
+      "publicationDate": "2025-11-28",
+      "captureDate": null
+    }
+  ],
+  "regions": [
+    {
+      "id": "terrace-mcc-side",
+      "tourImageRegion": [
+        145,
+        420,
+        325,
+        550
+      ],
+      "sourceIds": [
+        "tour",
+        "mcc-panorama"
+      ],
+      "observation": "Planted margin of the sports terrace on the MCC side; paths between beds remain open."
+    },
+    {
+      "id": "terrace-front",
+      "tourImageRegion": [
+        192,
+        535,
+        458,
+        635
+      ],
+      "sourceIds": [
+        "tour",
+        "mcc-panorama"
+      ],
+      "observation": "Planting on the front edge of the raised sports platform."
+    },
+    {
+      "id": "terrace-gate-side",
+      "tourImageRegion": [
+        390,
+        505,
+        555,
+        625
+      ],
+      "sourceIds": [
+        "tour",
+        "mcc-panorama"
+      ],
+      "observation": "Planted terrace edge facing the gate approach."
+    },
+    {
+      "id": "mcc-street-gardens",
+      "tourImageRegion": [
+        0,
+        540,
+        233,
+        684
+      ],
+      "sourceIds": [
+        "tour",
+        "mcc-front",
+        "mcc-panorama"
+      ],
+      "observation": "Ground-level gardens in front of MCC, outside the terrace; leave the central approach open."
+    },
+    {
+      "id": "gate-approach-island",
+      "tourImageRegion": [
+        610,
+        577,
+        634,
+        692
+      ],
+      "sourceIds": [
+        "tour",
+        "gate-photo"
+      ],
+      "observation": "Narrow planted strip along the gate approach beside the guardhouse, toward Student Union."
+    },
+    {
+      "id": "gate-west-pocket",
+      "tourImageRegion": [
+        510,
+        704,
+        552,
+        741
+      ],
+      "sourceIds": [
+        "tour"
+      ],
+      "observation": "Compact planting beside the guardhouse side of the entrance, as drawn; no specimen count inferred."
+    },
+    {
+      "id": "gate-east-pocket",
+      "tourImageRegion": [
+        708,
+        710,
+        747,
+        741
+      ],
+      "sourceIds": [
+        "tour"
+      ],
+      "observation": "Compact planting opposite the guardhouse near the administration frontage, as drawn."
+    }
+  ],
+  "limits": [
+    "Source access date is not capture date or a current on-site survey.",
+    "Scene planting is a restrained symbolic grouping relative to unchanged facility anchors. Counts, species, heights, canopy sizes and bed outlines are not measured facts.",
+    "No vegetation is inferred from the generic board edge, library green roof or unexplained pale-green ground."
+  ]
+}

@@ -10,7 +10,7 @@ function loadScene(){const filename=path.resolve(__dirname,'../build/core/seoul-
 test('Seoul schematic pavement has a reviewed official source for every retained corridor',()=>{
  assert.equal(evidence.source.url,SEOUL_PATH_SOURCE_URL);assert.equal(new URL(SEOUL_PATH_SOURCE_URL).hostname,'www.mju.ac.kr');
  assert.deepEqual(evidence.source.dimensions,[1200,818]);assert.match(evidence.source.sha256,/^[a-f0-9]{64}$/);assert.equal(evidence.surveyed,false);assert.equal(evidence.navigationGeometry,false);
- assert.equal(SEOUL_PATH_TRACES.length,3);assert.deepEqual(evidence.paths.map(({id,points})=>({id,points})),SEOUL_PATH_TRACES);
+ assert.equal(SEOUL_PATH_TRACES.length,7);assert.deepEqual(evidence.paths.map(({id,points})=>({id,points})),SEOUL_PATH_TRACES);
  assert.deepEqual(SEOUL_REFERENCE_CAMPUS.paths,SEOUL_REFERENCE_ROADS);
  for(const p of evidence.paths){assert.ok(p.visibleEvidence.length>40);for(const [x,y,r,b] of p.sourceImageRegions)assert.ok(x>=0&&y>=0&&r<=1200&&b<=818&&r>x&&b>y);}
  for(const lang of ['en','ko','zh'])assert.ok(SEOUL_PATH_NOTE[lang].length>30);
@@ -34,15 +34,15 @@ test('Seoul pavement remains finite and clear of buildings, gate and raised spor
    samples++;
   }
  }}
- assert.equal(samples,808);assert.ok(seoulPavementDistance(-80,60)>20);
+ assert.equal(samples,1919);assert.ok(seoulPavementDistance(-80,60)>20);
 });
 
 test('Seoul renderer draws each corridor above its unchanged ground and keeps trees clear',()=>{
  const {CampusScene}=loadScene(),segments=[],disks=[],trees=[];
- const g={box(){},segment(...args){segments.push(args);},disk(...args){disks.push(args);},crown(x,y,z){trees.push([x,z]);}};
+ const g={box(){},segment(...args){segments.push(args);},disk(...args){disks.push(args);},crown(x,y,z,radius){trees.push({x,z,radius});}};
  const scene={referenceCampus:SEOUL_REFERENCE_CAMPUS};CampusScene.prototype.seoulTerrain.call(scene,g);
- assert.equal(scene.terrainHeight(0,0),-.72);assert.equal(segments.length,24);
+ assert.equal(scene.terrainHeight(0,0),-.72);assert.equal(segments.length,57);
  for(const [a,b,width,tint] of segments){assert.ok(a[1]>-.72&&a[1]<0);assert.equal(a[1],b[1]);assert.ok([3,2.4,1.9].includes(width));assert.ok(a.concat(b,tint).every(Number.isFinite));}
- assert.ok(disks.filter(p=>[-.637,-.597,-.557].some(y=>Math.abs(p[1]-y)<1e-9)).length>=24,'rounded joins cover the pavement turns');
- assert.ok(trees.length>0);for(const [x,z] of trees)assert.ok(seoulPavementDistance(x,z)>6);
+ assert.ok(disks.filter(p=>[-.637,-.597,-.557].some(y=>Math.abs(p[1]-y)<1e-9)).length>=57,'rounded joins cover the pavement turns');
+ assert.ok(trees.length>0);for(const {x,z,radius} of trees)assert.ok(seoulPavementDistance(x,z)>radius+1.5+.20,'entire canopy clears the full pavement shoulder and gap');
 });

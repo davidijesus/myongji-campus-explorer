@@ -2,7 +2,8 @@ import { Dataset, Language, Route, Building, Point } from './types';
 import { localPoint, usable } from './core';
 import { REFERENCE_CAMPUS, ReferenceFeature } from './campus';
 import { SEOUL_REFERENCE_CAMPUS } from './seoul';
-import { seoulPavementDistance } from './seoul-paths';
+import { createSeoulVegetation } from './seoul-vegetation';
+import { createSeoulStairDetail } from './seoul-details';
 import { localize } from './i18n';
 import { GeographicFix } from './geographic';
 import { assessModelLocation } from './model-location';
@@ -925,16 +926,25 @@ export class CampusScene {
                 for(const p of i===path.length-1?[a,b]:[a]) g.disk(p[0],height+.003,p[1],width/2,color(tint),10);
             }
         }
-        const clear=(x:number,z:number)=>seoulPavementDistance(x,z)>6&&this.referenceCampus.features.every(f=>Math.abs(x-f.center[0])>f.size[0]/2+6||Math.abs(z-f.center[1])>f.size[1]/2+6);
-        const tree=(x:number,z:number,i:number)=>{
-            if(!clear(x,z)) return;
-            g.disk(x,-.65,z,3.7,color('#bcc8a4'),10);g.box(x,-.6,z,.42,2.8,.42,color('#96896e'));
-            g.crown(x,1.4,z,2.8,5.6,color(i%2?'#7d9d69':'#698e67'),7);
-        };
-        for(let i=0;i<21;i++) tree(-83+i*7.4,-57,i);
-        for(let i=0;i<13;i++) tree(-84,-48+i*8,i+21);
-        for(let i=0;i<10;i++) tree(70,-45+i*10,i+35);
-        for(const [x,z] of [[-57,13],[-41,7],[-26,5],[-11,6],[5,9],[19,9],[34,12],[47,16],[-47,48],[20,46],[38,42]]) tree(x!,z!,Math.round(x!+90));
+        // The photographed side stair ends at an intermediate raised landing.
+        // Keep its lower end visibly separate from the ground-level apron.
+        const stair = createSeoulStairDetail(this.referenceCampus.features, REFERENCE_RENDER_HEIGHT_SCALE);
+        if (stair) for (const b of stair.boxes) {
+            g.box(b.x,b.y,b.z,b.width,b.height,b.depth,color('#b8bdb4'));
+            g.box(b.x,b.y+b.height,b.z,b.width,.025,b.depth,color('#d2d6cb'));
+        }
+        // Source-backed planting areas use schematic symbols, not tree inventory.
+        // The same mesh is used by WebGL, top-down view and the Canvas fallback.
+        for (const zone of createSeoulVegetation(this.referenceCampus.features, REFERENCE_RENDER_HEIGHT_SCALE)) for (const p of zone.plants) {
+            const [x, z] = p.center;
+            g.disk(x, p.baseY, z, p.radius, color('#b5c49b'), 8);
+            if (p.kind === 'tree') {
+                g.box(x, p.baseY, z, Math.min(.20, p.radius * .26), p.height * .42, Math.min(.20, p.radius * .26), color('#95866b'));
+                g.crown(x, p.baseY + p.height * .30, z, p.radius, p.height * .70, color('#638759'), 7);
+            } else {
+                g.crown(x, p.baseY + .015, z, p.radius, p.height, color('#80995f'), 7);
+            }
+        }
     }
     private referenceTerrain(g: Geometry) {
         const terrain=createYonginScenicTerrain(this.referenceCampus.features,this.referenceCampus.paths);

@@ -1,5 +1,18 @@
 # Release 0.6.5 — photographs, navigation and official menus
 
+## Seoul landscape and direct campus links — 9 November
+
+Seoul now uses seven source-backed planting groups (17 symbolic trees and 12 shrubs), replacing unsupported generic board-edge rows. Four additional internal paved areas extend the original three traces. A short side-stair detail ends at a raised intermediate landing, separately from the ground apron. [Vegetation evidence](SEOUL_VEGETATION.md) and [path/stair evidence](SEOUL_PATHS.md) record official sources, source-image regions and limits. Positions, dimensions, step counts and planting symbols remain schematic; no surveyed navigation or accessibility is claimed.
+
+[Direct campus links](CAMPUS_LINKS.md) use `?campus=seoul` and `?campus=yongin`. Explicit valid links override a different saved campus. Campus selection updates the current URL without reloading or adding history, preserving other parameters and preferences. Invalid or duplicate values defer to saved preferences.
+
+The final local artifact passed TypeScript/PWA compilation, **328 Node tests** and **1,089 browser checks**: 173 visual/campus checks, 800 gallery/path/offline checks, 104 direct-link checks and 12 source-note/zoom checks. Twelve before/after Yongin map screenshots were byte-identical. Independent geometry hashes preserve Yongin terrain, all 50 Yongin models, all 11 Seoul models, directory anchors and the original three Seoul traces. All 20 approved photo files, Y32 exclusion, menu snapshot and PWA cache strategy are unchanged.
+
+Browser execution used desktop Chrome with isolated storage, desktop/mobile viewports, WebGL, top-down and Canvas fallback. Gallery regression included re-opening the verified shell in a new offline browser process, EN/KO/ZH, favorites, search/chat-map/Back, events and photo error recovery. These are not physical-phone or Android-emulator tests. No new APK is asserted.
+
+Version stays **0.6.5**, with app hash `71248dcd5dd1` and offline shell `1bf128d7399dbfe6`. Preview SHA-256: `71248dcd5dd1dcf3d77b1d966c8ddf28a9938855b79d845e9ec1b9d165c30928`. PWA HTML SHA-256: `7a0666dd99bd29d8b23b50193accc4f9c6c81a0381162960dc3a6262e8cd255a`. Public URL and response verification follows authorized publication; the older release records below are historical. No workflow scope, credential, repository permission or Odoo page is changed by this release.
+
+
 **Published on 4 November 2026** to the existing [public GitHub Pages site](https://davidijesus.github.io/myongji-campus-explorer/). The successful Pages build completed at **12:46:57 UTC**, public HTTP verification confirmed version **0.6.5** with all ten app/feed files matching the reviewed artifact bytes, and **64 live-site browser checks passed at 12:49:10 UTC**. No production/store Android release is asserted.
 
 ## Higher-resolution source photographs - 4 November

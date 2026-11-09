@@ -8,7 +8,7 @@
       1200,
       818
     ],
-    "checkedAt": "2026-10-16",
+    "checkedAt": "2026-11-09",
     "type": "official-oblique-campus-illustration"
   },
   "corroboration": [
@@ -132,18 +132,207 @@
           -29
         ]
       ]
+    },
+    {
+      "id": "entrance-west-approach",
+      "label": "Paved area on the other side of the entrance island",
+      "sourceImageRegions": [
+        [
+          585,
+          560,
+          620,
+          714
+        ],
+        [
+          550,
+          490,
+          704,
+          587
+        ]
+      ],
+      "visibleEvidence": "A narrow pale approach is visible west of the planted entrance island and opens toward the already documented Student Union frontage. The schematic branch stops before the gate locator; it does not fill the adjacent green wedge.",
+      "points": [
+        [
+          21.2,
+          18.6
+        ],
+        [
+          14,
+          17
+        ],
+        [
+          10,
+          9
+        ],
+        [
+          2,
+          6
+        ]
+      ]
+    },
+    {
+      "id": "sports-terrace-lower-apron",
+      "label": "Lower paved apron outside the sports terrace, toward MCC",
+      "sourceImageRegions": [
+        [
+          526,
+          553,
+          601,
+          683
+        ],
+        [
+          236,
+          642,
+          590,
+          690
+        ]
+      ],
+      "visibleEvidence": "The illustration shows pale ground outside the gate-facing and lower edges of the raised sports platform. This trace stays outside the field and stops before MCC; it does not cross the terrace or convert its visible stairs into a level route.",
+      "points": [
+        [
+          14,
+          17
+        ],
+        [
+          4,
+          20
+        ],
+        [
+          1,
+          32
+        ],
+        [
+          1,
+          47
+        ],
+        [
+          -8,
+          51
+        ]
+      ]
+    },
+    {
+      "id": "mcc-street-court",
+      "label": "Central ground-level court between MCC frontage gardens",
+      "sourceImageRegions": [
+        [
+          0,
+          540,
+          233,
+          684
+        ]
+      ],
+      "primaryPhoto": {
+        "url": "https://gsca.mju.ac.kr/CrossEditor/binary/images/000355/20251128163849970_107N73HV.png",
+        "dimensions": [
+          1294,
+          858
+        ],
+        "region": [
+          488,
+          566,
+          624,
+          795
+        ],
+        "sha256": "30dfaae19191c0f3020ab16f2e124e82f670d9430e7a0373f5f9bcfee52e3e79"
+      },
+      "visibleEvidence": "The real university panorama shows a central paved court between the two lower garden groups. This short schematic segment ends before the staircase and remains separate from upper circulation; the illustration provides frontage context only.",
+      "points": [
+        [
+          -32.5,
+          62
+        ],
+        [
+          -32.5,
+          56
+        ]
+      ]
+    },
+    {
+      "id": "administration-frontage",
+      "label": "Short paved frontage beside Administration",
+      "sourceImageRegions": [
+        [
+          645,
+          643,
+          730,
+          723
+        ],
+        [
+          714,
+          700,
+          1031,
+          735
+        ]
+      ],
+      "visibleEvidence": "The pale ground follows the front of the curved Administration facade beside the entrance area. Only this exposed frontage is shown; no continuation behind the building, external road or vehicle access classification is inferred.",
+      "points": [
+        [
+          25.6,
+          17
+        ],
+        [
+          32,
+          11
+        ],
+        [
+          44,
+          11
+        ],
+        [
+          50,
+          11
+        ]
+      ]
     }
   ],
   "omitted": [
     "No inferred closed loop or back-of-building connections.",
     "No connection through MCC, across the raised sports terrace or over stairs.",
     "No library elevated bridge, indoor route, entrance point or accessibility assertion.",
-    "The campus tour sequence is not route geometry."
+    "The campus tour sequence is not route geometry.",
+    "MCC lower court stops before its central stairs; no flat connection to the sports terrace is inferred.",
+    "Source rectangles may include adjacent greenery; they are not filled polygons or measured road bounds."
   ],
   "rejectedReference": {
     "url": "https://bizhrd.mju.ac.kr/default/img/guide_02.pdf",
     "sha256": "74428be1c4eb1c03f2c5afaecc3f05f2fd7325de99a447911682b8f9f30124b8",
     "pages": 73,
     "reason": "Current 2026 BCC guide: physical page42/printed page41 is a UCheckPlus manual, not the previously reported campus map. It was not used for tracing."
-  }
+  },
+  "stairDetails": [
+    {
+      "id": "sports-terrace-side-stair",
+      "anchorId": "mju-seoul-field",
+      "sourcePageUrl": "https://welfare.mju.ac.kr/bbs/welfare/243/227771/artclView.do",
+      "sourceImageUrl": "https://gsca.mju.ac.kr/CrossEditor/binary/images/000355/20251128163849970_107N73HV.png",
+      "sourceImageDimensions": [
+        1294,
+        858
+      ],
+      "sourceImageRegion": [
+        1134,
+        315,
+        1210,
+        430
+      ],
+      "sourceImageSha256": "30dfaae19191c0f3020ab16f2e124e82f670d9430e7a0373f5f9bcfee52e3e79",
+      "tourImageRegion": [
+        496,
+        548,
+        563,
+        654
+      ],
+      "observation": "An exterior stair at the gate-facing side of the sports terrace descends to an intermediate elevated circulation level. It does not establish a direct descent to the lower street court.",
+      "groundConnection": false,
+      "surveyed": false,
+      "navigationGeometry": false,
+      "modelChoices": "A short symbolic six-tread detail joins the existing rendered terrace level to an intermediate raised landing. Orientation fitted to the current field anchor, all dimensions, riser count, levels and solid display plinth are illustrative; no measured construction or step-free route is asserted. The lower end stays more than one scene unit from the pavement shoulder.",
+      "omissions": [
+        "No connection to the lower street court.",
+        "The larger central MCC stair is not forced through the unchanged building envelope.",
+        "No handrail design, accessibility, real riser count or measured elevations inferred."
+      ]
+    }
+  ]
 }
