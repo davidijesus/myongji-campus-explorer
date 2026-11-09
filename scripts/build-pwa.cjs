@@ -4,10 +4,11 @@ const {installHelp,styles:installStyles}=require('./pwa-install.cjs');
 const digest=content=>crypto.createHash('sha256').update(content).digest('hex');
 const assetNames=['index.html','manifest.webmanifest','icon-180.png','icon-192.png','icon-512.png'];
 function createWorker({version,assetDigests}){
- const shellHash=digest(JSON.stringify({strategy:4,assetDigests})).slice(0,16);
+ const shellHash=digest(JSON.stringify({strategy:5,assetDigests})).slice(0,16);
  return {shellHash,worker:`'use strict';
 // Versioned offline shell only. API responses and external sources are never cached here.
-// Updates follow the browser lifecycle: close all app windows to activate a waiting release.
+// A fully verified update becomes active even when another app tab remains open.
+// Existing documents keep their in-memory state; the next navigation uses the new shell.
 const prefix='myongji-shell-'+encodeURIComponent(new URL(self.registration.scope).pathname)+'-';
 const cacheName=prefix+${JSON.stringify(version+'-')}+${JSON.stringify(shellHash)};
 const local=name=>new URL(name,self.registration.scope).href;
@@ -32,6 +33,9 @@ self.addEventListener('install',event=>event.waitUntil((async()=>{
  const cache=await caches.open(cacheName);
  try{await Promise.all(files.map(([url,response])=>cache.put(url,response)));}
  catch(error){await caches.delete(cacheName);throw error;}
+ // Do not bypass waiting until every verified file has been saved successfully.
+ // No forced client navigation: a legacy page can contain an unsent question/chat.
+ await self.skipWaiting();
 })()));
 self.addEventListener('activate',event=>event.waitUntil((async()=>{
  for(const name of await caches.keys())if(name.startsWith(prefix)&&name!==cacheName)await caches.delete(name);

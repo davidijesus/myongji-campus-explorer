@@ -41,10 +41,10 @@ test('Offline readiness is true only when all five files remain in the active re
 
 test('A large decoded release remains exact and readable when saved for offline use',async()=>{
  const payload=Buffer.alloc(28*1024*1024,65),hash=createHash('sha256').update(payload).digest('hex');
- const callbacks=new Map(),saved=new Map();
+ const callbacks=new Map(),saved=new Map();let activated=0;
  const {worker}=createWorker({version:'large-test',assetDigests:{'index.html':hash}});
  const sandbox={URL,Map,Promise,Uint8Array,Headers,Response,crypto:webcrypto,encodeURIComponent,
-  self:{registration:{scope:'https://example.org/campus/'},addEventListener:(type,cb)=>callbacks.set(type,cb)},
+  self:{registration:{scope:'https://example.org/campus/'},addEventListener:(type,cb)=>callbacks.set(type,cb),skipWaiting:async()=>{activated++;assert.equal(saved.size,1);}},
   fetch:async()=>new Response(payload,{headers:{'Content-Type':'text/html; charset=utf-8','Content-Encoding':'gzip','Content-Length':'123','X-Content-Type-Options':'nosniff'}}),
   caches:{open:async()=>({put:async(url,response)=>saved.set(url,response)}),delete:async()=>{throw Error('Unexpected failed cache write');}}};
  vm.runInNewContext(worker,sandbox);let installed;
@@ -54,7 +54,7 @@ test('A large decoded release remains exact and readable when saved for offline 
  assert.equal(response.headers.get('content-encoding'),null);assert.equal(response.headers.get('content-length'),null);
  assert.equal(response.headers.get('x-content-type-options'),'nosniff');
  const bytes=Buffer.from(await response.arrayBuffer());assert.deepEqual(bytes,payload);
- assert.equal(createHash('sha256').update(bytes).digest('hex'),hash);
+ assert.equal(createHash('sha256').update(bytes).digest('hex'),hash);assert.equal(activated,1);
 });
 
 test('A changed download is rejected before an offline cache can be written',async()=>{
@@ -65,4 +65,94 @@ test('A changed download is rejected before an offline cache can be written',asy
   fetch:async()=>new Response('unreviewed content'),caches:{open:async()=>{opened++;throw Error('Must not open cache');}}});
  let installed;callbacks.get('install')({waitUntil:value=>{installed=value;}});
  await assert.rejects(installed,/Offline shell release does not match/);assert.equal(opened,0);
+});
+
+
+const deferred=()=>{let resolve;const promise=new Promise(done=>{resolve=done;});return {promise,resolve};};
+function upgradeWorker({holdWrites=false,corruptAsset=null,failedWrite=null}={}){
+ const scope='https://example.org/myongji-campus-explorer/',prefix='myongji-shell-'+encodeURIComponent(new URL(scope).pathname)+'-',version='0.6.5';
+ const payloads=new Map(assetNames.map(name=>[new URL(name,scope).href,Buffer.from('reviewed fixture bytes: '+name)]));
+ const assetDigests=Object.fromEntries([...payloads].map(([url,bytes])=>[url.slice(scope.length),createHash('sha256').update(bytes).digest('hex')]));
+ const {worker,shellHash}=createWorker({version,assetDigests});
+ const legacyHash=createHash('sha256').update(JSON.stringify({strategy:4,assetDigests})).digest('hex').slice(0,16);
+ const currentName=prefix+version+'-'+shellHash,legacyName=prefix+version+'-'+legacyHash;
+ const otherScope='myongji-shell-'+encodeURIComponent('/another-app/')+'-0.6.5-other';
+ const community='community-fixture-unrelated',olderOwn=prefix+'0.6.4-older';
+ const stores=new Map([[legacyName,new Map(payloads)],[olderOwn,new Map([['older.html',Buffer.from('older complete shell')]])],[otherScope,new Map([['other.html',Buffer.from('other app fixture')]])],[community,new Map([['menu.json',Buffer.from('saved menu fixture')]])]]);
+ const protectedSnapshot=()=>Object.fromEntries([legacyName,olderOwn,otherScope,community].map(name=>[name,[...stores.get(name)||[]].map(([key,value])=>[key,value.toString('hex')])]));
+ const before=protectedSnapshot(),events=[],callbacks=new Map(),requests=[],navigations=[];
+ const gates=new Map([...payloads.keys()].map(url=>[url,deferred()])),finished=new Map([...payloads.keys()].map(url=>[url,deferred()])),allStarted=deferred();
+ let started=0,skipCount=0,claimCount=0;
+ const memory={draft:'unsent isolated question',chat:['isolated answer'],selected:'mju-y3'},memoryBefore=JSON.stringify(memory);
+ const sandbox={URL,Map,Promise,Uint8Array,Headers,Response,crypto:webcrypto,encodeURIComponent,
+  self:{registration:{scope},addEventListener:(type,callback)=>callbacks.set(type,callback),skipWaiting:async()=>{skipCount++;events.push('skipWaiting');},clients:{
+   claim:async()=>{claimCount++;events.push('claim');},
+   matchAll:async()=>[{url:scope+'?campus=seoul',navigate:async url=>{navigations.push(url);memory.draft='';return null;}}],
+   openWindow:async()=>{throw Error('Unexpected new browser window');}
+  }},
+  fetch:async(url,options)=>{requests.push({url,cache:options?.cache});assert.ok(payloads.has(url),'only reviewed same-scope assets are requested');return new Response(url.endsWith('/'+corruptAsset)?'wrong bytes':payloads.get(url));},
+  caches:{keys:async()=>[...stores.keys()],has:async name=>stores.has(name),delete:async name=>{events.push('delete:'+name);return stores.delete(name);},open:async name=>{
+   events.push('open:'+name);if(!stores.has(name))stores.set(name,new Map());const entries=stores.get(name);
+   return {match:async url=>entries.has(url)?new Response(entries.get(url)):undefined,put:async(url,response)=>{
+    events.push('put-start:'+url);if(++started===payloads.size)allStarted.resolve();
+    if(holdWrites)await gates.get(url).promise;
+    if(url.endsWith('/'+failedWrite)){finished.get(url).resolve(false);throw Error('Simulated quota failure');}
+    entries.set(url,Buffer.from(await response.arrayBuffer()));events.push('put-done:'+url);finished.get(url).resolve(true);
+   }};
+  }}
+ };
+ // A service-worker upgrade has no reason to access persistent user preferences
+ // or databases. Make accidental additions fail instead of silently erasing them.
+ Object.defineProperty(sandbox,'localStorage',{get(){throw Error('Unexpected preference storage access');}});
+ Object.defineProperty(sandbox,'indexedDB',{get(){throw Error('Unexpected user database access');}});
+ vm.runInNewContext(worker,sandbox);
+ const dispatch=type=>{let pending;callbacks.get(type)({waitUntil:value=>{pending=value;}});return pending;};
+ return {scope,prefix,currentName,legacyName,otherScope,community,olderOwn,payloads,stores,before,protectedSnapshot,events,requests,navigations,memory,memoryBefore,gates,finished,allStarted,dispatch,get skipCount(){return skipCount;},get claimCount(){return claimCount;}};
+}
+
+test('Automatic activation waits for every verified cache write and uses a cache distinct from legacy policy',async()=>{
+ const h=upgradeWorker({holdWrites:true});
+ assert.notEqual(h.currentName,h.legacyName,'worker-policy updates must not roll back into the currently active cache');
+ const installing=h.dispatch('install');await h.allStarted.promise;
+ assert.equal(h.requests.length,5);assert.ok(h.requests.every(request=>request.cache==='no-cache'));
+ assert.equal(h.skipCount,0,'starting writes is not enough to activate');
+ const urls=[...h.payloads.keys()],last=urls.at(-1);
+ for(const url of urls.slice(0,-1))h.gates.get(url).resolve();
+ await Promise.all(urls.slice(0,-1).map(url=>h.finished.get(url).promise));
+ assert.equal(h.skipCount,0,'one incomplete file must hold activation');
+ h.gates.get(last).resolve();await installing;
+ assert.equal(h.skipCount,1);assert.equal(h.claimCount,0,'browser activation is a separate lifecycle step');
+ const skipIndex=h.events.indexOf('skipWaiting');
+ for(const url of urls){assert.ok(h.events.indexOf('put-done:'+url)<skipIndex);assert.deepEqual(h.stores.get(h.currentName).get(url),h.payloads.get(url));}
+ assert.deepEqual(h.protectedSnapshot(),h.before,'installation must preserve active and unrelated caches');
+});
+
+test('One incorrect file prevents cache writes and automatic activation while preserving all previous data',async()=>{
+ const h=upgradeWorker({corruptAsset:'icon-512.png'});
+ await assert.rejects(h.dispatch('install'),/Offline shell release does not match/);
+ assert.equal(h.skipCount,0);assert.equal(h.claimCount,0);assert.equal(h.stores.has(h.currentName),false);
+ assert.ok(!h.events.some(event=>event.startsWith('open:')||event.startsWith('delete:')),'verification failure cannot change cache storage');
+ assert.deepEqual(h.protectedSnapshot(),h.before);assert.equal(JSON.stringify(h.memory),h.memoryBefore);assert.deepEqual(h.navigations,[]);
+});
+
+test('A cache write failure removes only the incomplete new release and cannot activate it',async()=>{
+ const h=upgradeWorker({failedWrite:'icon-512.png'});
+ await assert.rejects(h.dispatch('install'),/Simulated quota failure/);
+ await Promise.all([...h.finished.values()].map(item=>item.promise));
+ assert.equal(h.skipCount,0);assert.equal(h.claimCount,0);assert.equal(h.stores.has(h.currentName),false);
+ assert.deepEqual(h.events.filter(event=>event.startsWith('delete:')),['delete:'+h.currentName]);
+ assert.deepEqual(h.protectedSnapshot(),h.before,'rollback must retain the active shell and other applications/data');
+ assert.equal(JSON.stringify(h.memory),h.memoryBefore);assert.deepEqual(h.navigations,[]);
+});
+
+test('Activation cleans only this app old shells and claims clients without forcing navigation or touching user data',async()=>{
+ const h=upgradeWorker();await h.dispatch('install');await h.dispatch('activate');
+ assert.equal(h.skipCount,1);assert.equal(h.claimCount,1);
+ assert.deepEqual(h.events.filter(event=>event.startsWith('delete:')),['delete:'+h.legacyName,'delete:'+h.olderOwn]);
+ assert.ok(h.stores.has(h.currentName));assert.equal(h.stores.has(h.legacyName),false);assert.equal(h.stores.has(h.olderOwn),false);
+ for(const name of [h.otherScope,h.community])assert.deepEqual(h.protectedSnapshot()[name],h.before[name]);
+ assert.ok(h.events.indexOf('delete:'+h.olderOwn)<h.events.indexOf('claim'));
+ assert.deepEqual(h.navigations,[],'a valid campus query can still contain an unsent chat draft');
+ assert.equal(JSON.stringify(h.memory),h.memoryBefore,'claiming control must leave the existing document untouched');
+ for(const [url,bytes]of h.payloads)assert.deepEqual(h.stores.get(h.currentName).get(url),bytes);
 });

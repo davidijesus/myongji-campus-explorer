@@ -64,7 +64,7 @@ Installing both the APK and PWA is optional. Their favorites are stored separate
 
 ## Update and identify the web version
 
-Publish the new complete folder **at the same address**, including the service worker. Open online, close all site tabs and web-app windows, then reopen. There is no explicit update-complete button or notice; the browser controls activation. Repeat the offline test. See [service-worker updates](https://web.dev/learn/pwa/service-workers).
+Publish the new complete folder **at the same address**, including the service worker. Open online and allow all five offline-shell files to download and pass their integrity checks. The verified worker now activates even if other site tabs remain open. Reload or follow a campus link to load the new document; existing documents are not forcibly reloaded because they may contain an unsent question or session chat. Saved places, language and menu snapshots are retained. If downloading or verification fails, the prior offline release remains active. Repeat the offline test. See [client upgrade validation](PWA_CLIENT_UPGRADE.md) for the November 2026 regression and migration checks. See [service-worker updates](https://web.dev/learn/pwa/service-workers).
 
 Open `version.json` next to the app URL (for example, `/version.json` for a site published at the root) and compare it with the package. This revision has `version: 0.5.0`, `appHash: ac300af2c792`, and `native: false`. These values identify the version **served by the site**, not necessarily the code running in an old open window.
 
